@@ -1,0 +1,6 @@
+[submodule "lovlearning_front"]
+	path = lovlearning_front
+	url = https://github.com/TheNightmareX/lovlearning_front.git
+[submodule "lovlearning_back"]
+	path = lovlearning_back
+	url = https://github.com/TheNightmareX/lovlearning_back.git
