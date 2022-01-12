@@ -11,6 +11,7 @@ A todo management [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive
 - Roles - creators, managers and members have different permissions
 - Lazy loading - smaller bundle size
 - Multiple themes - a light one and a dark one, your preference by default
+- Rich Notifications - showed after actions
 - Bulk GraphQL operations - less HTTP requests
 - Well-maintained state - synced locally based on mutations
 - Internationalization - English and Chinese
