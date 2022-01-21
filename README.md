@@ -43,4 +43,23 @@ A todo management [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive
 
 ## Deployment
 
-See child repositories.
+1. Get the resources:
+   ```sh
+   git clone --recursive https://github.com/TheNightmareX/tasked
+   ```
+1. Create and edit `.env` files to configure the application:
+   ```sh
+   cp tasked-backend/.env.template tasked-backend/.env
+   ```
+1. Prepare a domain and its corresponding SSL certificate (**fullchain.pem** and **privkey.pem** are required):
+   ```sh
+   cp /etc/letsencrypt/live/domain.app/ tasked-frontend/.docker/cert/
+   ```
+1. Optionally configure Docker Compose via a overriding file:
+   ```sh
+   touch docker-compose.override.yaml
+   ```
+1. Build and launch the application via Docker:
+   ```sh
+   docker compose up;
+   ```
