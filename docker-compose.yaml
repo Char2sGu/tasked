@@ -11,6 +11,10 @@ services:
       - 3000:3000
     volumes:
       - data:/app/data/
+  frontend:
+    build: tasked-frontend
+    ports:
+      - 80:80
 
 volumes:
   data:
