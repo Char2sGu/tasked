@@ -2,7 +2,9 @@ version: "3.9"
 
 services:
   backend:
-    build: tasked-backend
+    build:
+      context: tasked-backend
+      dockerfile: .docker/dockerfile
     env_file:
       - tasked-backend/.env
     environment:
@@ -12,7 +14,9 @@ services:
     volumes:
       - data:/app/data/
   frontend:
-    build: tasked-frontend
+    build:
+      context: tasked-frontend
+      dockerfile: .docker/dockerfile
     ports:
       - 80:80
 
