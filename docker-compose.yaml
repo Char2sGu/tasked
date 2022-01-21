@@ -19,6 +19,8 @@ services:
       dockerfile: .docker/dockerfile
     ports:
       - 80:80
+    volumes:
+      - ./tasked-frontend/.docker/cert:/app/cert
 
 volumes:
   data:
