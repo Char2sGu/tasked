@@ -41,6 +41,16 @@ A todo management [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive
 
 </details>
 
+## Development
+
+```sh
+git clone --recursive https://github.com/TheNightmareX/tasked
+```
+
+Docker is used for deployment only. For development, Node.js 15 or other compatible version of Node.js need to be installed.
+
+For further instructions, see README of the submodules.
+
 ## Deployment
 
 1. Get the resources:
