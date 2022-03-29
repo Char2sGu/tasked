@@ -73,3 +73,21 @@ For further instructions, see README of the submodules.
    ```sh
    docker compose up;
    ```
+
+### Installing Dependencies behind a Proxy
+
+Create `docker-compose.override.yaml`:
+
+```yaml
+services:
+  backend:
+    build:
+      args:
+        - HTTP_PROXY=http://host.docker.internal:10809
+        - HTTPS_PROXY=http://host.docker.internal:10809
+  frontend:
+    build:
+      args:
+        - HTTP_PROXY=http://host.docker.internal:10809
+        - HTTPS_PROXY=http://host.docker.internal:10809
+```
