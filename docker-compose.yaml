@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
   backend:
+    image: char2s/tasked_backend
     build:
       context: tasked-backend
       dockerfile: .docker/dockerfile
@@ -14,6 +15,7 @@ services:
     volumes:
       - data:/app/data/
   frontend:
+    image: char2s/tasked_frontend
     build:
       context: tasked-frontend
       dockerfile: .docker/dockerfile
