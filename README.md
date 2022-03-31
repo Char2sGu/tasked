@@ -61,10 +61,6 @@ For further instructions, see README of the submodules.
    ```sh
    cp tasked-backend/.env.template tasked-backend/.env
    ```
-1. Prepare a domain and its corresponding SSL certificate (**fullchain.pem** and **privkey.pem** are required):
-   ```sh
-   cp /etc/letsencrypt/live/domain.app/ tasked-frontend/.docker/cert/
-   ```
 1. Optionally configure Docker Compose via a overriding file:
    ```sh
    touch docker-compose.override.yaml
@@ -91,3 +87,9 @@ services:
         - HTTP_PROXY=http://host.docker.internal:10809
         - HTTPS_PROXY=http://host.docker.internal:10809
 ```
+
+### PWA(HTTPS)
+
+PWA features require a HTTPS context.
+
+It is always **recommended** to have a server running outside the container and configure a reverse proxy toward the server running inside the container. But when using HTTPS, this becomes **required** to do so, since it is not a good practice to configure SSL certificates in the App scope.
