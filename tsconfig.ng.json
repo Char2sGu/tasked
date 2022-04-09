@@ -2,8 +2,7 @@
   "extends": "./tsconfig.common.json",
   "compilerOptions": {
     "module": "es2020",
-    "emitDecoratorMetadata": false,
-    "noImplicitOverride": false // TODO: solve it
+    "emitDecoratorMetadata": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

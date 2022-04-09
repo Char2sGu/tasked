@@ -2,7 +2,7 @@
 
 .env
 /.eslintcache
-
+/data
 /docker-compose.*.yaml
 
 # Compiled output
