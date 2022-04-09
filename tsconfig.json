@@ -1,0 +1,9 @@
+// config for only editors and tools
+{
+  "extends": "./tsconfig.common.json",
+  "compilerOptions": {
+    "paths": {
+      "common": ["projects/common/src"]
+    }
+  }
+}

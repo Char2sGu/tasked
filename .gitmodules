@@ -1,6 +1,0 @@
-[submodule "tasked-backend"]
-	path = tasked-backend
-	url = https://github.com/TheNightmareX/tasked_backend.git
-[submodule "tasked-frontend"]
-	path = tasked-frontend
-	url = https://github.com/TheNightmareX/tasked_frontend.git

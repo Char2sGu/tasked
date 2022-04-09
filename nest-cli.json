@@ -1,0 +1,19 @@
+{
+  "collection": "@nestjs/schematics",
+  "monorepo": true,
+  "sourceRoot": "projects/server/src",
+  "compilerOptions": {
+    "webpack": false
+  },
+  "projects": {
+    "server": {
+      "type": "application",
+      "root": "projects/server",
+      "entryFile": "main",
+      "sourceRoot": "projects/server/src",
+      "compilerOptions": {
+        "tsConfigPath": "projects/server/tsconfig.app.json"
+      }
+    }
+  }
+}
