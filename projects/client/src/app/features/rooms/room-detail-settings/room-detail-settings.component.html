@@ -1,0 +1,87 @@
+<div
+  class="container mat-typography"
+  ngClass.gt-sm="desktop"
+  fxLayout="column"
+  fxLayoutGap="28px"
+>
+  <app-room-detail-settings-section>
+    <ng-container ngProjectAs="title" i18n>Basic</ng-container>
+    <ng-container ngProjectAs="content">
+      <mat-form-field>
+        <mat-label i18n>Name</mat-label>
+        <input
+          matInput
+          [disabled]="!(isCreator$ | async)"
+          maxlength="15"
+          [(ngModel)]="data.name"
+          (ngModelChange)="change$$.next($event)"
+        />
+        <mat-hint align="end">{{ data.name?.length }} / 15</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="100%">
+        <mat-label i18n>Description</mat-label>
+        <textarea
+          matInput
+          rows="3"
+          [disabled]="!(isCreator$ | async)"
+          maxlength="100"
+          [(ngModel)]="data.description"
+          (ngModelChange)="change$$.next($event)"
+        ></textarea>
+        <mat-hint align="end">{{ data.description?.length }} / 100</mat-hint>
+      </mat-form-field>
+    </ng-container>
+  </app-room-detail-settings-section>
+
+  <app-room-detail-settings-section>
+    <ng-container ngProjectAs="title" i18n>Access</ng-container>
+    <ng-container ngProjectAs="content">
+      <div fxLayout fxLayoutGap="5px">
+        <mat-slide-toggle
+          [disabled]="!(isCreator$ | async)"
+          [(ngModel)]="data.isOpen"
+          (ngModelChange)="change$$.next($event)"
+        >
+          <span i18n>Open to public</span>
+        </mat-slide-toggle>
+        <app-help-icon
+          message="If turned off, others will be unable to join this room"
+          i18n-message
+        ></app-help-icon>
+      </div>
+    </ng-container>
+  </app-room-detail-settings-section>
+
+  <section fxFlexOffset="56px" fxLayout="row-reverse">
+    <div fxLayout fxLayoutGap="8px">
+      <button
+        mat-raised-button
+        fxFlex
+        class="uppercase"
+        [disabled]="!(modified$ | async) || loading"
+        (click)="reset()"
+      >
+        <span i18n>Reset</span>
+      </button>
+      <button
+        mat-raised-button
+        fxFlex
+        class="uppercase"
+        color="primary"
+        [disabled]="!(modified$ | async) || loading"
+        (click)="save()"
+      >
+        <span *appLoading="loading; diameter: 25" i18n>Save</span>
+      </button>
+    </div>
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <section>
+    <app-room-detail-settings-actions
+      [admin]="!!(isCreator$ | async)"
+    ></app-room-detail-settings-actions>
+  </section>
+</div>

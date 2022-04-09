@@ -1,0 +1,15 @@
+<mat-card class="mat-elevation-z1">
+  <div class="header">
+    <h1 class="mat-h1">
+      <ng-content select="title"></ng-content>
+    </h1>
+  </div>
+
+  <div class="content">
+    <ng-content select="content"></ng-content>
+  </div>
+
+  <div class="actions">
+    <ng-content select="actions"></ng-content>
+  </div>
+</mat-card>

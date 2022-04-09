@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  width: 90vw;
+  max-width: 400px;
+  margin-top: -16vh;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 28px 0;
+}
+mat-card > div {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+mat-card > .header {
+  align-self: center;
+  flex-grow: 0.05;
+}
+mat-card > .content {
+  width: 85%;
+  flex-grow: 1;
+}
+mat-card > .actions {
+  width: 80%;
+  margin-bottom: 20px;
+}
+mat-card > .actions > button {
+  width: 100%;
+}

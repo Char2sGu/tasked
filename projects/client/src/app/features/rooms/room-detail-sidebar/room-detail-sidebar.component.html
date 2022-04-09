@@ -1,0 +1,20 @@
+<mat-list fxLayout="column">
+  <h3 matSubheader i18n>Description</h3>
+  <section class="description mat-typography preserve">
+    <ng-container
+      *ngIf="(room$ | async)?.description; then thenBlock; else elseBlock"
+    ></ng-container>
+    <ng-template #thenBlock>
+      <p>{{ (room$ | async)?.description }}</p>
+    </ng-template>
+    <ng-template #elseBlock>
+      <p class="opacity--2" i18n>No description provided...</p>
+    </ng-template>
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <div class="memberships" fxFlex>
+    <app-room-detail-sidebar-membership-list></app-room-detail-sidebar-membership-list>
+  </div>
+</mat-list>

@@ -1,0 +1,43 @@
+<mat-list-item>
+  <div matLine fxLayout fxLayoutAlign="start center">
+    <app-username [user]="application?.owner" [color]="true"></app-username>
+    <mat-icon inline class="opacity--3">arrow_right</mat-icon>
+    <span>{{ application?.room?.name }}</span>
+    <span class="opacity--3">#{{ application?.room?.id }}</span>
+  </div>
+  <div matLine [class.opacity--2]="!application?.message">
+    {{ application?.message || '...' }}
+  </div>
+  <div matLine class="opacity--2">
+    {{ application?.createdAt | date: 'mediumTime' }}
+  </div>
+
+  <ng-container *ngIf="own">
+    <ng-container
+      *ngIf="application?.status == ApplicationStatus.Pending; else status"
+    >
+      <button mat-icon-button [disabled]="loading" (click)="delete()">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="!own">
+    <ng-container
+      *ngIf="application?.status == ApplicationStatus.Pending; else status"
+    >
+      <button mat-icon-button [disabled]="loading" (click)="accept()">
+        <mat-icon>check</mat-icon>
+      </button>
+      <button mat-icon-button [disabled]="loading" (click)="reject()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #status>
+    <div class="opacity--2 mat-body">
+      {{ application ? applicationStatusText[application.status] : null }}
+    </div>
+  </ng-template>
+</mat-list-item>

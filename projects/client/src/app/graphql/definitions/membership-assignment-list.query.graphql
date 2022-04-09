@@ -1,0 +1,26 @@
+query MembershipAssignmentList($id: ID!, $offset: Int) {
+  membership(id: $id) {
+    id
+    assignments(limit: 20, offset: $offset, order: { updatedAt: DESC }) {
+      total
+      results {
+        id
+        recipient {
+          id
+        }
+        task {
+          id
+          title
+          description
+          creator {
+            ...Membership
+          }
+        }
+        isCompleted
+        isImportant
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}

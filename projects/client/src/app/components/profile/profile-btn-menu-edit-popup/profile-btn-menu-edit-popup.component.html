@@ -1,0 +1,31 @@
+<form fxLayout="column" (ngSubmit)="submit()" #form="ngForm">
+  <h1 matDialogTitle i18n>Profile</h1>
+
+  <div matDialogContent>
+    <app-profile-form
+      name="profile"
+      [(ngModel)]="data"
+      [update]="true"
+    ></app-profile-form>
+  </div>
+
+  <div fxFlex></div>
+
+  <div matDialogActions fxLayout="row-reverse">
+    <button
+      mat-button
+      *ngIf="canUpdate$ | async"
+      class="uppercase"
+      color="accent"
+      [disabled]="!form.valid"
+      type="submit"
+      i18n
+    >
+      Submit
+    </button>
+    <button mat-button *ngIf="!(canUpdate$ | async)" disabled i18n>
+      Unable to update until
+      {{ (qualifiedDate$ | async)?.toDate() | date: 'short' }}
+    </button>
+  </div>
+</form>

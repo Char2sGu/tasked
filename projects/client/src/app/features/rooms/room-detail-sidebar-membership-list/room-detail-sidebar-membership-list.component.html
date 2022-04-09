@@ -1,0 +1,24 @@
+<ng-container *ngIf="loading">
+  <mat-list>
+    <mat-list-item *ngFor="let i of [0, 1, 2, 3]">
+      <span matListIcon></span>
+      <ngx-skeleton-loader
+        matLine
+        count="1"
+        [theme]="{ width: '60%' }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        matLine
+        count="1"
+        [theme]="{ width: '40%' }"
+      ></ngx-skeleton-loader>
+    </mat-list-item>
+  </mat-list>
+</ng-container>
+
+<mat-action-list>
+  <app-room-detail-sidebar-membership-list-item
+    *ngFor="let membership of memberships$ | async"
+    [membership]="membership"
+  ></app-room-detail-sidebar-membership-list-item>
+</mat-action-list>

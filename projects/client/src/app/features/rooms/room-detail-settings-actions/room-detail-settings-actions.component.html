@@ -1,0 +1,21 @@
+<mat-action-list>
+  <ng-container
+    *ngIf="admin; then actionDisband; else actionExit"
+  ></ng-container>
+
+  <ng-template #actionExit>
+    <button mat-list-item [disabled]="loading" (click)="exit()">
+      <mat-icon matListIcon>logout</mat-icon>
+      <div matLine i18n>Exit this room</div>
+      <div matLine i18n>Remove your membership</div>
+    </button>
+  </ng-template>
+
+  <ng-template #actionDisband>
+    <button mat-list-item [disabled]="loading" (click)="disband()">
+      <mat-icon matListIcon>delete</mat-icon>
+      <div matLine i18n>Disband this room</div>
+      <div matLine i18n>Remove the entire room</div>
+    </button>
+  </ng-template>
+</mat-action-list>

@@ -1,0 +1,48 @@
+<div class="container mat-typography">
+  <div class="title">
+    <span class="opacity--2" i18n>Task your life</span>
+    <h1 class="opacity--1" i18n>Create a room</h1>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <form (ngSubmit)="submit()" #form="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label i18n>Name</mat-label>
+      <input
+        matInput
+        name="name"
+        type="text"
+        autocomplete="room-name"
+        required
+        maxlength="15"
+        [(ngModel)]="data.name"
+      />
+      <mat-hint align="end">{{ data.name.length }} / 15</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label i18n>Description</mat-label>
+      <textarea
+        matInput
+        name="description"
+        rows="10"
+        maxlength="100"
+        [(ngModel)]="data.description"
+      ></textarea>
+      <mat-hint align="end">{{ data.description.length }} / 100</mat-hint>
+    </mat-form-field>
+
+    <div class="actions">
+      <button
+        mat-raised-button
+        class="uppercase"
+        color="primary"
+        type="submit"
+        [disabled]="!form.valid || loading"
+      >
+        <span *appLoading="loading; diameter: 25" i18n>Submit</span>
+      </button>
+    </div>
+  </form>
+</div>

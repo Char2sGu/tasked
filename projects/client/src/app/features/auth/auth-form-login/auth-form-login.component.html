@@ -1,0 +1,45 @@
+<form (ngSubmit)="submit$$.next($event)" #form="ngForm">
+  <app-auth-form-layout>
+    <ng-container ngProjectAs="title" i18n>Login</ng-container>
+
+    <ng-container ngProjectAs="content">
+      <mat-form-field>
+        <mat-label i18n>Username</mat-label>
+        <input
+          matInput
+          name="username"
+          type="text"
+          autocomplete="username"
+          required
+          [(ngModel)]="data.username"
+          #username="ngModel"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label i18n>Password</mat-label>
+        <input
+          matInput
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          required
+          [(ngModel)]="data.password"
+          #password="ngModel"
+        />
+      </mat-form-field>
+    </ng-container>
+
+    <ng-container ngProjectAs="actions">
+      <button
+        mat-raised-button
+        class="uppercase"
+        [disabled]="form.invalid || loading"
+        color="primary"
+        type="submit"
+      >
+        <span *appLoading="loading; diameter: 30" i18n>Submit</span>
+      </button>
+    </ng-container>
+  </app-auth-form-layout>
+</form>

@@ -1,0 +1,19 @@
+<app-container class="container" fxLayout="column">
+  <header>
+    <ng-content select="header"></ng-content>
+  </header>
+
+  <mat-progress-bar
+    *ngIf="loading$ | async"
+    color="accent"
+    mode="indeterminate"
+  ></mat-progress-bar>
+
+  <main fxFlex>
+    <ng-content select="content"></ng-content>
+  </main>
+</app-container>
+
+<ng-template #spinner>
+  <mat-spinner diameter="50"></mat-spinner>
+</ng-template>

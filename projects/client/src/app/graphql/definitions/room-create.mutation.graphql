@@ -1,0 +1,5 @@
+mutation RoomCreate($data: RoomCreateInput!) {
+  createRoom(data: $data) {
+    ...Room
+  }
+}

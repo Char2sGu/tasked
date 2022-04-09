@@ -1,0 +1,46 @@
+<app-container class="container" fxLayout="column">
+  <mat-toolbar fxLayout fxLayoutAlign="space-between center">
+    <div></div>
+    <div class="title">
+      <span class="name">{{ (room$ | async)?.name }}</span>
+      <span class="id opacity--3">#{{ (room$ | async)?.id }}</span>
+    </div>
+    <div>
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <mat-divider *ngIf="theme.current.value == 'light'"></mat-divider>
+
+  <mat-drawer-container fxFlex>
+    <mat-drawer
+      position="end"
+      [opened]="sidebarOpened$ | async"
+      [mode]="(sidebarMode$ | async)!"
+      [class.bgc--none]="sidebarOpened$ | async"
+      #drawer
+    >
+      <app-room-detail-sidebar></app-room-detail-sidebar>
+    </mat-drawer>
+
+    <mat-drawer-content ngClass.lt-sm="mobile" fxLayout="column">
+      <nav mat-tab-nav-bar>
+        <a
+          matTabLink
+          *ngFor="let link of links"
+          [routerLink]="link[1]"
+          routerLinkActive
+          #router="routerLinkActive"
+          [active]="router.isActive"
+        >
+          {{ link[0] }}
+        </a>
+      </nav>
+      <main fxFlex>
+        <router-outlet *ngIf="room$ | async"></router-outlet>
+      </main>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</app-container>

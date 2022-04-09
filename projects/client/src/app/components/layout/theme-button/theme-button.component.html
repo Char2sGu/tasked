@@ -1,0 +1,5 @@
+<button mat-icon-button (click)="theme.toggle()">
+  <mat-icon>
+    {{ theme.current.value == 'light' ? 'dark_mode' : 'light_mode' }}
+  </mat-icon>
+</button>

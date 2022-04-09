@@ -1,0 +1,17 @@
+<app-layout>
+  <app-layout-header
+    ngProjectAs="header"
+    (toggleSidebar)="content.sidenav.toggle()"
+  >
+    <ng-container ngProjectAs="actions">
+      <app-theme-button></app-theme-button>
+      <app-refetch-button></app-refetch-button>
+      <app-profile-btn></app-profile-btn>
+    </ng-container>
+  </app-layout-header>
+
+  <app-layout-content ngProjectAs="content" #content>
+    <app-main-layout-sidenav ngProjectAs="sidenav"></app-main-layout-sidenav>
+    <router-outlet ngProjectAs="content"></router-outlet>
+  </app-layout-content>
+</app-layout>

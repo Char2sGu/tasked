@@ -1,0 +1,11 @@
+query TaskAssignmentList($id: ID!) {
+  task(id: $id) {
+    id
+    assignments {
+      total
+      results {
+        ...Assignment
+      }
+    }
+  }
+}

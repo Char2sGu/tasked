@@ -1,0 +1,98 @@
+<ng-container ngForm>
+  <mat-form-field appearance="standard">
+    <mat-label i18n>Username</mat-label>
+    <input
+      matInput
+      name="username"
+      type="text"
+      autocomplete="username"
+      [required]="!update"
+      maxlength="15"
+      pattern="^([a-zA-Z0-9_-])+$"
+      [(ngModel)]="data.username"
+      (ngModelChange)="propagate()"
+      #username="ngModel"
+      [disabled]="update"
+    />
+    <mat-hint *ngIf="update" i18n>Username cannot be updated</mat-hint>
+    <mat-error *ngIf="!username.valid" i18n>
+      Must consist of alphanumeric, underscores or hyphens
+    </mat-error>
+    <app-help-icon
+      matSuffix
+      message="Credentials for login which is immutable and unique"
+      i18n-message
+    ></app-help-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label i18n>Nickname</mat-label>
+    <input
+      matInput
+      name="nickname"
+      type="text"
+      autocomplete="nickname"
+      maxlength="15"
+      pattern="^[^\s]*$"
+      [(ngModel)]="data.nickname"
+      (ngModelChange)="propagate()"
+    />
+    <app-help-icon
+      matSuffix
+      message="[Optional] Something that will be displayed to others instead of your username and can be updated whenever you like"
+      i18n-message
+    ></app-help-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label i18n>Password</mat-label>
+    <input
+      matInput
+      name="password"
+      type="password"
+      autocomplete="new-password"
+      [required]="!update"
+      minlength="6"
+      maxlength="20"
+      [(ngModel)]="data.password"
+      (ngModelChange)="passwordConfirm.reset()"
+      (ngModelChange)="propagate()"
+      #password="ngModel"
+    />
+    <mat-error *ngIf="!password.valid" i18n>
+      Must consist of 6 - 20 characters
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label i18n>Confirm Password</mat-label>
+    <input
+      matInput
+      name="passwordConfirm"
+      type="password"
+      autocomplete="new-password"
+      [disabled]="!password.value"
+      required
+      [equals]="data.password"
+      [(ngModel)]="data.passwordConfirm"
+      (ngModelChange)="propagate()"
+      #passwordConfirm="ngModel"
+    />
+    <mat-error *ngIf="!passwordConfirm.valid" i18n>
+      Must match the previous password above
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label i18n>Gender</mat-label>
+    <mat-select
+      name="gender"
+      [(ngModel)]="data.gender"
+      (ngModelChange)="propagate()"
+    >
+      <mat-option *ngFor="let item of genderSelections" [value]="item.value">
+        {{ item.text }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-container>

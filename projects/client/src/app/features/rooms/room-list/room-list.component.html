@@ -1,0 +1,44 @@
+<app-container
+  class="container"
+  ngClass.xs="mobile"
+  fxLayout="column"
+  fxLayoutGap="16px"
+>
+  <form
+    fxLayout
+    fxLayoutAlign="start center"
+    fxLayoutGap="16px"
+    (ngSubmit)="load()"
+  >
+    <mat-form-field fxFlex appearance="standard" [themed]="false">
+      <mat-label i18n>Search</mat-label>
+      <input matInput name="search" type="search" [(ngModel)]="searchValue" />
+      <mat-hint i18n>
+        Search by room name or ID (prefix "#" is required for ID)
+      </mat-hint>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      fxHide.xs
+      class="uppercase"
+      color="primary"
+      [disabled]="loading"
+      i18n
+    >
+      Search
+    </button>
+    <button mat-icon-button fxHide.gt-xs [disabled]="loading">
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
+
+  <mat-divider></mat-divider>
+
+  <mat-action-list fxFlex>
+    <app-room-list-item
+      *ngFor="let room of rooms$ | async"
+      [room]="room"
+    ></app-room-list-item>
+  </mat-action-list>
+</app-container>

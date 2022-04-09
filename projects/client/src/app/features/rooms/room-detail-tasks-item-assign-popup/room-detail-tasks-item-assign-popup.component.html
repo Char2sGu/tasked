@@ -1,0 +1,43 @@
+<mat-list *ngIf="loadingInitial">
+  <mat-list-item *ngFor="let i of [0, 1, 2]">
+    <ngx-skeleton-loader
+      matLine
+      count="1"
+      [theme]="{ width: '30%' }"
+    ></ngx-skeleton-loader>
+  </mat-list-item>
+</mat-list>
+
+<mat-selection-list #list>
+  <mat-list-option
+    *ngFor="let item of items; trackBy: identifyItem"
+    [(selected)]="item.selected"
+  >
+    <div matLine>
+      <app-username [user]="item.membership.owner"></app-username>
+    </div>
+  </mat-list-option>
+</mat-selection-list>
+
+<div fxLayout fxLayoutAlign="space-between">
+  <div>
+    <button mat-button class="uppercase" (click)="list.selectAll()" i18n>
+      Fill
+    </button>
+    <button mat-button class="uppercase" (click)="list.deselectAll()" i18n>
+      Clear
+    </button>
+  </div>
+
+  <div>
+    <button
+      mat-button
+      class="uppercase"
+      [disabled]="loadingUpdate"
+      (click)="update()"
+      i18n
+    >
+      Confirm
+    </button>
+  </div>
+</div>

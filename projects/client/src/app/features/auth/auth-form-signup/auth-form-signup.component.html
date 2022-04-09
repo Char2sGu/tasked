@@ -1,0 +1,21 @@
+<form (ngSubmit)="submit$$.next($event)" #form="ngForm">
+  <app-auth-form-layout>
+    <ng-container ngProjectAs="title" i18n>Signup</ng-container>
+
+    <ng-container ngProjectAs="content">
+      <app-profile-form name="data" [(ngModel)]="data"></app-profile-form>
+    </ng-container>
+
+    <ng-container ngProjectAs="actions">
+      <button
+        mat-raised-button
+        class="uppercase"
+        [disabled]="!form.valid || loading"
+        color="primary"
+        type="submit"
+      >
+        <span *appLoading="loading; diameter: 30" i18n>Confirm</span>
+      </button>
+    </ng-container>
+  </app-auth-form-layout>
+</form>

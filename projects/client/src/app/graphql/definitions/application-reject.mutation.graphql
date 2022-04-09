@@ -1,0 +1,5 @@
+mutation ApplicationReject($id: ID!) {
+  rejectApplication(id: $id) {
+    ...Application
+  }
+}

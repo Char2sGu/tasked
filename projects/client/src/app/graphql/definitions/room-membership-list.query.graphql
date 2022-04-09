@@ -1,0 +1,11 @@
+query RoomMembershipList($id: ID!) {
+  room(id: $id) {
+    id
+    memberships {
+      total
+      results {
+        ...Membership
+      }
+    }
+  }
+}

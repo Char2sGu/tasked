@@ -1,0 +1,5 @@
+mutation AssignmentCreate($data: AssignmentCreateInput!) {
+  createAssignment(data: $data) {
+    ...Assignment
+  }
+}

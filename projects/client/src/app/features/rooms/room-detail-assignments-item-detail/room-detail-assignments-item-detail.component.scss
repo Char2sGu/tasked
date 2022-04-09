@@ -1,0 +1,9 @@
+.container {
+  display: block;
+  margin: 0 auto;
+  max-width: 368px;
+  max-height: 80vh;
+}
+.container.dialog {
+  width: 100vw;
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "http://localhost:3000/graphql",
+  "documents": "projects/client/src/**/*.graphql",
+  "generates": {
+    "projects/client/src/app/graphql/index.ts": {
+      "plugins": [
+        "typescript",
+        "typescript-operations",
+        "typescript-apollo-angular"
+      ]
+    }
+  }
+}

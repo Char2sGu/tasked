@@ -2,6 +2,7 @@
   "extends": "./tsconfig.common.json",
   "compilerOptions": {
     "module": "commonjs",
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "noImplicitOverride": true
   }
 }

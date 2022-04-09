@@ -1,0 +1,10 @@
+mutation ApplicationAccept($id: ID!) {
+  acceptApplication(id: $id) {
+    application {
+      ...Application
+    }
+    membership {
+      ...Membership
+    }
+  }
+}

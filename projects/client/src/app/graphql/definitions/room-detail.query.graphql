@@ -1,0 +1,5 @@
+query RoomDetail($id: ID!) {
+  room(id: $id) {
+    ...Room
+  }
+}

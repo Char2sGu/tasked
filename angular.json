@@ -8,7 +8,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "less"
+          "style": "scss"
         },
         "@schematics/angular:application": {
           "strict": true
@@ -26,13 +26,16 @@
             "main": "projects/client/src/main.ts",
             "polyfills": "projects/client/src/polyfills.ts",
             "tsConfig": "projects/client/tsconfig.app.json",
-            "inlineStyleLanguage": "less",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/client/src/favicon.ico",
-              "projects/client/src/assets"
+              "projects/client/src/assets",
+              "projects/client/src/manifest.webmanifest"
             ],
-            "styles": ["projects/client/src/styles.less"],
-            "scripts": []
+            "styles": ["projects/client/src/styles/styles.scss"],
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "projects/client/ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -74,7 +77,8 @@
               "browserTarget": "client:build:production"
             },
             "development": {
-              "browserTarget": "client:build:development"
+              "browserTarget": "client:build:development",
+              "proxyConfig": "projects/client/proxy-config.json"
             }
           },
           "defaultConfiguration": "development"
@@ -92,12 +96,13 @@
             "polyfills": "projects/client/src/polyfills.ts",
             "tsConfig": "projects/client/tsconfig.spec.json",
             "karmaConfig": "projects/client/karma.conf.js",
-            "inlineStyleLanguage": "less",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/client/src/favicon.ico",
-              "projects/client/src/assets"
+              "projects/client/src/assets",
+              "projects/client/src/manifest.webmanifest"
             ],
-            "styles": ["projects/client/src/styles.less"],
+            "styles": ["projects/client/src/styles/styles.scss"],
             "scripts": []
           }
         }

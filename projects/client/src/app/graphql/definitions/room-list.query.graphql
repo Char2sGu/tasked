@@ -1,0 +1,8 @@
+query RoomList($offset: Int, $filter: RoomFilterMap, $joinedOnly: Boolean) {
+  rooms(limit: 20, offset: $offset, filter: $filter, joinedOnly: $joinedOnly) {
+    total
+    results {
+      ...Room
+    }
+  }
+}

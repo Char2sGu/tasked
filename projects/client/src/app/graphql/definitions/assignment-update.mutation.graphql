@@ -1,0 +1,8 @@
+mutation AssignmentUpdate($id: ID!, $data: AssignmentUpdateInput!) {
+  updateAssignment(id: $id, data: $data) {
+    id
+    isCompleted
+    isImportant
+    updatedAt
+  }
+}

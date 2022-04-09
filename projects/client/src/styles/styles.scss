@@ -1,0 +1,48 @@
+@use '../../../../node_modules/angular-notifier/styles';
+@use './themes';
+@use './utilities';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.theme-dark {
+  .router-link-active {
+    color: rgb(209, 118, 225) !important;
+    background-color: rgba(123, 31, 162, 0.15) !important;
+  }
+  .router-link-active:hover {
+    background-color: rgba(123, 31, 162, 0.3) !important;
+  }
+}
+.theme-light {
+  .router-link-active {
+    color: rgb(0, 150, 136) !important;
+    background-color: rgb(225, 243, 241) !important;
+  }
+  .router-link-active:hover {
+    background-color: rgba(181, 232, 227, 0.7) !important;
+  }
+}
+
+.theme-light {
+  mat-icon {
+    color: rgba(0, 0, 0, 0.54);
+  }
+  .mat-button-disabled mat-icon,
+  .mat-primary mat-icon,
+  .router-link-active mat-icon {
+    color: inherit;
+  }
+}
+
+.theme-dark {
+  ngx-skeleton-loader {
+    opacity: 0.05;
+  }
+}

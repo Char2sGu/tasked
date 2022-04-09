@@ -1,0 +1,35 @@
+<mat-list>
+  <ng-container *ngIf="loadingInitial">
+    <ngx-skeleton-loader
+      count="1"
+      [theme]="{ width: '60%' }"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      count="1"
+      [theme]="{ width: '80%' }"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      count="1"
+      [theme]="{ width: '40%' }"
+    ></ngx-skeleton-loader>
+  </ng-container>
+
+  <mat-divider *ngIf="(applicationGroups$ | async)?.length"></mat-divider>
+
+  <ng-container *ngFor="let group of applicationGroups$ | async">
+    <h2 matSubheader>{{ group[0] }}</h2>
+    <app-application-list-item
+      *ngFor="let item of group[1]"
+      [application]="item"
+      [own]="(auth.user$ | async)?.id == item.owner.id"
+    ></app-application-list-item>
+    <mat-divider></mat-divider>
+  </ng-container>
+
+  <div *ngIf="(applicationGroups$ | async)?.length && loadingMoreNeeded">
+    <app-infinity-scroll-trigger
+      [loading]="loadingMore"
+      (trigger)="fetchMore()"
+    ></app-infinity-scroll-trigger>
+  </div>
+</mat-list>

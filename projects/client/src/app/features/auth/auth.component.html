@@ -1,0 +1,34 @@
+<app-layout>
+  <app-layout-header
+    ngProjectAs="header"
+    (toggleSidebar)="content.sidenav.toggle()"
+  >
+    <ng-container ngProjectAs="actions">
+      <app-theme-button></app-theme-button>
+    </ng-container>
+  </app-layout-header>
+
+  <app-layout-content ngProjectAs="content" #content>
+    <mat-nav-list ngProjectAs="sidenav">
+      <a
+        mat-list-item
+        routerLink="/auth/login"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon matListIcon>login</mat-icon>
+        <span matLine i18n>Login</span>
+      </a>
+      <a
+        mat-list-item
+        routerLink="/auth/signup"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon matListIcon>person_add</mat-icon>
+        <span matLine i18n>Signup</span>
+      </a>
+    </mat-nav-list>
+    <main ngProjectAs="content">
+      <router-outlet></router-outlet>
+    </main>
+  </app-layout-content>
+</app-layout>

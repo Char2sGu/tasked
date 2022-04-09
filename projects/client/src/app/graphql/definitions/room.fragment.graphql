@@ -1,0 +1,15 @@
+fragment Room on Room {
+  id
+  name
+  description
+  isOpen
+  creator {
+    id
+    username
+    nickname
+  }
+  membership {
+    id
+    role
+  }
+}

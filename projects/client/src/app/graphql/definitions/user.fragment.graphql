@@ -1,0 +1,7 @@
+fragment User on User {
+  id
+  username
+  nickname
+  gender
+  updatedAt
+}

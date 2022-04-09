@@ -1,0 +1,30 @@
+<ng-container *ngIf="loading">
+  <mat-list-item *ngFor="let i of [0, 1, 2]">
+    <ngx-skeleton-loader
+      matLine
+      count="1"
+      [theme]="{ width: '60%' }"
+    ></ngx-skeleton-loader>
+  </mat-list-item>
+</ng-container>
+
+<a
+  mat-list-item
+  *ngFor="let room of rooms$ | async; trackBy: identifyRoom"
+  [routerLink]="['/app/rooms', room.id]"
+  routerLinkActive="router-link-active"
+  (click)="deactivateIfActivated(room.id)"
+>
+  <div matLine>{{ room.name }}</div>
+</a>
+
+<a
+  mat-list-item
+  [routerLink]="['/app/rooms', 'create']"
+  routerLinkActive="router-link-active"
+  (click)="deactivateIfActivated('create')"
+>
+  <div matLine fxLayout fxLayoutAlign="center center">
+    <mat-icon>add</mat-icon>
+  </div>
+</a>

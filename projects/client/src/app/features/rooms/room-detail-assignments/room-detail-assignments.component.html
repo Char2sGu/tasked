@@ -1,0 +1,37 @@
+<mat-action-list>
+  <ng-container *ngIf="loadingInitial">
+    <h3 matSubheader></h3>
+    <ngx-skeleton-loader
+      count="1"
+      [theme]="{ width: '80%' }"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      count="1"
+      [theme]="{ width: '60%' }"
+    ></ngx-skeleton-loader>
+  </ng-container>
+
+  <h3 matSubheader *ngIf="(assignmentsPending$ | async)?.length" i18n>
+    Pending
+  </h3>
+
+  <app-room-detail-assignments-item
+    *ngFor="let assignment of assignmentsPending$ | async"
+    [assignment]="assignment"
+  ></app-room-detail-assignments-item>
+
+  <h3 matSubheader *ngIf="(assignmentsCompleted$ | async)?.length" i18n>
+    Completed
+  </h3>
+
+  <app-room-detail-assignments-item
+    *ngFor="let assignment of assignmentsCompleted$ | async"
+    [assignment]="assignment"
+  ></app-room-detail-assignments-item>
+
+  <app-infinity-scroll-trigger
+    *ngIf="!loadingMoreNeeded"
+    [loading]="loadingMore"
+    (trigger)="fetchMore()"
+  ></app-infinity-scroll-trigger>
+</mat-action-list>

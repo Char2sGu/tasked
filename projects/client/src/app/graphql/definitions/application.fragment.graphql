@@ -1,0 +1,15 @@
+fragment Application on Application {
+  id
+  owner {
+    id
+    username
+    nickname
+  }
+  room {
+    id
+    name
+  }
+  message
+  status
+  createdAt
+}

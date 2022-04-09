@@ -1,0 +1,6 @@
+fragment Assignment on Assignment {
+  id
+  recipient {
+    id
+  }
+}

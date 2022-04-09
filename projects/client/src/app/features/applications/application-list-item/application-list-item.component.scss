@@ -1,0 +1,7 @@
+mat-list-item button {
+  opacity: 100%;
+  transition: opacity ease 0.2s;
+}
+mat-list-item:not(:hover) button {
+  opacity: 0;
+}
