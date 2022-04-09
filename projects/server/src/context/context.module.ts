@@ -4,7 +4,7 @@ import { ContextMiddleware } from './context.middleware';
 
 @Module({})
 export class ContextModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
+  configure(consumer: MiddlewareConsumer): void {
     consumer.apply(ContextMiddleware).forRoutes('*');
   }
 }

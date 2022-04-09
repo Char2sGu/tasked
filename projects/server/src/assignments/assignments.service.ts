@@ -16,6 +16,7 @@ import { Repository } from '../mikro/repository.class';
 import { Task } from '../tasks/entities/task.entity';
 import { CreateAssignmentArgs } from './dto/create-assignment.args.dto';
 import { DeleteAssignmentArgs } from './dto/delete-assignment.args.dto';
+import { PaginatedAssignments } from './dto/paginated-assignments.obj.dto';
 import { QueryAssignmentArgs } from './dto/query-assignment.args.dto';
 import { QueryAssignmentsArgs } from './dto/query-assignments.args.dto';
 import { UpdateAssignmentArgs } from './dto/update-assignment.args.dto';
@@ -37,13 +38,13 @@ export class AssignmentsService {
   async queryMany(
     { limit, offset, order, filter, ownOnly }: QueryAssignmentsArgs,
     query: FilterQuery<Assignment> = {},
-  ) {
+  ): Promise<PaginatedAssignments> {
     const user = Context.current.user;
     return this.repo.findAndPaginate(
       {
         $and: [
           query,
-          filter ? FilterMap.resolve(filter) : {},
+          filter ? FilterMap.resolve<Assignment>(filter) : {},
           ownOnly ? { recipient: { owner: user } } : {},
         ],
       },
@@ -56,11 +57,11 @@ export class AssignmentsService {
     );
   }
 
-  async queryOne({ id }: QueryAssignmentArgs) {
+  async queryOne({ id }: QueryAssignmentArgs): Promise<Assignment> {
     return this.repo.findOneOrFail(id, { filters: [CommonFilter.Crud] });
   }
 
-  async createOne({ data }: CreateAssignmentArgs) {
+  async createOne({ data }: CreateAssignmentArgs): Promise<Assignment> {
     const user = Context.current.user;
 
     await this.membershipRepo
@@ -88,7 +89,7 @@ export class AssignmentsService {
     });
   }
 
-  async updateOne({ id, data }: UpdateAssignmentArgs) {
+  async updateOne({ id, data }: UpdateAssignmentArgs): Promise<Assignment> {
     const assignment = await this.repo.findOneOrFail(id, {
       filters: [CommonFilter.Crud],
       populate: ['task', 'recipient'],
@@ -109,7 +110,7 @@ export class AssignmentsService {
     return assignment.assign(data);
   }
 
-  async deleteOne({ id }: DeleteAssignmentArgs) {
+  async deleteOne({ id }: DeleteAssignmentArgs): Promise<Assignment> {
     const assignment = await this.repo.findOneOrFail(id, {
       filters: [CommonFilter.Crud],
       populate: ['task.creator'],

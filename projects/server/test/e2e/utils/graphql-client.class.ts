@@ -1,7 +1,7 @@
-import { GraphQLClient as Base } from 'graphql-request';
+import { GraphQLClient as GraphQLClientBase } from 'graphql-request';
 
-export class GraphQLClient extends Base {
-  setToken(token?: string) {
+export class GraphQLClient extends GraphQLClientBase {
+  setToken(token?: string): GraphQLClientBase {
     return this.setHeader('Authorization', token ? `Bearer ${token}` : '');
   }
 }

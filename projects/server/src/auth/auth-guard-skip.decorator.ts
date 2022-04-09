@@ -1,4 +1,4 @@
-import { SetMetadata } from '@nestjs/common';
+import { CustomDecorator, SetMetadata } from '@nestjs/common';
 
 import { AuthGuard } from './auth.guard';
 import { AUTH_GUARD_SKIP } from './auth-guard-skip.symbol';
@@ -8,6 +8,7 @@ import { AUTH_GUARD_SKIP } from './auth-guard-skip.symbol';
  * @see AuthGuard
  * @returns
  */
-export const AuthGuardSkip = () => SetMetadata(AUTH_GUARD_SKIP, true);
+export const AuthGuardSkip = (): CustomDecorator<typeof AUTH_GUARD_SKIP> =>
+  SetMetadata(AUTH_GUARD_SKIP, true);
 
 AuthGuard;

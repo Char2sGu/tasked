@@ -14,27 +14,27 @@ export class RoomsResolver {
   constructor(private service: RoomsService) {}
 
   @Query(() => PaginatedRooms)
-  async rooms(@Args() args: QueryRoomsArgs) {
+  async rooms(@Args() args: QueryRoomsArgs): Promise<PaginatedRooms> {
     return this.service.queryMany(args);
   }
 
   @Query(() => Room)
-  async room(@Args() args: QueryRoomArgs) {
+  async room(@Args() args: QueryRoomArgs): Promise<Room> {
     return this.service.queryOne(args);
   }
 
   @Mutation(() => Room)
-  async createRoom(@Args() args: CreateRoomArgs) {
+  async createRoom(@Args() args: CreateRoomArgs): Promise<Room> {
     return this.service.createOne(args);
   }
 
   @Mutation(() => Room)
-  async updateRoom(@Args() args: UpdateRoomArgs) {
+  async updateRoom(@Args() args: UpdateRoomArgs): Promise<Room> {
     return this.service.updateOne(args);
   }
 
   @Mutation(() => Room)
-  async deleteRoom(@Args() args: DeleteRoomArgs) {
+  async deleteRoom(@Args() args: DeleteRoomArgs): Promise<Room> {
     return this.service.deleteOne(args);
   }
 }

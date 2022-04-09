@@ -16,32 +16,42 @@ export class ApplicationsResolver {
   constructor(private service: ApplicationsService) {}
 
   @Query(() => PaginatedApplications)
-  async applications(@Args() args: QueryApplicationsArgs) {
+  async applications(
+    @Args() args: QueryApplicationsArgs,
+  ): Promise<PaginatedApplications> {
     return this.service.queryMany(args);
   }
 
   @Query(() => Application)
-  async application(@Args() args: QueryApplicationArgs) {
+  async application(@Args() args: QueryApplicationArgs): Promise<Application> {
     return this.service.queryOne(args);
   }
 
   @Mutation(() => Application)
-  async createApplication(@Args() args: CreateApplicationArgs) {
+  async createApplication(
+    @Args() args: CreateApplicationArgs,
+  ): Promise<Application> {
     return this.service.createOne(args);
   }
 
   @Mutation(() => Application)
-  async rejectApplication(@Args() args: RejectApplicationArgs) {
+  async rejectApplication(
+    @Args() args: RejectApplicationArgs,
+  ): Promise<Application> {
     return this.service.rejectOne(args);
   }
 
   @Mutation(() => AcceptApplicationResult)
-  async acceptApplication(@Args() args: AcceptApplicationArgs) {
+  async acceptApplication(
+    @Args() args: AcceptApplicationArgs,
+  ): Promise<AcceptApplicationResult> {
     return this.service.acceptOne(args);
   }
 
   @Mutation(() => Application)
-  async deleteApplication(@Args() args: DeleteApplicationArgs) {
+  async deleteApplication(
+    @Args() args: DeleteApplicationArgs,
+  ): Promise<Application> {
     return this.service.deleteOne(args);
   }
 }

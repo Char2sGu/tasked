@@ -13,22 +13,28 @@ export class MembershipsResolver {
   constructor(private service: MembershipsService) {}
 
   @Query(() => PaginatedMemberships)
-  async memberships(@Args() args: QueryMembershipsArgs) {
+  async memberships(
+    @Args() args: QueryMembershipsArgs,
+  ): Promise<PaginatedMemberships> {
     return this.service.queryMany(args);
   }
 
   @Query(() => Membership)
-  async membership(@Args() args: QueryMembershipArgs) {
+  async membership(@Args() args: QueryMembershipArgs): Promise<Membership> {
     return this.service.queryOne(args);
   }
 
   @Mutation(() => Membership)
-  async updateMembership(@Args() args: UpdateMembershipArgs) {
+  async updateMembership(
+    @Args() args: UpdateMembershipArgs,
+  ): Promise<Membership> {
     return this.service.updateOne(args);
   }
 
   @Mutation(() => Membership)
-  async deleteMembership(@Args() args: DeleteMembershipArgs) {
+  async deleteMembership(
+    @Args() args: DeleteMembershipArgs,
+  ): Promise<Membership> {
     return this.service.deleteOne(args);
   }
 }

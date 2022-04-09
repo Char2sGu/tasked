@@ -21,7 +21,10 @@ export class ValidationPipe
     });
   }
 
-  transform(value: unknown, metadata: ArgumentMetadata) {
+  async transform(
+    value: unknown,
+    metadata: ArgumentMetadata,
+  ): Promise<unknown> {
     return super.transform(value, metadata);
   }
 }

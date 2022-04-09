@@ -20,7 +20,7 @@ import { GraphQLClient } from './graphql-client.class';
 export async function prepareE2E({
   debug,
   ...metadata
-}: PrepareE2EOptions = {}) {
+}: PrepareE2EOptions = {}): Promise<void> {
   const module = await Test.createTestingModule({
     imports: [
       MikroOrmModule.forRoot({

@@ -30,7 +30,7 @@ export class AuthService {
     }
   }
 
-  async verifyJwt(token?: string) {
+  async verifyJwt(token?: string): Promise<User> {
     try {
       if (!token) throw new UnauthorizedException();
       const { id } = await this.jwt.verifyAsync<JwtData>(token);

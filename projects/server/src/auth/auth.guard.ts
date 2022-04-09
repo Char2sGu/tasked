@@ -19,7 +19,7 @@ import { AUTH_GUARD_SKIP } from './auth-guard-skip.symbol';
 export class AuthGuard implements CanActivate {
   constructor(private reflector: Reflector, private service: AuthService) {}
 
-  async canActivate(context: ExecutionContext) {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const skip = this.reflector.get<true | undefined>(
       AUTH_GUARD_SKIP,
       context.getHandler(),
@@ -35,7 +35,7 @@ export class AuthGuard implements CanActivate {
     return true;
   }
 
-  async authenticate(context: ExecutionContext) {
+  async authenticate(context: ExecutionContext): Promise<void> {
     const request = this.getRequest(context);
     const token = this.service.getJwtFromHeaders(request.headers);
     const user = await this.service.verifyJwt(token);

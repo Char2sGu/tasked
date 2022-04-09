@@ -1,4 +1,9 @@
-import { EntityManager, RequestContext } from '@mikro-orm/core';
+import {
+  Connection,
+  EntityManager,
+  IDatabaseDriver,
+  RequestContext,
+} from '@mikro-orm/core';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import {
   CallHandler,
@@ -116,7 +121,7 @@ export class MikroQueryContextInterceptor implements NestInterceptor {
    * scoped contexts are only available after this interceptor is executed).
    * Otherwise, use the default request scoped one.
    */
-  static context = () =>
+  static context = (): EntityManager<IDatabaseDriver<Connection>> | undefined =>
     MikroQueryContextInterceptor.storage.getStore() ??
     RequestContext.getEntityManager();
 

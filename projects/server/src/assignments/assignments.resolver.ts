@@ -14,27 +14,35 @@ export class AssignmentsResolver {
   constructor(private service: AssignmentsService) {}
 
   @Query(() => PaginatedAssignments)
-  async assignments(@Args() args: QueryAssignmentsArgs) {
+  async assignments(
+    @Args() args: QueryAssignmentsArgs,
+  ): Promise<PaginatedAssignments> {
     return this.service.queryMany(args);
   }
 
   @Query(() => Assignment)
-  async assignment(@Args() args: QueryAssignmentArgs) {
+  async assignment(@Args() args: QueryAssignmentArgs): Promise<Assignment> {
     return this.service.queryOne(args);
   }
 
   @Mutation(() => Assignment)
-  async createAssignment(@Args() args: CreateAssignmentArgs) {
+  async createAssignment(
+    @Args() args: CreateAssignmentArgs,
+  ): Promise<Assignment> {
     return await this.service.createOne(args);
   }
 
   @Mutation(() => Assignment)
-  async updateAssignment(@Args() args: UpdateAssignmentArgs) {
+  async updateAssignment(
+    @Args() args: UpdateAssignmentArgs,
+  ): Promise<Assignment> {
     return this.service.updateOne(args);
   }
 
   @Mutation(() => Assignment)
-  async deleteAssignment(@Args() args: DeleteAssignmentArgs) {
+  async deleteAssignment(
+    @Args() args: DeleteAssignmentArgs,
+  ): Promise<Assignment> {
     return this.service.deleteOne(args);
   }
 }

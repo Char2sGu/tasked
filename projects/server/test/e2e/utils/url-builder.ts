@@ -1,4 +1,4 @@
 export const urlBuilder =
   (prefix = '/') =>
-  (url: string) =>
+  (url: string): string =>
     `${prefix}${url}`;

@@ -7,6 +7,7 @@ import { FilterMap } from '../common/dto/filter/filter-map.input.dto';
 import { Context } from '../context/context.class';
 import { Repository } from '../mikro/repository.class';
 import { DeleteMembershipArgs } from './dto/delete-membership.args.dto';
+import { PaginatedMemberships } from './dto/paginated-memberships.obj.dto';
 import { QueryMembershipArgs } from './dto/query-membership.args.dto';
 import { QueryMembershipsArgs } from './dto/query-memberships.args.dto';
 import { UpdateMembershipArgs } from './dto/update-membership.args.dto';
@@ -23,9 +24,9 @@ export class MembershipsService {
   async queryMany(
     { limit, offset, order, filter }: QueryMembershipsArgs,
     query: FilterQuery<Membership> = {},
-  ) {
+  ): Promise<PaginatedMemberships> {
     return this.repo.findAndPaginate(
-      { $and: [query, filter ? FilterMap.resolve(filter) : {}] },
+      { $and: [query, filter ? FilterMap.resolve<Membership>(filter) : {}] },
       {
         limit,
         offset,
@@ -35,16 +36,16 @@ export class MembershipsService {
     );
   }
 
-  async queryOne({ id }: QueryMembershipArgs) {
+  async queryOne({ id }: QueryMembershipArgs): Promise<Membership> {
     return this.repo.findOneOrFail(id, { filters: [CommonFilter.Crud] });
   }
 
-  async updateOne({ id, data }: UpdateMembershipArgs) {
+  async updateOne({ id, data }: UpdateMembershipArgs): Promise<Membership> {
     const [target] = await this.canWrite(id, 'update');
     return target.assign(data);
   }
 
-  async deleteOne({ id }: DeleteMembershipArgs) {
+  async deleteOne({ id }: DeleteMembershipArgs): Promise<Membership> {
     const [target] = await this.canWrite(id, 'delete');
     await this.repo.populate(target, ['assignments']);
     return this.repo.delete(target);

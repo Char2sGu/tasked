@@ -2,7 +2,6 @@ import {
   EntityRepository,
   FilterQuery,
   FindOptions,
-  Loaded,
   New,
   RequiredEntityData,
 } from '@mikro-orm/core';
@@ -15,10 +14,10 @@ export class Repository<Entity> extends EntityRepository<Entity> {
    * @param options
    * @returns
    */
-  async findAndPaginate<Populate extends string = never>(
+  async findAndPaginate(
     where: FilterQuery<Entity>,
-    options?: FindOptions<Entity, Populate>,
-  ): Promise<{ total: number; results: Loaded<Entity, Populate>[] }> {
+    options?: FindOptions<Entity, never>,
+  ): Promise<RepositoryPaginationResult<Entity>> {
     const [results, total] = await super.findAndCount(where, options);
     return { total, results };
   }
@@ -47,4 +46,9 @@ export class Repository<Entity> extends EntityRepository<Entity> {
     this.remove(entity);
     return entity;
   }
+}
+
+export interface RepositoryPaginationResult<Entity> {
+  total: number;
+  results: Entity[];
 }

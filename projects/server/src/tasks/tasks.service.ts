@@ -13,6 +13,7 @@ import { Membership } from '../memberships/entities/membership.entity';
 import { Repository } from '../mikro/repository.class';
 import { CreateTaskArgs } from './dto/create-task.args.dto';
 import { DeleteTaskArgs } from './dto/delete-task.args.dto';
+import { PaginatedTasks } from './dto/paginated-tasks.obj.dto';
 import { QueryTaskArgs } from './dto/query-task.args.dto';
 import { QueryTasksArgs } from './dto/query-tasks.args.dto';
 import { UpdateTaskArgs } from './dto/update-task.args.dto';
@@ -28,13 +29,13 @@ export class TasksService {
   async queryMany(
     { limit, offset, order, filter, ownOnly }: QueryTasksArgs,
     query: FilterQuery<Task> = {},
-  ) {
+  ): Promise<PaginatedTasks> {
     const user = Context.current.user;
     return this.repo.findAndPaginate(
       {
         $and: [
           query,
-          filter ? FilterMap.resolve(filter) : {},
+          filter ? FilterMap.resolve<Task>(filter) : {},
           ownOnly ? { creator: { owner: user } } : {},
         ],
       },
@@ -47,11 +48,11 @@ export class TasksService {
     );
   }
 
-  async queryOne({ id }: QueryTaskArgs) {
+  async queryOne({ id }: QueryTaskArgs): Promise<Task> {
     return this.repo.findOneOrFail(id, { filters: [CommonFilter.Crud] });
   }
 
-  async createOne({ data }: CreateTaskArgs) {
+  async createOne({ data }: CreateTaskArgs): Promise<Task> {
     const user = Context.current.user;
 
     const membership = await this.memRepo.findOneOrFail(
@@ -71,7 +72,7 @@ export class TasksService {
     });
   }
 
-  async updateOne({ id, data }: UpdateTaskArgs) {
+  async updateOne({ id, data }: UpdateTaskArgs): Promise<Task> {
     const task = await this.repo.findOneOrFail(id, {
       populate: ['creator'],
       filters: [CommonFilter.Crud],
@@ -84,7 +85,7 @@ export class TasksService {
     return task.assign(data);
   }
 
-  async deleteOne({ id }: DeleteTaskArgs) {
+  async deleteOne({ id }: DeleteTaskArgs): Promise<Task> {
     const task = await this.repo.findOneOrFail(id, {
       populate: ['creator'],
       filters: [CommonFilter.Crud],

@@ -10,7 +10,7 @@ import { MikroRefLoaderContext } from './mikro-ref-loader-context.class';
  */
 @Injectable()
 export class MikroRefLoaderContextMiddleware implements NestMiddleware {
-  use(req: Request, res: Response, next: () => void) {
+  use(req: Request, res: Response, next: () => void): void {
     new MikroRefLoaderContext().apply(next);
   }
 }

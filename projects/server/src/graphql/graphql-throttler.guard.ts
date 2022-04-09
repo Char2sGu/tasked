@@ -8,7 +8,7 @@ export class GraphqlThrottlerGuard
   extends ThrottlerGuard
   implements CanActivate
 {
-  getRequestResponse(context: ExecutionContext) {
+  getRequestResponse(context: ExecutionContext): ExpressContext {
     const req =
       GqlExecutionContext.create(context).getContext<ExpressContext>().req;
     return { req, res: req.res! };

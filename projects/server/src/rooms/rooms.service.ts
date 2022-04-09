@@ -10,6 +10,7 @@ import { MikroQuotaService } from '../mikro/mikro-quota/mikro-quota.service';
 import { Repository } from '../mikro/repository.class';
 import { CreateRoomArgs } from './dto/create-room.args.dto';
 import { DeleteRoomArgs } from './dto/delete-room.args.dto';
+import { PaginatedRooms } from './dto/paginated-rooms.obj.dto';
 import { QueryRoomArgs } from './dto/query-room.args.dto';
 import { QueryRoomsArgs } from './dto/query-rooms.args.dto';
 import { UpdateRoomArgs } from './dto/update-room.args.dto';
@@ -26,13 +27,13 @@ export class RoomsService {
   async queryMany(
     { limit, offset, order, filter, joinedOnly }: QueryRoomsArgs,
     query: FilterQuery<Room> = {},
-  ) {
+  ): Promise<PaginatedRooms> {
     const user = Context.current.user;
     return this.repo.findAndPaginate(
       {
         $and: [
           query,
-          filter ? FilterMap.resolve(filter) : {},
+          filter ? FilterMap.resolve<Room>(filter) : {},
           joinedOnly
             ? {
                 memberships: {
@@ -52,11 +53,11 @@ export class RoomsService {
     );
   }
 
-  async queryOne({ id }: QueryRoomArgs) {
+  async queryOne({ id }: QueryRoomArgs): Promise<Room> {
     return this.repo.findOneOrFail(id, { filters: [CommonFilter.Crud] });
   }
 
-  async createOne({ data }: CreateRoomArgs) {
+  async createOne({ data }: CreateRoomArgs): Promise<Room> {
     const user = Context.current.user;
     await this.em.populate(user, ['rooms']);
     await this.quota.check(user, 'rooms');
@@ -68,7 +69,7 @@ export class RoomsService {
     });
   }
 
-  async updateOne({ id, data }: UpdateRoomArgs) {
+  async updateOne({ id, data }: UpdateRoomArgs): Promise<Room> {
     const room = await this.repo.findOneOrFail(id, {
       filters: [CommonFilter.Crud],
     });
@@ -80,7 +81,7 @@ export class RoomsService {
     return room.assign(data);
   }
 
-  async deleteOne({ id }: DeleteRoomArgs) {
+  async deleteOne({ id }: DeleteRoomArgs): Promise<Room> {
     const room = await this.repo.findOneOrFail(id, {
       filters: [CommonFilter.Crud],
     });

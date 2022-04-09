@@ -12,7 +12,9 @@ export class AuthResolver {
 
   @AuthGuardSkip()
   @Mutation(() => AuthResult)
-  async auth(@Args() { username, password }: QueryTokenArgs) {
+  async auth(
+    @Args() { username, password }: QueryTokenArgs,
+  ): Promise<AuthResult> {
     const result = await this.service.obtainJwt(username, password);
     if (!result)
       throw new UnauthorizedException('Invalid username or password');

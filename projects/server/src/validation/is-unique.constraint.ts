@@ -18,7 +18,7 @@ export class IsUniqueConstraint implements ValidatorConstraintInterface {
   async validate<Entity, Field extends keyof Entity>(
     value: Entity[Field],
     context: IsUniqueValidationContext,
-  ) {
+  ): Promise<boolean> {
     const [entityType, field, filters] = context.constraints;
     const result = await this.em.findOne(
       entityType(),
@@ -28,7 +28,7 @@ export class IsUniqueConstraint implements ValidatorConstraintInterface {
     return !result;
   }
 
-  defaultMessage(context: IsUniqueValidationContext) {
+  defaultMessage(context: IsUniqueValidationContext): string {
     return `${context.property} must be unique`;
   }
 }

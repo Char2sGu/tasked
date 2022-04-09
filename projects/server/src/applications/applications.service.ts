@@ -15,8 +15,10 @@ import { MikroQuotaService } from '../mikro/mikro-quota/mikro-quota.service';
 import { Repository } from '../mikro/repository.class';
 import { Room } from '../rooms/entities/room.entity';
 import { AcceptApplicationArgs } from './dto/accept-application.args.dto';
+import { AcceptApplicationResult } from './dto/accept-application-result.obj.dto';
 import { CreateApplicationArgs } from './dto/create-application.args.dto';
 import { DeleteApplicationArgs } from './dto/delete-application.args.dto';
+import { PaginatedApplications } from './dto/paginated-applications.obj.dto';
 import { QueryApplicationArgs } from './dto/query-application.args.dto';
 import { QueryApplicationsArgs } from './dto/query-applications.args.dto';
 import { RejectApplicationArgs } from './dto/reject-application.args.dto';
@@ -41,10 +43,10 @@ export class ApplicationsService {
   async queryMany(
     { limit, offset, order, filter }: QueryApplicationsArgs,
     query: FilterQuery<Application> = {},
-  ) {
+  ): Promise<PaginatedApplications> {
     return this.repo.findAndPaginate(
       {
-        $and: [query, filter ? FilterMap.resolve(filter) : {}],
+        $and: [query, filter ? FilterMap.resolve<Application>(filter) : {}],
       },
       {
         limit,
@@ -55,11 +57,11 @@ export class ApplicationsService {
     );
   }
 
-  async queryOne({ id }: QueryApplicationArgs) {
+  async queryOne({ id }: QueryApplicationArgs): Promise<Application> {
     return this.repo.findOneOrFail(id, { filters: [CommonFilter.Crud] });
   }
 
-  async createOne({ data }: CreateApplicationArgs) {
+  async createOne({ data }: CreateApplicationArgs): Promise<Application> {
     const user = Context.current.user;
 
     await this.roomRepo
@@ -102,7 +104,7 @@ export class ApplicationsService {
     });
   }
 
-  async rejectOne({ id }: RejectApplicationArgs) {
+  async rejectOne({ id }: RejectApplicationArgs): Promise<Application> {
     const application = await this.repo.findOneOrFail(id, {
       filters: [CommonFilter.Crud],
     });
@@ -114,7 +116,9 @@ export class ApplicationsService {
     });
   }
 
-  async acceptOne({ id }: AcceptApplicationArgs) {
+  async acceptOne({
+    id,
+  }: AcceptApplicationArgs): Promise<AcceptApplicationResult> {
     const application = await this.repo.findOneOrFail(id, {
       filters: [CommonFilter.Crud],
     });
@@ -134,7 +138,7 @@ export class ApplicationsService {
     return { application, membership };
   }
 
-  async deleteOne({ id }: DeleteApplicationArgs) {
+  async deleteOne({ id }: DeleteApplicationArgs): Promise<Application> {
     const application = await this.repo.findOneOrFail(id, {
       filters: [CommonFilter.Crud],
     });

@@ -7,7 +7,7 @@ export abstract class EntityRefLoader<Entity> extends DataLoader<
 > {
   protected abstract repo: EntityRepository<Entity>;
 
-  protected async resolve(refs: Entity[]) {
+  protected async resolve(refs: Entity[]): Promise<Entity[]> {
     const meta = wrap(refs[0], true).__meta;
     const primary = meta.primaryKeys[0];
     const keys = refs.map((ref) => ref[primary]);

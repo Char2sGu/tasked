@@ -4,7 +4,7 @@ import { MikroRefLoaderContextMiddleware } from './mikro-ref-loader/mikro-ref-lo
 
 @Module({})
 export class MikroMiddlewareModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
+  configure(consumer: MiddlewareConsumer): void {
     consumer.apply(MikroRefLoaderContextMiddleware).forRoutes('*');
   }
 }

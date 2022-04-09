@@ -18,7 +18,7 @@ export class OrderMap {
   static for<Entity, Field extends Extract<keyof Entity, string>>(
     type: () => Type<Entity>,
     fields: readonly Field[],
-  ) {
+  ): Type<OrderMap> {
     class _OrderMap extends this {}
 
     fields.forEach((field) => {
@@ -38,7 +38,7 @@ export class OrderMap {
    * @param type
    * @returns
    */
-  static from(type: Type<AnyEntity>) {
+  static from(type: Type<AnyEntity>): Type<OrderMap> {
     const fields: Set<string> = Reflect.getMetadata(ORDERABLE, type);
     return this.for(() => type, [...fields]);
   }

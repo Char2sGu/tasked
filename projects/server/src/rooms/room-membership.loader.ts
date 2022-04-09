@@ -22,13 +22,13 @@ export class RoomMembershipLoader extends DataLoader<
     super();
   }
 
-  protected async resolve(rooms: Room[]) {
+  protected async resolve(rooms: Room[]): Promise<Membership[]> {
     const memberships = await this.membershipRepo.find({
       owner: Context.current.user,
       room: { $in: rooms },
     });
-    return rooms.map((room) =>
-      memberships.find((membership) => membership.room == room),
+    return rooms.map(
+      (room) => memberships.find((membership) => membership.room == room)!,
     );
   }
 }

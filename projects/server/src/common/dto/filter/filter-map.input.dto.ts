@@ -51,7 +51,7 @@ export class FilterMap {
    * @param filterMap
    * @returns
    */
-  static resolve(filterMap: FilterMap) {
+  static resolve<Entity>(filterMap: FilterMap): OperatorMap<Entity> {
     return Object.fromEntries(
       Object.entries(filterMap).map(([filter, value]) => [
         filter.replace(/__\w+$/, ''),
