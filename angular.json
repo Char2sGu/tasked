@@ -17,6 +17,12 @@
       "root": "projects/client",
       "sourceRoot": "projects/client/src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "zh": "projects/client/src/locales/messages.zh.json"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
