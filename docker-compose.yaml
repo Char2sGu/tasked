@@ -1,26 +1,22 @@
-version: "3.9"
+version: '3.9'
 
 services:
-  backend:
-    image: char2s/tasked_backend
+  client:
     build:
-      context: tasked-backend
-      dockerfile: .docker/dockerfile
-    env_file:
-      - tasked-backend/.env
-    ports:
-      - 3000:3000
-    volumes:
-      - data:/app/data/
-  frontend:
-    image: char2s/tasked_frontend
-    build:
-      context: tasked-frontend
-      dockerfile: .docker/dockerfile
+      context: .
+      dockerfile: projects/client/.docker/dockerfile
     ports:
       - 80:80
+  server:
+    build:
+      context: .
+      dockerfile: projects/server/.docker/dockerfile
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
     volumes:
-      - ./tasked-frontend/.docker/cert:/app/cert
+      - data:/app/data/
 
 volumes:
   data:

@@ -1,0 +1,21 @@
+# TODO: use alpine
+
+FROM node:16 AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm i
+COPY ./ ./
+RUN npm run build:libs \
+    && npm run build:server \
+    && DB_PATH=data/db.sqlite3 node dist/server/db.js init \
+    && npm i --production
+
+FROM node:16 AS production
+WORKDIR /app
+COPY package*.json ./
+COPY --from=build /app/node_modules/ node_modules/
+COPY --from=build /app/dist/ dist/
+COPY --from=build /app/data/ data/
+EXPOSE 3000
+VOLUME /app/data
+CMD PORT=3000 node dist/server/main.js
