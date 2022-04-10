@@ -44,44 +44,38 @@ A todo management [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive
 ## Development
 
 ```sh
-git clone --recursive https://github.com/TheNightmareX/tasked
+git clone https://github.com/TheNightmareX/tasked
+npm i
+npm run dev
 ```
-
-Docker is used for deployment only. For development, Node.js 15 or other compatible version of Node.js need to be installed.
-
-For further instructions, see README of the submodules.
 
 ## Deployment
 
 1. Get the resources:
    ```sh
-   git clone --recursive https://github.com/TheNightmareX/tasked
+   git clone https://github.com/TheNightmareX/tasked
    ```
-1. Create and edit `.env` files to configure the application:
+1. Configure the application:
    ```sh
-   cp tasked-backend/.env.template tasked-backend/.env
+   cp .env.template .env
    ```
-1. Optionally configure Docker Compose via a overriding file:
-   ```sh
-   touch docker-compose.override.yaml
-   ```
-1. Build and launch the application via Docker:
+1. Launch the application:
    ```sh
    docker compose up;
    ```
 
-### Installing Dependencies behind a Proxy
+### Building the Image behind a Proxy
 
-Create `docker-compose.override.yaml`:
+Before `docker compose up` or `docker compose build`, create `docker-compose.override.yaml`:
 
 ```yaml
 services:
-  backend:
+  client:
     build:
       args:
         - HTTP_PROXY=http://host.docker.internal:10809
         - HTTPS_PROXY=http://host.docker.internal:10809
-  frontend:
+  server:
     build:
       args:
         - HTTP_PROXY=http://host.docker.internal:10809
