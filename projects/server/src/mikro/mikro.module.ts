@@ -4,7 +4,6 @@ import { APP_FILTER } from '@nestjs/core';
 
 import { DB_PATH, DEBUG } from '../common/env.constants';
 import { Repository } from '../mikro/repository.class';
-import { MikroMiddlewareModule } from './mikro-middleware.module';
 import { MikroQuotaFilter } from './mikro-quota/mikro-quota.filter';
 import { MikroQuotaService } from './mikro-quota/mikro-quota.service';
 
@@ -26,7 +25,6 @@ export class MikroModule {
           entityRepository: Repository,
           debug: DEBUG,
         }),
-        MikroMiddlewareModule,
       ],
       providers: [
         {
