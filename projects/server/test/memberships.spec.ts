@@ -1,3 +1,5 @@
+import '@types/jest';
+
 import { EntityData } from '@mikro-orm/core';
 import { EntityManager } from '@mikro-orm/sqlite';
 import { INestApplication } from '@nestjs/common';

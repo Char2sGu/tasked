@@ -1,7 +1,7 @@
 import { MikroORM } from '@mikro-orm/core';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
-import { ModuleMetadata } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
+import { INestApplication, ModuleMetadata } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
 import { useContainer } from 'class-validator';
 import { Server } from 'http';
 import { AddressInfo } from 'node:net';
@@ -20,7 +20,7 @@ import { GraphQLClient } from './graphql-client.class';
 export async function prepareE2E({
   debug,
   ...metadata
-}: PrepareE2EOptions = {}): Promise<void> {
+}: PrepareE2EOptions = {}): Promise<PrepareE2EResult> {
   const module = await Test.createTestingModule({
     imports: [
       MikroOrmModule.forRoot({
@@ -68,4 +68,13 @@ export async function prepareE2E({
 
 interface PrepareE2EOptions extends ModuleMetadata {
   debug?: boolean;
+}
+
+interface PrepareE2EResult {
+  module: TestingModule;
+  app: INestApplication;
+  server: Server;
+  address: AddressInfo;
+  requester: supertest.SuperTest<supertest.Test>;
+  client: GraphQLClient;
 }
