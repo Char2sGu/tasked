@@ -3,12 +3,12 @@ import { EntityManager } from '@mikro-orm/sqlite';
 import { INestApplication } from '@nestjs/common';
 import { TestingModule } from '@nestjs/testing';
 
-import { AuthService } from '../../src/auth/auth.service';
-import { Membership } from '../../src/memberships/entities/membership.entity';
-import { Role } from '../../src/memberships/entities/role.enum';
-import { PaginatedRooms } from '../../src/rooms/dto/paginated-rooms.obj.dto';
-import { Room } from '../../src/rooms/entities/room.entity';
-import { User } from '../../src/users/entities/user.entity';
+import { AuthService } from '../src/auth/auth.service';
+import { Membership } from '../src/memberships/entities/membership.entity';
+import { Role } from '../src/memberships/entities/role.enum';
+import { PaginatedRooms } from '../src/rooms/dto/paginated-rooms.obj.dto';
+import { Room } from '../src/rooms/entities/room.entity';
+import { User } from '../src/users/entities/user.entity';
 import { GraphQLClient } from './utils/graphql-client.class';
 import { prepareE2E } from './utils/prepare-e2e';
 

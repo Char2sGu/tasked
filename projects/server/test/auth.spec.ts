@@ -4,8 +4,8 @@ import { INestApplication } from '@nestjs/common';
 import { TestingModule } from '@nestjs/testing';
 import { GraphQLClient } from 'graphql-request';
 
-import { AuthResult } from '../../src/auth/dto/auth-result.obj.dto';
-import { User } from '../../src/users/entities/user.entity';
+import { AuthResult } from '../src/auth/dto/auth-result.obj.dto';
+import { User } from '../src/users/entities/user.entity';
 import { prepareE2E } from './utils/prepare-e2e';
 
 describe('Auth', () => {

@@ -7,14 +7,14 @@ import { Server } from 'http';
 import { AddressInfo } from 'node:net';
 import supertest from 'supertest';
 
-import { Affair } from '../../../src/affairs/entities/affair.entity';
-import { AppModule } from '../../../src/app.module';
-import { Application } from '../../../src/applications/entities/application.entity';
-import { Assignment } from '../../../src/assignments/entities/assignment.entity';
-import { Membership } from '../../../src/memberships/entities/membership.entity';
-import { Room } from '../../../src/rooms/entities/room.entity';
-import { Task } from '../../../src/tasks/entities/task.entity';
-import { User } from '../../../src/users/entities/user.entity';
+import { Affair } from '../../src/affairs/entities/affair.entity';
+import { AppModule } from '../../src/app.module';
+import { Application } from '../../src/applications/entities/application.entity';
+import { Assignment } from '../../src/assignments/entities/assignment.entity';
+import { Membership } from '../../src/memberships/entities/membership.entity';
+import { Room } from '../../src/rooms/entities/room.entity';
+import { Task } from '../../src/tasks/entities/task.entity';
+import { User } from '../../src/users/entities/user.entity';
 import { GraphQLClient } from './graphql-client.class';
 
 export async function prepareE2E({
