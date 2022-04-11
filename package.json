@@ -9,8 +9,6 @@
   "private": true,
   "license": "Apache-2.0",
   "scripts": {
-    "ng": "ng",
-    "nest": "nest",
     "dev": "concurrently \"npm:dev:*\"",
     "dev:client": "ng serve",
     "dev:server": "nest start server -w",
@@ -23,7 +21,7 @@
     "test:server": "npm run test:server:unit & npm run test:server:e2e",
     "test:server:unit": "jest --config ./projects/server/jest.config.unit.js",
     "test:server:e2e": "jest --config ./projects/server/jest.config.e2e.js",
-    "format": "prettier --write \"projects/**/*.{html,scss,ts,json}\" \"*.{json,js,ts,md}\"",
+    "format": "prettier --write \"{projects/**/*,*}.{html,css,less,scss,sass,ts,js,json,md}\"",
     "lint": "eslint \"projects/**/*.ts\" --cache --fix",
     "codegen": "graphql-codegen",
     "db": "ts-node -r tsconfig-paths/register ./projects/server/src/db.ts init"
