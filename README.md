@@ -46,6 +46,7 @@ A todo management [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive
 ```sh
 git clone https://github.com/TheNightmareX/tasked
 npm i
+cp .env.template .env
 npm run dev
 ```
 
@@ -61,7 +62,7 @@ npm run dev
    ```
 1. Launch the application:
    ```sh
-   docker compose up;
+   docker compose up
    ```
 
 ### Building the Image behind a Proxy
