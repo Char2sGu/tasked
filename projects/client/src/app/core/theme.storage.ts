@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { LocalStorageItem } from '../common/local-storage-item.class';
-import { Theme } from './theme.service';
+import { Theme } from '../core/theme.service';
 
 @Injectable({
   providedIn: 'root',

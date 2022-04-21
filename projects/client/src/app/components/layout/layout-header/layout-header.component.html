@@ -1,9 +1,14 @@
-<mat-toolbar class="mat-elevation-z4" color="primary">
-  <button mat-icon-button (click)="toggleSidebar.emit()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span fxFlex="1%"></span>
-  <span class="logo" routerLink="/app">Tasked</span>
-  <span fxFlex></span>
-  <ng-content select="actions"></ng-content>
-</mat-toolbar>
+<ng-container *ngIf="theme$ | async as theme">
+  <mat-toolbar
+    class="mat-elevation-z4"
+    [color]="theme == 'light' ? 'primary' : undefined"
+  >
+    <button mat-icon-button (click)="toggleSidebar.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span fxFlex="1%"></span>
+    <span class="logo" routerLink="/app">Tasked</span>
+    <span fxFlex></span>
+    <ng-content select="actions"></ng-content>
+  </mat-toolbar>
+</ng-container>

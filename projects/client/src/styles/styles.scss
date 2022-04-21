@@ -1,6 +1,9 @@
 @use '../../../../node_modules/angular-notifier/styles';
-@use './themes';
 @use './utilities';
+@use '../../../../node_modules/@angular/material' as mat;
+@use './themes' as themes;
+@use 'sass:map' as map;
+@use 'sass:color' as color;
 
 html,
 body {
@@ -11,26 +14,24 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
-.theme-dark {
+@mixin router-link-active($theme) {
+  $text-color: map.get($theme, 'primary', 'text');
+  $bg-color: color.change($text-color, $alpha: 0.12);
+  $bg-color-hover: color.change($text-color, $alpha: 0.18);
   .router-link-active {
-    color: rgb(209, 118, 225) !important;
-    background-color: rgba(123, 31, 162, 0.15) !important;
+    color: $text-color !important;
+    background-color: $bg-color !important;
   }
   .router-link-active:hover {
-    background-color: rgba(123, 31, 162, 0.3) !important;
-  }
-}
-.theme-light {
-  .router-link-active {
-    color: rgb(0, 150, 136) !important;
-    background-color: rgb(225, 243, 241) !important;
-  }
-  .router-link-active:hover {
-    background-color: rgba(181, 232, 227, 0.7) !important;
+    background-color: $bg-color-hover !important;
   }
 }
 
+@include mat.core();
+@include mat.all-component-themes(themes.$theme-light); // temporary placeholder
 .theme-light {
+  @include mat.all-component-colors(themes.$theme-light);
+  @include router-link-active(themes.$theme-light);
   mat-icon {
     color: rgba(0, 0, 0, 0.54);
   }
@@ -39,10 +40,23 @@ body {
   .router-link-active mat-icon {
     color: inherit;
   }
+  --pwa-theme-color: #{map.get(
+      themes.$theme-dark,
+      'color',
+      'background',
+      'app-bar'
+    )};
 }
-
 .theme-dark {
+  @include mat.all-component-colors(themes.$theme-dark);
+  @include router-link-active(themes.$theme-dark);
   ngx-skeleton-loader {
     opacity: 0.05;
   }
+  --pwa-theme-color: #{map.get(
+      themes.$theme-light,
+      'color',
+      'primary',
+      'default'
+    )};
 }

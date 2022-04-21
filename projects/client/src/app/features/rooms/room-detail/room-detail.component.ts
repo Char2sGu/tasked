@@ -5,8 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, first, map, tap } from 'rxjs/operators';
 
+import { ThemeService } from '../../../core/theme.service';
 import { Role, RoomDetailGQL, RoomDetailQuery } from '../../../graphql';
-import { ThemeService } from '../../../theme/theme.service';
 import { AuthService } from '../../auth/auth.service';
 import { RoomsActivatedMapStorage } from '../rooms-activated-map.storage';
 
