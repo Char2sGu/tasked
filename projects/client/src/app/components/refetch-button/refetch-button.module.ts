@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
+import { LoadingModule } from '../loading/loading.module';
 import { RefetchButtonComponent } from './refetch-button.component';
 
 @NgModule({
   declarations: [RefetchButtonComponent],
-  imports: [CommonModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, LoadingModule],
   exports: [RefetchButtonComponent],
 })
 export class RefetchButtonModule {}
