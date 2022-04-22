@@ -1,10 +1,13 @@
-<div class="overflow-auto" #container>
-  <div class="w-[90%] max-w-[528px] mx-auto py-12">
-    <app-application-list
-      *ngIf="state.applicationGroups$ | async as groups; else skeleton"
-    ></app-application-list>
+<ng-container *ngIf="(state.applicationGroups$ | async) ?? 'loading' as groups">
+  <ng-container *ngIf="!groups.length; then empty"></ng-container>
+  <div class="overflow-auto">
+    <div class="w-[90%] max-w-[528px] mx-auto py-12">
+      <app-application-list
+        *ngIf="groups != 'loading'; else skeleton"
+      ></app-application-list>
+    </div>
   </div>
-</div>
+</ng-container>
 
 <ng-template #skeleton>
   <ngx-skeleton-loader
@@ -19,4 +22,16 @@
     count="1"
     [theme]="{ width: '40%' }"
   ></ngx-skeleton-loader>
+</ng-template>
+
+<ng-template #empty>
+  <div class="mat-typography w-56 mx-auto">
+    <div class="h-20 md:h-36"></div>
+    <app-no-data-illustration class=""></app-no-data-illustration>
+    <div class="h-12"></div>
+    <div class="text-center">
+      <h1>Seems empty</h1>
+      <h3>Applications you sent or sent to you will show up here.</h3>
+    </div>
+  </div>
 </ng-template>
