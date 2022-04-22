@@ -1,4 +1,10 @@
-import { Directive, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Directive,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
@@ -9,11 +15,17 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 })
 export class ConfirmationDirective {
   @Input('appConfirmation') config?: ConfirmationConfig;
+  @Input('appConfirmationTriggerOnClick') triggerOnClick = true;
 
   @Output() confirm = new EventEmitter();
   @Output() cancel = new EventEmitter();
 
   constructor(private dialogService: MatDialog) {}
+
+  @HostListener('click')
+  onClick(): void {
+    if (this.triggerOnClick) this.trigger();
+  }
 
   trigger(): void {
     const {
