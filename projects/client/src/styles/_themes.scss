@@ -1,6 +1,15 @@
 @use '../../../../node_modules/@angular/material' as mat;
 @use 'sass:map' as map;
 
+$theme-base: mat.define-dark-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$grey-palette),
+      accent: mat.define-palette(mat.$grey-palette),
+    ),
+  )
+);
+
 $theme-light: mat.define-light-theme(
   (
     color: (

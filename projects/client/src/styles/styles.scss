@@ -28,7 +28,7 @@ body {
 }
 
 @include mat.core();
-@include mat.all-component-themes(themes.$theme-light); // temporary placeholder
+@include mat.all-component-themes(themes.$theme-base); // temporary placeholder
 .theme-light {
   @include mat.all-component-colors(themes.$theme-light);
   @include router-link-active(themes.$theme-light);
