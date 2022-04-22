@@ -27,13 +27,14 @@ $theme-dark: mat.define-dark-theme(
     ),
   )
 );
-// use the background color recommended in the Material spec
+// use colors from Material spec
 $theme-dark: map.deep-merge(
   $theme-dark,
   (
     color: (
       background: (
         background: #121212,
+        card: #1d1d1d,
       ),
     ),
   )
