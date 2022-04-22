@@ -9,8 +9,8 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { debounceTime, tap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-layout',
@@ -18,7 +18,6 @@ import { debounceTime, tap } from 'rxjs/operators';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit, OnDestroy {
-  loading$: Observable<boolean>;
   private loading$$ = new BehaviorSubject<boolean>(false);
 
   @ViewChild('spinner')
@@ -29,12 +28,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
     private router: Router,
     private viewContainerRef: ViewContainerRef,
     private overlay: Overlay,
-  ) {
-    this.loading$ = this.loading$$.pipe(
-      debounceTime(100),
-      tap((v) => (v ? this.showSpinner() : this.hideSpinner())),
-    );
-  }
+  ) {}
 
   ngOnInit(): void {
     this.spinnerOverlayRef = this.overlay.create({
@@ -50,6 +44,10 @@ export class LayoutComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationStart) this.loading$$.next(true);
       else if (event instanceof NavigationEnd) this.loading$$.next(false);
     });
+
+    this.loading$$
+      .pipe(debounceTime(100))
+      .subscribe((v) => (v ? this.showSpinner() : this.hideSpinner()));
   }
 
   ngOnDestroy(): void {

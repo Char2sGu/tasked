@@ -2,7 +2,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -32,7 +31,6 @@ import { ThemeButtonComponent } from './theme-button/theme-button.component';
     OverlayModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule,
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,
