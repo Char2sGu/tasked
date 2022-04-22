@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-import { ThemeService } from '../../../core/theme.service';
+import { ThemeService } from '../../core/theme.service';
 
 @Component({
   selector: 'app-layout-header',

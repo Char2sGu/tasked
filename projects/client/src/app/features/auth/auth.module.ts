@@ -6,9 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 
-import { LayoutModule } from '../../components/layout/layout.module';
 import { LoadingModule } from '../../components/loading/loading.module';
 import { ProfileModule } from '../../components/profile/profile.module';
+import { ThemeButtonModule } from '../../components/theme-button/theme-button.module';
+import { LayoutModule } from '../../layout/layout.module';
 import { SharedModule } from '../../shared/shared.module';
 import { AuthComponent } from './auth.component';
 import { AuthFormLayoutComponent } from './auth-form-layout/auth-form-layout.component';
@@ -35,6 +36,7 @@ import { AuthRoutingModule } from './auth-routing.module';
     LayoutModule,
     ProfileModule,
     LoadingModule,
+    ThemeButtonModule,
   ],
 })
 export class AuthModule {}

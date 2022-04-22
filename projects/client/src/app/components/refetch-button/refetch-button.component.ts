@@ -4,7 +4,7 @@ import { Apollo } from 'apollo-angular';
 import { from } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
-import { NotificationType } from '../../../common/notification-type.enum';
+import { NotificationType } from '../../common/notification-type.enum';
 
 @Component({
   selector: 'app-refetch-button',

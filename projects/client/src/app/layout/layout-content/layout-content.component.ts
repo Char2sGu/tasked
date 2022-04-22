@@ -4,7 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { AuthService } from '../../../features/auth/auth.service';
+import { AuthService } from '../../features/auth/auth.service';
 
 @Component({
   selector: 'app-layout-content',
