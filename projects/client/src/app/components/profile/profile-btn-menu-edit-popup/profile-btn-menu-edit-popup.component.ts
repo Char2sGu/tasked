@@ -4,9 +4,8 @@ import dayjs, { Dayjs } from 'dayjs';
 import { Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 
-import { filterKeys } from '../../../common/filter-keys.func';
+import { filterKeys, pick } from '../../../common/form.utils';
 import { NotificationType } from '../../../common/notification-type.enum';
-import { pick } from '../../../common/pick.func';
 import { AuthService } from '../../../features/auth/auth.service';
 import {
   Gender,

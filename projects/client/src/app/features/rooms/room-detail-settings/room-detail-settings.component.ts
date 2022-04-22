@@ -4,10 +4,9 @@ import { NotifierService } from 'angular-notifier';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { debounceTime, finalize, first, map } from 'rxjs/operators';
 
-import { filterKeys } from '../../../common/filter-keys.func';
-import { isEmpty } from '../../../common/is-empty.func';
+import { filterKeys, pick } from '../../../common/form.utils';
+import { isEmpty } from '../../../common/form.utils';
 import { NotificationType } from '../../../common/notification-type.enum';
-import { pick } from '../../../common/pick.func';
 import {
   RoomDetailGQL,
   RoomDetailQuery,

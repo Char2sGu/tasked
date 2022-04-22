@@ -4,7 +4,7 @@ import { NotifierService } from 'angular-notifier';
 import { Subject } from 'rxjs';
 import { concatMap, finalize, throttleTime } from 'rxjs/operators';
 
-import { filterKeys } from '../../../common/filter-keys.func';
+import { filterKeys } from '../../../common/form.utils';
 import { NotificationType } from '../../../common/notification-type.enum';
 import { ProfileFormData } from '../../../components/profile/profile-form/profile-form-data.interface';
 import { Gender, UserCreateGQL, UserCreateInput } from '../../../graphql';
