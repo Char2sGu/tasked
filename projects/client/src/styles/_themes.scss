@@ -5,7 +5,7 @@ $theme-light: mat.define-light-theme(
   (
     color: (
       primary: mat.define-palette(mat.$teal-palette, 500),
-      accent: mat.define-palette(mat.$cyan-palette, A700),
+      accent: mat.define-palette(mat.$pink-palette, A200),
     ),
   )
 );
@@ -14,7 +14,7 @@ $theme-dark: mat.define-dark-theme(
   (
     color: (
       primary: mat.define-palette(mat.$teal-palette, 200),
-      accent: mat.define-palette(mat.$cyan-palette, A700),
+      accent: mat.define-palette(mat.$pink-palette, A200),
     ),
   )
 );
