@@ -18,14 +18,12 @@ import { NotificationType } from '../../../common/notification-type.enum';
 import { pick } from '../../../common/pick.func';
 import {
   MembershipTaskListGQL,
-  MembershipTaskListQuery,
   RoomDetailGQL,
   TaskDeleteGQL,
   TaskUpdateGQL,
   TaskUpdateInput,
 } from '../../../graphql';
-
-type Task = MembershipTaskListQuery['membership']['tasks']['results'][number];
+import { Task } from '../room-detail-tasks/room-detail-tasks.component';
 
 @Component({
   selector: 'app-room-detail-tasks-item',

@@ -1,98 +1,58 @@
-<mat-expansion-panel
-  [(expanded)]="expanded"
-  (expandedChange)="$event ? this.initData() : null"
-  ngForm
-  #form="ngForm"
->
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      <div *ngIf="!expanded">{{ task?.title }}</div>
-      <mat-form-field *ngIf="expanded" appearance="standard">
-        <input
-          matInput
-          name="title"
-          type="text"
-          placeholder="Title"
-          required
-          maxlength="30"
-          (click)="$event.stopPropagation()"
-          (keydown)="$event.stopPropagation()"
-          [(ngModel)]="data.title"
-          #title="ngModel"
-        />
-        <mat-hint align="end">{{ data.title?.length ?? 0 }} / 30</mat-hint>
-      </mat-form-field>
-    </mat-panel-title>
-  </mat-expansion-panel-header>
+<mat-card class="group mx-1 mb-2">
+  <mat-card-title class="text-ellipsis whitespace-nowrap overflow-hidden">
+    {{ task?.title }}
+  </mat-card-title>
 
-  <ng-template matExpansionPanelContent>
-    <mat-form-field appearance="standard">
-      <textarea
-        matInput
-        name="description"
-        rows="5"
-        placeholder="Description"
-        maxlength="500"
-        [(ngModel)]="data.description"
-        i18n-placeholder
-      ></textarea>
-      <mat-hint align="end">{{ data.description?.length ?? 0 }} / 500</mat-hint>
-    </mat-form-field>
+  <mat-card-subtitle>
+    <div>
+      <mat-icon matListIcon inline class="translate-y-[2px] mr-1">
+        calendar_today
+      </mat-icon>
+      <span>{{ task?.createdAt | date: 'medium' }}</span>
+    </div>
+    <div>
+      <mat-icon matListIcon inline class="translate-y-[2px] mr-1">
+        task_alt
+      </mat-icon>
+      <span>Assigned: {{ task?.assignments?.total }}</span>
+    </div>
+  </mat-card-subtitle>
 
-    <mat-list>
-      <mat-list-item>
-        <mat-icon matListIcon>task_alt</mat-icon>
-        <div matLine i18n>Assignments</div>
-        <div matLine>{{ task?.assignments?.total }}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon matListIcon>calendar_today</mat-icon>
-        <div matLine i18n>Creation Time</div>
-        <div matLine>{{ task?.createdAt | date: 'medium' }}</div>
-      </mat-list-item>
-    </mat-list>
+  <mat-card-content class="whitespace-pre-wrap">{{
+    task?.description
+  }}</mat-card-content>
 
-    <mat-action-row fxLayout>
+  <mat-card-actions>
+    <div class="flex">
       <button
         mat-button
         class="uppercase"
-        [disabled]="modified"
-        (click)="modal.openSheet()"
-        i18n
+        color="primary"
+        (click)="assignPopup.openSheet()"
       >
         Assign
       </button>
-
-      <mat-divider vertical style="margin-left: 8px"></mat-divider>
-
-      <button
-        mat-button
-        class="uppercase"
-        [disabled]="!form.valid || !modified || loading"
-        (click)="update()"
-        i18n
-      >
-        Save
+      <span class="grow"></span>
+      <button mat-icon-button (click)="editPopup.open()">
+        <mat-icon>edit</mat-icon>
       </button>
-
-      <button
-        mat-button
-        class="uppercase"
-        [disabled]="loading"
-        color="warn"
-        (click)="delete()"
-        i18n
-      >
-        Delete
+      <button mat-icon-button [disabled]="loading" (click)="delete()">
+        <mat-icon>delete</mat-icon>
       </button>
-    </mat-action-row>
-  </ng-template>
-</mat-expansion-panel>
+    </div>
+  </mat-card-actions>
+</mat-card>
 
-<app-modal #modal>
+<app-modal #assignPopup>
   <ng-template>
     <app-room-detail-tasks-item-assign-popup
       [task]="task"
     ></app-room-detail-tasks-item-assign-popup>
+  </ng-template>
+</app-modal>
+
+<app-modal #editPopup>
+  <ng-template>
+    <app-room-detail-tasks-item-edit-popup></app-room-detail-tasks-item-edit-popup>
   </ng-template>
 </app-modal>

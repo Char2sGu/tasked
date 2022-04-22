@@ -11,7 +11,8 @@ import {
   RoomDetailGQL,
 } from '../../../graphql';
 
-type Task = MembershipTaskListQuery['membership']['tasks']['results'][number];
+export type Task =
+  MembershipTaskListQuery['membership']['tasks']['results'][number];
 
 @Component({
   selector: 'app-room-detail-tasks',

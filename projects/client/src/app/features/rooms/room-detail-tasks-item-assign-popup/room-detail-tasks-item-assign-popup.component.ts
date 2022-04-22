@@ -9,13 +9,13 @@ import { ModalComponent } from '../../../components/modal/modal/modal.component'
 import {
   AssignmentCreateGQL,
   AssignmentDeleteGQL,
-  MembershipTaskListQuery,
   Role,
   RoomMembershipListGQL,
   RoomMembershipListQuery,
   TaskAssignmentListGQL,
   TaskAssignmentListQuery,
 } from '../../../graphql';
+import { Task } from '../room-detail-tasks/room-detail-tasks.component';
 
 @Component({
   selector: 'app-room-detail-tasks-item-assign-popup',
@@ -192,8 +192,6 @@ export class RoomDetailTasksItemAssignPopupComponent
     );
   }
 }
-
-type Task = MembershipTaskListQuery['membership']['tasks']['results'][number];
 
 type Membership =
   RoomMembershipListQuery['room']['memberships']['results'][number];

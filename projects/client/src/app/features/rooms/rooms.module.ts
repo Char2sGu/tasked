@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,6 +15,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgxMasonryModule } from 'ngx-masonry';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { ContainerModule } from '../../components/container/container.module';
@@ -36,9 +39,9 @@ import { RoomDetailSidebarMembershipListItemComponent } from './room-detail-side
 import { RoomDetailSidebarMembershipListItemMenuComponent } from './room-detail-sidebar-membership-list-item-menu/room-detail-sidebar-membership-list-item-menu.component';
 import { RoomDetailTabRedirectorComponent } from './room-detail-tab-redirector/room-detail-tab-redirector.component';
 import { RoomDetailTasksComponent } from './room-detail-tasks/room-detail-tasks.component';
-import { RoomDetailTasksCreationBarComponent } from './room-detail-tasks-creation-bar/room-detail-tasks-creation-bar.component';
 import { RoomDetailTasksItemComponent } from './room-detail-tasks-item/room-detail-tasks-item.component';
 import { RoomDetailTasksItemAssignPopupComponent } from './room-detail-tasks-item-assign-popup/room-detail-tasks-item-assign-popup.component';
+import { RoomDetailTasksItemEditPopupComponent } from './room-detail-tasks-item-edit-popup/room-detail-tasks-item-edit-popup.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { RoomListItemComponent } from './room-list-item/room-list-item.component';
 import { RoomRedirectorComponent } from './room-redirector/room-redirector.component';
@@ -56,7 +59,6 @@ import { RoomsRoutingModule } from './rooms-routing.module';
     RoomDetailTasksComponent,
     RoomDetailTasksItemComponent,
     RoomDetailTasksItemAssignPopupComponent,
-    RoomDetailTasksCreationBarComponent,
     RoomDetailSettingsComponent,
     RoomDetailSettingsSectionComponent,
     RoomDetailSettingsActionsComponent,
@@ -68,6 +70,7 @@ import { RoomsRoutingModule } from './rooms-routing.module';
     RoomRedirectorComponent,
     RoomListComponent,
     RoomListItemComponent,
+    RoomDetailTasksItemEditPopupComponent,
   ],
   imports: [
     SharedModule,
@@ -86,7 +89,10 @@ import { RoomsRoutingModule } from './rooms-routing.module';
     MatSnackBarModule,
     MatSlideToggleModule,
     MatToolbarModule,
+    MatDialogModule,
+    MatCardModule,
     NgxSkeletonLoaderModule,
+    NgxMasonryModule,
     InfinityScrollModule,
     ModalModule,
     HelpIconModule,

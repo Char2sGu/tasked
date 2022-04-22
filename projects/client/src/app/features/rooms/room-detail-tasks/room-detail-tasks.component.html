@@ -1,22 +1,10 @@
 <app-container class="container" fxLayout="column">
-  <ng-container *ngIf="loadingInitial">
-    <ngx-skeleton-loader
-      count="2"
-      [theme]="{ height: '40px' }"
-    ></ngx-skeleton-loader>
-  </ng-container>
-
-  <mat-accordion fxFlex>
+  <ngx-masonry *ngIf="tasks$ | async as tasks">
     <app-room-detail-tasks-item
-      *ngFor="let task of tasks$ | async; trackBy: identifyTask"
+      ngxMasonryItem
+      *ngFor="let task of tasks; trackBy: identifyTask"
+      class="block w-full sm:w-1/2 lg:w-1/3"
       [task]="task"
     ></app-room-detail-tasks-item>
-    <app-infinity-scroll-trigger
-      *ngIf="loadingMoreNeeded"
-      [loading]="loadingMore"
-      (trigger)="fetchMore()"
-    ></app-infinity-scroll-trigger>
-  </mat-accordion>
-
-  <app-room-detail-tasks-creation-bar></app-room-detail-tasks-creation-bar>
+  </ngx-masonry>
 </app-container>
