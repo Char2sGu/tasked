@@ -26,14 +26,11 @@ export class RefetchButtonComponent implements OnInit {
     from(this.apollo.client.refetchQueries({ include: 'active' }))
       .pipe(
         tap(() => {
-          this.loading = false;
           this.notifier.notify(
             NotificationType.Success,
             $localize`Data refreshed`,
           );
         }),
-
-        tap(() => (this.disabled = false)),
         finalize(() => {
           this.loading = false;
           this.disabled = false;
