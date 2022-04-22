@@ -1,7 +1,22 @@
-<app-container class="container" #container>
-  <div class="content">
+<div class="overflow-auto" #container>
+  <div class="w-[90%] max-w-[528px] mx-auto py-12">
     <app-application-list
-      [scrollableContainer]="container.element"
+      *ngIf="state.applicationGroups$ | async as groups; else skeleton"
     ></app-application-list>
   </div>
-</app-container>
+</div>
+
+<ng-template #skeleton>
+  <ngx-skeleton-loader
+    count="1"
+    [theme]="{ width: '60%' }"
+  ></ngx-skeleton-loader>
+  <ngx-skeleton-loader
+    count="1"
+    [theme]="{ width: '80%' }"
+  ></ngx-skeleton-loader>
+  <ngx-skeleton-loader
+    count="1"
+    [theme]="{ width: '40%' }"
+  ></ngx-skeleton-loader>
+</ng-template>
