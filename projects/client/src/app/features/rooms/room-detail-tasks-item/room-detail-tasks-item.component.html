@@ -36,7 +36,18 @@
       <button mat-icon-button (click)="editPopup.open()">
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-icon-button [disabled]="loading" (click)="delete()">
+      <button
+        mat-icon-button
+        [disabled]="loading"
+        [appConfirmation]="{
+          title: 'Delete?',
+          message: 'This task will disappear forever and cannot be recovered.',
+          action: 'Delete'
+        }"
+        #confirmation="appConfirmation"
+        (click)="confirmation.trigger()"
+        (confirm)="delete()"
+      >
         <mat-icon>delete</mat-icon>
       </button>
     </div>

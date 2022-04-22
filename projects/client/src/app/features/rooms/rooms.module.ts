@@ -18,6 +18,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
+import { ConfirmationModule } from '../../components/confirmation/confirmation.module';
 import { ContainerModule } from '../../components/container/container.module';
 import { HelpIconModule } from '../../components/help-icon/help-icon.module';
 import { InfinityScrollModule } from '../../components/infinity-scroll/infinity-scroll.module';
@@ -101,6 +102,7 @@ import { RoomsRoutingModule } from './rooms-routing.module';
     LoadingModule,
     UsernameModule,
     ContainerModule,
+    ConfirmationModule,
   ],
 })
 export class RoomsModule {}
