@@ -1,26 +1,14 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
-import { Observable, Subscription } from 'rxjs';
-import { delay, finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
-import { filterKeys } from '../../../common/filter-keys.func';
-import { isEmpty } from '../../../common/is-empty.func';
 import { NotificationType } from '../../../common/notification-type.enum';
-import { pick } from '../../../common/pick.func';
 import {
   MembershipTaskListGQL,
   RoomDetailGQL,
   TaskDeleteGQL,
-  TaskUpdateGQL,
   TaskUpdateInput,
 } from '../../../graphql';
 import { Task } from '../room-detail-tasks/room-detail-tasks.component';
@@ -30,65 +18,23 @@ import { Task } from '../room-detail-tasks/room-detail-tasks.component';
   templateUrl: './room-detail-tasks-item.component.html',
   styleUrls: ['./room-detail-tasks-item.component.scss'],
 })
-export class RoomDetailTasksItemComponent
-  implements OnInit, OnDestroy, AfterViewInit
-{
+export class RoomDetailTasksItemComponent implements OnInit, OnDestroy {
   data: TaskUpdateInput = {};
   loading = false;
-  expanded = false;
-  modification: TaskUpdateInput = {};
-  modified = false;
 
-  @ViewChild(NgForm) private form!: NgForm;
-  private subscription = new Subscription();
-
-  @Input()
-  get task(): Task | undefined {
-    return this._task;
-  }
-  set task(v: Task | undefined) {
-    this._task = v;
-    this.updateModification();
-  }
-  private _task?: Task;
+  @Input() task?: Task;
 
   constructor(
     private route: ActivatedRoute,
     private notifier: NotifierService,
     private listGql: MembershipTaskListGQL,
-    private updateGql: TaskUpdateGQL,
     private deleteGql: TaskDeleteGQL,
     private roomDetailGql: RoomDetailGQL,
   ) {}
 
   ngOnInit(): void {}
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
-  ngAfterViewInit(): void {
-    this.subscription.add(
-      this.form
-        .valueChanges!.pipe(delay(0))
-        .subscribe(() => this.updateModification()),
-    );
-  }
-
-  initData(): void {
-    if (this.task) this.data = pick(this.task, ['title', 'description']);
-  }
-
-  update(): void {
-    const task = this.task;
-    if (!task) return;
-    const data = filterKeys(this.data, (v, k) => v != task[k as keyof Task]);
-    this.mutate(
-      this.updateGql.mutate({ id: task.id, data }),
-      $localize`Task updated`,
-      $localize`Failed to update the task`,
-    );
-  }
+  ngOnDestroy(): void {}
 
   delete(): void {
     if (!this.task) return;
@@ -133,15 +79,5 @@ export class RoomDetailTasksItemComponent
       () => this.notifier.notify(NotificationType.Success, messageOnSucceed),
       () => this.notifier.notify(NotificationType.Error, messageOnFail),
     );
-  }
-
-  private updateModification() {
-    const task = this.task;
-    if (!task) return;
-    this.modification = filterKeys(
-      this.data,
-      (v, k) => v != task[k as keyof Task],
-    );
-    this.modified = isEmpty(this.modification);
   }
 }
