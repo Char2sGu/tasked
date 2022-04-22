@@ -9,6 +9,7 @@ import { ThemeService } from '../../../core/theme.service';
 import { Role, RoomDetailGQL, RoomDetailQuery } from '../../../graphql';
 import { AuthService } from '../../auth/auth.service';
 import { RoomsActivatedMapStorage } from '../rooms-activated-map.storage';
+import { RoomDetailState } from '../shared/room-detail-state.service';
 
 type Room = RoomDetailQuery['room'];
 
@@ -16,6 +17,7 @@ type Room = RoomDetailQuery['room'];
   selector: 'app-room-detail',
   templateUrl: './room-detail.component.html',
   styleUrls: ['./room-detail.component.scss'],
+  providers: [RoomDetailState],
 })
 export class RoomDetailComponent implements OnInit {
   sidebarOpened$!: Observable<boolean>;

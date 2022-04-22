@@ -1,0 +1,28 @@
+<form
+  fxLayout
+  fxLayoutAlign="start center"
+  fxLayoutGap="8px"
+  (ngSubmit)="create()"
+>
+  <mat-form-field fxFlex appearance="standard">
+    <mat-label i18n>New Task</mat-label>
+    <input
+      matInput
+      name="data"
+      maxlength="30"
+      type="text"
+      [disabled]="pending"
+      [(ngModel)]="data"
+      #model="ngModel"
+      #input
+    />
+    <mat-hint align="end">{{ data.length }} / 30</mat-hint>
+  </mat-form-field>
+  <button
+    mat-icon-button
+    type="submit"
+    [disabled]="!model.valid || !data || pending"
+  >
+    <mat-icon>send</mat-icon>
+  </button>
+</form>

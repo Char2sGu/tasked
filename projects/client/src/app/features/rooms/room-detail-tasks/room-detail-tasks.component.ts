@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, TrackByFunction } from '@angular/core';
 import { QueryRef } from 'apollo-angular';
-import { from, Observable } from 'rxjs';
-import { finalize, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { first, map, switchMap, tap } from 'rxjs/operators';
 
+import { skipFalsy } from '../../../common/rxjs.utils';
 import {
   MembershipTaskListGQL,
   MembershipTaskListQuery,
   MembershipTaskListQueryVariables,
-  RoomDetailGQL,
 } from '../../../graphql';
+import { RoomDetailState } from '../shared/room-detail-state.service';
 
 export type Task =
   MembershipTaskListQuery['membership']['tasks']['results'][number];
+
+// TODO: make newly added items prepended rather than appended to the list
 
 @Component({
   selector: 'app-room-detail-tasks',
@@ -30,21 +32,17 @@ export class RoomDetailTasksComponent implements OnInit {
     MembershipTaskListQueryVariables
   >;
 
+  taskTracker: TrackByFunction<Task> = (_, task) => task.id;
+
   constructor(
-    private route: ActivatedRoute,
-    private roomGql: RoomDetailGQL,
+    private state: RoomDetailState,
     private listGql: MembershipTaskListGQL,
   ) {}
 
   ngOnInit(): void {
-    const classroomId = this.route.parent!.snapshot.paramMap.get('id')!;
-
-    const membershipId = this.roomGql
-      .watch({ id: classroomId })
-      .getCurrentResult().data.room.membership!.id;
-
-    this.query = this.listGql.watch({ id: membershipId });
-    this.tasks$ = this.query.valueChanges.pipe(
+    this.tasks$ = this.state.membership$.pipe(skipFalsy(), first()).pipe(
+      tap(({ id }) => (this.query = this.listGql.watch({ id }))),
+      switchMap(() => this.query.valueChanges),
       map((result) => result.data.membership.tasks),
       tap(({ results, total }) => {
         this.loadingInitial = false;
@@ -52,36 +50,5 @@ export class RoomDetailTasksComponent implements OnInit {
       }),
       map(({ results }) => results),
     );
-  }
-
-  identifyTask(index: number, task: Task): string {
-    return task.id;
-  }
-
-  fetchMore(): void {
-    if (!this.loadingMoreNeeded || this.loadingMore) return;
-
-    const current = this.query.getCurrentResult().data.membership.tasks;
-    this.loadingMore = true;
-    from(
-      this.query.fetchMore({ variables: { offset: current.results.length } }),
-    )
-      .pipe(
-        map((result) => result.data.membership.tasks),
-        finalize(() => (this.loadingMore = false)),
-      )
-      .subscribe(({ results, total }) => {
-        this.query.updateQuery((prev) => ({
-          ...prev,
-          membership: {
-            ...prev.membership,
-            tasks: {
-              ...prev.membership.tasks,
-              total,
-              results: [...prev.membership.tasks.results, ...results],
-            },
-          },
-        }));
-      });
   }
 }
