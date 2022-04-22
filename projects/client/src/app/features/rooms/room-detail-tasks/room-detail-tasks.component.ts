@@ -9,7 +9,7 @@ import {
   MembershipTaskListQuery,
   MembershipTaskListQueryVariables,
 } from '../../../graphql';
-import { RoomDetailState } from '../shared/room-detail-state.service';
+import { RoomDetailState } from '../room-detail/room-detail-state.service';
 
 export type Task =
   MembershipTaskListQuery['membership']['tasks']['results'][number];

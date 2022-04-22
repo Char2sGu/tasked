@@ -9,7 +9,7 @@ import { ThemeService } from '../../../core/theme.service';
 import { Role, RoomDetailGQL, RoomDetailQuery } from '../../../graphql';
 import { AuthService } from '../../auth/auth.service';
 import { RoomsActivatedMapStorage } from '../rooms-activated-map.storage';
-import { RoomDetailState } from '../shared/room-detail-state.service';
+import { RoomDetailState } from './room-detail-state.service';
 
 type Room = RoomDetailQuery['room'];
 

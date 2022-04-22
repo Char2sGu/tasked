@@ -5,7 +5,7 @@ import { combineLatest, concatMap, first } from 'rxjs';
 import { NotificationType } from '../../../common/notification-type.enum';
 import { skipFalsy } from '../../../common/rxjs.utils';
 import { MembershipTaskListGQL, TaskCreateGQL } from '../../../graphql';
-import { RoomDetailState } from '../shared/room-detail-state.service';
+import { RoomDetailState } from '../room-detail/room-detail-state.service';
 
 @Component({
   selector: 'app-room-detail-task-creation-bar',
