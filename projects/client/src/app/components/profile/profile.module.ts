@@ -9,7 +9,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
-``;
 
 import { SharedModule } from '../../shared/shared.module';
 import { ModalModule } from '../modal/modal.module';
@@ -18,6 +17,8 @@ import { ProfileBtnComponent } from './profile-btn/profile-btn.component';
 import { ProfileBtnMenuComponent } from './profile-btn-menu/profile-btn-menu.component';
 import { ProfileBtnMenuEditPopupComponent } from './profile-btn-menu-edit-popup/profile-btn-menu-edit-popup.component';
 import { ProfileFormComponent } from './profile-form/profile-form.component';
+
+// TODO: move to sidebar
 
 @NgModule({
   declarations: [

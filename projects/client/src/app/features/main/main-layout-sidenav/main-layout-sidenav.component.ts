@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+// TODO: show a badge when pending applications exist
+
 @Component({
   selector: 'app-main-layout-sidenav',
   templateUrl: './main-layout-sidenav.component.html',
