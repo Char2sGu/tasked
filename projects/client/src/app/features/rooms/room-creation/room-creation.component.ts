@@ -60,8 +60,8 @@ export class RoomCreationComponent implements OnInit {
           this.loading = false;
         }),
       )
-      .subscribe(
-        (result) => {
+      .subscribe({
+        next: (result) => {
           this.notifier.notify(
             NotificationType.Success,
             $localize`Room created successfully`,
@@ -70,13 +70,12 @@ export class RoomCreationComponent implements OnInit {
             relativeTo: this.route,
           });
         },
-        (err) => {
-          console.debug(err);
+        error: () => {
           this.notifier.notify(
             NotificationType.Error,
             $localize`Failed to create the room`,
           );
         },
-      );
+      });
   }
 }

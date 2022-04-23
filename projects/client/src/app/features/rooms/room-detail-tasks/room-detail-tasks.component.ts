@@ -61,7 +61,6 @@ export class RoomDetailTasksComponent implements OnInit {
     this.tasks$
       .pipe(
         first(),
-        tap(console.debug),
         switchMap((current) =>
           from(this.query.fetchMore({ variables: { offset: current.length } })),
         ),
