@@ -1,7 +1,7 @@
 import { Component, OnInit, TrackByFunction } from '@angular/core';
 import { QueryRef } from 'apollo-angular';
-import { Observable } from 'rxjs';
-import { first, map, switchMap, tap } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
+import { finalize, first, map, switchMap, tap } from 'rxjs/operators';
 
 import { skipFalsy } from '../../../common/rxjs.utils';
 import {
@@ -52,5 +52,36 @@ export class RoomDetailTasksComponent implements OnInit {
       }),
       map(({ results }) => results),
     );
+  }
+
+  loadMore(): void {
+    if (!this.loadingMoreNeeded || this.loadingMore) return;
+
+    this.loadingMore = true;
+    this.tasks$
+      .pipe(
+        first(),
+        tap(console.debug),
+        switchMap((current) =>
+          from(this.query.fetchMore({ variables: { offset: current.length } })),
+        ),
+        map((result) => result.data.membership.tasks),
+        finalize(() => (this.loadingMore = false)),
+      )
+      .subscribe(({ results, total }) => {
+        this.query.updateQuery((prev) => {
+          return {
+            ...prev,
+            membership: {
+              ...prev.membership,
+              tasks: {
+                ...prev.membership.tasks,
+                total,
+                results: [...prev.membership.tasks.results, ...results],
+              },
+            },
+          };
+        });
+      });
   }
 }

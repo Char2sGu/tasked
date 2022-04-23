@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
 import { gql } from 'apollo-angular';
+import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
@@ -40,69 +41,69 @@ export type Application = {
 };
 
 export type ApplicationCreateInput = {
-  message?: Maybe<Scalars['String']>;
+  message?: InputMaybe<Scalars['String']>;
   room: Scalars['ID'];
 };
 
 export type ApplicationFilterMap = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  createdAt__eq?: Maybe<Scalars['DateTime']>;
-  createdAt__gt?: Maybe<Scalars['DateTime']>;
-  createdAt__gte?: Maybe<Scalars['DateTime']>;
-  createdAt__in?: Maybe<Array<Scalars['DateTime']>>;
-  createdAt__like?: Maybe<Scalars['String']>;
-  createdAt__lt?: Maybe<Scalars['DateTime']>;
-  createdAt__lte?: Maybe<Scalars['DateTime']>;
-  createdAt__ne?: Maybe<Scalars['DateTime']>;
-  createdAt__nin?: Maybe<Array<Scalars['DateTime']>>;
-  id?: Maybe<Scalars['ID']>;
-  id__eq?: Maybe<Scalars['ID']>;
-  id__gt?: Maybe<Scalars['ID']>;
-  id__gte?: Maybe<Scalars['ID']>;
-  id__in?: Maybe<Array<Scalars['ID']>>;
-  id__like?: Maybe<Scalars['String']>;
-  id__lt?: Maybe<Scalars['ID']>;
-  id__lte?: Maybe<Scalars['ID']>;
-  id__ne?: Maybe<Scalars['ID']>;
-  id__nin?: Maybe<Array<Scalars['ID']>>;
-  message?: Maybe<Scalars['String']>;
-  message__eq?: Maybe<Scalars['String']>;
-  message__gt?: Maybe<Scalars['String']>;
-  message__gte?: Maybe<Scalars['String']>;
-  message__in?: Maybe<Array<Scalars['String']>>;
-  message__like?: Maybe<Scalars['String']>;
-  message__lt?: Maybe<Scalars['String']>;
-  message__lte?: Maybe<Scalars['String']>;
-  message__ne?: Maybe<Scalars['String']>;
-  message__nin?: Maybe<Array<Scalars['String']>>;
-  status?: Maybe<ApplicationStatus>;
-  status__eq?: Maybe<ApplicationStatus>;
-  status__gt?: Maybe<ApplicationStatus>;
-  status__gte?: Maybe<ApplicationStatus>;
-  status__in?: Maybe<Array<ApplicationStatus>>;
-  status__like?: Maybe<Scalars['String']>;
-  status__lt?: Maybe<ApplicationStatus>;
-  status__lte?: Maybe<ApplicationStatus>;
-  status__ne?: Maybe<ApplicationStatus>;
-  status__nin?: Maybe<Array<ApplicationStatus>>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  updatedAt__eq?: Maybe<Scalars['DateTime']>;
-  updatedAt__gt?: Maybe<Scalars['DateTime']>;
-  updatedAt__gte?: Maybe<Scalars['DateTime']>;
-  updatedAt__in?: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt__like?: Maybe<Scalars['String']>;
-  updatedAt__lt?: Maybe<Scalars['DateTime']>;
-  updatedAt__lte?: Maybe<Scalars['DateTime']>;
-  updatedAt__ne?: Maybe<Scalars['DateTime']>;
-  updatedAt__nin?: Maybe<Array<Scalars['DateTime']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__eq?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdAt__like?: InputMaybe<Scalars['String']>;
+  createdAt__lt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__lte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__ne?: InputMaybe<Scalars['DateTime']>;
+  createdAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
+  id?: InputMaybe<Scalars['ID']>;
+  id__eq?: InputMaybe<Scalars['ID']>;
+  id__gt?: InputMaybe<Scalars['ID']>;
+  id__gte?: InputMaybe<Scalars['ID']>;
+  id__in?: InputMaybe<Array<Scalars['ID']>>;
+  id__like?: InputMaybe<Scalars['String']>;
+  id__lt?: InputMaybe<Scalars['ID']>;
+  id__lte?: InputMaybe<Scalars['ID']>;
+  id__ne?: InputMaybe<Scalars['ID']>;
+  id__nin?: InputMaybe<Array<Scalars['ID']>>;
+  message?: InputMaybe<Scalars['String']>;
+  message__eq?: InputMaybe<Scalars['String']>;
+  message__gt?: InputMaybe<Scalars['String']>;
+  message__gte?: InputMaybe<Scalars['String']>;
+  message__in?: InputMaybe<Array<Scalars['String']>>;
+  message__like?: InputMaybe<Scalars['String']>;
+  message__lt?: InputMaybe<Scalars['String']>;
+  message__lte?: InputMaybe<Scalars['String']>;
+  message__ne?: InputMaybe<Scalars['String']>;
+  message__nin?: InputMaybe<Array<Scalars['String']>>;
+  status?: InputMaybe<ApplicationStatus>;
+  status__eq?: InputMaybe<ApplicationStatus>;
+  status__gt?: InputMaybe<ApplicationStatus>;
+  status__gte?: InputMaybe<ApplicationStatus>;
+  status__in?: InputMaybe<Array<ApplicationStatus>>;
+  status__like?: InputMaybe<Scalars['String']>;
+  status__lt?: InputMaybe<ApplicationStatus>;
+  status__lte?: InputMaybe<ApplicationStatus>;
+  status__ne?: InputMaybe<ApplicationStatus>;
+  status__nin?: InputMaybe<Array<ApplicationStatus>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__eq?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedAt__like?: InputMaybe<Scalars['String']>;
+  updatedAt__lt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__lte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__ne?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type ApplicationOrderMap = {
-  createdAt?: Maybe<QueryOrder>;
-  id?: Maybe<QueryOrder>;
-  message?: Maybe<QueryOrder>;
-  status?: Maybe<QueryOrder>;
-  updatedAt?: Maybe<QueryOrder>;
+  createdAt?: InputMaybe<QueryOrder>;
+  id?: InputMaybe<QueryOrder>;
+  message?: InputMaybe<QueryOrder>;
+  status?: InputMaybe<QueryOrder>;
+  updatedAt?: InputMaybe<QueryOrder>;
 };
 
 export enum ApplicationStatus {
@@ -123,75 +124,75 @@ export type Assignment = {
 };
 
 export type AssignmentCreateInput = {
-  isImportant?: Maybe<Scalars['Boolean']>;
+  isImportant?: InputMaybe<Scalars['Boolean']>;
   recipient: Scalars['ID'];
   task: Scalars['ID'];
 };
 
 export type AssignmentFilterMap = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  createdAt__eq?: Maybe<Scalars['DateTime']>;
-  createdAt__gt?: Maybe<Scalars['DateTime']>;
-  createdAt__gte?: Maybe<Scalars['DateTime']>;
-  createdAt__in?: Maybe<Array<Scalars['DateTime']>>;
-  createdAt__like?: Maybe<Scalars['String']>;
-  createdAt__lt?: Maybe<Scalars['DateTime']>;
-  createdAt__lte?: Maybe<Scalars['DateTime']>;
-  createdAt__ne?: Maybe<Scalars['DateTime']>;
-  createdAt__nin?: Maybe<Array<Scalars['DateTime']>>;
-  id?: Maybe<Scalars['ID']>;
-  id__eq?: Maybe<Scalars['ID']>;
-  id__gt?: Maybe<Scalars['ID']>;
-  id__gte?: Maybe<Scalars['ID']>;
-  id__in?: Maybe<Array<Scalars['ID']>>;
-  id__like?: Maybe<Scalars['String']>;
-  id__lt?: Maybe<Scalars['ID']>;
-  id__lte?: Maybe<Scalars['ID']>;
-  id__ne?: Maybe<Scalars['ID']>;
-  id__nin?: Maybe<Array<Scalars['ID']>>;
-  isCompleted?: Maybe<Scalars['Boolean']>;
-  isCompleted__eq?: Maybe<Scalars['Boolean']>;
-  isCompleted__gt?: Maybe<Scalars['Boolean']>;
-  isCompleted__gte?: Maybe<Scalars['Boolean']>;
-  isCompleted__in?: Maybe<Array<Scalars['Boolean']>>;
-  isCompleted__like?: Maybe<Scalars['String']>;
-  isCompleted__lt?: Maybe<Scalars['Boolean']>;
-  isCompleted__lte?: Maybe<Scalars['Boolean']>;
-  isCompleted__ne?: Maybe<Scalars['Boolean']>;
-  isCompleted__nin?: Maybe<Array<Scalars['Boolean']>>;
-  isImportant?: Maybe<Scalars['Boolean']>;
-  isImportant__eq?: Maybe<Scalars['Boolean']>;
-  isImportant__gt?: Maybe<Scalars['Boolean']>;
-  isImportant__gte?: Maybe<Scalars['Boolean']>;
-  isImportant__in?: Maybe<Array<Scalars['Boolean']>>;
-  isImportant__like?: Maybe<Scalars['String']>;
-  isImportant__lt?: Maybe<Scalars['Boolean']>;
-  isImportant__lte?: Maybe<Scalars['Boolean']>;
-  isImportant__ne?: Maybe<Scalars['Boolean']>;
-  isImportant__nin?: Maybe<Array<Scalars['Boolean']>>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  updatedAt__eq?: Maybe<Scalars['DateTime']>;
-  updatedAt__gt?: Maybe<Scalars['DateTime']>;
-  updatedAt__gte?: Maybe<Scalars['DateTime']>;
-  updatedAt__in?: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt__like?: Maybe<Scalars['String']>;
-  updatedAt__lt?: Maybe<Scalars['DateTime']>;
-  updatedAt__lte?: Maybe<Scalars['DateTime']>;
-  updatedAt__ne?: Maybe<Scalars['DateTime']>;
-  updatedAt__nin?: Maybe<Array<Scalars['DateTime']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__eq?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdAt__like?: InputMaybe<Scalars['String']>;
+  createdAt__lt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__lte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__ne?: InputMaybe<Scalars['DateTime']>;
+  createdAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
+  id?: InputMaybe<Scalars['ID']>;
+  id__eq?: InputMaybe<Scalars['ID']>;
+  id__gt?: InputMaybe<Scalars['ID']>;
+  id__gte?: InputMaybe<Scalars['ID']>;
+  id__in?: InputMaybe<Array<Scalars['ID']>>;
+  id__like?: InputMaybe<Scalars['String']>;
+  id__lt?: InputMaybe<Scalars['ID']>;
+  id__lte?: InputMaybe<Scalars['ID']>;
+  id__ne?: InputMaybe<Scalars['ID']>;
+  id__nin?: InputMaybe<Array<Scalars['ID']>>;
+  isCompleted?: InputMaybe<Scalars['Boolean']>;
+  isCompleted__eq?: InputMaybe<Scalars['Boolean']>;
+  isCompleted__gt?: InputMaybe<Scalars['Boolean']>;
+  isCompleted__gte?: InputMaybe<Scalars['Boolean']>;
+  isCompleted__in?: InputMaybe<Array<Scalars['Boolean']>>;
+  isCompleted__like?: InputMaybe<Scalars['String']>;
+  isCompleted__lt?: InputMaybe<Scalars['Boolean']>;
+  isCompleted__lte?: InputMaybe<Scalars['Boolean']>;
+  isCompleted__ne?: InputMaybe<Scalars['Boolean']>;
+  isCompleted__nin?: InputMaybe<Array<Scalars['Boolean']>>;
+  isImportant?: InputMaybe<Scalars['Boolean']>;
+  isImportant__eq?: InputMaybe<Scalars['Boolean']>;
+  isImportant__gt?: InputMaybe<Scalars['Boolean']>;
+  isImportant__gte?: InputMaybe<Scalars['Boolean']>;
+  isImportant__in?: InputMaybe<Array<Scalars['Boolean']>>;
+  isImportant__like?: InputMaybe<Scalars['String']>;
+  isImportant__lt?: InputMaybe<Scalars['Boolean']>;
+  isImportant__lte?: InputMaybe<Scalars['Boolean']>;
+  isImportant__ne?: InputMaybe<Scalars['Boolean']>;
+  isImportant__nin?: InputMaybe<Array<Scalars['Boolean']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__eq?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedAt__like?: InputMaybe<Scalars['String']>;
+  updatedAt__lt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__lte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__ne?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type AssignmentOrderMap = {
-  createdAt?: Maybe<QueryOrder>;
-  id?: Maybe<QueryOrder>;
-  isCompleted?: Maybe<QueryOrder>;
-  isImportant?: Maybe<QueryOrder>;
-  updatedAt?: Maybe<QueryOrder>;
+  createdAt?: InputMaybe<QueryOrder>;
+  id?: InputMaybe<QueryOrder>;
+  isCompleted?: InputMaybe<QueryOrder>;
+  isImportant?: InputMaybe<QueryOrder>;
+  updatedAt?: InputMaybe<QueryOrder>;
 };
 
 export type AssignmentUpdateInput = {
-  isCompleted?: Maybe<Scalars['Boolean']>;
-  isImportant?: Maybe<Scalars['Boolean']>;
+  isCompleted?: InputMaybe<Scalars['Boolean']>;
+  isImportant?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type AuthResult = {
@@ -219,73 +220,73 @@ export type Membership = {
 };
 
 export type MembershipAssignmentsArgs = {
-  filter?: Maybe<AssignmentFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<AssignmentOrderMap>;
-  ownOnly?: Maybe<Scalars['Boolean']>;
+  filter?: InputMaybe<AssignmentFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<AssignmentOrderMap>;
+  ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type MembershipTasksArgs = {
-  filter?: Maybe<TaskFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<TaskOrderMap>;
-  ownOnly?: Maybe<Scalars['Boolean']>;
+  filter?: InputMaybe<TaskFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<TaskOrderMap>;
+  ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type MembershipFilterMap = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  createdAt__eq?: Maybe<Scalars['DateTime']>;
-  createdAt__gt?: Maybe<Scalars['DateTime']>;
-  createdAt__gte?: Maybe<Scalars['DateTime']>;
-  createdAt__in?: Maybe<Array<Scalars['DateTime']>>;
-  createdAt__like?: Maybe<Scalars['String']>;
-  createdAt__lt?: Maybe<Scalars['DateTime']>;
-  createdAt__lte?: Maybe<Scalars['DateTime']>;
-  createdAt__ne?: Maybe<Scalars['DateTime']>;
-  createdAt__nin?: Maybe<Array<Scalars['DateTime']>>;
-  id?: Maybe<Scalars['ID']>;
-  id__eq?: Maybe<Scalars['ID']>;
-  id__gt?: Maybe<Scalars['ID']>;
-  id__gte?: Maybe<Scalars['ID']>;
-  id__in?: Maybe<Array<Scalars['ID']>>;
-  id__like?: Maybe<Scalars['String']>;
-  id__lt?: Maybe<Scalars['ID']>;
-  id__lte?: Maybe<Scalars['ID']>;
-  id__ne?: Maybe<Scalars['ID']>;
-  id__nin?: Maybe<Array<Scalars['ID']>>;
-  role?: Maybe<Role>;
-  role__eq?: Maybe<Role>;
-  role__gt?: Maybe<Role>;
-  role__gte?: Maybe<Role>;
-  role__in?: Maybe<Array<Role>>;
-  role__like?: Maybe<Scalars['String']>;
-  role__lt?: Maybe<Role>;
-  role__lte?: Maybe<Role>;
-  role__ne?: Maybe<Role>;
-  role__nin?: Maybe<Array<Role>>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  updatedAt__eq?: Maybe<Scalars['DateTime']>;
-  updatedAt__gt?: Maybe<Scalars['DateTime']>;
-  updatedAt__gte?: Maybe<Scalars['DateTime']>;
-  updatedAt__in?: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt__like?: Maybe<Scalars['String']>;
-  updatedAt__lt?: Maybe<Scalars['DateTime']>;
-  updatedAt__lte?: Maybe<Scalars['DateTime']>;
-  updatedAt__ne?: Maybe<Scalars['DateTime']>;
-  updatedAt__nin?: Maybe<Array<Scalars['DateTime']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__eq?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdAt__like?: InputMaybe<Scalars['String']>;
+  createdAt__lt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__lte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__ne?: InputMaybe<Scalars['DateTime']>;
+  createdAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
+  id?: InputMaybe<Scalars['ID']>;
+  id__eq?: InputMaybe<Scalars['ID']>;
+  id__gt?: InputMaybe<Scalars['ID']>;
+  id__gte?: InputMaybe<Scalars['ID']>;
+  id__in?: InputMaybe<Array<Scalars['ID']>>;
+  id__like?: InputMaybe<Scalars['String']>;
+  id__lt?: InputMaybe<Scalars['ID']>;
+  id__lte?: InputMaybe<Scalars['ID']>;
+  id__ne?: InputMaybe<Scalars['ID']>;
+  id__nin?: InputMaybe<Array<Scalars['ID']>>;
+  role?: InputMaybe<Role>;
+  role__eq?: InputMaybe<Role>;
+  role__gt?: InputMaybe<Role>;
+  role__gte?: InputMaybe<Role>;
+  role__in?: InputMaybe<Array<Role>>;
+  role__like?: InputMaybe<Scalars['String']>;
+  role__lt?: InputMaybe<Role>;
+  role__lte?: InputMaybe<Role>;
+  role__ne?: InputMaybe<Role>;
+  role__nin?: InputMaybe<Array<Role>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__eq?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedAt__like?: InputMaybe<Scalars['String']>;
+  updatedAt__lt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__lte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__ne?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type MembershipOrderMap = {
-  createdAt?: Maybe<QueryOrder>;
-  id?: Maybe<QueryOrder>;
-  role?: Maybe<QueryOrder>;
-  updatedAt?: Maybe<QueryOrder>;
+  createdAt?: InputMaybe<QueryOrder>;
+  id?: InputMaybe<QueryOrder>;
+  role?: InputMaybe<QueryOrder>;
+  updatedAt?: InputMaybe<QueryOrder>;
 };
 
 export type MembershipUpdateInput = {
-  role?: Maybe<Role>;
+  role?: InputMaybe<Role>;
 };
 
 export type Mutation = {
@@ -446,10 +447,10 @@ export type QueryApplicationArgs = {
 };
 
 export type QueryApplicationsArgs = {
-  filter?: Maybe<ApplicationFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<ApplicationOrderMap>;
+  filter?: InputMaybe<ApplicationFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<ApplicationOrderMap>;
 };
 
 export type QueryAssignmentArgs = {
@@ -457,11 +458,11 @@ export type QueryAssignmentArgs = {
 };
 
 export type QueryAssignmentsArgs = {
-  filter?: Maybe<AssignmentFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<AssignmentOrderMap>;
-  ownOnly?: Maybe<Scalars['Boolean']>;
+  filter?: InputMaybe<AssignmentFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<AssignmentOrderMap>;
+  ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type QueryMembershipArgs = {
@@ -469,10 +470,10 @@ export type QueryMembershipArgs = {
 };
 
 export type QueryMembershipsArgs = {
-  filter?: Maybe<MembershipFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<MembershipOrderMap>;
+  filter?: InputMaybe<MembershipFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<MembershipOrderMap>;
 };
 
 export type QueryRoomArgs = {
@@ -480,11 +481,11 @@ export type QueryRoomArgs = {
 };
 
 export type QueryRoomsArgs = {
-  filter?: Maybe<RoomFilterMap>;
-  joinedOnly?: Maybe<Scalars['Boolean']>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<RoomOrderMap>;
+  filter?: InputMaybe<RoomFilterMap>;
+  joinedOnly?: InputMaybe<Scalars['Boolean']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<RoomOrderMap>;
 };
 
 export type QueryTaskArgs = {
@@ -492,11 +493,11 @@ export type QueryTaskArgs = {
 };
 
 export type QueryTasksArgs = {
-  filter?: Maybe<TaskFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<TaskOrderMap>;
-  ownOnly?: Maybe<Scalars['Boolean']>;
+  filter?: InputMaybe<TaskFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<TaskOrderMap>;
+  ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type QueryUserArgs = {
@@ -504,10 +505,10 @@ export type QueryUserArgs = {
 };
 
 export type QueryUsersArgs = {
-  filter?: Maybe<UserFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<UserOrderMap>;
+  filter?: InputMaybe<UserFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<UserOrderMap>;
 };
 
 export enum QueryOrder {
@@ -537,116 +538,117 @@ export type Room = {
 };
 
 export type RoomApplicationsArgs = {
-  filter?: Maybe<ApplicationFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<ApplicationOrderMap>;
+  filter?: InputMaybe<ApplicationFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<ApplicationOrderMap>;
 };
 
 export type RoomAssignmentsArgs = {
-  filter?: Maybe<AssignmentFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<AssignmentOrderMap>;
-  ownOnly?: Maybe<Scalars['Boolean']>;
+  filter?: InputMaybe<AssignmentFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<AssignmentOrderMap>;
+  ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type RoomMembershipsArgs = {
-  filter?: Maybe<MembershipFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<MembershipOrderMap>;
+  filter?: InputMaybe<MembershipFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<MembershipOrderMap>;
 };
 
 export type RoomTasksArgs = {
-  filter?: Maybe<TaskFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<TaskOrderMap>;
-  ownOnly?: Maybe<Scalars['Boolean']>;
+  filter?: InputMaybe<TaskFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<TaskOrderMap>;
+  ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type RoomCreateInput = {
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
 };
 
 export type RoomFilterMap = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  createdAt__eq?: Maybe<Scalars['DateTime']>;
-  createdAt__gt?: Maybe<Scalars['DateTime']>;
-  createdAt__gte?: Maybe<Scalars['DateTime']>;
-  createdAt__in?: Maybe<Array<Scalars['DateTime']>>;
-  createdAt__like?: Maybe<Scalars['String']>;
-  createdAt__lt?: Maybe<Scalars['DateTime']>;
-  createdAt__lte?: Maybe<Scalars['DateTime']>;
-  createdAt__ne?: Maybe<Scalars['DateTime']>;
-  createdAt__nin?: Maybe<Array<Scalars['DateTime']>>;
-  description?: Maybe<Scalars['String']>;
-  description__eq?: Maybe<Scalars['String']>;
-  description__gt?: Maybe<Scalars['String']>;
-  description__gte?: Maybe<Scalars['String']>;
-  description__in?: Maybe<Array<Scalars['String']>>;
-  description__like?: Maybe<Scalars['String']>;
-  description__lt?: Maybe<Scalars['String']>;
-  description__lte?: Maybe<Scalars['String']>;
-  description__ne?: Maybe<Scalars['String']>;
-  description__nin?: Maybe<Array<Scalars['String']>>;
-  id?: Maybe<Scalars['ID']>;
-  id__eq?: Maybe<Scalars['ID']>;
-  id__gt?: Maybe<Scalars['ID']>;
-  id__gte?: Maybe<Scalars['ID']>;
-  id__in?: Maybe<Array<Scalars['ID']>>;
-  id__like?: Maybe<Scalars['String']>;
-  id__lt?: Maybe<Scalars['ID']>;
-  id__lte?: Maybe<Scalars['ID']>;
-  id__ne?: Maybe<Scalars['ID']>;
-  id__nin?: Maybe<Array<Scalars['ID']>>;
-  isOpen?: Maybe<Scalars['Boolean']>;
-  isOpen__eq?: Maybe<Scalars['Boolean']>;
-  isOpen__gt?: Maybe<Scalars['Boolean']>;
-  isOpen__gte?: Maybe<Scalars['Boolean']>;
-  isOpen__in?: Maybe<Array<Scalars['Boolean']>>;
-  isOpen__like?: Maybe<Scalars['String']>;
-  isOpen__lt?: Maybe<Scalars['Boolean']>;
-  isOpen__lte?: Maybe<Scalars['Boolean']>;
-  isOpen__ne?: Maybe<Scalars['Boolean']>;
-  isOpen__nin?: Maybe<Array<Scalars['Boolean']>>;
-  name?: Maybe<Scalars['String']>;
-  name__eq?: Maybe<Scalars['String']>;
-  name__gt?: Maybe<Scalars['String']>;
-  name__gte?: Maybe<Scalars['String']>;
-  name__in?: Maybe<Array<Scalars['String']>>;
-  name__like?: Maybe<Scalars['String']>;
-  name__lt?: Maybe<Scalars['String']>;
-  name__lte?: Maybe<Scalars['String']>;
-  name__ne?: Maybe<Scalars['String']>;
-  name__nin?: Maybe<Array<Scalars['String']>>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  updatedAt__eq?: Maybe<Scalars['DateTime']>;
-  updatedAt__gt?: Maybe<Scalars['DateTime']>;
-  updatedAt__gte?: Maybe<Scalars['DateTime']>;
-  updatedAt__in?: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt__like?: Maybe<Scalars['String']>;
-  updatedAt__lt?: Maybe<Scalars['DateTime']>;
-  updatedAt__lte?: Maybe<Scalars['DateTime']>;
-  updatedAt__ne?: Maybe<Scalars['DateTime']>;
-  updatedAt__nin?: Maybe<Array<Scalars['DateTime']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__eq?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdAt__like?: InputMaybe<Scalars['String']>;
+  createdAt__lt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__lte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__ne?: InputMaybe<Scalars['DateTime']>;
+  createdAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
+  description?: InputMaybe<Scalars['String']>;
+  description__eq?: InputMaybe<Scalars['String']>;
+  description__gt?: InputMaybe<Scalars['String']>;
+  description__gte?: InputMaybe<Scalars['String']>;
+  description__in?: InputMaybe<Array<Scalars['String']>>;
+  description__like?: InputMaybe<Scalars['String']>;
+  description__lt?: InputMaybe<Scalars['String']>;
+  description__lte?: InputMaybe<Scalars['String']>;
+  description__ne?: InputMaybe<Scalars['String']>;
+  description__nin?: InputMaybe<Array<Scalars['String']>>;
+  id?: InputMaybe<Scalars['ID']>;
+  id__eq?: InputMaybe<Scalars['ID']>;
+  id__gt?: InputMaybe<Scalars['ID']>;
+  id__gte?: InputMaybe<Scalars['ID']>;
+  id__in?: InputMaybe<Array<Scalars['ID']>>;
+  id__like?: InputMaybe<Scalars['String']>;
+  id__lt?: InputMaybe<Scalars['ID']>;
+  id__lte?: InputMaybe<Scalars['ID']>;
+  id__ne?: InputMaybe<Scalars['ID']>;
+  id__nin?: InputMaybe<Array<Scalars['ID']>>;
+  isOpen?: InputMaybe<Scalars['Boolean']>;
+  isOpen__eq?: InputMaybe<Scalars['Boolean']>;
+  isOpen__gt?: InputMaybe<Scalars['Boolean']>;
+  isOpen__gte?: InputMaybe<Scalars['Boolean']>;
+  isOpen__in?: InputMaybe<Array<Scalars['Boolean']>>;
+  isOpen__like?: InputMaybe<Scalars['String']>;
+  isOpen__lt?: InputMaybe<Scalars['Boolean']>;
+  isOpen__lte?: InputMaybe<Scalars['Boolean']>;
+  isOpen__ne?: InputMaybe<Scalars['Boolean']>;
+  isOpen__nin?: InputMaybe<Array<Scalars['Boolean']>>;
+  name?: InputMaybe<Scalars['String']>;
+  name__eq?: InputMaybe<Scalars['String']>;
+  name__gt?: InputMaybe<Scalars['String']>;
+  name__gte?: InputMaybe<Scalars['String']>;
+  name__in?: InputMaybe<Array<Scalars['String']>>;
+  name__like?: InputMaybe<Scalars['String']>;
+  name__lt?: InputMaybe<Scalars['String']>;
+  name__lte?: InputMaybe<Scalars['String']>;
+  name__ne?: InputMaybe<Scalars['String']>;
+  name__nin?: InputMaybe<Array<Scalars['String']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__eq?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedAt__like?: InputMaybe<Scalars['String']>;
+  updatedAt__lt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__lte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__ne?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type RoomOrderMap = {
-  createdAt?: Maybe<QueryOrder>;
-  description?: Maybe<QueryOrder>;
-  id?: Maybe<QueryOrder>;
-  isOpen?: Maybe<QueryOrder>;
-  name?: Maybe<QueryOrder>;
-  updatedAt?: Maybe<QueryOrder>;
+  createdAt?: InputMaybe<QueryOrder>;
+  description?: InputMaybe<QueryOrder>;
+  id?: InputMaybe<QueryOrder>;
+  isOpen?: InputMaybe<QueryOrder>;
+  name?: InputMaybe<QueryOrder>;
+  updatedAt?: InputMaybe<QueryOrder>;
 };
 
 export type RoomUpdateInput = {
-  description?: Maybe<Scalars['String']>;
-  isOpen?: Maybe<Scalars['Boolean']>;
-  name?: Maybe<Scalars['String']>;
+  creator?: InputMaybe<Scalars['ID']>;
+  description?: InputMaybe<Scalars['String']>;
+  isOpen?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 export type Task = {
@@ -663,96 +665,96 @@ export type Task = {
 };
 
 export type TaskAssignmentsArgs = {
-  filter?: Maybe<AssignmentFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<AssignmentOrderMap>;
-  ownOnly?: Maybe<Scalars['Boolean']>;
+  filter?: InputMaybe<AssignmentFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<AssignmentOrderMap>;
+  ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type TaskCreateInput = {
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   room: Scalars['ID'];
   title: Scalars['String'];
 };
 
 export type TaskFilterMap = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  createdAt__eq?: Maybe<Scalars['DateTime']>;
-  createdAt__gt?: Maybe<Scalars['DateTime']>;
-  createdAt__gte?: Maybe<Scalars['DateTime']>;
-  createdAt__in?: Maybe<Array<Scalars['DateTime']>>;
-  createdAt__like?: Maybe<Scalars['String']>;
-  createdAt__lt?: Maybe<Scalars['DateTime']>;
-  createdAt__lte?: Maybe<Scalars['DateTime']>;
-  createdAt__ne?: Maybe<Scalars['DateTime']>;
-  createdAt__nin?: Maybe<Array<Scalars['DateTime']>>;
-  description?: Maybe<Scalars['String']>;
-  description__eq?: Maybe<Scalars['String']>;
-  description__gt?: Maybe<Scalars['String']>;
-  description__gte?: Maybe<Scalars['String']>;
-  description__in?: Maybe<Array<Scalars['String']>>;
-  description__like?: Maybe<Scalars['String']>;
-  description__lt?: Maybe<Scalars['String']>;
-  description__lte?: Maybe<Scalars['String']>;
-  description__ne?: Maybe<Scalars['String']>;
-  description__nin?: Maybe<Array<Scalars['String']>>;
-  id?: Maybe<Scalars['ID']>;
-  id__eq?: Maybe<Scalars['ID']>;
-  id__gt?: Maybe<Scalars['ID']>;
-  id__gte?: Maybe<Scalars['ID']>;
-  id__in?: Maybe<Array<Scalars['ID']>>;
-  id__like?: Maybe<Scalars['String']>;
-  id__lt?: Maybe<Scalars['ID']>;
-  id__lte?: Maybe<Scalars['ID']>;
-  id__ne?: Maybe<Scalars['ID']>;
-  id__nin?: Maybe<Array<Scalars['ID']>>;
-  isActive?: Maybe<Scalars['Boolean']>;
-  isActive__eq?: Maybe<Scalars['Boolean']>;
-  isActive__gt?: Maybe<Scalars['Boolean']>;
-  isActive__gte?: Maybe<Scalars['Boolean']>;
-  isActive__in?: Maybe<Array<Scalars['Boolean']>>;
-  isActive__like?: Maybe<Scalars['String']>;
-  isActive__lt?: Maybe<Scalars['Boolean']>;
-  isActive__lte?: Maybe<Scalars['Boolean']>;
-  isActive__ne?: Maybe<Scalars['Boolean']>;
-  isActive__nin?: Maybe<Array<Scalars['Boolean']>>;
-  title?: Maybe<Scalars['String']>;
-  title__eq?: Maybe<Scalars['String']>;
-  title__gt?: Maybe<Scalars['String']>;
-  title__gte?: Maybe<Scalars['String']>;
-  title__in?: Maybe<Array<Scalars['String']>>;
-  title__like?: Maybe<Scalars['String']>;
-  title__lt?: Maybe<Scalars['String']>;
-  title__lte?: Maybe<Scalars['String']>;
-  title__ne?: Maybe<Scalars['String']>;
-  title__nin?: Maybe<Array<Scalars['String']>>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  updatedAt__eq?: Maybe<Scalars['DateTime']>;
-  updatedAt__gt?: Maybe<Scalars['DateTime']>;
-  updatedAt__gte?: Maybe<Scalars['DateTime']>;
-  updatedAt__in?: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt__like?: Maybe<Scalars['String']>;
-  updatedAt__lt?: Maybe<Scalars['DateTime']>;
-  updatedAt__lte?: Maybe<Scalars['DateTime']>;
-  updatedAt__ne?: Maybe<Scalars['DateTime']>;
-  updatedAt__nin?: Maybe<Array<Scalars['DateTime']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__eq?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdAt__like?: InputMaybe<Scalars['String']>;
+  createdAt__lt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__lte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__ne?: InputMaybe<Scalars['DateTime']>;
+  createdAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
+  description?: InputMaybe<Scalars['String']>;
+  description__eq?: InputMaybe<Scalars['String']>;
+  description__gt?: InputMaybe<Scalars['String']>;
+  description__gte?: InputMaybe<Scalars['String']>;
+  description__in?: InputMaybe<Array<Scalars['String']>>;
+  description__like?: InputMaybe<Scalars['String']>;
+  description__lt?: InputMaybe<Scalars['String']>;
+  description__lte?: InputMaybe<Scalars['String']>;
+  description__ne?: InputMaybe<Scalars['String']>;
+  description__nin?: InputMaybe<Array<Scalars['String']>>;
+  id?: InputMaybe<Scalars['ID']>;
+  id__eq?: InputMaybe<Scalars['ID']>;
+  id__gt?: InputMaybe<Scalars['ID']>;
+  id__gte?: InputMaybe<Scalars['ID']>;
+  id__in?: InputMaybe<Array<Scalars['ID']>>;
+  id__like?: InputMaybe<Scalars['String']>;
+  id__lt?: InputMaybe<Scalars['ID']>;
+  id__lte?: InputMaybe<Scalars['ID']>;
+  id__ne?: InputMaybe<Scalars['ID']>;
+  id__nin?: InputMaybe<Array<Scalars['ID']>>;
+  isActive?: InputMaybe<Scalars['Boolean']>;
+  isActive__eq?: InputMaybe<Scalars['Boolean']>;
+  isActive__gt?: InputMaybe<Scalars['Boolean']>;
+  isActive__gte?: InputMaybe<Scalars['Boolean']>;
+  isActive__in?: InputMaybe<Array<Scalars['Boolean']>>;
+  isActive__like?: InputMaybe<Scalars['String']>;
+  isActive__lt?: InputMaybe<Scalars['Boolean']>;
+  isActive__lte?: InputMaybe<Scalars['Boolean']>;
+  isActive__ne?: InputMaybe<Scalars['Boolean']>;
+  isActive__nin?: InputMaybe<Array<Scalars['Boolean']>>;
+  title?: InputMaybe<Scalars['String']>;
+  title__eq?: InputMaybe<Scalars['String']>;
+  title__gt?: InputMaybe<Scalars['String']>;
+  title__gte?: InputMaybe<Scalars['String']>;
+  title__in?: InputMaybe<Array<Scalars['String']>>;
+  title__like?: InputMaybe<Scalars['String']>;
+  title__lt?: InputMaybe<Scalars['String']>;
+  title__lte?: InputMaybe<Scalars['String']>;
+  title__ne?: InputMaybe<Scalars['String']>;
+  title__nin?: InputMaybe<Array<Scalars['String']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__eq?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedAt__like?: InputMaybe<Scalars['String']>;
+  updatedAt__lt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__lte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__ne?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type TaskOrderMap = {
-  createdAt?: Maybe<QueryOrder>;
-  description?: Maybe<QueryOrder>;
-  id?: Maybe<QueryOrder>;
-  isActive?: Maybe<QueryOrder>;
-  title?: Maybe<QueryOrder>;
-  updatedAt?: Maybe<QueryOrder>;
+  createdAt?: InputMaybe<QueryOrder>;
+  description?: InputMaybe<QueryOrder>;
+  id?: InputMaybe<QueryOrder>;
+  isActive?: InputMaybe<QueryOrder>;
+  title?: InputMaybe<QueryOrder>;
+  updatedAt?: InputMaybe<QueryOrder>;
 };
 
 export type TaskUpdateInput = {
-  description?: Maybe<Scalars['String']>;
-  isActive?: Maybe<Scalars['Boolean']>;
-  room?: Maybe<Scalars['ID']>;
-  title?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  isActive?: InputMaybe<Scalars['Boolean']>;
+  room?: InputMaybe<Scalars['ID']>;
+  title?: InputMaybe<Scalars['String']>;
 };
 
 export type User = {
@@ -771,126 +773,126 @@ export type User = {
 };
 
 export type UserApplicationsArgs = {
-  filter?: Maybe<ApplicationFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<ApplicationOrderMap>;
+  filter?: InputMaybe<ApplicationFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<ApplicationOrderMap>;
 };
 
 export type UserAssignmentsArgs = {
-  filter?: Maybe<AssignmentFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<AssignmentOrderMap>;
-  ownOnly?: Maybe<Scalars['Boolean']>;
+  filter?: InputMaybe<AssignmentFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<AssignmentOrderMap>;
+  ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type UserMembershipsArgs = {
-  filter?: Maybe<MembershipFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<MembershipOrderMap>;
+  filter?: InputMaybe<MembershipFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<MembershipOrderMap>;
 };
 
 export type UserRoomsArgs = {
-  filter?: Maybe<RoomFilterMap>;
-  joinedOnly?: Maybe<Scalars['Boolean']>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<RoomOrderMap>;
+  filter?: InputMaybe<RoomFilterMap>;
+  joinedOnly?: InputMaybe<Scalars['Boolean']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<RoomOrderMap>;
 };
 
 export type UserTasksArgs = {
-  filter?: Maybe<TaskFilterMap>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order?: Maybe<TaskOrderMap>;
-  ownOnly?: Maybe<Scalars['Boolean']>;
+  filter?: InputMaybe<TaskFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<TaskOrderMap>;
+  ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type UserCreateInput = {
-  gender?: Maybe<Gender>;
-  nickname?: Maybe<Scalars['String']>;
+  gender?: InputMaybe<Gender>;
+  nickname?: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
   username: Scalars['String'];
 };
 
 export type UserFilterMap = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  createdAt__eq?: Maybe<Scalars['DateTime']>;
-  createdAt__gt?: Maybe<Scalars['DateTime']>;
-  createdAt__gte?: Maybe<Scalars['DateTime']>;
-  createdAt__in?: Maybe<Array<Scalars['DateTime']>>;
-  createdAt__like?: Maybe<Scalars['String']>;
-  createdAt__lt?: Maybe<Scalars['DateTime']>;
-  createdAt__lte?: Maybe<Scalars['DateTime']>;
-  createdAt__ne?: Maybe<Scalars['DateTime']>;
-  createdAt__nin?: Maybe<Array<Scalars['DateTime']>>;
-  gender?: Maybe<Gender>;
-  gender__eq?: Maybe<Gender>;
-  gender__gt?: Maybe<Gender>;
-  gender__gte?: Maybe<Gender>;
-  gender__in?: Maybe<Array<Gender>>;
-  gender__like?: Maybe<Scalars['String']>;
-  gender__lt?: Maybe<Gender>;
-  gender__lte?: Maybe<Gender>;
-  gender__ne?: Maybe<Gender>;
-  gender__nin?: Maybe<Array<Gender>>;
-  id?: Maybe<Scalars['ID']>;
-  id__eq?: Maybe<Scalars['ID']>;
-  id__gt?: Maybe<Scalars['ID']>;
-  id__gte?: Maybe<Scalars['ID']>;
-  id__in?: Maybe<Array<Scalars['ID']>>;
-  id__like?: Maybe<Scalars['String']>;
-  id__lt?: Maybe<Scalars['ID']>;
-  id__lte?: Maybe<Scalars['ID']>;
-  id__ne?: Maybe<Scalars['ID']>;
-  id__nin?: Maybe<Array<Scalars['ID']>>;
-  nickname?: Maybe<Scalars['String']>;
-  nickname__eq?: Maybe<Scalars['String']>;
-  nickname__gt?: Maybe<Scalars['String']>;
-  nickname__gte?: Maybe<Scalars['String']>;
-  nickname__in?: Maybe<Array<Scalars['String']>>;
-  nickname__like?: Maybe<Scalars['String']>;
-  nickname__lt?: Maybe<Scalars['String']>;
-  nickname__lte?: Maybe<Scalars['String']>;
-  nickname__ne?: Maybe<Scalars['String']>;
-  nickname__nin?: Maybe<Array<Scalars['String']>>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  updatedAt__eq?: Maybe<Scalars['DateTime']>;
-  updatedAt__gt?: Maybe<Scalars['DateTime']>;
-  updatedAt__gte?: Maybe<Scalars['DateTime']>;
-  updatedAt__in?: Maybe<Array<Scalars['DateTime']>>;
-  updatedAt__like?: Maybe<Scalars['String']>;
-  updatedAt__lt?: Maybe<Scalars['DateTime']>;
-  updatedAt__lte?: Maybe<Scalars['DateTime']>;
-  updatedAt__ne?: Maybe<Scalars['DateTime']>;
-  updatedAt__nin?: Maybe<Array<Scalars['DateTime']>>;
-  username?: Maybe<Scalars['String']>;
-  username__eq?: Maybe<Scalars['String']>;
-  username__gt?: Maybe<Scalars['String']>;
-  username__gte?: Maybe<Scalars['String']>;
-  username__in?: Maybe<Array<Scalars['String']>>;
-  username__like?: Maybe<Scalars['String']>;
-  username__lt?: Maybe<Scalars['String']>;
-  username__lte?: Maybe<Scalars['String']>;
-  username__ne?: Maybe<Scalars['String']>;
-  username__nin?: Maybe<Array<Scalars['String']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__eq?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdAt__like?: InputMaybe<Scalars['String']>;
+  createdAt__lt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__lte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__ne?: InputMaybe<Scalars['DateTime']>;
+  createdAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
+  gender?: InputMaybe<Gender>;
+  gender__eq?: InputMaybe<Gender>;
+  gender__gt?: InputMaybe<Gender>;
+  gender__gte?: InputMaybe<Gender>;
+  gender__in?: InputMaybe<Array<Gender>>;
+  gender__like?: InputMaybe<Scalars['String']>;
+  gender__lt?: InputMaybe<Gender>;
+  gender__lte?: InputMaybe<Gender>;
+  gender__ne?: InputMaybe<Gender>;
+  gender__nin?: InputMaybe<Array<Gender>>;
+  id?: InputMaybe<Scalars['ID']>;
+  id__eq?: InputMaybe<Scalars['ID']>;
+  id__gt?: InputMaybe<Scalars['ID']>;
+  id__gte?: InputMaybe<Scalars['ID']>;
+  id__in?: InputMaybe<Array<Scalars['ID']>>;
+  id__like?: InputMaybe<Scalars['String']>;
+  id__lt?: InputMaybe<Scalars['ID']>;
+  id__lte?: InputMaybe<Scalars['ID']>;
+  id__ne?: InputMaybe<Scalars['ID']>;
+  id__nin?: InputMaybe<Array<Scalars['ID']>>;
+  nickname?: InputMaybe<Scalars['String']>;
+  nickname__eq?: InputMaybe<Scalars['String']>;
+  nickname__gt?: InputMaybe<Scalars['String']>;
+  nickname__gte?: InputMaybe<Scalars['String']>;
+  nickname__in?: InputMaybe<Array<Scalars['String']>>;
+  nickname__like?: InputMaybe<Scalars['String']>;
+  nickname__lt?: InputMaybe<Scalars['String']>;
+  nickname__lte?: InputMaybe<Scalars['String']>;
+  nickname__ne?: InputMaybe<Scalars['String']>;
+  nickname__nin?: InputMaybe<Array<Scalars['String']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__eq?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedAt__like?: InputMaybe<Scalars['String']>;
+  updatedAt__lt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__lte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__ne?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
+  username?: InputMaybe<Scalars['String']>;
+  username__eq?: InputMaybe<Scalars['String']>;
+  username__gt?: InputMaybe<Scalars['String']>;
+  username__gte?: InputMaybe<Scalars['String']>;
+  username__in?: InputMaybe<Array<Scalars['String']>>;
+  username__like?: InputMaybe<Scalars['String']>;
+  username__lt?: InputMaybe<Scalars['String']>;
+  username__lte?: InputMaybe<Scalars['String']>;
+  username__ne?: InputMaybe<Scalars['String']>;
+  username__nin?: InputMaybe<Array<Scalars['String']>>;
 };
 
 export type UserOrderMap = {
-  createdAt?: Maybe<QueryOrder>;
-  gender?: Maybe<QueryOrder>;
-  id?: Maybe<QueryOrder>;
-  nickname?: Maybe<QueryOrder>;
-  updatedAt?: Maybe<QueryOrder>;
-  username?: Maybe<QueryOrder>;
+  createdAt?: InputMaybe<QueryOrder>;
+  gender?: InputMaybe<QueryOrder>;
+  id?: InputMaybe<QueryOrder>;
+  nickname?: InputMaybe<QueryOrder>;
+  updatedAt?: InputMaybe<QueryOrder>;
+  username?: InputMaybe<QueryOrder>;
 };
 
 export type UserUpdateInput = {
-  gender?: Maybe<Gender>;
-  nickname?: Maybe<Scalars['String']>;
-  password?: Maybe<Scalars['String']>;
+  gender?: InputMaybe<Gender>;
+  nickname?: InputMaybe<Scalars['String']>;
+  password?: InputMaybe<Scalars['String']>;
 };
 
 export type ApplicationAcceptMutationVariables = Exact<{
@@ -904,14 +906,14 @@ export type ApplicationAcceptMutation = {
     application: {
       __typename?: 'Application';
       id: string;
-      message?: string | null | undefined;
+      message?: string | null;
       status: ApplicationStatus;
       createdAt: any;
       owner: {
         __typename?: 'User';
         id: string;
         username: string;
-        nickname?: string | null | undefined;
+        nickname?: string | null;
       };
       room: { __typename?: 'Room'; id: string; name: string };
     };
@@ -923,7 +925,7 @@ export type ApplicationAcceptMutation = {
         __typename?: 'User';
         id: string;
         username: string;
-        nickname?: string | null | undefined;
+        nickname?: string | null;
         gender: Gender;
       };
     };
@@ -939,14 +941,14 @@ export type ApplicationCreateMutation = {
   createApplication: {
     __typename?: 'Application';
     id: string;
-    message?: string | null | undefined;
+    message?: string | null;
     status: ApplicationStatus;
     createdAt: any;
     owner: {
       __typename?: 'User';
       id: string;
       username: string;
-      nickname?: string | null | undefined;
+      nickname?: string | null;
     };
     room: { __typename?: 'Room'; id: string; name: string };
   };
@@ -962,7 +964,7 @@ export type ApplicationDeleteMutation = {
 };
 
 export type ApplicationListQueryVariables = Exact<{
-  offset?: Maybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
 }>;
 
 export type ApplicationListQuery = {
@@ -973,14 +975,14 @@ export type ApplicationListQuery = {
     results: Array<{
       __typename?: 'Application';
       id: string;
-      message?: string | null | undefined;
+      message?: string | null;
       status: ApplicationStatus;
       createdAt: any;
       owner: {
         __typename?: 'User';
         id: string;
         username: string;
-        nickname?: string | null | undefined;
+        nickname?: string | null;
       };
       room: { __typename?: 'Room'; id: string; name: string };
     }>;
@@ -996,14 +998,14 @@ export type ApplicationRejectMutation = {
   rejectApplication: {
     __typename?: 'Application';
     id: string;
-    message?: string | null | undefined;
+    message?: string | null;
     status: ApplicationStatus;
     createdAt: any;
     owner: {
       __typename?: 'User';
       id: string;
       username: string;
-      nickname?: string | null | undefined;
+      nickname?: string | null;
     };
     room: { __typename?: 'Room'; id: string; name: string };
   };
@@ -1012,14 +1014,14 @@ export type ApplicationRejectMutation = {
 export type ApplicationFragment = {
   __typename?: 'Application';
   id: string;
-  message?: string | null | undefined;
+  message?: string | null;
   status: ApplicationStatus;
   createdAt: any;
   owner: {
     __typename?: 'User';
     id: string;
     username: string;
-    nickname?: string | null | undefined;
+    nickname?: string | null;
   };
   room: { __typename?: 'Room'; id: string; name: string };
 };
@@ -1086,7 +1088,7 @@ export type MeQuery = {
     __typename?: 'User';
     id: string;
     username: string;
-    nickname?: string | null | undefined;
+    nickname?: string | null;
     gender: Gender;
     updatedAt: any;
   };
@@ -1094,7 +1096,7 @@ export type MeQuery = {
 
 export type MembershipAssignmentListQueryVariables = Exact<{
   id: Scalars['ID'];
-  offset?: Maybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
 }>;
 
 export type MembershipAssignmentListQuery = {
@@ -1117,7 +1119,7 @@ export type MembershipAssignmentListQuery = {
           __typename?: 'Task';
           id: string;
           title: string;
-          description?: string | null | undefined;
+          description?: string | null;
           creator: {
             __typename?: 'Membership';
             id: string;
@@ -1126,7 +1128,7 @@ export type MembershipAssignmentListQuery = {
               __typename?: 'User';
               id: string;
               username: string;
-              nickname?: string | null | undefined;
+              nickname?: string | null;
               gender: Gender;
             };
           };
@@ -1147,13 +1149,14 @@ export type MembershipDeleteMutation = {
 
 export type MembershipTaskListQueryVariables = Exact<{
   id: Scalars['ID'];
-  offset?: Maybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
 }>;
 
 export type MembershipTaskListQuery = {
   __typename?: 'Query';
   membership: {
     __typename?: 'Membership';
+    id: string;
     tasks: {
       __typename?: 'PaginatedTasks';
       total: number;
@@ -1161,7 +1164,7 @@ export type MembershipTaskListQuery = {
         __typename?: 'Task';
         id: string;
         title: string;
-        description?: string | null | undefined;
+        description?: string | null;
         createdAt: any;
         assignments: { __typename?: 'PaginatedAssignments'; total: number };
       }>;
@@ -1184,7 +1187,7 @@ export type MembershipUpdateMutation = {
       __typename?: 'User';
       id: string;
       username: string;
-      nickname?: string | null | undefined;
+      nickname?: string | null;
       gender: Gender;
     };
   };
@@ -1198,7 +1201,7 @@ export type MembershipFragment = {
     __typename?: 'User';
     id: string;
     username: string;
-    nickname?: string | null | undefined;
+    nickname?: string | null;
     gender: Gender;
   };
 };
@@ -1213,18 +1216,15 @@ export type RoomCreateMutation = {
     __typename?: 'Room';
     id: string;
     name: string;
-    description?: string | null | undefined;
+    description?: string | null;
     isOpen: boolean;
     creator: {
       __typename?: 'User';
       id: string;
       username: string;
-      nickname?: string | null | undefined;
+      nickname?: string | null;
     };
-    membership?:
-      | { __typename?: 'Membership'; id: string; role: Role }
-      | null
-      | undefined;
+    membership?: { __typename?: 'Membership'; id: string; role: Role } | null;
   };
 };
 
@@ -1247,25 +1247,22 @@ export type RoomDetailQuery = {
     __typename?: 'Room';
     id: string;
     name: string;
-    description?: string | null | undefined;
+    description?: string | null;
     isOpen: boolean;
     creator: {
       __typename?: 'User';
       id: string;
       username: string;
-      nickname?: string | null | undefined;
+      nickname?: string | null;
     };
-    membership?:
-      | { __typename?: 'Membership'; id: string; role: Role }
-      | null
-      | undefined;
+    membership?: { __typename?: 'Membership'; id: string; role: Role } | null;
   };
 };
 
 export type RoomListQueryVariables = Exact<{
-  offset?: Maybe<Scalars['Int']>;
-  filter?: Maybe<RoomFilterMap>;
-  joinedOnly?: Maybe<Scalars['Boolean']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  filter?: InputMaybe<RoomFilterMap>;
+  joinedOnly?: InputMaybe<Scalars['Boolean']>;
 }>;
 
 export type RoomListQuery = {
@@ -1277,18 +1274,15 @@ export type RoomListQuery = {
       __typename?: 'Room';
       id: string;
       name: string;
-      description?: string | null | undefined;
+      description?: string | null;
       isOpen: boolean;
       creator: {
         __typename?: 'User';
         id: string;
         username: string;
-        nickname?: string | null | undefined;
+        nickname?: string | null;
       };
-      membership?:
-        | { __typename?: 'Membership'; id: string; role: Role }
-        | null
-        | undefined;
+      membership?: { __typename?: 'Membership'; id: string; role: Role } | null;
     }>;
   };
 };
@@ -1313,7 +1307,7 @@ export type RoomMembershipListQuery = {
           __typename?: 'User';
           id: string;
           username: string;
-          nickname?: string | null | undefined;
+          nickname?: string | null;
           gender: Gender;
         };
       }>;
@@ -1332,18 +1326,15 @@ export type RoomUpdateMutation = {
     __typename?: 'Room';
     id: string;
     name: string;
-    description?: string | null | undefined;
+    description?: string | null;
     isOpen: boolean;
     creator: {
       __typename?: 'User';
       id: string;
       username: string;
-      nickname?: string | null | undefined;
+      nickname?: string | null;
     };
-    membership?:
-      | { __typename?: 'Membership'; id: string; role: Role }
-      | null
-      | undefined;
+    membership?: { __typename?: 'Membership'; id: string; role: Role } | null;
   };
 };
 
@@ -1351,18 +1342,15 @@ export type RoomFragment = {
   __typename?: 'Room';
   id: string;
   name: string;
-  description?: string | null | undefined;
+  description?: string | null;
   isOpen: boolean;
   creator: {
     __typename?: 'User';
     id: string;
     username: string;
-    nickname?: string | null | undefined;
+    nickname?: string | null;
   };
-  membership?:
-    | { __typename?: 'Membership'; id: string; role: Role }
-    | null
-    | undefined;
+  membership?: { __typename?: 'Membership'; id: string; role: Role } | null;
 };
 
 export type TaskAssignmentListQueryVariables = Exact<{
@@ -1396,7 +1384,7 @@ export type TaskCreateMutation = {
     __typename?: 'Task';
     id: string;
     title: string;
-    description?: string | null | undefined;
+    description?: string | null;
     createdAt: any;
     assignments: { __typename?: 'PaginatedAssignments'; total: number };
   };
@@ -1422,7 +1410,7 @@ export type TaskUpdateMutation = {
     __typename?: 'Task';
     id: string;
     title: string;
-    description?: string | null | undefined;
+    description?: string | null;
     createdAt: any;
     assignments: { __typename?: 'PaginatedAssignments'; total: number };
   };
@@ -1432,7 +1420,7 @@ export type TaskFragment = {
   __typename?: 'Task';
   id: string;
   title: string;
-  description?: string | null | undefined;
+  description?: string | null;
   createdAt: any;
   assignments: { __typename?: 'PaginatedAssignments'; total: number };
 };
@@ -1447,7 +1435,7 @@ export type UserCreateMutation = {
     __typename?: 'User';
     id: string;
     username: string;
-    nickname?: string | null | undefined;
+    nickname?: string | null;
     gender: Gender;
     updatedAt: any;
   };
@@ -1464,7 +1452,7 @@ export type UserUpdateMutation = {
     __typename?: 'User';
     id: string;
     username: string;
-    nickname?: string | null | undefined;
+    nickname?: string | null;
     gender: Gender;
     updatedAt: any;
   };
@@ -1474,7 +1462,7 @@ export type UserFragment = {
   __typename?: 'User';
   id: string;
   username: string;
-  nickname?: string | null | undefined;
+  nickname?: string | null;
   gender: Gender;
   updatedAt: any;
 };
@@ -1845,6 +1833,7 @@ export class MembershipDeleteGQL extends Apollo.Mutation<
 export const MembershipTaskListDocument = gql`
   query MembershipTaskList($id: ID!, $offset: Int) {
     membership(id: $id) {
+      id
       tasks(limit: 20, offset: $offset, order: { id: DESC }) {
         total
         results {

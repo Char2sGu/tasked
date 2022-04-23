@@ -1,6 +1,9 @@
 <div class="h-full pt-7 relative overflow-auto flex flex-col">
-  <div class="flex-1 overflow-x-hidden overflow-y-auto">
-    <ngx-masonry *ngIf="tasks$ | async as tasks">
+  <div
+    *ngIf="tasks$ | async as tasks"
+    class="flex-1 overflow-x-hidden overflow-y-auto"
+  >
+    <ngx-masonry>
       <app-room-detail-tasks-item
         ngxMasonryItem
         *ngFor="let task of tasks; trackBy: taskTracker"
@@ -8,6 +11,11 @@
         [task]="task"
       ></app-room-detail-tasks-item>
     </ngx-masonry>
+    <app-infinity-scroll-trigger
+      *ngIf="loadingMoreNeeded"
+      [loading]="loadingMore"
+      (trigger)="loadMore()"
+    ></app-infinity-scroll-trigger>
   </div>
   <app-room-detail-task-creation-bar></app-room-detail-task-creation-bar>
 </div>

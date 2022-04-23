@@ -1,5 +1,6 @@
 query MembershipTaskList($id: ID!, $offset: Int) {
   membership(id: $id) {
+    id
     tasks(limit: 20, offset: $offset, order: { id: DESC }) {
       total
       results {
