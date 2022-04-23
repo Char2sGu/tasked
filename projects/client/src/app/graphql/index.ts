@@ -1563,7 +1563,7 @@ export class ApplicationAcceptGQL extends Apollo.Mutation<
   ApplicationAcceptMutation,
   ApplicationAcceptMutationVariables
 > {
-  document = ApplicationAcceptDocument;
+  override document = ApplicationAcceptDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1585,7 +1585,7 @@ export class ApplicationCreateGQL extends Apollo.Mutation<
   ApplicationCreateMutation,
   ApplicationCreateMutationVariables
 > {
-  document = ApplicationCreateDocument;
+  override document = ApplicationCreateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1606,7 +1606,7 @@ export class ApplicationDeleteGQL extends Apollo.Mutation<
   ApplicationDeleteMutation,
   ApplicationDeleteMutationVariables
 > {
-  document = ApplicationDeleteDocument;
+  override document = ApplicationDeleteDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1631,7 +1631,7 @@ export class ApplicationListGQL extends Apollo.Query<
   ApplicationListQuery,
   ApplicationListQueryVariables
 > {
-  document = ApplicationListDocument;
+  override document = ApplicationListDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1653,7 +1653,7 @@ export class ApplicationRejectGQL extends Apollo.Mutation<
   ApplicationRejectMutation,
   ApplicationRejectMutationVariables
 > {
-  document = ApplicationRejectDocument;
+  override document = ApplicationRejectDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1675,7 +1675,7 @@ export class AssignmentCreateGQL extends Apollo.Mutation<
   AssignmentCreateMutation,
   AssignmentCreateMutationVariables
 > {
-  document = AssignmentCreateDocument;
+  override document = AssignmentCreateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1696,7 +1696,7 @@ export class AssignmentDeleteGQL extends Apollo.Mutation<
   AssignmentDeleteMutation,
   AssignmentDeleteMutationVariables
 > {
-  document = AssignmentDeleteDocument;
+  override document = AssignmentDeleteDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1720,7 +1720,7 @@ export class AssignmentUpdateGQL extends Apollo.Mutation<
   AssignmentUpdateMutation,
   AssignmentUpdateMutationVariables
 > {
-  document = AssignmentUpdateDocument;
+  override document = AssignmentUpdateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1741,7 +1741,7 @@ export class AuthGQL extends Apollo.Mutation<
   AuthMutation,
   AuthMutationVariables
 > {
-  document = AuthDocument;
+  override document = AuthDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1760,7 +1760,7 @@ export const MeDocument = gql`
   providedIn: 'root',
 })
 export class MeGQL extends Apollo.Query<MeQuery, MeQueryVariables> {
-  document = MeDocument;
+  override document = MeDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1803,7 +1803,7 @@ export class MembershipAssignmentListGQL extends Apollo.Query<
   MembershipAssignmentListQuery,
   MembershipAssignmentListQueryVariables
 > {
-  document = MembershipAssignmentListDocument;
+  override document = MembershipAssignmentListDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1824,7 +1824,7 @@ export class MembershipDeleteGQL extends Apollo.Mutation<
   MembershipDeleteMutation,
   MembershipDeleteMutationVariables
 > {
-  document = MembershipDeleteDocument;
+  override document = MembershipDeleteDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1852,7 +1852,7 @@ export class MembershipTaskListGQL extends Apollo.Query<
   MembershipTaskListQuery,
   MembershipTaskListQueryVariables
 > {
-  document = MembershipTaskListDocument;
+  override document = MembershipTaskListDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1874,7 +1874,7 @@ export class MembershipUpdateGQL extends Apollo.Mutation<
   MembershipUpdateMutation,
   MembershipUpdateMutationVariables
 > {
-  document = MembershipUpdateDocument;
+  override document = MembershipUpdateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1896,7 +1896,7 @@ export class RoomCreateGQL extends Apollo.Mutation<
   RoomCreateMutation,
   RoomCreateMutationVariables
 > {
-  document = RoomCreateDocument;
+  override document = RoomCreateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1917,7 +1917,7 @@ export class RoomDeleteGQL extends Apollo.Mutation<
   RoomDeleteMutation,
   RoomDeleteMutationVariables
 > {
-  document = RoomDeleteDocument;
+  override document = RoomDeleteDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1939,7 +1939,7 @@ export class RoomDetailGQL extends Apollo.Query<
   RoomDetailQuery,
   RoomDetailQueryVariables
 > {
-  document = RoomDetailDocument;
+  override document = RoomDetailDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1969,7 +1969,7 @@ export class RoomListGQL extends Apollo.Query<
   RoomListQuery,
   RoomListQueryVariables
 > {
-  document = RoomListDocument;
+  override document = RoomListDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -1997,7 +1997,7 @@ export class RoomMembershipListGQL extends Apollo.Query<
   RoomMembershipListQuery,
   RoomMembershipListQueryVariables
 > {
-  document = RoomMembershipListDocument;
+  override document = RoomMembershipListDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -2019,7 +2019,7 @@ export class RoomUpdateGQL extends Apollo.Mutation<
   RoomUpdateMutation,
   RoomUpdateMutationVariables
 > {
-  document = RoomUpdateDocument;
+  override document = RoomUpdateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -2047,7 +2047,7 @@ export class TaskAssignmentListGQL extends Apollo.Query<
   TaskAssignmentListQuery,
   TaskAssignmentListQueryVariables
 > {
-  document = TaskAssignmentListDocument;
+  override document = TaskAssignmentListDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -2069,7 +2069,7 @@ export class TaskCreateGQL extends Apollo.Mutation<
   TaskCreateMutation,
   TaskCreateMutationVariables
 > {
-  document = TaskCreateDocument;
+  override document = TaskCreateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -2090,7 +2090,7 @@ export class TaskDeleteGQL extends Apollo.Mutation<
   TaskDeleteMutation,
   TaskDeleteMutationVariables
 > {
-  document = TaskDeleteDocument;
+  override document = TaskDeleteDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -2112,7 +2112,7 @@ export class TaskUpdateGQL extends Apollo.Mutation<
   TaskUpdateMutation,
   TaskUpdateMutationVariables
 > {
-  document = TaskUpdateDocument;
+  override document = TaskUpdateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -2134,7 +2134,7 @@ export class UserCreateGQL extends Apollo.Mutation<
   UserCreateMutation,
   UserCreateMutationVariables
 > {
-  document = UserCreateDocument;
+  override document = UserCreateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);
@@ -2156,7 +2156,7 @@ export class UserUpdateGQL extends Apollo.Mutation<
   UserUpdateMutation,
   UserUpdateMutationVariables
 > {
-  document = UserUpdateDocument;
+  override document = UserUpdateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

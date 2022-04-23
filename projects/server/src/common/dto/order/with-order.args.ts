@@ -8,7 +8,7 @@ export class WithOrder<Order> {
     @ArgsType()
     class _WithOrder extends this<Order> {
       @Field(() => type(), { nullable: true, nested: true })
-      order!: never;
+      override order!: never;
     }
 
     return _WithOrder;

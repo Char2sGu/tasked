@@ -3,7 +3,7 @@
     "baseUrl": "./",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitOverride": false, // TODO: solve
+    "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "declaration": true,

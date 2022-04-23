@@ -9,7 +9,7 @@ export class WithData<Data> {
     @ArgsType()
     class _WithData extends this<Data> {
       @Field(() => type(), { nested: true })
-      data!: never;
+      override data!: never;
     }
 
     return _WithData;

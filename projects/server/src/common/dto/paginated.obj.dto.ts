@@ -10,7 +10,7 @@ export class Paginated<Entity> implements RepositoryPaginationResult<Entity> {
     @ObjectType()
     class _Paginated extends this<Entity> {
       @Field(() => [type()])
-      results!: never;
+      override results!: never;
     }
 
     return _Paginated;

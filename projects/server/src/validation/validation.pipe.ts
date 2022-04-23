@@ -21,7 +21,7 @@ export class ValidationPipe
     });
   }
 
-  async transform(
+  override async transform(
     value: unknown,
     metadata: ArgumentMetadata,
   ): Promise<unknown> {

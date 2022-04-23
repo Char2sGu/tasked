@@ -9,7 +9,7 @@ export class WithFilter<Filter> {
     @ArgsType()
     class _WithFilter extends this<Filter> {
       @Field(type, { nullable: true })
-      filter!: never;
+      override filter!: never;
     }
 
     return _WithFilter;

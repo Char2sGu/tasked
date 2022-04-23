@@ -9,5 +9,8 @@
         "typescript-apollo-angular"
       ]
     }
+  },
+  "config": {
+    "addExplicitOverride": true
   }
 }

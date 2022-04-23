@@ -28,7 +28,7 @@ export class Repository<Entity> extends EntityRepository<Entity> {
    * @param persist
    * @returns
    */
-  create<Populate extends string = any>(
+  override create<Populate extends string = any>(
     data: RequiredEntityData<Entity>,
     persist = true,
   ): New<Entity, Populate> {
