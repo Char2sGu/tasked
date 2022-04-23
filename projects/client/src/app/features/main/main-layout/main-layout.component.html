@@ -12,6 +12,12 @@
 
   <app-layout-content ngProjectAs="content" #content>
     <app-main-layout-sidenav ngProjectAs="sidenav"></app-main-layout-sidenav>
-    <router-outlet ngProjectAs="content"></router-outlet>
+    <div
+      ngProjectAs="content"
+      class="h-full"
+      [@fadeThrough]="getRouteComponent()"
+    >
+      <router-outlet></router-outlet>
+    </div>
   </app-layout-content>
 </app-layout>
