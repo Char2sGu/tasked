@@ -1,5 +1,6 @@
-import { Component, OnInit, TrackByFunction } from '@angular/core';
+import { Component, OnInit, TrackByFunction, ViewChild } from '@angular/core';
 import { QueryRef } from 'apollo-angular';
+import { NgxMasonryComponent } from 'ngx-masonry';
 import { from, Observable } from 'rxjs';
 import { finalize, first, map, switchMap, tap } from 'rxjs/operators';
 
@@ -13,8 +14,6 @@ import { RoomDetailState } from '../room-detail/room-detail-state.service';
 
 export type Task =
   MembershipTaskListQuery['membership']['tasks']['results'][number];
-
-// TODO: make newly added items prepended rather than appended to the list
 
 @Component({
   selector: 'app-room-detail-tasks',
@@ -31,6 +30,8 @@ export class RoomDetailTasksComponent implements OnInit {
     MembershipTaskListQuery,
     MembershipTaskListQueryVariables
   >;
+
+  @ViewChild(NgxMasonryComponent) private masonry!: NgxMasonryComponent;
 
   taskTracker: TrackByFunction<Task> = (_, task) => task.id;
 
@@ -51,6 +52,7 @@ export class RoomDetailTasksComponent implements OnInit {
         this.loadingMoreNeeded = results.length < total;
       }),
       map(({ results }) => results),
+      tap(() => setTimeout(() => this.masonry?.reloadItems())),
     );
   }
 
