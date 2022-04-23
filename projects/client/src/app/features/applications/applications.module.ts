@@ -6,6 +6,7 @@ import { MatListModule } from '@angular/material/list';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { ContainerModule } from '../../components/container/container.module';
+import { EmptyStateModule } from '../../components/empty-state/empty-state.module';
 import { IllustrationsModule } from '../../components/illustrations/illustrations.module';
 import { InfinityScrollModule } from '../../components/infinity-scroll/infinity-scroll.module';
 import { UsernameModule } from '../../components/username/username.module';
@@ -32,6 +33,7 @@ import { ApplicationsRoutingModule } from './applications-routing.module';
     NgxSkeletonLoaderModule,
     InfinityScrollModule,
     ContainerModule,
+    EmptyStateModule,
     IllustrationsModule,
   ],
 })

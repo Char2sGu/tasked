@@ -25,13 +25,10 @@
 </ng-template>
 
 <ng-template #empty>
-  <div class="mat-typography mx-auto w-56">
-    <div class="h-20 md:h-36"></div>
-    <app-no-data-illustration class=""></app-no-data-illustration>
-    <div class="h-12"></div>
-    <div class="text-center">
-      <h1>Seems empty</h1>
-      <h3>Applications you sent or sent to you will show up here.</h3>
-    </div>
-  </div>
+  <app-empty-state-illustration
+    headline="Seems empty"
+    message="Applications you sent or sent to you will show up here."
+  >
+    <app-no-data-illustration></app-no-data-illustration>
+  </app-empty-state-illustration>
 </ng-template>
