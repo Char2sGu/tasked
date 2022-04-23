@@ -52,6 +52,8 @@ import { RoomRedirectorComponent } from './room-redirector/room-redirector.compo
 import { RoomsComponent } from './rooms.component';
 import { RoomsRoutingModule } from './rooms-routing.module';
 
+// TODO: rename `room` to `team`
+
 @NgModule({
   declarations: [
     RoomsComponent,

@@ -35,10 +35,21 @@
 
   <mat-divider></mat-divider>
 
-  <mat-action-list fxFlex>
-    <app-room-list-item
-      *ngFor="let room of rooms$ | async"
-      [room]="room"
-    ></app-room-list-item>
-  </mat-action-list>
+  <ng-container *ngIf="rooms$ | async as rooms">
+    <mat-action-list *ngIf="rooms.length; else empty" fxFlex>
+      <app-room-list-item
+        *ngFor="let room of rooms"
+        [room]="room"
+      ></app-room-list-item>
+    </mat-action-list>
+    <ng-template #empty>
+      <app-empty-state-illustration
+        class="-mt-8"
+        headline="No teams yet"
+        message="Search to join a team, or create your own!"
+      >
+        <app-selecting-team-illustration></app-selecting-team-illustration>
+      </app-empty-state-illustration>
+    </ng-template>
+  </ng-container>
 </app-container>
