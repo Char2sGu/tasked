@@ -35,11 +35,7 @@ export class ConfirmationDirective {
     } = this.config ?? {};
     const config: ConfirmationConfig = { title, message, action };
     this.dialogService
-      .open(ConfirmationDialogComponent, {
-        data: config,
-        width: '280px',
-        minHeight: '208px',
-      })
+      .open(ConfirmationDialogComponent, { data: config })
       .componentInstance.confirm.subscribe(() => this.confirm.emit());
   }
 }
