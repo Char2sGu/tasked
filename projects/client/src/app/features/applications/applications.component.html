@@ -1,7 +1,7 @@
 <ng-container *ngIf="(state.applicationGroups$ | async) ?? 'loading' as groups">
   <ng-container *ngIf="!groups.length; then empty"></ng-container>
   <div class="overflow-auto">
-    <div class="w-[90%] max-w-[528px] mx-auto py-12">
+    <div class="mx-auto w-[90%] max-w-[528px] py-12">
       <app-application-list
         *ngIf="groups != 'loading'; else skeleton"
       ></app-application-list>
@@ -25,7 +25,7 @@
 </ng-template>
 
 <ng-template #empty>
-  <div class="mat-typography w-56 mx-auto">
+  <div class="mat-typography mx-auto w-56">
     <div class="h-20 md:h-36"></div>
     <app-no-data-illustration class=""></app-no-data-illustration>
     <div class="h-12"></div>

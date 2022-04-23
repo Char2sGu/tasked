@@ -8,9 +8,8 @@ describe('RoomDetailTasksItemEditPopupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RoomDetailTasksItemEditPopupComponent ]
-    })
-    .compileComponents();
+      declarations: [RoomDetailTasksItemEditPopupComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

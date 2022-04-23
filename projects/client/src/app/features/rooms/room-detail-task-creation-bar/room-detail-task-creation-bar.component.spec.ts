@@ -8,9 +8,8 @@ describe('RoomDetailTaskCreationBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RoomDetailTaskCreationBarComponent ]
-    })
-    .compileComponents();
+      declarations: [RoomDetailTaskCreationBarComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

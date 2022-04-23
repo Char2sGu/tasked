@@ -1,17 +1,17 @@
 <mat-card class="group mx-1 mb-2">
-  <mat-card-title class="text-ellipsis whitespace-nowrap overflow-hidden">
+  <mat-card-title class="overflow-hidden text-ellipsis whitespace-nowrap">
     {{ task?.title }}
   </mat-card-title>
 
   <mat-card-subtitle>
     <div>
-      <mat-icon matListIcon inline class="translate-y-[2px] mr-1">
+      <mat-icon matListIcon inline class="mr-1 translate-y-[2px]">
         calendar_today
       </mat-icon>
       <span>{{ task?.createdAt | date: 'medium' }}</span>
     </div>
     <div>
-      <mat-icon matListIcon inline class="translate-y-[2px] mr-1">
+      <mat-icon matListIcon inline class="mr-1 translate-y-[2px]">
         task_alt
       </mat-icon>
       <span>Assigned: {{ task?.assignments?.total }}</span>

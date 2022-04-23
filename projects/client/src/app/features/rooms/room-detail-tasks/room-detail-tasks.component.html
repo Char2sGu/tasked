@@ -1,5 +1,5 @@
-<div class="h-full pt-7 relative overflow-auto flex flex-col">
-  <div class="flex-1 overflow-x-hidden overflow-y-auto">
+<div class="relative flex h-full flex-col overflow-auto pt-7">
+  <div class="flex-1 overflow-y-auto overflow-x-hidden">
     <ng-container *ngIf="tasks$ | async as tasks">
       <ngx-masonry>
         <app-room-detail-tasks-item
