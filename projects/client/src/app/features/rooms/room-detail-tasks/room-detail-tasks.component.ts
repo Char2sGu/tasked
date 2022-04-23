@@ -15,6 +15,9 @@ import { RoomDetailState } from '../room-detail/room-detail-state.service';
 export type Task =
   MembershipTaskListQuery['membership']['tasks']['results'][number];
 
+// TODO: animation on item removal
+// TODO: truncate long task descriptions
+
 @Component({
   selector: 'app-room-detail-tasks',
   templateUrl: './room-detail-tasks.component.html',
@@ -26,12 +29,12 @@ export class RoomDetailTasksComponent implements OnInit {
   loadingMore = false;
   loadingMoreNeeded = false;
 
+  @ViewChild(NgxMasonryComponent) masonry!: NgxMasonryComponent;
+
   private query!: QueryRef<
     MembershipTaskListQuery,
     MembershipTaskListQueryVariables
   >;
-
-  @ViewChild(NgxMasonryComponent) private masonry!: NgxMasonryComponent;
 
   taskTracker: TrackByFunction<Task> = (_, task) => task.id;
 
