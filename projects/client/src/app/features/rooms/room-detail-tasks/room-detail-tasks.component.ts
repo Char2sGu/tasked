@@ -17,6 +17,7 @@ export type Task =
 
 // TODO: animation on item removal
 // TODO: truncate long task descriptions
+// TODO: show a skeleton while loading
 
 @Component({
   selector: 'app-room-detail-tasks',

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-room-detail-settings-section',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./room-detail-settings-section.component.scss'],
 })
 export class RoomDetailSettingsSectionComponent implements OnInit {
+  @HostBinding('class') class = 'block';
+
   constructor() {}
 
   ngOnInit(): void {}

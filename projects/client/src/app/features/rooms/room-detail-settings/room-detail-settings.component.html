@@ -1,9 +1,4 @@
-<div
-  class="mat-typography container"
-  ngClass.gt-sm="desktop"
-  fxLayout="column"
-  fxLayoutGap="28px"
->
+<div class="mat-typography mx-auto my-7 flex w-11/12 flex-col gap-7 md:w-9/12">
   <app-room-detail-settings-section>
     <ng-container ngProjectAs="title" i18n>Basic</ng-container>
     <ng-container ngProjectAs="content">
@@ -19,7 +14,7 @@
         <mat-hint align="end">{{ data.name?.length }} / 15</mat-hint>
       </mat-form-field>
 
-      <mat-form-field fxFlex="100%">
+      <mat-form-field class="w-full">
         <mat-label i18n>Description</mat-label>
         <textarea
           matInput
@@ -37,7 +32,7 @@
   <app-room-detail-settings-section>
     <ng-container ngProjectAs="title" i18n>Access</ng-container>
     <ng-container ngProjectAs="content">
-      <div fxLayout fxLayoutGap="5px">
+      <div class="flex gap-1">
         <mat-slide-toggle
           [disabled]="!(isCreator$ | async)"
           [(ngModel)]="data.isOpen"
@@ -53,11 +48,10 @@
     </ng-container>
   </app-room-detail-settings-section>
 
-  <section fxFlexOffset="56px" fxLayout="row-reverse">
-    <div fxLayout fxLayoutGap="8px">
+  <section class="mt-14 flex flex-row-reverse">
+    <div class="flex gap-2">
       <button
         mat-raised-button
-        fxFlex
         class="uppercase"
         [disabled]="!(modified$ | async) || loading"
         (click)="reset()"
@@ -66,7 +60,6 @@
       </button>
       <button
         mat-raised-button
-        fxFlex
         class="uppercase"
         color="primary"
         [disabled]="!(modified$ | async) || loading"
