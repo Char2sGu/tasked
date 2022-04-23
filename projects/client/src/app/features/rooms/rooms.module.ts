@@ -23,6 +23,7 @@ import { ContainerModule } from '../../components/container/container.module';
 import { HelpIconModule } from '../../components/help-icon/help-icon.module';
 import { InfinityScrollModule } from '../../components/infinity-scroll/infinity-scroll.module';
 import { LoadingModule } from '../../components/loading/loading.module';
+import { MasonryModule } from '../../components/masonry/masonry.module';
 import { ModalModule } from '../../components/modal/modal.module';
 import { UsernameModule } from '../../components/username/username.module';
 import { SharedModule } from '../../shared/shared.module';
@@ -95,7 +96,6 @@ import { RoomsRoutingModule } from './rooms-routing.module';
     MatDialogModule,
     MatCardModule,
     NgxSkeletonLoaderModule,
-    NgxMasonryModule,
     InfinityScrollModule,
     ModalModule,
     HelpIconModule,
@@ -103,6 +103,7 @@ import { RoomsRoutingModule } from './rooms-routing.module';
     UsernameModule,
     ContainerModule,
     ConfirmationModule,
+    MasonryModule,
   ],
 })
 export class RoomsModule {}

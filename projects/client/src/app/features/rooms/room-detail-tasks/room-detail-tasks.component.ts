@@ -40,7 +40,9 @@ export class RoomDetailTasksComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.tasks$ = this.state.membership$.pipe(skipFalsy(), first()).pipe(
+    this.tasks$ = this.state.membership$.pipe(
+      skipFalsy(),
+      first(),
       tap(({ id }) => (this.query = this.listGql.watch({ id }))),
       switchMap(() => this.query.valueChanges),
       map((result) => result.data.membership.tasks),
