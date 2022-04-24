@@ -2,10 +2,7 @@ import { transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ChildrenOutletContexts } from '@angular/router';
 
-import {
-  FadeThroughAnimation,
-  RouteAnimationManager,
-} from '../../../common/animations';
+import { FadeThroughAnimation } from '../../../common/animations';
 
 @Component({
   selector: 'app-main-layout',
@@ -13,9 +10,7 @@ import {
   styleUrls: ['./main-layout.component.scss'],
   animations: [
     trigger('routerAnimation', [
-      transition(`* => ${FadeThroughAnimation.name}`, [
-        FadeThroughAnimation.use(),
-      ]),
+      transition('rooms <=> applications', [FadeThroughAnimation.use()]),
     ]),
   ],
 })
@@ -24,9 +19,8 @@ export class MainLayoutComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getRouteAnimationName(): string | undefined {
-    const context =
-      this.outletContexts.getContext('primary')?.route?.snapshot.data ?? {};
-    return RouteAnimationManager.read(context);
+  getRouteAnimationState(): string | undefined {
+    const context = this.outletContexts.getContext('primary');
+    return context?.route?.snapshot.data['animationState'];
   }
 }

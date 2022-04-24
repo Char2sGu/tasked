@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import {
-  FadeThroughAnimation,
-  RouteAnimationManager,
-} from '../../common/animations';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 const routes: Routes = [
@@ -21,7 +17,7 @@ const routes: Routes = [
         path: 'rooms',
         loadChildren: () =>
           import('../rooms/rooms.module').then((m) => m.RoomsModule),
-        data: {},
+        data: { animationState: 'rooms' },
       },
       {
         path: 'applications',
@@ -29,7 +25,7 @@ const routes: Routes = [
           import('../applications/applications.module').then(
             (m) => m.ApplicationsModule,
           ),
-        data: { ...RouteAnimationManager.use(FadeThroughAnimation) },
+        data: { animationState: 'applications' },
       },
     ],
   },

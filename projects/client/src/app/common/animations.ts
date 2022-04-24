@@ -8,7 +8,6 @@ import {
   style,
   useAnimation,
 } from '@angular/animations';
-import { Type } from '@angular/core';
 import { AnimationCurves } from '@angular/material/core';
 
 export abstract class Animation {
@@ -16,17 +15,6 @@ export abstract class Animation {
 
   static use(): AnimationAnimateRefMetadata {
     return useAnimation(this.content);
-  }
-}
-
-export class RouteAnimationManager {
-  static use(animation: Type<Animation>): Record<string, unknown> {
-    return { animation: animation.name };
-  }
-
-  static read(data: Record<string, unknown>): string | undefined {
-    const value = data['animation'];
-    return typeof value == 'string' ? value : undefined;
   }
 }
 
