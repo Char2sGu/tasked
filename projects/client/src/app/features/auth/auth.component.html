@@ -27,7 +27,11 @@
         <span matLine i18n>Signup</span>
       </a>
     </mat-nav-list>
-    <main ngProjectAs="content">
+    <main
+      class="h-full"
+      ngProjectAs="content"
+      [@routerAnimation]="getRouterAnimationState()"
+    >
       <router-outlet></router-outlet>
     </main>
   </app-layout-content>

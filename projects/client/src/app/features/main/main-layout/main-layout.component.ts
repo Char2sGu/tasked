@@ -10,7 +10,7 @@ import { FadeThroughAnimation } from '../../../common/animations';
   styleUrls: ['./main-layout.component.scss'],
   animations: [
     trigger('routerAnimation', [
-      transition('rooms <=> applications', [FadeThroughAnimation.use()]),
+      transition('rooms <=> applications', [FadeThroughAnimation.apply()]),
     ]),
   ],
 })
@@ -19,7 +19,7 @@ export class MainLayoutComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getRouteAnimationState(): string | undefined {
+  getRouterAnimationState(): string | undefined {
     const context = this.outletContexts.getContext('primary');
     return context?.route?.snapshot.data['animationState'];
   }

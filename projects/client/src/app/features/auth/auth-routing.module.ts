@@ -18,10 +18,12 @@ const routes: Routes = [
       {
         path: 'login',
         component: AuthFormLoginComponent,
+        data: { animationState: 'login' },
       },
       {
         path: 'signup',
         component: AuthFormSignupComponent,
+        data: { animationState: 'signup' },
       },
     ],
   },

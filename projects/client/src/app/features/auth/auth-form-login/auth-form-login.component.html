@@ -1,5 +1,9 @@
-<form (ngSubmit)="submit$$.next($event)" #form="ngForm">
-  <app-auth-form-layout>
+<form
+  class="flex h-full items-center justify-center"
+  (ngSubmit)="submit$$.next($event)"
+  #form="ngForm"
+>
+  <app-auth-form-layout class="h-72">
     <ng-container ngProjectAs="title" i18n>Login</ng-container>
 
     <ng-container ngProjectAs="content">

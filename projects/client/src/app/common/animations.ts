@@ -13,7 +13,7 @@ import { AnimationCurves } from '@angular/material/core';
 export abstract class Animation {
   static readonly content: AnimationReferenceMetadata;
 
-  static use(): AnimationAnimateRefMetadata {
+  static apply(): AnimationAnimateRefMetadata {
     return useAnimation(this.content);
   }
 }
