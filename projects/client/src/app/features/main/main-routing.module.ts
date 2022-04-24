@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { defineRouteAnimation, FADE_THROUGH } from '../../common/animations';
+import {
+  FadeThroughAnimation,
+  RouteAnimationManager,
+} from '../../common/animations';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 const routes: Routes = [
@@ -26,7 +29,7 @@ const routes: Routes = [
           import('../applications/applications.module').then(
             (m) => m.ApplicationsModule,
           ),
-        data: { ...defineRouteAnimation(FADE_THROUGH) },
+        data: { ...RouteAnimationManager.use(FadeThroughAnimation) },
       },
     ],
   },

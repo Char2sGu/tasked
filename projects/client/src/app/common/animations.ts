@@ -1,55 +1,69 @@
 import {
   animate,
   animation,
+  AnimationAnimateRefMetadata,
   AnimationReferenceMetadata,
   group,
   query,
   style,
+  useAnimation,
 } from '@angular/animations';
+import { Type } from '@angular/core';
 import { AnimationCurves } from '@angular/material/core';
+
+export abstract class Animation {
+  static readonly content: AnimationReferenceMetadata;
+
+  static use(): AnimationAnimateRefMetadata {
+    return useAnimation(this.content);
+  }
+}
+
+export class RouteAnimationManager {
+  static use(animation: Type<Animation>): Record<string, unknown> {
+    return { animation: animation.name };
+  }
+
+  static read(data: Record<string, unknown>): string | undefined {
+    const value = data['animation'];
+    return typeof value == 'string' ? value : undefined;
+  }
+}
 
 /**
  * @see https://material.io/design/motion/the-motion-system.html#fade-through
  */
-export const FADE_THROUGH = animation([
-  style({ position: 'relative' }),
-  query(':enter, :leave', [
-    style({
-      position: 'absolute',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-    }),
-  ]),
-  query(':leave', [style({ opacity: 1 })], { optional: true }),
-  query(':enter', [style({ transform: 'scale(92%)', opacity: 0 })]),
-  group([
-    query(
-      ':leave',
-      [
-        animate(
-          `90ms ${AnimationCurves.STANDARD_CURVE}`,
-          style({ opacity: 0 }),
-        ),
-      ],
-      { optional: true },
-    ),
-    query(':enter', [
-      animate(
-        `210ms 90ms ${AnimationCurves.STANDARD_CURVE}`,
-        style({ transform: 'scale(1)', opacity: 1 }),
-      ),
+export class FadeThroughAnimation extends Animation {
+  static override content: AnimationReferenceMetadata = animation([
+    style({ position: 'relative' }),
+    query(':enter, :leave', [
+      style({
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+      }),
     ]),
-  ]),
-]);
-
-export const animationNameMap = new Map<AnimationReferenceMetadata, string>([
-  [FADE_THROUGH, 'FadeThrough'],
-]);
-
-export function defineRouteAnimation(
-  animation: AnimationReferenceMetadata,
-): object {
-  return { animation };
+    query(':leave', [style({ opacity: 1 })], { optional: true }),
+    query(':enter', [style({ transform: 'scale(92%)', opacity: 0 })]),
+    group([
+      query(
+        ':leave',
+        [
+          animate(
+            `90ms ${AnimationCurves.STANDARD_CURVE}`,
+            style({ opacity: 0 }),
+          ),
+        ],
+        { optional: true },
+      ),
+      query(':enter', [
+        animate(
+          `210ms 90ms ${AnimationCurves.STANDARD_CURVE}`,
+          style({ transform: 'scale(1)', opacity: 1 }),
+        ),
+      ]),
+    ]),
+  ]);
 }
