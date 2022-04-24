@@ -13,7 +13,7 @@ import { AnimationCurves } from '@angular/material/core';
 export abstract class Animation {
   static readonly content: AnimationReferenceMetadata;
 
-  static apply(): AnimationAnimateRefMetadata {
+  static apply(..._args: unknown[]): AnimationAnimateRefMetadata {
     return useAnimation(this.content);
   }
 }
@@ -54,4 +54,61 @@ export class FadeThroughAnimation extends Animation {
       ]),
     ]),
   ]);
+}
+
+/**
+ * @see https://material.io/design/motion/the-motion-system.html#shared-axis
+ */
+export class SharedXAxisAnimation extends Animation {
+  static override content: AnimationReferenceMetadata = animation([
+    style({ position: 'relative', overflow: 'hidden' }),
+    query(
+      ':enter, :leave',
+      style({ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }),
+    ),
+    group([
+      query(':leave', [
+        animate(
+          `90ms ${AnimationCurves.ACCELERATION_CURVE}`,
+          style({ opacity: 0 }),
+        ),
+      ]),
+      query(':enter', [
+        style({ opacity: 0 }),
+        animate(
+          `210ms 90ms ${AnimationCurves.DECELERATION_CURVE}`,
+          style({ opacity: 1 }),
+        ),
+      ]),
+      query(':leave', [
+        style({ transform: 'translateX(0)' }),
+        animate(
+          `300ms ${AnimationCurves.STANDARD_CURVE}`,
+          style({
+            transform: `translateX({{ offsetOutgoing }})`,
+          }),
+        ),
+      ]),
+      query(':enter', [
+        style({
+          transform: `translateX({{ offsetIncoming }})`,
+        }),
+        animate(
+          `300ms ${AnimationCurves.STANDARD_CURVE}`,
+          style({ transform: 'translateX(0)' }),
+        ),
+      ]),
+    ]),
+  ]);
+
+  static override apply(
+    mode: 'forward' | 'backward',
+  ): AnimationAnimateRefMetadata {
+    return useAnimation(this.content, {
+      params:
+        mode == 'forward'
+          ? { offsetIncoming: '30px', offsetOutgoing: '-30px' }
+          : { offsetIncoming: '-30px', offsetOutgoing: '30px' },
+    });
+  }
 }

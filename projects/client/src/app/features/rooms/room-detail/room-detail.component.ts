@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { transition, trigger } from '@angular/animations';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { MatDrawerMode } from '@angular/material/sidenav';
+import { RouterLinkActive } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { SharedXAxisAnimation } from '../../../common/animations';
 import { skipFalsy } from '../../../common/rxjs';
 import { ThemeService } from '../../../core/theme.service';
 import { Role } from '../../../graphql';
@@ -16,6 +19,12 @@ import { RoomDetailState } from './room-detail-state.service';
   templateUrl: './room-detail.component.html',
   styleUrls: ['./room-detail.component.scss'],
   providers: [RoomDetailState],
+  animations: [
+    trigger('tabChange', [
+      transition(':increment', SharedXAxisAnimation.apply('forward')),
+      transition(':decrement', SharedXAxisAnimation.apply('backward')),
+    ]),
+  ],
 })
 export class RoomDetailComponent implements OnInit {
   sidebarOpened$!: Observable<boolean>;
@@ -24,6 +33,12 @@ export class RoomDetailComponent implements OnInit {
   room$ = this.state.room$;
 
   links: TabLink[] = [];
+  linkActiveIndex = 0;
+
+  @ViewChildren(RouterLinkActive)
+  set linkStates(value: QueryList<RouterLinkActive>) {
+    this.subscribeLinkStates(value.toArray());
+  }
 
   constructor(
     public theme: ThemeService,
@@ -58,12 +73,22 @@ export class RoomDetailComponent implements OnInit {
     this.state.membership$.pipe(skipFalsy()).subscribe((membership) => {
       this.links = [
         membership.role == Role.Member
-          ? [$localize`Assignments`, ['assignments']]
-          : [$localize`Tasks`, ['tasks']],
-        [$localize`Settings`, ['settings']],
+          ? { title: $localize`Assignments`, commands: ['assignments'] }
+          : { title: $localize`Tasks`, commands: ['tasks'] },
+        { title: $localize`Settings`, commands: ['settings'] },
       ];
     });
   }
+
+  private subscribeLinkStates(linkStates: RouterLinkActive[]) {
+    for (const [index, state] of linkStates.entries()) {
+      if (this.links[index].subscribed) return;
+      this.links[index].subscribed = true;
+      state.isActiveChange.subscribe((isActive) => {
+        if (isActive) this.linkActiveIndex = index;
+      });
+    }
+  }
 }
 
-type TabLink = [title: string, commands: string[]];
+type TabLink = { title: string; commands: string[]; subscribed?: boolean };

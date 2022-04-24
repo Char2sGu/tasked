@@ -30,15 +30,15 @@
         <a
           matTabLink
           *ngFor="let link of links"
-          [routerLink]="link[1]"
+          [routerLink]="link.commands"
           routerLinkActive
-          #router="routerLinkActive"
-          [active]="router.isActive"
+          #linkState="routerLinkActive"
+          [active]="linkState.isActive"
         >
-          {{ link[0] }}
+          {{ link.title }}
         </a>
       </nav>
-      <main fxFlex>
+      <main fxFlex [@tabChange]="linkActiveIndex">
         <router-outlet *ngIf="room$ | async"></router-outlet>
       </main>
     </mat-drawer-content>
