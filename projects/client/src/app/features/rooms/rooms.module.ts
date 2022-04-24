@@ -21,6 +21,7 @@ import { ConfirmationModule } from '../../components/confirmation/confirmation.m
 import { ContainerModule } from '../../components/container/container.module';
 import { EmptyStateModule } from '../../components/empty-state/empty-state.module';
 import { HelpIconModule } from '../../components/help-icon/help-icon.module';
+import { IllustrationModule } from '../../components/illustration/illustration.module';
 import { InfinityScrollModule } from '../../components/infinity-scroll/infinity-scroll.module';
 import { LoadingModule } from '../../components/loading/loading.module';
 import { MasonryModule } from '../../components/masonry/masonry.module';
@@ -107,6 +108,7 @@ import { RoomsRoutingModule } from './rooms-routing.module';
     ConfirmationModule,
     MasonryModule,
     EmptyStateModule,
+    IllustrationModule,
   ],
 })
 export class RoomsModule {}

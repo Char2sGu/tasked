@@ -10,6 +10,7 @@ import { NotifierModule } from 'angular-notifier';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { IllustrationModule } from './components/illustration/illustration.module';
 import { CoreModule } from './core/core.module';
 import { GraphqlModule } from './graphql/graphql.module';
 
@@ -31,6 +32,7 @@ registerLocaleData(en);
     NotifierModule,
     GraphqlModule,
     AppRoutingModule,
+    IllustrationModule,
   ],
   bootstrap: [AppComponent],
 })

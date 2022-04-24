@@ -7,6 +7,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { ContainerModule } from '../../components/container/container.module';
 import { EmptyStateModule } from '../../components/empty-state/empty-state.module';
+import { IllustrationModule } from '../../components/illustration/illustration.module';
 import { InfinityScrollModule } from '../../components/infinity-scroll/infinity-scroll.module';
 import { UsernameModule } from '../../components/username/username.module';
 import { SharedModule } from '../../shared/shared.module';
@@ -33,6 +34,7 @@ import { ApplicationsRoutingModule } from './applications-routing.module';
     InfinityScrollModule,
     ContainerModule,
     EmptyStateModule,
+    IllustrationModule,
   ],
 })
 export class ApplicationsModule {}
