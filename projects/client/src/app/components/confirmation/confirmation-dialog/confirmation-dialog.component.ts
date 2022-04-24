@@ -3,6 +3,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { ConfirmationConfig } from '../confirmation.directive';
 
+/**
+ * @see https://material.io/components/dialogs#specs
+ */
 @Component({
   selector: 'app-confirmation-dialog',
   templateUrl: './confirmation-dialog.component.html',
