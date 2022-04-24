@@ -30,11 +30,20 @@ body {
   }
 }
 
+@mixin text-selection($theme) {
+  $primary-color: map.get($theme, 'primary', 'default');
+  ::selection {
+    background-color: color.change($primary-color, $alpha: 0.16);
+  }
+}
+
 @include mat.core();
 @include mat.all-component-themes(themes.$theme-base); // temporary placeholder
 .theme-light {
-  @include mat.all-component-colors(themes.$theme-light);
-  @include router-link-active(themes.$theme-light);
+  $theme: themes.$theme-light;
+  @include mat.all-component-colors($theme);
+  @include router-link-active($theme);
+  @include text-selection($theme);
   mat-icon {
     color: rgba(0, 0, 0, 0.54);
   }
@@ -43,23 +52,15 @@ body {
   .router-link-active mat-icon {
     color: inherit;
   }
-  --pwa-theme-color: #{map.get(
-      themes.$theme-dark,
-      'color',
-      'background',
-      'app-bar'
-    )};
+  --pwa-theme-color: #{map.get($theme, 'color', 'primary', 'default')};
 }
 .theme-dark {
-  @include mat.all-component-colors(themes.$theme-dark);
-  @include router-link-active(themes.$theme-dark);
+  $theme: themes.$theme-dark;
+  @include mat.all-component-colors($theme);
+  @include router-link-active($theme);
+  @include text-selection($theme);
   ngx-skeleton-loader {
     opacity: 0.05;
   }
-  --pwa-theme-color: #{map.get(
-      themes.$theme-light,
-      'color',
-      'primary',
-      'default'
-    )};
+  --pwa-theme-color: #{map.get($theme, 'color', 'background', 'app-bar')};
 }
