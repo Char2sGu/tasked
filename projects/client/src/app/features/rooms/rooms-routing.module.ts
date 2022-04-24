@@ -19,6 +19,7 @@ const routes: Routes = [
       {
         path: '',
         component: RoomListComponent,
+        data: { animationState: 'list' },
       },
       {
         path: 'create',
@@ -31,6 +32,7 @@ const routes: Routes = [
       {
         path: ':id',
         component: RoomDetailComponent,
+        data: { animationState: 'detail' },
         children: [
           {
             path: '',

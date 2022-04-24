@@ -15,7 +15,7 @@
     <div
       ngProjectAs="content"
       class="h-full"
-      [@routerAnimation]="getRouterAnimationState()"
+      [@routerAnimation]="routerAnimationStateReader.read()"
     >
       <router-outlet></router-outlet>
     </div>

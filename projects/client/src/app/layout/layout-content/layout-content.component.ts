@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 
 import { AuthService } from '../../features/auth/auth.service';
 
+// TODO: close the sidenav after click on mobile
+
 @Component({
   selector: 'app-layout-content',
   templateUrl: './layout-content.component.html',

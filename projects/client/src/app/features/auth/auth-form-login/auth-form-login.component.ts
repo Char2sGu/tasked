@@ -8,6 +8,8 @@ import { finalize, throttleTime } from 'rxjs/operators';
 import { NotificationType } from '../../../common/notification-type.enum';
 import { AuthService } from '../auth.service';
 
+// TODO: remove navigation to `next`
+
 @Component({
   selector: 'app-auth-form-login',
   templateUrl: './auth-form-login.component.html',
