@@ -1,5 +1,5 @@
-import { gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
+import { gql } from 'apollo-angular';
 import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;

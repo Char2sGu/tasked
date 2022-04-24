@@ -8,9 +8,8 @@ describe('IllustrationPreloaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IllustrationPreloaderComponent ]
-    })
-    .compileComponents();
+      declarations: [IllustrationPreloaderComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
