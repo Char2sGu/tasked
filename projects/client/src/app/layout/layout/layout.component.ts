@@ -9,7 +9,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -23,6 +23,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
   @ViewChild('spinner')
   private spinnerTemplateRef!: TemplateRef<never>;
   private spinnerOverlayRef!: OverlayRef;
+
+  private subscription?: Subscription;
 
   constructor(
     private router: Router,
@@ -40,7 +42,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
       hasBackdrop: true,
     });
 
-    this.router.events.subscribe((event) => {
+    this.subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) this.loading$$.next(true);
       else if (event instanceof NavigationEnd) this.loading$$.next(false);
     });
@@ -51,6 +53,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
     this.spinnerOverlayRef.dispose();
   }
 
