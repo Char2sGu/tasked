@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { MatDrawerMode } from '@angular/material/sidenav';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { catchError, first, map, tap } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
+import { skipFalsy } from '../../../common/rxjs';
 import { ThemeService } from '../../../core/theme.service';
-import { Role, RoomDetailGQL, RoomDetailQuery } from '../../../graphql';
+import { Role } from '../../../graphql';
 import { AuthService } from '../../auth/auth.service';
 import { RoomsActivatedMapStorage } from '../rooms-activated-map.storage';
 import { RoomDetailState } from './room-detail-state.service';
-
-type Room = RoomDetailQuery['room'];
 
 @Component({
   selector: 'app-room-detail',
@@ -23,18 +21,16 @@ export class RoomDetailComponent implements OnInit {
   sidebarOpened$!: Observable<boolean>;
   sidebarMode$!: Observable<MatDrawerMode>;
 
-  room$!: Observable<Room>;
+  room$ = this.state.room$;
 
   links: TabLink[] = [];
 
   constructor(
     public theme: ThemeService,
-    private router: Router,
-    private route: ActivatedRoute,
+    private state: RoomDetailState,
     private media: MediaObserver,
     private activatedRoomsMap: RoomsActivatedMapStorage,
     private auth: AuthService,
-    private roomDetailGql: RoomDetailGQL,
   ) {}
 
   ngOnInit(): void {
@@ -45,35 +41,27 @@ export class RoomDetailComponent implements OnInit {
           items.some((item) => item.mqAlias == 'gt-sm' && item.matches),
         ),
       );
+
     this.sidebarMode$ = this.sidebarOpened$.pipe(
       map((value) => (value ? 'side' : 'over')),
     );
 
-    this.route.paramMap.subscribe((params) => {
-      const id = params.get('id')!;
+    combineLatest([
+      this.state.room$,
+      this.auth.user$.pipe(skipFalsy()),
+    ]).subscribe(([room, user]) => {
+      const map = this.activatedRoomsMap;
+      map.value[user.id] = room.id;
+      map.save();
+    });
 
-      this.auth.user$.pipe(first()).subscribe((user) => {
-        const map = this.activatedRoomsMap;
-        map.value[user!.id] = id;
-        map.save();
-      });
-
-      this.room$ = this.roomDetailGql.watch({ id }).valueChanges.pipe(
-        map(({ data }) => data.room),
-        tap((room) => {
-          if (!room.membership) throw new Error('Inaccessible room');
-          this.links = [
-            room.membership.role == Role.Member
-              ? [$localize`Assignments`, ['assignments']]
-              : [$localize`Tasks`, ['tasks']],
-            [$localize`Settings`, ['settings']],
-          ];
-        }),
-        catchError(() => {
-          this.router.navigate(['/app/rooms']);
-          return of<Room>();
-        }),
-      );
+    this.state.membership$.pipe(skipFalsy()).subscribe((membership) => {
+      this.links = [
+        membership.role == Role.Member
+          ? [$localize`Assignments`, ['assignments']]
+          : [$localize`Tasks`, ['tasks']],
+        [$localize`Settings`, ['settings']],
+      ];
     });
   }
 }

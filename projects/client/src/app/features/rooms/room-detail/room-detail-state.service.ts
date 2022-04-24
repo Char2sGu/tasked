@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { filter, map, switchMap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, filter, map, of, switchMap } from 'rxjs';
 
 import { RoomDetailGQL, RoomDetailQuery } from '../../../graphql';
 
@@ -14,10 +14,15 @@ export class RoomDetailState {
     filter((v): v is string => typeof v == 'string'),
     switchMap((id) => this.roomDetailGql.watch({ id }).valueChanges),
     map((result) => result.data.room),
+    catchError(() => {
+      this.router.navigate(['/app/rooms']);
+      return of();
+    }),
   );
   membership$ = this.room$.pipe(map((room) => room.membership));
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private roomDetailGql: RoomDetailGQL,
   ) {}
