@@ -1,16 +1,14 @@
 import { transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
-import {
-  FadeThroughAnimation,
-  RouterAnimationStateReader,
-} from '../../../common/animations';
+import { FadeThroughAnimation } from '../../../common/animations';
+import { RouterOutletDataReader } from '../../../common/router';
 
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss'],
-  viewProviders: [RouterAnimationStateReader],
+  viewProviders: [RouterOutletDataReader],
   animations: [
     trigger('routerAnimation', [
       transition('* => applications', [FadeThroughAnimation.apply()]),
@@ -18,7 +16,7 @@ import {
   ],
 })
 export class MainLayoutComponent implements OnInit {
-  constructor(public routerAnimationStateReader: RouterAnimationStateReader) {}
+  constructor(public routerOutletDataReader: RouterOutletDataReader) {}
 
   ngOnInit(): void {}
 }

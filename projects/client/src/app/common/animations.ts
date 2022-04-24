@@ -8,25 +8,13 @@ import {
   style,
   useAnimation,
 } from '@angular/animations';
-import { Injectable } from '@angular/core';
 import { AnimationCurves } from '@angular/material/core';
-import { ChildrenOutletContexts } from '@angular/router';
 
 export abstract class Animation {
   static readonly content: AnimationReferenceMetadata;
 
   static apply(): AnimationAnimateRefMetadata {
     return useAnimation(this.content);
-  }
-}
-
-@Injectable()
-export class RouterAnimationStateReader {
-  constructor(private contexts: ChildrenOutletContexts) {}
-
-  read(): string | undefined {
-    const context = this.contexts.getContext('primary');
-    return context?.route?.snapshot.data['animationState'];
   }
 }
 

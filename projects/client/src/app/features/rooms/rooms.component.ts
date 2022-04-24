@@ -1,16 +1,14 @@
 import { transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
-import {
-  FadeThroughAnimation,
-  RouterAnimationStateReader,
-} from '../../common/animations';
+import { FadeThroughAnimation } from '../../common/animations';
+import { RouterOutletDataReader } from '../../common/router';
 
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],
-  viewProviders: [RouterAnimationStateReader],
+  viewProviders: [RouterOutletDataReader],
   animations: [
     trigger('routerAnimation', [
       transition('* => list', FadeThroughAnimation.apply()),
@@ -18,7 +16,7 @@ import {
   ],
 })
 export class RoomsComponent implements OnInit {
-  constructor(public routerAnimationStateReader: RouterAnimationStateReader) {}
+  constructor(public routerOutletDataReader: RouterOutletDataReader) {}
 
   ngOnInit(): void {}
 }

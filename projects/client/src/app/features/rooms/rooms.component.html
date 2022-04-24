@@ -1,3 +1,6 @@
-<div class="h-full" [@routerAnimation]="routerAnimationStateReader.read()">
+<div
+  class="h-full"
+  [@routerAnimation]="routerOutletDataReader.read()?.['animationState']"
+>
   <router-outlet></router-outlet>
 </div>
