@@ -5,7 +5,7 @@ import { combineLatest, forkJoin, Subscription } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
 import { NotificationType } from '../../../common/notification-type.enum';
-import { ModalComponent } from '../../../components/modal/modal/modal.component';
+import { ModalRef } from '../../../components/modal/modal.directive';
 import {
   AssignmentCreateGQL,
   AssignmentDeleteGQL,
@@ -34,7 +34,7 @@ export class RoomDetailTasksItemAssignPopupComponent
   private subscription?: Subscription;
 
   constructor(
-    public popup: ModalComponent,
+    public modal: ModalRef,
     private route: ActivatedRoute,
     private notifier: NotifierService,
     private membershipListGqL: RoomMembershipListGQL,
@@ -112,7 +112,7 @@ export class RoomDetailTasksItemAssignPopupComponent
             this.loadingUpdate = false;
             // Close the popup whether succeed or not because I'm lazy to
             // restore the selections if it fails. :]
-            this.popup.close();
+            this.modal.close();
           }),
         )
         .subscribe(

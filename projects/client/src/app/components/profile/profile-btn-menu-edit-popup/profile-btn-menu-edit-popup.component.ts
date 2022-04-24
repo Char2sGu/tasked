@@ -13,7 +13,7 @@ import {
   UserUpdateGQL,
   UserUpdateInput,
 } from '../../../graphql';
-import { ModalComponent } from '../../modal/modal/modal.component';
+import { ModalRef } from '../../modal/modal.directive';
 import { ProfileFormData } from '../profile-form/profile-form-data.interface';
 
 @Component({
@@ -36,7 +36,7 @@ export class ProfileBtnMenuEditPopupComponent implements OnInit {
     public auth: AuthService,
     private notifier: NotifierService,
     private userUpdateGql: UserUpdateGQL,
-    private popup: ModalComponent,
+    private modal: ModalRef,
   ) {}
 
   ngOnInit(): void {
@@ -63,7 +63,7 @@ export class ProfileBtnMenuEditPopupComponent implements OnInit {
             NotificationType.Success,
             $localize`Profile updated successfully`,
           );
-          this.popup.close();
+          this.modal.close();
         },
         () => {
           this.notifier.notify(

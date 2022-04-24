@@ -51,10 +51,8 @@
   </div>
 </button>
 
-<app-modal #modal>
-  <ng-template>
-    <app-room-detail-assignments-item-detail
-      [assignment]="assignment"
-    ></app-room-detail-assignments-item-detail>
-  </ng-template>
-</app-modal>
+<ng-template appModal #modal="appModal">
+  <app-room-detail-assignments-item-detail
+    [assignment]="assignment"
+  ></app-room-detail-assignments-item-detail>
+</ng-template>

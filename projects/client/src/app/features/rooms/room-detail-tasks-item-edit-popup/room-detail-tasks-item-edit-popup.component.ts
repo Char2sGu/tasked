@@ -10,7 +10,7 @@ import { NotifierService } from 'angular-notifier';
 import { delay, finalize } from 'rxjs';
 
 import { NotificationType } from '../../../common/notification-type.enum';
-import { ModalComponent } from '../../../components/modal/modal/modal.component';
+import { ModalRef } from '../../../components/modal/modal.directive';
 import { TaskUpdateGQL } from '../../../graphql';
 import { Task } from '../room-detail-tasks/room-detail-tasks.component';
 
@@ -30,7 +30,7 @@ export class RoomDetailTasksItemEditPopupComponent
   @ViewChild(NgForm) form!: NgForm;
 
   constructor(
-    private modal: ModalComponent,
+    private modal: ModalRef,
     private notifier: NotifierService,
     private updateGql: TaskUpdateGQL,
   ) {}

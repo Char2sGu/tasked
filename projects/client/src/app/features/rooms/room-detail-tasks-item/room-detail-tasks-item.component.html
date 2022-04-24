@@ -24,11 +24,11 @@
 
   <mat-card-actions>
     <div class="flex">
-      <button mat-button class="uppercase" (click)="assignPopup.openSheet()">
+      <button mat-button class="uppercase" (click)="assigningModal.openSheet()">
         Assign
       </button>
       <span class="grow"></span>
-      <button mat-icon-button (click)="editPopup.open()">
+      <button mat-icon-button (click)="editingModal.open()">
         <mat-icon>edit</mat-icon>
       </button>
       <button
@@ -47,18 +47,14 @@
   </mat-card-actions>
 </mat-card>
 
-<app-modal #assignPopup>
-  <ng-template>
-    <app-room-detail-tasks-item-assign-popup
-      [task]="task"
-    ></app-room-detail-tasks-item-assign-popup>
-  </ng-template>
-</app-modal>
+<ng-template appModal #assigningModal="appModal">
+  <app-room-detail-tasks-item-assign-popup
+    [task]="task"
+  ></app-room-detail-tasks-item-assign-popup>
+</ng-template>
 
-<app-modal #editPopup>
-  <ng-template>
-    <app-room-detail-tasks-item-edit-popup
-      [task]="task"
-    ></app-room-detail-tasks-item-edit-popup>
-  </ng-template>
-</app-modal>
+<ng-template appModal #editingModal="appModal">
+  <app-room-detail-tasks-item-edit-popup
+    [task]="task"
+  ></app-room-detail-tasks-item-edit-popup>
+</ng-template>

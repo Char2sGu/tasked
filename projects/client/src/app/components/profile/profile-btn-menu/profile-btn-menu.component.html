@@ -12,11 +12,9 @@
   <span i18n>Logout</span>
 </button>
 
-<app-modal #modal>
-  <ng-template>
-    <app-profile-btn-menu-edit-popup
-      ngClass.gt-xs="dialog"
-      (update)="modal.close()"
-    ></app-profile-btn-menu-edit-popup>
-  </ng-template>
-</app-modal>
+<ng-template appModal #modal="appModal">
+  <app-profile-btn-menu-edit-popup
+    ngClass.gt-xs="dialog"
+    (update)="modal.close()"
+  ></app-profile-btn-menu-edit-popup>
+</ng-template>

@@ -3,11 +3,11 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { SharedModule } from '../../shared/shared.module';
-import { ModalComponent } from './modal/modal.component';
+import { ModalDirective } from './modal.directive';
 
 @NgModule({
-  declarations: [ModalComponent],
+  declarations: [ModalDirective],
   imports: [SharedModule, MatDialogModule, MatBottomSheetModule],
-  exports: [ModalComponent],
+  exports: [ModalDirective],
 })
 export class ModalModule {}

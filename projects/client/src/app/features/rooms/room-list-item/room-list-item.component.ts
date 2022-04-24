@@ -4,7 +4,7 @@ import { NotifierService } from 'angular-notifier';
 import { finalize } from 'rxjs/operators';
 
 import { NotificationType } from '../../../common/notification-type.enum';
-import { ModalComponent } from '../../../components/modal/modal/modal.component';
+import { ModalDirective } from '../../../components/modal/modal.directive';
 import {
   ApplicationCreateGQL,
   ApplicationListGQL,
@@ -21,7 +21,7 @@ export class RoomListItemComponent implements OnInit {
   message = '';
   loading = false;
 
-  @ViewChild(ModalComponent) private popup!: ModalComponent;
+  @ViewChild(ModalDirective) private modal!: ModalDirective;
 
   constructor(
     private router: Router,
@@ -36,7 +36,7 @@ export class RoomListItemComponent implements OnInit {
     if (!this.room) return;
     if (this.room.membership)
       this.router.navigate(['/app/rooms', this.room.id]);
-    else this.popup.open();
+    else this.modal.open();
   }
 
   apply(): void {
@@ -71,7 +71,7 @@ export class RoomListItemComponent implements OnInit {
             NotificationType.Success,
             $localize`Application sent`,
           );
-          this.popup.close();
+          this.modal.close();
           this.router.navigate(['/app/applications']);
         },
         () => {
