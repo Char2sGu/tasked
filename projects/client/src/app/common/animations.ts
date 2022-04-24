@@ -1,4 +1,11 @@
-import { animate, animation, group, query, style } from '@angular/animations';
+import {
+  animate,
+  animation,
+  AnimationReferenceMetadata,
+  group,
+  query,
+  style,
+} from '@angular/animations';
 import { AnimationCurves } from '@angular/material/core';
 
 /**
@@ -36,3 +43,13 @@ export const FADE_THROUGH = animation([
     ]),
   ]),
 ]);
+
+export const animationNameMap = new Map<AnimationReferenceMetadata, string>([
+  [FADE_THROUGH, 'FadeThrough'],
+]);
+
+export function defineRouteAnimation(
+  animation: AnimationReferenceMetadata,
+): object {
+  return { animation };
+}

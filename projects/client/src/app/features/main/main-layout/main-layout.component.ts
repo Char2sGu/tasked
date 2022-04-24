@@ -1,8 +1,13 @@
-import { transition, trigger, useAnimation } from '@angular/animations';
+import {
+  AnimationReferenceMetadata,
+  transition,
+  trigger,
+  useAnimation,
+} from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ChildrenOutletContexts } from '@angular/router';
 
-import { FADE_THROUGH } from '../../../common/animations';
+import { animationNameMap, FADE_THROUGH } from '../../../common/animations';
 
 // TODO: complete this animation prototype
 
@@ -11,17 +16,23 @@ import { FADE_THROUGH } from '../../../common/animations';
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss'],
   animations: [
-    trigger('fadeThrough', [
-      transition('* <=> *', [useAnimation(FADE_THROUGH)]),
+    trigger('routerAnimation', [
+      transition(`* => ${animationNameMap.get(FADE_THROUGH)}`, [
+        useAnimation(FADE_THROUGH),
+      ]),
     ]),
   ],
 })
 export class MainLayoutComponent implements OnInit {
-  constructor(private contexts: ChildrenOutletContexts) {}
-
-  getRouteComponent(): unknown {
-    return this.contexts.getContext('primary')?.route?.snapshot.url;
-  }
+  constructor(private outletContexts: ChildrenOutletContexts) {}
 
   ngOnInit(): void {}
+
+  getRouteAnimationName(): string | undefined {
+    const context = this.outletContexts.getContext('primary');
+    if (!context) throw new Error('Outlet context not found');
+    const animation: AnimationReferenceMetadata | undefined =
+      context.route?.snapshot.data['animation'];
+    return animation && animationNameMap.get(animation);
+  }
 }
