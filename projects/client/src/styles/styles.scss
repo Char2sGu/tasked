@@ -1,6 +1,6 @@
-@use '../../../../node_modules/angular-notifier/styles';
+@use '../../../../node_modules/angular-notifier/styles'; // don't know why it's require a relative path
+@use '@angular/material' as mat;
 @use './utilities';
-@use '../../../../node_modules/@angular/material' as mat;
 @use './themes' as themes;
 @use 'sass:map' as map;
 @use 'sass:color' as color;
