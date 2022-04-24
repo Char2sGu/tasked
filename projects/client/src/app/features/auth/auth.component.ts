@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
   styleUrls: ['./auth.component.scss'],
   animations: [
     trigger('routerAnimation', [
-      transition('* => *', [FadeThroughAnimation.apply()]),
+      transition('login <=> signup', [FadeThroughAnimation.apply()]),
     ]),
   ],
 })
