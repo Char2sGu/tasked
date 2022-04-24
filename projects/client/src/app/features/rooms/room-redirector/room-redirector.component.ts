@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 
-import { skipFalsy } from '../../../common/rxjs.utils';
+import { skipFalsy } from '../../../common/rxjs';
 import { RoomListGQL } from '../../../graphql';
 import { AuthService } from '../../auth/auth.service';
 import { RoomsActivatedMapStorage } from '../rooms-activated-map.storage';

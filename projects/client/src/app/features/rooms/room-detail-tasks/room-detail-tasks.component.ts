@@ -4,7 +4,7 @@ import { NgxMasonryComponent } from 'ngx-masonry';
 import { from, Observable } from 'rxjs';
 import { finalize, first, map, switchMap, tap } from 'rxjs/operators';
 
-import { skipFalsy } from '../../../common/rxjs.utils';
+import { skipFalsy } from '../../../common/rxjs';
 import {
   MembershipTaskListGQL,
   MembershipTaskListQuery,

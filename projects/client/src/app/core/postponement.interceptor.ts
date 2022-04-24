@@ -7,7 +7,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { postpone } from '../common/postpone.operator';
+import { postpone } from '../common/rxjs';
 
 /**
  * Force requests to spend at least 200ms to show loading animations. :-]

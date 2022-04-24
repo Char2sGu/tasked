@@ -1,4 +1,7 @@
-import { Observable, timer } from 'rxjs';
+import { filter, Observable, OperatorFunction, timer } from 'rxjs';
+
+export const skipFalsy = <T>(): OperatorFunction<T, NonNullable<T>> =>
+  filter((v): v is NonNullable<T> => !!v);
 
 export const postpone =
   (time: number) =>

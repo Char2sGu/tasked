@@ -3,7 +3,7 @@ import { NotifierService } from 'angular-notifier';
 import { combineLatest, concatMap, first } from 'rxjs';
 
 import { NotificationType } from '../../../common/notification-type.enum';
-import { skipFalsy } from '../../../common/rxjs.utils';
+import { skipFalsy } from '../../../common/rxjs';
 import { MembershipTaskListGQL, TaskCreateGQL } from '../../../graphql';
 import { RoomDetailState } from '../room-detail/room-detail-state.service';
 
