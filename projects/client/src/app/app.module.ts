@@ -14,6 +14,9 @@ import { IllustrationModule } from './components/illustration/illustration.modul
 import { CoreModule } from './core/core.module';
 import { GraphqlModule } from './graphql/graphql.module';
 
+// TODO: offline support
+// TODO: single instance layout component
+
 registerLocaleData(en);
 
 @NgModule({
