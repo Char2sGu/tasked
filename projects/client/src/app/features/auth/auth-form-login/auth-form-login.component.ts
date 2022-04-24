@@ -1,14 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatInput } from '@angular/material/input';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { Subject } from 'rxjs';
 import { finalize, throttleTime } from 'rxjs/operators';
 
 import { NotificationType } from '../../../common/notification-type.enum';
 import { AuthService } from '../auth.service';
-
-// TODO: remove navigation to `next`
 
 @Component({
   selector: 'app-auth-form-login',
@@ -24,7 +22,6 @@ export class AuthFormLoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private auth: AuthService,
     private notifier: NotifierService,
   ) {}
@@ -46,17 +43,16 @@ export class AuthFormLoginComponent implements OnInit {
           this.loading = false;
         }),
       )
-      .subscribe(
-        () => {
-          const next = this.route.snapshot.queryParams['next'];
-          this.router.navigate([next ?? '/']);
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/']);
         },
-        () => {
+        error: () => {
           this.notifier.notify(
             NotificationType.Error,
             $localize`Invalid username or password`,
           );
         },
-      );
+      });
   }
 }
