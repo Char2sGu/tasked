@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { QueryRef } from 'apollo-angular';
-import { from, Observable } from 'rxjs';
-import { finalize, map, tap } from 'rxjs/operators';
+import { concatMap, finalize, first, from, map, Observable, tap } from 'rxjs';
 
 import {
   MembershipAssignmentListGQL,
   MembershipAssignmentListQuery,
   MembershipAssignmentListQueryVariables,
-  RoomDetailGQL,
 } from '../../../graphql';
+import { RoomDetailState } from '../room-detail/room-detail-state.service';
 
 type Assignment =
   MembershipAssignmentListQuery['membership']['assignments']['results'][number];
@@ -22,7 +20,6 @@ type Assignment =
 export class RoomDetailAssignmentsComponent implements OnInit {
   assignmentsPending$!: Observable<Assignment[]>;
   assignmentsCompleted$!: Observable<Assignment[]>;
-  loadingInitial = true;
   loadingMore = false;
   loadingMoreNeeded = false;
 
@@ -32,39 +29,23 @@ export class RoomDetailAssignmentsComponent implements OnInit {
   >;
 
   constructor(
-    private route: ActivatedRoute,
-    private roomGql: RoomDetailGQL,
+    private state: RoomDetailState,
     private listGql: MembershipAssignmentListGQL,
   ) {}
 
   ngOnInit(): void {
-    const classroomId = this.route.parent!.snapshot.paramMap.get('id')!;
-
-    const membershipId = this.roomGql
-      .watch({ id: classroomId })
-      .getCurrentResult().data.room.membership!.id;
-
-    this.query = this.listGql.watch({ id: membershipId });
-
-    const assignments$ = this.query.valueChanges.pipe(
+    const queryResult$ = this.state.membership$.pipe(
+      first(),
+      map((membership) => this.listGql.watch({ id: membership.id })),
+      tap((query) => (this.query = query)),
+      concatMap((query) => query.valueChanges),
+    );
+    const assignments$ = queryResult$.pipe(
       map((result) => result.data.membership.assignments),
       tap(({ results, total }) => {
-        this.loadingInitial = false;
         this.loadingMoreNeeded = results.length < total;
       }),
-      map(({ results }) =>
-        [...results]
-          .sort(
-            (a, b) =>
-              -(
-                new Date(a.updatedAt).getTime() -
-                new Date(b.updatedAt).getTime()
-              ),
-          )
-          .sort((a, b) =>
-            a.isImportant == b.isImportant ? 0 : a.isImportant ? -1 : 1,
-          ),
-      ),
+      map(({ results }) => this.sort(results)),
     );
     this.assignmentsPending$ = assignments$.pipe(
       map((items) => items.filter((item) => !item.isCompleted)),
@@ -98,5 +79,16 @@ export class RoomDetailAssignmentsComponent implements OnInit {
           },
         }));
       });
+  }
+
+  private sort(data: Assignment[]) {
+    return [...data]
+      .sort(
+        (a, b) =>
+          -(new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()),
+      )
+      .sort((a, b) =>
+        a.isImportant == b.isImportant ? 0 : a.isImportant ? -1 : 1,
+      );
   }
 }

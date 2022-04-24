@@ -18,8 +18,6 @@ import { ProfileBtnMenuComponent } from './profile-btn-menu/profile-btn-menu.com
 import { ProfileBtnMenuEditPopupComponent } from './profile-btn-menu-edit-popup/profile-btn-menu-edit-popup.component';
 import { ProfileFormComponent } from './profile-form/profile-form.component';
 
-// TODO: move to sidebar
-
 @NgModule({
   declarations: [
     ProfileBtnComponent,

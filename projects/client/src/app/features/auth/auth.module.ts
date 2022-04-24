@@ -17,6 +17,8 @@ import { AuthFormLoginComponent } from './auth-form-login/auth-form-login.compon
 import { AuthFormSignupComponent } from './auth-form-signup/auth-form-signup.component';
 import { AuthRoutingModule } from './auth-routing.module';
 
+// TODO: beautify
+
 @NgModule({
   declarations: [
     AuthComponent,

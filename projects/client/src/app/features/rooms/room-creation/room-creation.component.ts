@@ -6,6 +6,8 @@ import { finalize } from 'rxjs/operators';
 import { NotificationType } from '../../../common/notification-type.enum';
 import { RoomCreateGQL, RoomListGQL } from '../../../graphql';
 
+// TODO: move to sidenav
+
 @Component({
   selector: 'app-room-creation',
   templateUrl: './room-creation.component.html',
