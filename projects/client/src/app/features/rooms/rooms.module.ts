@@ -17,6 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
+import { BackButtonModule } from '../../components/back-button/back-button.module';
 import { ConfirmationModule } from '../../components/confirmation/confirmation.module';
 import { ContainerModule } from '../../components/container/container.module';
 import { EmptyStateModule } from '../../components/empty-state/empty-state.module';
@@ -109,6 +110,7 @@ import { RoomsRoutingModule } from './rooms-routing.module';
     MasonryModule,
     EmptyStateModule,
     IllustrationModule,
+    BackButtonModule,
   ],
 })
 export class RoomsModule {}

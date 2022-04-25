@@ -1,15 +1,5 @@
-<app-container
-  class="container"
-  ngClass.xs="mobile"
-  fxLayout="column"
-  fxLayoutGap="16px"
->
-  <form
-    fxLayout
-    fxLayoutAlign="start center"
-    fxLayoutGap="16px"
-    (ngSubmit)="load()"
-  >
+<div class="relative flex h-full flex-col gap-4 py-7 px-8 md:px-[20%]">
+  <form class="flex items-center gap-4" (ngSubmit)="load()">
     <mat-form-field fxFlex appearance="standard">
       <mat-label i18n>Search</mat-label>
       <input matInput name="search" type="search" [(ngModel)]="searchValue" />
@@ -20,15 +10,14 @@
 
     <button
       mat-raised-button
-      fxHide.xs
-      class="uppercase"
+      class="hidden uppercase sm:inline-block"
       color="primary"
       [disabled]="loading"
       i18n
     >
       Search
     </button>
-    <button mat-icon-button fxHide.gt-xs [disabled]="loading">
+    <button mat-icon-button class="sm:hidden" [disabled]="loading">
       <mat-icon>search</mat-icon>
     </button>
   </form>
@@ -36,7 +25,11 @@
   <mat-divider></mat-divider>
 
   <ng-container *ngIf="rooms$ | async as rooms">
-    <mat-action-list *ngIf="rooms.length; else empty" fxFlex>
+    <mat-action-list
+      class="overflow-auto"
+      *ngIf="rooms.length; else empty"
+      fxFlex
+    >
       <app-room-list-item
         *ngFor="let room of rooms"
         [room]="room"
@@ -52,4 +45,10 @@
       </app-empty-state-illustration>
     </ng-template>
   </ng-container>
-</app-container>
+
+  <!-- <div class="absolute bottom-4 right-4">
+    <button mat-fab>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div> -->
+</div>

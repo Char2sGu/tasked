@@ -8,23 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-layout-sidenav.component.scss'],
 })
 export class MainLayoutSidenavComponent implements OnInit {
-  items: Item[] = [];
+  items: Item[] = [
+    {
+      text: 'Applications',
+      commands: ['/', 'app', 'applications'],
+      icon: 'group_add',
+    },
+    {
+      text: 'Rooms',
+      commands: ['/', 'app', 'rooms'],
+      icon: 'workspaces',
+    },
+  ];
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.items = [
-      {
-        title: 'Applications',
-        route: '/applications',
-        icon: 'person_add_alt_1',
-      },
-    ];
-  }
+  ngOnInit(): void {}
 }
 
 interface Item {
-  title: string;
-  route: string;
+  text: string;
+  commands: unknown[];
   icon: string;
 }

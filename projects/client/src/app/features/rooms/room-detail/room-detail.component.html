@@ -1,6 +1,8 @@
 <app-container class="container" fxLayout="column">
-  <mat-toolbar fxLayout fxLayoutAlign="space-between center">
-    <div></div>
+  <mat-toolbar class="bg-inherit" fxLayout fxLayoutAlign="space-between center">
+    <div>
+      <app-back-button></app-back-button>
+    </div>
     <div class="title">
       <span class="name">{{ (room$ | async)?.name }}</span>
       <span class="id opacity--3">#{{ (room$ | async)?.id }}</span>
