@@ -25,7 +25,7 @@ export class LayoutDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (!this.appLayout) return;
-    this.target = this.contents[`${this.appLayout}$`];
+    this.target = this.contents[`${this.appLayout}$$`];
     setTimeout(() => {
       this.previous = this.target.getValue();
       this.target.next(this.templateRef);
@@ -39,5 +39,5 @@ export class LayoutDirective implements OnInit, OnDestroy {
 }
 
 type LayoutContentNames = {
-  [Key in keyof LayoutContents]: Key extends `${infer Name}$` ? Name : never;
+  [Key in keyof LayoutContents]: Key extends `${infer Name}$$` ? Name : never;
 }[keyof LayoutContents];

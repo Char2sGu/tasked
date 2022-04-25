@@ -25,10 +25,13 @@
       [mode]="data.desktop ? 'side' : 'over'"
       #sidenav
     >
-      <ng-container
+      <div
+        class="h-full overflow-auto"
         *ngIf="contents.sidenav$ | async as sidenav"
-        [ngTemplateOutlet]="sidenav"
-      ></ng-container>
+        [@fadeThrough]="sidenav"
+      >
+        <ng-container [ngTemplateOutlet]="sidenav"></ng-container>
+      </div>
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>
