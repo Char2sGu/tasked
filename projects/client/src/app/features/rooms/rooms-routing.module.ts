@@ -24,6 +24,7 @@ const routes: Routes = [
       {
         path: 'create',
         component: RoomCreationComponent,
+        data: { animationState: 'creation' },
       },
       {
         path: 'last',

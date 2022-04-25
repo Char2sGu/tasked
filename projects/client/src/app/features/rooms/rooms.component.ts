@@ -1,4 +1,4 @@
-import { transition, trigger } from '@angular/animations';
+import { query, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 import { FadeThroughAnimation } from '../../common/animations';
@@ -11,7 +11,11 @@ import { RouterOutletDataReader } from '../../common/router';
   viewProviders: [RouterOutletDataReader],
   animations: [
     trigger('routerAnimation', [
-      transition('* => list', FadeThroughAnimation.apply()),
+      transition('* => list, * => creation', [
+        // mat-drawer's styles break after its `ngOnDestroy` is called
+        query('mat-drawer', style({ transform: 'none' }), { optional: true }),
+        FadeThroughAnimation.apply(),
+      ]),
     ]),
   ],
 })

@@ -1,14 +1,15 @@
 import { transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { ChildrenOutletContexts } from '@angular/router';
 
 import { FadeThroughAnimation } from '../../common/animations';
+import { RouterOutletDataReader } from '../../common/router';
 import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
+  providers: [RouterOutletDataReader],
   animations: [
     trigger('routerAnimation', [
       transition('login <=> signup', [FadeThroughAnimation.apply()]),
@@ -17,16 +18,11 @@ import { AuthService } from './auth.service';
 })
 export class AuthComponent implements OnInit {
   constructor(
-    private routerOutletContexts: ChildrenOutletContexts,
+    public routerOutletDataReader: RouterOutletDataReader,
     private auth: AuthService,
   ) {}
 
   ngOnInit(): void {
     this.auth.logout();
-  }
-
-  getRouterAnimationState(): string {
-    return this.routerOutletContexts.getContext('primary')?.route?.snapshot
-      .data['animationState'];
   }
 }

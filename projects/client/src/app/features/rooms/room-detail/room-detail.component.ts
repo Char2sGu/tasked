@@ -20,7 +20,7 @@ import { RoomDetailState } from './room-detail-state.service';
   styleUrls: ['./room-detail.component.scss'],
   providers: [RoomDetailState],
   animations: [
-    trigger('tabChange', [
+    trigger('tab', [
       transition(':increment', SharedXAxisAnimation.apply('forward')),
       transition(':decrement', SharedXAxisAnimation.apply('backward')),
     ]),

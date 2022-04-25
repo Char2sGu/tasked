@@ -38,8 +38,8 @@
           {{ link.title }}
         </a>
       </nav>
-      <main fxFlex [@tabChange]="linkActiveIndex">
-        <router-outlet *ngIf="room$ | async"></router-outlet>
+      <main fxFlex [@tab]="linkActiveIndex">
+        <router-outlet></router-outlet>
       </main>
     </mat-drawer-content>
   </mat-drawer-container>

@@ -19,6 +19,16 @@ export abstract class Animation {
 }
 
 /**
+ * Prevent child routes from bering removed.
+ * @see https://github.com/angular/angular/issues/15477#issuecomment-377619882
+ */
+export class PreserveChildRoutesAnimation extends Animation {
+  static override content: AnimationReferenceMetadata = animation([
+    query('router-outlet ~ *', [animate('1ms', style({}))], { optional: true }),
+  ]);
+}
+
+/**
  * @see https://material.io/design/motion/the-motion-system.html#fade-through
  */
 export class FadeThroughAnimation extends Animation {
@@ -31,6 +41,7 @@ export class FadeThroughAnimation extends Animation {
       query(
         ':leave',
         [
+          PreserveChildRoutesAnimation.apply(),
           style({ opacity: 1 }),
           animate(
             `90ms ${AnimationCurves.ACCELERATION_CURVE}`,
