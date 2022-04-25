@@ -1,13 +1,37 @@
-<app-container class="container" fxLayout="column">
-  <header>
-    <ng-content select="header"></ng-content>
-  </header>
-
-  <main fxFlex>
-    <ng-content select="content"></ng-content>
-  </main>
-</app-container>
-
-<ng-template #spinner>
-  <mat-spinner diameter="50"></mat-spinner>
-</ng-template>
+<div
+  *ngIf="{ theme: theme$ | async, desktop: desktop$ | async } as data"
+  class="flex h-full flex-col"
+>
+  <mat-toolbar
+    class="mat-elevation-z4 z-10"
+    [color]="data.theme == 'light' ? 'primary' : undefined"
+  >
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span fxFlex="1%"></span>
+    <span class="cursor-pointer" routerLink="/app">Tasked</span>
+    <span fxFlex></span>
+    <ng-container
+      *ngIf="contents.headerActions$ | async as headerActions"
+      [ngTemplateOutlet]="headerActions"
+    ></ng-container>
+  </mat-toolbar>
+  <mat-sidenav-container class="h-full flex-1 overflow-auto">
+    <mat-sidenav
+      class="w-64"
+      [class]="data.desktop ? 'bg-transparent' : undefined"
+      [opened]="data.desktop"
+      [mode]="data.desktop ? 'side' : 'over'"
+      #sidenav
+    >
+      <ng-container
+        *ngIf="contents.sidenav$ | async as sidenav"
+        [ngTemplateOutlet]="sidenav"
+      ></ng-container>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

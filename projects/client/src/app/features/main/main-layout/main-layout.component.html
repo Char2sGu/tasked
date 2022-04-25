@@ -1,23 +1,9 @@
-<app-layout>
-  <app-layout-header
-    ngProjectAs="header"
-    (toggleSidebar)="content.sidenav.toggle()"
-  >
-    <ng-container ngProjectAs="actions">
-      <app-theme-button></app-theme-button>
-      <app-refetch-button></app-refetch-button>
-      <app-profile-btn></app-profile-btn>
-    </ng-container>
-  </app-layout-header>
+<router-outlet></router-outlet>
 
-  <app-layout-content ngProjectAs="content" #content>
-    <app-main-layout-sidenav ngProjectAs="sidenav"></app-main-layout-sidenav>
-    <div
-      ngProjectAs="content"
-      class="h-full"
-      [@routerAnimation]="routerOutletDataReader.read()?.['animationState']"
-    >
-      <router-outlet></router-outlet>
-    </div>
-  </app-layout-content>
-</app-layout>
+<ng-container *appLayout="'headerActions'">
+  <app-theme-button></app-theme-button>
+  <app-refetch-button></app-refetch-button>
+  <app-profile-btn></app-profile-btn>
+</ng-container>
+
+<app-main-layout-sidenav *appLayout="'sidenav'"></app-main-layout-sidenav>

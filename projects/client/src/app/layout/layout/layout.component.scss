@@ -1,7 +1,8 @@
-header {
-  z-index: 2;
-}
+@use '../../../styles/themes' as themes;
+@use 'sass:map' as map;
 
-main {
-  height: 0;
+:host-context(.theme-dark) {
+  mat-toolbar {
+    color: map.get(themes.$theme-dark, 'color', 'primary', 'text');
+  }
 }

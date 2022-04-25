@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { IllustrationModule } from './components/illustration/illustration.module';
 import { CoreModule } from './core/core.module';
 import { GraphqlModule } from './graphql/graphql.module';
+import { LayoutModule } from './layout/layout.module';
 
 // TODO: offline support
 // TODO: single instance layout component
@@ -36,6 +37,7 @@ registerLocaleData(en);
     GraphqlModule,
     AppRoutingModule,
     IllustrationModule,
+    LayoutModule,
   ],
   bootstrap: [AppComponent],
 })

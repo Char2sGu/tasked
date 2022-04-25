@@ -1,39 +1,28 @@
+import { LayoutModule as ResponsiveLayoutModule } from '@angular/cdk/layout';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
-import { ContainerModule } from '../components/container/container.module';
-import { LoadingModule } from '../components/loading/loading.module';
-import { ProfileModule } from '../components/profile/profile.module';
+import { SidenavModule } from '../components/sidenav/sidenav.module';
 import { SharedModule } from '../shared/shared.module';
+import { LayoutDirective } from './layout.directive';
 import { LayoutComponent } from './layout/layout.component';
-import { LayoutContentComponent } from './layout-content/layout-content.component';
-import { LayoutHeaderComponent } from './layout-header/layout-header.component';
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    LayoutHeaderComponent,
-    LayoutContentComponent,
-  ],
+  declarations: [LayoutComponent, LayoutDirective],
   imports: [
     SharedModule,
     RouterModule,
     OverlayModule,
     MatIconModule,
-    MatProgressSpinnerModule,
     MatToolbarModule,
-    MatSidenavModule,
+    SidenavModule,
     MatButtonModule,
-    ProfileModule,
-    LoadingModule,
-    ContainerModule,
+    ResponsiveLayoutModule,
   ],
-  exports: [LayoutComponent, LayoutHeaderComponent, LayoutContentComponent],
+  exports: [LayoutComponent, LayoutDirective],
 })
 export class LayoutModule {}

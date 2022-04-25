@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { PostponementInterceptor } from './postponement.interceptor';
 
 @NgModule({
-  imports: [],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
