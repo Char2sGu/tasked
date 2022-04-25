@@ -1,4 +1,9 @@
-<router-outlet></router-outlet>
+<div
+  class="h-full"
+  [@fadeThrough]="routerOutletDataReader.read()?.['animationState']"
+>
+  <router-outlet></router-outlet>
+</div>
 
 <ng-container *appLayout="'headerActions'">
   <app-theme-button></app-theme-button>

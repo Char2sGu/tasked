@@ -10,7 +10,7 @@ import { RouterOutletDataReader } from '../../../common/router';
   styleUrls: ['./main-layout.component.scss'],
   viewProviders: [RouterOutletDataReader],
   animations: [
-    trigger('routerAnimation', [
+    trigger('fadeThrough', [
       transition('* => applications', [FadeThroughAnimation.apply()]),
     ]),
   ],
