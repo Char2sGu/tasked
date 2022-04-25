@@ -13,12 +13,14 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
+    data: { animationState: 'auth' },
   },
   {
     path: 'app',
     loadChildren: () =>
       import('./features/main/main.module').then((m) => m.MainModule),
     canLoad: [AuthGuard],
+    data: { animationState: 'main' },
   },
   {
     path: '**',

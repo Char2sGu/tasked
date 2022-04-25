@@ -27,9 +27,7 @@ export class LayoutContents {
   styleUrls: ['./layout.component.scss'],
   providers: [LayoutContents],
   animations: [
-    trigger('fadeThrough', [
-      transition('* => *', FadeThroughAnimation.apply()),
-    ]),
+    trigger('sidenav', [transition('* => *', FadeThroughAnimation.apply())]),
   ],
 })
 export class LayoutComponent implements OnInit {

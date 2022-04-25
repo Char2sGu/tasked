@@ -28,13 +28,13 @@
       <div
         class="h-full overflow-auto"
         *ngIf="contents.sidenav$ | async as sidenav"
-        [@fadeThrough]="sidenav"
+        [@sidenav]="sidenav"
       >
         <ng-container [ngTemplateOutlet]="sidenav"></ng-container>
       </div>
     </mat-sidenav>
     <mat-sidenav-content>
-      <router-outlet></router-outlet>
+      <ng-content></ng-content>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

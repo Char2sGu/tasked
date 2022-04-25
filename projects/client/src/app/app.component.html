@@ -1,3 +1,5 @@
-<app-layout></app-layout>
+<app-layout [@content]="routerOutletDataReader.read()?.['animationState']">
+  <router-outlet></router-outlet>
+</app-layout>
 <notifier-container></notifier-container>
 <app-illustration-preloader></app-illustration-preloader>
