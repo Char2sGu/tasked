@@ -1,7 +1,7 @@
 import { query, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
-import { FadeThroughAnimation } from '../../common/animations';
+import { SharedAxisAnimation } from '../../common/animations';
 import { RouterOutletDataReader } from '../../common/router';
 
 @Component({
@@ -11,10 +11,11 @@ import { RouterOutletDataReader } from '../../common/router';
   viewProviders: [RouterOutletDataReader],
   animations: [
     trigger('routerAnimation', [
-      transition('* => list, * => creation', [
+      transition('list => detail', [SharedAxisAnimation.apply('z', 'forward')]),
+      transition('detail => list', [
         // mat-drawer's styles break after its `ngOnDestroy` is called
         query('mat-drawer', style({ transform: 'none' }), { optional: true }),
-        FadeThroughAnimation.apply(),
+        SharedAxisAnimation.apply('z', 'backward'),
       ]),
     ]),
   ],

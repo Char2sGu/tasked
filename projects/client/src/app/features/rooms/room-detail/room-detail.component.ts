@@ -6,7 +6,7 @@ import { RouterLinkActive } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { SharedXAxisAnimation } from '../../../common/animations';
+import { SharedAxisAnimation } from '../../../common/animations';
 import { skipFalsy } from '../../../common/rxjs';
 import { ThemeService } from '../../../core/theme.service';
 import { Role } from '../../../graphql';
@@ -21,8 +21,8 @@ import { RoomDetailState } from './room-detail-state.service';
   providers: [RoomDetailState],
   animations: [
     trigger('tab', [
-      transition(':increment', SharedXAxisAnimation.apply('forward')),
-      transition(':decrement', SharedXAxisAnimation.apply('backward')),
+      transition(':increment', SharedAxisAnimation.apply('x', 'forward')),
+      transition(':decrement', SharedAxisAnimation.apply('x', 'backward')),
     ]),
   ],
 })

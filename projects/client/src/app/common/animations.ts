@@ -64,7 +64,7 @@ export class FadeThroughAnimation extends Animation {
 /**
  * @see https://material.io/design/motion/the-motion-system.html#shared-axis
  */
-export class SharedXAxisAnimation extends Animation {
+export class SharedAxisAnimation extends Animation {
   static override content: AnimationReferenceMetadata = animation([
     style({ position: 'relative', overflow: 'hidden' }),
     query(
@@ -86,34 +86,70 @@ export class SharedXAxisAnimation extends Animation {
         ),
       ]),
       query(':leave', [
-        style({ transform: 'translateX(0)' }),
+        style({ transform: '{{ transformOutgoingFrom }}' }),
         animate(
           `300ms ${AnimationCurves.STANDARD_CURVE}`,
           style({
-            transform: `translateX({{ offsetOutgoing }})`,
+            transform: `{{ transformOutgoingTo }}`,
           }),
         ),
       ]),
       query(':enter', [
         style({
-          transform: `translateX({{ offsetIncoming }})`,
+          transform: `{{ transformIncomingFrom }}`,
         }),
         animate(
           `300ms ${AnimationCurves.STANDARD_CURVE}`,
-          style({ transform: 'translateX(0)' }),
+          style({ transform: '{{ transformIncomingTo }}' }),
         ),
       ]),
     ]),
   ]);
 
   static override apply(
+    axis: 'x' | 'y' | 'z',
     mode: 'forward' | 'backward',
   ): AnimationAnimateRefMetadata {
-    return useAnimation(this.content, {
-      params:
-        mode == 'forward'
-          ? { offsetIncoming: '30px', offsetOutgoing: '-30px' }
-          : { offsetIncoming: '-30px', offsetOutgoing: '30px' },
-    });
+    const getParams = ({
+      transformIncomingFrom,
+      transformIncomingTo,
+      transformOutgoingFrom,
+      transformOutgoingTo,
+    }: Record<string, string>) =>
+      mode == 'forward'
+        ? {
+            transformIncomingFrom,
+            transformIncomingTo,
+            transformOutgoingFrom,
+            transformOutgoingTo,
+          }
+        : {
+            transformIncomingFrom: transformOutgoingTo,
+            transformIncomingTo: transformOutgoingFrom,
+            transformOutgoingFrom: transformIncomingTo,
+            transformOutgoingTo: transformIncomingFrom,
+          };
+    const params =
+      axis == 'x'
+        ? getParams({
+            transformIncomingFrom: `translateX(30px)`,
+            transformIncomingTo: `translateX(0)`,
+            transformOutgoingFrom: `translateX(0)`,
+            transformOutgoingTo: `translateX(-30px)`,
+          })
+        : axis == 'y'
+        ? getParams({
+            transformIncomingFrom: `translateY(30px)`,
+            transformIncomingTo: `translateY(0)`,
+            transformOutgoingFrom: `translateY(0)`,
+            transformOutgoingTo: `translateY(-30px)`,
+          })
+        : getParams({
+            transformIncomingFrom: `scale(80%)`,
+            transformIncomingTo: `scale(100%)`,
+            transformOutgoingFrom: `scale(100%)`,
+            transformOutgoingTo: `scale(110%)`,
+          });
+    return useAnimation(this.content, { params });
   }
 }
