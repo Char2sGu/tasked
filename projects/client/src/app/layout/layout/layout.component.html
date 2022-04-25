@@ -28,7 +28,6 @@
       <div
         class="h-full overflow-auto"
         *ngIf="contents.sidenav$ | async as sidenav"
-        [@sidenav]="sidenav"
       >
         <ng-container [ngTemplateOutlet]="sidenav"></ng-container>
       </div>

@@ -1,9 +1,7 @@
-import { transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Injectable, OnInit, TemplateRef } from '@angular/core';
 import { BehaviorSubject, debounceTime, map, Observable } from 'rxjs';
 
-import { FadeThroughAnimation } from '../../common/animations';
 import { Breakpoint } from '../../common/breakpoint.enum';
 import { ThemeService } from '../../core/theme.service';
 
@@ -26,9 +24,6 @@ export class LayoutContents {
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
   providers: [LayoutContents],
-  animations: [
-    trigger('sidenav', [transition('* => *', FadeThroughAnimation.apply())]),
-  ],
 })
 export class LayoutComponent implements OnInit {
   theme$ = this.themeService.current.value$$;
