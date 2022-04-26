@@ -66,7 +66,11 @@ export class FadeThroughAnimation extends Animation {
  */
 export class SharedAxisAnimation extends Animation {
   static override content: AnimationReferenceMetadata = animation([
-    style({ position: 'relative', overflow: 'hidden' }),
+    style({
+      position: 'relative',
+      overflowX: '{{ overflowX }}',
+      overflowY: '{{ overflowY }}',
+    }),
     query(
       ':enter, :leave',
       style({ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }),
@@ -116,6 +120,7 @@ export class SharedAxisAnimation extends Animation {
       transformIncomingTo,
       transformOutgoingFrom,
       transformOutgoingTo,
+      ...params
     }: Record<string, string>) =>
       mode == 'forward'
         ? {
@@ -123,16 +128,20 @@ export class SharedAxisAnimation extends Animation {
             transformIncomingTo,
             transformOutgoingFrom,
             transformOutgoingTo,
+            ...params,
           }
         : {
             transformIncomingFrom: transformOutgoingTo,
             transformIncomingTo: transformOutgoingFrom,
             transformOutgoingFrom: transformIncomingTo,
             transformOutgoingTo: transformIncomingFrom,
+            ...params,
           };
     const params =
       axis == 'x'
         ? getParams({
+            overflowX: 'hidden',
+            overflowY: '*',
             transformIncomingFrom: `translateX(30px)`,
             transformIncomingTo: `translateX(0)`,
             transformOutgoingFrom: `translateX(0)`,
@@ -140,12 +149,16 @@ export class SharedAxisAnimation extends Animation {
           })
         : axis == 'y'
         ? getParams({
+            overflowX: '*',
+            overflowY: 'hidden',
             transformIncomingFrom: `translateY(30px)`,
             transformIncomingTo: `translateY(0)`,
             transformOutgoingFrom: `translateY(0)`,
             transformOutgoingTo: `translateY(-30px)`,
           })
         : getParams({
+            overflowX: 'hidden',
+            overflowY: 'hidden',
             transformIncomingFrom: `scale(80%)`,
             transformIncomingTo: `scale(100%)`,
             transformOutgoingFrom: `scale(100%)`,
