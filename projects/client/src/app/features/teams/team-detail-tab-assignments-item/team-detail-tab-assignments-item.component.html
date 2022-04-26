@@ -1,56 +1,73 @@
-<button *ngIf="assignment" mat-list-item (click)="modal.open()">
-  <div
-    class="actions"
-    (click)="$event.stopPropagation()"
-    (touchstart)="$event.stopPropagation()"
-    (mousedown)="$event.stopPropagation()"
+<ng-container *ngIf="{ isDesktop: isDesktop$ | async } as data">
+  <button
+    mat-list-item
+    *ngIf="assignment"
+    class="fallback-css"
+    (click)="expanded = !expanded"
   >
-    <button
-      mat-icon-button
-      [matTooltip]="completionTooltip"
-      (click)="switchCompletion()"
-      appStopRipplePropagation
-    >
-      <mat-icon>{{ completionIcon }}</mat-icon>
-    </button>
-  </div>
+    <div class="fallback-css summary flex w-full items-center">
+      <div
+        (click)="$event.stopPropagation()"
+        (touchstart)="$event.stopPropagation()"
+        (mousedown)="$event.stopPropagation()"
+      >
+        <button
+          mat-icon-button
+          [matTooltip]="completionTooltip"
+          (click)="switchCompletion()"
+        >
+          <mat-icon>{{ completionIcon }}</mat-icon>
+        </button>
+      </div>
 
-  <div class="content" fxFlex fxFlexOffset="1%">
-    <div matLine>
-      {{ assignment.task.title }}
+      <div class="ml-[1%] w-0 grow">
+        <div matLine class="fallback-css">
+          {{ assignment.task.title }}
+        </div>
+        <div matLine class="fallback-css text-medium-emphasis gap-1">
+          <span matTooltip="Creator" i18n-matTooltip>
+            <mat-icon class="translate-y-0.5" inline>person</mat-icon>
+            <span>
+              <app-username
+                [user]="assignment.task.creator.owner"
+              ></app-username>
+            </span>
+          </span>
+          <span matTooltip="Creation Time" i18n-matTooltip>
+            <mat-icon class="translate-y-0.5" inline>calendar_today</mat-icon>
+            <span>
+              {{
+                assignment.createdAt
+                  | date: (data.isDesktop ? 'short' : 'short')
+              }}
+            </span>
+          </span>
+          <span *ngIf="assignment.task.description" matTooltip="Detailed">
+            <mat-icon class="translate-y-0.5" inline>note</mat-icon>
+          </span>
+        </div>
+      </div>
+
+      <div
+        (click)="$event.stopPropagation()"
+        (touchstart)="$event.stopPropagation()"
+        (mousedown)="$event.stopPropagation()"
+      >
+        <button
+          mat-icon-button
+          [matTooltip]="importanceTooltip"
+          (click)="switchImportance()"
+        >
+          <mat-icon>{{ importanceIcon }}</mat-icon>
+        </button>
+      </div>
     </div>
-    <div matLine class="opacity--1" fxLayout fxLayoutGap="4px">
-      <span matTooltip="Creator" i18n-matTooltip>
-        <mat-icon inline>person</mat-icon>
-        <span>
-          <app-username [user]="assignment.task.creator.owner"></app-username>
-        </span>
-      </span>
-      <span matTooltip="Creation Time" i18n-matTooltip>
-        <mat-icon inline>calendar_today</mat-icon>
-        <span>{{ assignment.createdAt | date: 'short' }}</span>
-      </span>
-    </div>
-  </div>
 
-  <div
-    class="actions"
-    (click)="$event.stopPropagation()"
-    (touchstart)="$event.stopPropagation()"
-    (mousedown)="$event.stopPropagation()"
-  >
-    <button
-      mat-icon-button
-      [matTooltip]="importanceTooltip"
-      (click)="switchImportance()"
+    <div
+      *ngIf="expanded && assignment.task.description"
+      class="mat-typography mb-4 whitespace-pre-line px-12"
     >
-      <mat-icon>{{ importanceIcon }}</mat-icon>
-    </button>
-  </div>
-</button>
-
-<ng-template appModal #modal="appModal">
-  <app-team-detail-tab-assignments-item-detail
-    [assignment]="assignment"
-  ></app-team-detail-tab-assignments-item-detail>
-</ng-template>
+      {{ assignment.task.description }}
+    </div>
+  </button>
+</ng-container>

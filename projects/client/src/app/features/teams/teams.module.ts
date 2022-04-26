@@ -38,7 +38,6 @@ import { TeamDetailSidebarMembershipListItemComponent } from './team-detail-side
 import { TeamDetailSidebarMembershipListItemMenuComponent } from './team-detail-sidebar-membership-list-item-menu/team-detail-sidebar-membership-list-item-menu.component';
 import { TeamDetailTabAssignmentsComponent } from './team-detail-tab-assignments/team-detail-tab-assignments.component';
 import { TeamDetailTabAssignmentsItemComponent } from './team-detail-tab-assignments-item/team-detail-tab-assignments-item.component';
-import { TeamDetailTabAssignmentsItemDetailComponent } from './team-detail-tab-assignments-item-detail/team-detail-tab-assignments-item-detail.component';
 import { TeamDetailTabRedirectorComponent } from './team-detail-tab-redirector/team-detail-tab-redirector.component';
 import { TeamDetailTabSettingsComponent } from './team-detail-tab-settings/team-detail-tab-settings.component';
 import { TeamDetailTabSettingsActionsComponent } from './team-detail-tab-settings-actions/team-detail-tab-settings-actions.component';
@@ -62,7 +61,6 @@ import { TeamsRoutingModule } from './teams-routing.module';
     TeamCreationComponent,
     TeamDetailTabAssignmentsComponent,
     TeamDetailTabAssignmentsItemComponent,
-    TeamDetailTabAssignmentsItemDetailComponent,
     TeamDetailTabTasksComponent,
     TeamDetailTabTasksItemComponent,
     TeamDetailTabTasksItemAssignPopupComponent,

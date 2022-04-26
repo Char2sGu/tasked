@@ -1,4 +1,15 @@
-.content {
-  /* Prevent the text from pushing the button out of the screen */
-  width: 0;
+[mat-list-item].fallback-css {
+  height: auto;
+  ::ng-deep & {
+    .mat-list-item-content {
+      flex-wrap: wrap;
+    }
+  }
+  .summary.fallback-css {
+    height: 72px;
+  }
+}
+
+[matLine].fallback-css {
+  display: flex;
 }

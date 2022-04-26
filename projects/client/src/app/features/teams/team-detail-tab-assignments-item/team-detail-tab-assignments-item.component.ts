@@ -1,16 +1,16 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Input, OnInit } from '@angular/core';
 import { Data } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { timer } from 'rxjs';
-import { concatMap, finalize } from 'rxjs/operators';
+import { concatMap, finalize, map } from 'rxjs/operators';
 
+import { Breakpoint } from '../../../common/breakpoint.enum';
 import { NotificationType } from '../../../common/notification-type.enum';
 import {
   AssignmentUpdateGQL,
   MembershipAssignmentListQuery,
 } from '../../../graphql';
-
-// TODO: use an individual page to display  detail
 
 type Assignment =
   MembershipAssignmentListQuery['membership']['assignments']['results'][number];
@@ -22,16 +22,20 @@ type Assignment =
 })
 export class TeamDetailTabAssignmentsItemComponent implements OnInit {
   @Input() assignment?: Assignment;
-
+  expanded = false;
   completionIcon = '';
   completionTooltip = '';
-
   importanceIcon = '';
   importanceTooltip = '';
+
+  isDesktop$ = this.breakpointObserver
+    .observe(Breakpoint.Middle)
+    .pipe(map((state) => state.matches));
 
   private loading = false;
 
   constructor(
+    private breakpointObserver: BreakpointObserver,
     private updateGql: AssignmentUpdateGQL,
     private notifier: NotifierService,
   ) {}
