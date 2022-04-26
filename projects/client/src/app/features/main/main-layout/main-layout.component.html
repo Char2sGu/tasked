@@ -5,10 +5,13 @@
   <router-outlet></router-outlet>
 </div>
 
-<ng-container *appLayout="'headerActions'">
+<app-header
+  *appLayout="'header'; let sidenav = sidenav"
+  (menuToggle)="sidenav.toggle()"
+>
   <app-theme-button></app-theme-button>
   <app-refetch-button></app-refetch-button>
   <app-profile-btn></app-profile-btn>
-</ng-container>
+</app-header>
 
 <app-main-layout-sidenav *appLayout="'sidenav'"></app-main-layout-sidenav>

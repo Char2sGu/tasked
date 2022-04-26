@@ -6,8 +6,10 @@
   <router-outlet></router-outlet>
 </main>
 
-<ng-container *appLayout="'headerActions'">
-  <app-theme-button></app-theme-button>
+<ng-container *appLayout="'header'">
+  <app-header>
+    <app-theme-button></app-theme-button>
+  </app-header>
 </ng-container>
 
 <mat-nav-list *appLayout="'sidenav'">

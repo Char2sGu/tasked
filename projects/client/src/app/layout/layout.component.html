@@ -7,16 +7,7 @@
     [class.text-primary]="data.theme == 'dark'"
     [color]="data.theme == 'light' ? 'primary' : undefined"
   >
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span fxFlex="1%"></span>
-    <span class="cursor-pointer" routerLink="/app">Tasked</span>
-    <span fxFlex></span>
-    <ng-container
-      *ngIf="contents.headerActions$ | async as headerActions"
-      [ngTemplateOutlet]="headerActions"
-    ></ng-container>
+    <ng-container *cdkPortalOutlet="header$ | async"></ng-container>
   </mat-toolbar>
   <mat-sidenav-container class="h-full flex-1 overflow-auto">
     <mat-sidenav
@@ -26,12 +17,7 @@
       [mode]="data.desktop ? 'side' : 'over'"
       #sidenav
     >
-      <div
-        class="h-full overflow-auto"
-        *ngIf="contents.sidenav$ | async as sidenav"
-      >
-        <ng-container [ngTemplateOutlet]="sidenav"></ng-container>
-      </div>
+      <ng-container *cdkPortalOutlet="sidenav$ | async"></ng-container>
     </mat-sidenav>
     <mat-sidenav-content>
       <ng-content></ng-content>

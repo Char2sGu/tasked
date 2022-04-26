@@ -1,5 +1,6 @@
 import { LayoutModule as ResponsiveLayoutModule } from '@angular/cdk/layout';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { PortalModule } from '@angular/cdk/portal';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,21 +9,23 @@ import { RouterModule } from '@angular/router';
 
 import { SidenavModule } from '../components/sidenav/sidenav.module';
 import { SharedModule } from '../shared/shared.module';
+import { HeaderComponent } from './header/header.component';
+import { LayoutComponent } from './layout.component';
 import { LayoutDirective } from './layout.directive';
-import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
-  declarations: [LayoutComponent, LayoutDirective],
+  declarations: [LayoutComponent, LayoutDirective, HeaderComponent],
   imports: [
     SharedModule,
     RouterModule,
+    ResponsiveLayoutModule,
     OverlayModule,
+    PortalModule,
     MatIconModule,
     MatToolbarModule,
-    SidenavModule,
     MatButtonModule,
-    ResponsiveLayoutModule,
+    SidenavModule,
   ],
-  exports: [LayoutComponent, LayoutDirective],
+  exports: [LayoutComponent, LayoutDirective, HeaderComponent],
 })
 export class LayoutModule {}
