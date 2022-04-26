@@ -3,7 +3,8 @@
   class="flex h-full flex-col"
 >
   <mat-toolbar
-    class="mat-elevation-z4 z-10"
+    class="mat-elevation-z4 z-[2]"
+    [class.text-primary]="data.theme == 'dark'"
     [color]="data.theme == 'light' ? 'primary' : undefined"
   >
     <button mat-icon-button (click)="sidenav.toggle()">
@@ -20,7 +21,7 @@
   <mat-sidenav-container class="h-full flex-1 overflow-auto">
     <mat-sidenav
       class="w-64"
-      [class]="data.desktop ? 'bg-transparent' : undefined"
+      [class]="data.desktop ? 'bg-transparent-important' : undefined"
       [opened]="data.desktop"
       [mode]="data.desktop ? 'side' : 'over'"
       #sidenav

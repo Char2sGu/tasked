@@ -1,8 +1,10 @@
 @use '../../../styles/themes' as themes;
 @use 'sass:map' as map;
 
-:host-context(.theme-dark) {
-  mat-toolbar {
-    color: map.get(themes.$theme-dark, 'color', 'primary', 'text');
-  }
+.text-primary {
+  color: map.get(themes.$theme-dark, 'color', 'primary', 'text');
+}
+
+.bg-transparent-important {
+  @apply bg-transparent;
 }

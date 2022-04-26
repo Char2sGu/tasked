@@ -5,8 +5,8 @@
 @use 'sass:map' as map;
 @use 'sass:color' as color;
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind utilities;
 
 html,
 body {
