@@ -1,29 +1,3 @@
-.container {
-  height: 100%;
-}
-
-.container > .title {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 88px;
-  padding-top: 32px;
-}
-
-.container > form {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 56px 0;
-}
-.container > form > mat-form-field {
-  margin-bottom: 12px;
-}
-.container > form .actions {
-  margin-top: 42px;
-  display: flex;
-  flex-direction: column;
+mat-toolbar {
+  background-color: inherit !important;
 }

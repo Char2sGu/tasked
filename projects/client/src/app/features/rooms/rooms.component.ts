@@ -17,6 +17,11 @@ import { RouterOutletDataReader } from '../../common/router';
         query('mat-drawer', style({ transform: 'none' }), { optional: true }),
         SharedAxisAnimation.apply('z', 'backward'),
       ]),
+      transition('list => creation', SharedAxisAnimation.apply('x', 'forward')),
+      transition(
+        'creation => list',
+        SharedAxisAnimation.apply('x', 'backward'),
+      ),
     ]),
   ],
 })

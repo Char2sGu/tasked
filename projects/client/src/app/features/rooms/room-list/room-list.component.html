@@ -3,56 +3,45 @@
     <mat-form-field fxFlex appearance="standard">
       <mat-label i18n>Search</mat-label>
       <input matInput name="search" type="search" [(ngModel)]="searchValue" />
-      <mat-hint i18n>
-        Search by room name or ID (prefix "#" is required for ID)
-      </mat-hint>
+      <mat-hint i18n>Search by room name or "#" + ID</mat-hint>
     </mat-form-field>
-
-    <span class="hidden sm:inline-block">
-      <button
-        mat-raised-button
-        class="uppercase"
-        color="primary"
-        [disabled]="loading"
-        i18n
-      >
-        Search
-      </button>
-    </span>
-    <span class="sm:hidden">
-      <button mat-icon-button [disabled]="loading">
-        <mat-icon>search</mat-icon>
-      </button>
-    </span>
+    <button mat-icon-button [disabled]="loading">
+      <mat-icon>search</mat-icon>
+    </button>
   </form>
 
   <mat-divider></mat-divider>
 
   <ng-container *ngIf="rooms$ | async as rooms">
-    <mat-action-list
-      class="overflow-auto"
-      *ngIf="rooms.length; else empty"
-      fxFlex
-    >
-      <app-room-list-item
-        *ngFor="let room of rooms"
-        [room]="room"
-      ></app-room-list-item>
-    </mat-action-list>
-    <ng-template #empty>
-      <app-empty-state-illustration
-        class="-mt-8"
-        headline="No teams yet"
-        message="Search to join a team, or create your own!"
+    <ng-container *ngIf="rooms.length; else empty">
+      <mat-action-list class="overflow-auto" fxFlex>
+        <app-room-list-item
+          *ngFor="let room of rooms"
+          [room]="room"
+        ></app-room-list-item>
+      </mat-action-list>
+
+      <a
+        mat-stroked-button
+        class="uppercase"
+        color="primary"
+        routerLink="create"
       >
-        <app-illustration name="teamwork"></app-illustration>
-      </app-empty-state-illustration>
-    </ng-template>
+        <div class="flex w-full items-center justify-center gap-1">
+          <mat-icon>add</mat-icon>
+          <span>New Room</span>
+        </div>
+      </a>
+    </ng-container>
   </ng-container>
 
-  <!-- <div class="absolute bottom-4 right-4">
-    <button mat-fab>
-      <mat-icon>add</mat-icon>
-    </button>
-  </div> -->
+  <ng-template #empty>
+    <app-empty-state-illustration
+      class="-mt-8"
+      headline="No teams yet"
+      message="Search to join a team, or create your own!"
+    >
+      <app-illustration name="teamwork"></app-illustration>
+    </app-empty-state-illustration>
+  </ng-template>
 </div>

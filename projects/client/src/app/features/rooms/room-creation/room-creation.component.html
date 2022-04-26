@@ -1,12 +1,19 @@
-<div class="mat-typography container">
-  <div class="title">
-    <span class="opacity--2" i18n>Task your life</span>
-    <h1 class="opacity--1" i18n>Create a room</h1>
-  </div>
+<div class="mat-typography h-full">
+  <mat-toolbar>
+    <div class="w-0 grow">
+      <app-back-button></app-back-button>
+    </div>
+    <div class="w-0 grow text-center">New Room</div>
+    <div class="w-0 grow"></div>
+  </mat-toolbar>
 
   <mat-divider></mat-divider>
 
-  <form (ngSubmit)="submit()" #form="ngForm">
+  <form
+    class="mx-auto flex w-4/5 max-w-[400px] flex-col gap-4 py-14"
+    (ngSubmit)="submit()"
+    #form="ngForm"
+  >
     <mat-form-field appearance="fill">
       <mat-label i18n>Name</mat-label>
       <input
@@ -33,7 +40,7 @@
       <mat-hint align="end">{{ data.description.length }} / 100</mat-hint>
     </mat-form-field>
 
-    <div class="actions">
+    <div class="mt-6 flex flex-col">
       <button
         mat-raised-button
         class="uppercase"
@@ -41,7 +48,7 @@
         type="submit"
         [disabled]="!form.valid || loading"
       >
-        <span *appLoading="loading; diameter: 25" i18n>Submit</span>
+        <span *appLoading="loading; diameter: 25" i18n>Create</span>
       </button>
     </div>
   </form>
