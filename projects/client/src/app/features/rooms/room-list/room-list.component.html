@@ -8,18 +8,22 @@
       </mat-hint>
     </mat-form-field>
 
-    <button
-      mat-raised-button
-      class="hidden uppercase sm:inline-block"
-      color="primary"
-      [disabled]="loading"
-      i18n
-    >
-      Search
-    </button>
-    <button mat-icon-button class="sm:hidden" [disabled]="loading">
-      <mat-icon>search</mat-icon>
-    </button>
+    <span class="hidden sm:inline-block">
+      <button
+        mat-raised-button
+        class="uppercase"
+        color="primary"
+        [disabled]="loading"
+        i18n
+      >
+        Search
+      </button>
+    </span>
+    <span class="sm:hidden">
+      <button mat-icon-button [disabled]="loading">
+        <mat-icon>search</mat-icon>
+      </button>
+    </span>
   </form>
 
   <mat-divider></mat-divider>
