@@ -1,0 +1,41 @@
+<mat-action-list>
+  <ng-container
+    *ngIf="admin; then actionDisband; else actionExit"
+  ></ng-container>
+
+  <ng-template #actionExit>
+    <button
+      mat-list-item
+      [disabled]="loading"
+      [appConfirmation]="{
+        title: 'Exit?',
+        message:
+          'Are you sure you want to exit this team? You can rejoin later, but all your data is gone forever.',
+        action: 'Exit'
+      }"
+      (confirm)="exit()"
+    >
+      <mat-icon matListIcon>logout</mat-icon>
+      <div matLine i18n>Exit this team</div>
+      <div matLine i18n>Remove your membership</div>
+    </button>
+  </ng-template>
+
+  <ng-template #actionDisband>
+    <button
+      mat-list-item
+      [disabled]="loading"
+      [appConfirmation]="{
+        title: 'Disband?',
+        message:
+          'This team and will be completely removed, all the data will disappear. Are you sure?',
+        action: 'Disband'
+      }"
+      (confirm)="disband()"
+    >
+      <mat-icon matListIcon>delete</mat-icon>
+      <div matLine i18n>Disband this team</div>
+      <div matLine i18n>Remove the entire team</div>
+    </button>
+  </ng-template>
+</mat-action-list>

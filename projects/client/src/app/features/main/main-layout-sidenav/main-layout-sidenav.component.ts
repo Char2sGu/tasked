@@ -15,8 +15,8 @@ export class MainLayoutSidenavComponent implements OnInit {
       icon: 'group_add',
     },
     {
-      text: 'Rooms',
-      commands: ['/', 'app', 'rooms'],
+      text: 'Teams',
+      commands: ['/', 'app', 'teams'],
       icon: 'workspaces',
     },
   ];

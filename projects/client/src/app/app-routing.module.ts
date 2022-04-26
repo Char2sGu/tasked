@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/app/rooms/last',
+    redirectTo: '/app/teams/last',
   },
   {
     path: 'auth',
@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/app/rooms',
+    redirectTo: '/app/teams',
   },
 ];
 

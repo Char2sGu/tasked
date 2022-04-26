@@ -7,7 +7,7 @@ A todo management [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive
 - Responsive Material UI - available for both desktops and mobiles
 - Robust GraphQL API - restricted query depth, breadth, and frequency.
 - Rich transitions - showed when loading
-- Rooms - separate rooms for specific colleagues
+- Teams - separate teams for specific colleagues
 - Roles - creators, managers and members have different permissions
 - Lazy loading - smaller bundle size
 - Multiple themes - a light one and a dark one, your preference by default

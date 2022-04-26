@@ -1,0 +1,22 @@
+<button
+  mat-list-item
+  (click)="openMenu($event, item._getHostElement(), helper)"
+  #item
+>
+  <mat-icon matListIcon [color]="iconColor">
+    {{ icon }}
+  </mat-icon>
+  <span matLine>
+    <app-username [user]="membership?.owner" [color]="true"></app-username>
+  </span>
+  <span matLine>
+    {{ membership ? roleText[membership.role] : null }}
+  </span>
+  <div class="menu-helper" [matMenuTriggerFor]="menu" #helper></div>
+</button>
+
+<mat-menu #menu>
+  <app-team-detail-sidebar-membership-list-item-menu
+    [membership]="membership"
+  ></app-team-detail-sidebar-membership-list-item-menu>
+</mat-menu>

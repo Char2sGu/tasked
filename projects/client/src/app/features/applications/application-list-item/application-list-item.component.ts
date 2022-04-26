@@ -38,7 +38,7 @@ export class ApplicationListItemComponent implements OnInit {
     private acceptGql: ApplicationAcceptGQL,
     private rejectGql: ApplicationRejectGQL,
     private deleteGql: ApplicationDeleteGQL,
-    private roomMembershipListGql: RoomMembershipListGQL,
+    private teamMembershipListGql: RoomMembershipListGQL,
   ) {}
 
   ngOnInit(): void {}
@@ -52,7 +52,7 @@ export class ApplicationListItemComponent implements OnInit {
         { id: application.id },
         {
           update: (_, result) => {
-            const query = this.roomMembershipListGql.watch({
+            const query = this.teamMembershipListGql.watch({
               id: application.room.id,
             });
             if (query.getCurrentResult().loading) return;

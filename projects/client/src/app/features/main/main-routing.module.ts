@@ -11,13 +11,13 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'rooms',
+        redirectTo: 'teams',
       },
       {
-        path: 'rooms',
+        path: 'teams',
         loadChildren: () =>
-          import('../rooms/rooms.module').then((m) => m.RoomsModule),
-        data: { animationState: 'rooms' },
+          import('../teams/teams.module').then((m) => m.TeamsModule),
+        data: { animationState: 'teams' },
       },
       {
         path: 'applications',

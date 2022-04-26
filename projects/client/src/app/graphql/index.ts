@@ -1206,6 +1206,78 @@ export type MembershipFragment = {
   };
 };
 
+export type TaskAssignmentListQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+export type TaskAssignmentListQuery = {
+  __typename?: 'Query';
+  task: {
+    __typename?: 'Task';
+    id: string;
+    assignments: {
+      __typename?: 'PaginatedAssignments';
+      total: number;
+      results: Array<{
+        __typename?: 'Assignment';
+        id: string;
+        recipient: { __typename?: 'Membership'; id: string };
+      }>;
+    };
+  };
+};
+
+export type TaskCreateMutationVariables = Exact<{
+  data: TaskCreateInput;
+}>;
+
+export type TaskCreateMutation = {
+  __typename?: 'Mutation';
+  createTask: {
+    __typename?: 'Task';
+    id: string;
+    title: string;
+    description?: string | null;
+    createdAt: any;
+    assignments: { __typename?: 'PaginatedAssignments'; total: number };
+  };
+};
+
+export type TaskDeleteMutationVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+export type TaskDeleteMutation = {
+  __typename?: 'Mutation';
+  deleteTask: { __typename?: 'Task'; id: string };
+};
+
+export type TaskUpdateMutationVariables = Exact<{
+  id: Scalars['ID'];
+  data: TaskUpdateInput;
+}>;
+
+export type TaskUpdateMutation = {
+  __typename?: 'Mutation';
+  updateTask: {
+    __typename?: 'Task';
+    id: string;
+    title: string;
+    description?: string | null;
+    createdAt: any;
+    assignments: { __typename?: 'PaginatedAssignments'; total: number };
+  };
+};
+
+export type TaskFragment = {
+  __typename?: 'Task';
+  id: string;
+  title: string;
+  description?: string | null;
+  createdAt: any;
+  assignments: { __typename?: 'PaginatedAssignments'; total: number };
+};
+
 export type RoomCreateMutationVariables = Exact<{
   data: RoomCreateInput;
 }>;
@@ -1353,78 +1425,6 @@ export type RoomFragment = {
   membership?: { __typename?: 'Membership'; id: string; role: Role } | null;
 };
 
-export type TaskAssignmentListQueryVariables = Exact<{
-  id: Scalars['ID'];
-}>;
-
-export type TaskAssignmentListQuery = {
-  __typename?: 'Query';
-  task: {
-    __typename?: 'Task';
-    id: string;
-    assignments: {
-      __typename?: 'PaginatedAssignments';
-      total: number;
-      results: Array<{
-        __typename?: 'Assignment';
-        id: string;
-        recipient: { __typename?: 'Membership'; id: string };
-      }>;
-    };
-  };
-};
-
-export type TaskCreateMutationVariables = Exact<{
-  data: TaskCreateInput;
-}>;
-
-export type TaskCreateMutation = {
-  __typename?: 'Mutation';
-  createTask: {
-    __typename?: 'Task';
-    id: string;
-    title: string;
-    description?: string | null;
-    createdAt: any;
-    assignments: { __typename?: 'PaginatedAssignments'; total: number };
-  };
-};
-
-export type TaskDeleteMutationVariables = Exact<{
-  id: Scalars['ID'];
-}>;
-
-export type TaskDeleteMutation = {
-  __typename?: 'Mutation';
-  deleteTask: { __typename?: 'Task'; id: string };
-};
-
-export type TaskUpdateMutationVariables = Exact<{
-  id: Scalars['ID'];
-  data: TaskUpdateInput;
-}>;
-
-export type TaskUpdateMutation = {
-  __typename?: 'Mutation';
-  updateTask: {
-    __typename?: 'Task';
-    id: string;
-    title: string;
-    description?: string | null;
-    createdAt: any;
-    assignments: { __typename?: 'PaginatedAssignments'; total: number };
-  };
-};
-
-export type TaskFragment = {
-  __typename?: 'Task';
-  id: string;
-  title: string;
-  description?: string | null;
-  createdAt: any;
-  assignments: { __typename?: 'PaginatedAssignments'; total: number };
-};
-
 export type UserCreateMutationVariables = Exact<{
   data: UserCreateInput;
 }>;
@@ -1504,6 +1504,17 @@ export const MembershipFragmentDoc = gql`
     role
   }
 `;
+export const TaskFragmentDoc = gql`
+  fragment Task on Task {
+    id
+    title
+    description
+    assignments {
+      total
+    }
+    createdAt
+  }
+`;
 export const RoomFragmentDoc = gql`
   fragment Room on Room {
     id
@@ -1519,17 +1530,6 @@ export const RoomFragmentDoc = gql`
       id
       role
     }
-  }
-`;
-export const TaskFragmentDoc = gql`
-  fragment Task on Task {
-    id
-    title
-    description
-    assignments {
-      total
-    }
-    createdAt
   }
 `;
 export const UserFragmentDoc = gql`
@@ -1880,6 +1880,99 @@ export class MembershipUpdateGQL extends Apollo.Mutation<
     super(apollo);
   }
 }
+export const TaskAssignmentListDocument = gql`
+  query TaskAssignmentList($id: ID!) {
+    task(id: $id) {
+      id
+      assignments {
+        total
+        results {
+          ...Assignment
+        }
+      }
+    }
+  }
+  ${AssignmentFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class TaskAssignmentListGQL extends Apollo.Query<
+  TaskAssignmentListQuery,
+  TaskAssignmentListQueryVariables
+> {
+  override document = TaskAssignmentListDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const TaskCreateDocument = gql`
+  mutation TaskCreate($data: TaskCreateInput!) {
+    createTask(data: $data) {
+      ...Task
+    }
+  }
+  ${TaskFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class TaskCreateGQL extends Apollo.Mutation<
+  TaskCreateMutation,
+  TaskCreateMutationVariables
+> {
+  override document = TaskCreateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const TaskDeleteDocument = gql`
+  mutation TaskDelete($id: ID!) {
+    deleteTask(id: $id) {
+      id
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class TaskDeleteGQL extends Apollo.Mutation<
+  TaskDeleteMutation,
+  TaskDeleteMutationVariables
+> {
+  override document = TaskDeleteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const TaskUpdateDocument = gql`
+  mutation TaskUpdate($id: ID!, $data: TaskUpdateInput!) {
+    updateTask(id: $id, data: $data) {
+      ...Task
+    }
+  }
+  ${TaskFragmentDoc}
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class TaskUpdateGQL extends Apollo.Mutation<
+  TaskUpdateMutation,
+  TaskUpdateMutationVariables
+> {
+  override document = TaskUpdateDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const RoomCreateDocument = gql`
   mutation RoomCreate($data: RoomCreateInput!) {
     createRoom(data: $data) {
@@ -2020,99 +2113,6 @@ export class RoomUpdateGQL extends Apollo.Mutation<
   RoomUpdateMutationVariables
 > {
   override document = RoomUpdateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const TaskAssignmentListDocument = gql`
-  query TaskAssignmentList($id: ID!) {
-    task(id: $id) {
-      id
-      assignments {
-        total
-        results {
-          ...Assignment
-        }
-      }
-    }
-  }
-  ${AssignmentFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class TaskAssignmentListGQL extends Apollo.Query<
-  TaskAssignmentListQuery,
-  TaskAssignmentListQueryVariables
-> {
-  override document = TaskAssignmentListDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const TaskCreateDocument = gql`
-  mutation TaskCreate($data: TaskCreateInput!) {
-    createTask(data: $data) {
-      ...Task
-    }
-  }
-  ${TaskFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class TaskCreateGQL extends Apollo.Mutation<
-  TaskCreateMutation,
-  TaskCreateMutationVariables
-> {
-  override document = TaskCreateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const TaskDeleteDocument = gql`
-  mutation TaskDelete($id: ID!) {
-    deleteTask(id: $id) {
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class TaskDeleteGQL extends Apollo.Mutation<
-  TaskDeleteMutation,
-  TaskDeleteMutationVariables
-> {
-  override document = TaskDeleteDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const TaskUpdateDocument = gql`
-  mutation TaskUpdate($id: ID!, $data: TaskUpdateInput!) {
-    updateTask(id: $id, data: $data) {
-      ...Task
-    }
-  }
-  ${TaskFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class TaskUpdateGQL extends Apollo.Mutation<
-  TaskUpdateMutation,
-  TaskUpdateMutationVariables
-> {
-  override document = TaskUpdateDocument;
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo);

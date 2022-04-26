@@ -11,7 +11,7 @@ import { RouterOutletDataReader } from '../../../common/router';
   viewProviders: [RouterOutletDataReader],
   animations: [
     trigger('fadeThrough', [
-      transition('rooms <=> applications', [FadeThroughAnimation.apply()]),
+      transition('teams <=> applications', [FadeThroughAnimation.apply()]),
     ]),
   ],
 })

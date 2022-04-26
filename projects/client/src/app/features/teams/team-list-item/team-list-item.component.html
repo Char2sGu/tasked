@@ -1,0 +1,35 @@
+<button mat-list-item (click)="handleClick()">
+  <div matLine>
+    <mat-icon *ngIf="!team?.membership" inline>send</mat-icon>
+    <span>{{ team?.name }}</span>
+    <span class="opacity--2">#{{ team?.id }}</span>
+  </div>
+  <div matLine>
+    <app-username [user]="team?.creator"></app-username>
+  </div>
+</button>
+
+<ng-template appModal #modal="appModal">
+  <form class="popup" ngClass.xs="mobile" (ngSubmit)="apply()">
+    <div matDialogTitle i18n>Join</div>
+
+    <div matDialogContent>
+      <mat-form-field>
+        <mat-label i18n>Message</mat-label>
+        <input
+          matInput
+          name="text"
+          type="text"
+          [disabled]="this.loading"
+          [(ngModel)]="message"
+        />
+      </mat-form-field>
+    </div>
+
+    <div matDialogActions fxLayout fxLayoutAlign="end">
+      <button mat-button class="uppercase" [disabled]="this.loading" i18n>
+        Send
+      </button>
+    </div>
+  </form>
+</ng-template>

@@ -16,8 +16,6 @@ import { ApplicationListItemComponent } from './application-list-item/applicatio
 import { ApplicationsComponent } from './applications.component';
 import { ApplicationsRoutingModule } from './applications-routing.module';
 
-// TODO: combine with rooms
-
 @NgModule({
   declarations: [
     ApplicationsComponent,
