@@ -10,8 +10,7 @@ import {
   MembershipAssignmentListQuery,
 } from '../../../graphql';
 
-// TODO: expand on click for more detail instead of popup a modal
-// TODO: slide to mark as important on mobile
+// TODO: use an individual page to display  detail
 
 type Assignment =
   MembershipAssignmentListQuery['membership']['assignments']['results'][number];

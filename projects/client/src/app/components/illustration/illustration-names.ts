@@ -1,5 +1,3 @@
-// TODO: sync with the actual assets somehow
-
 export const ILLUSTRATION_NAMES = [
   'accept-request',
   'add-tasks',

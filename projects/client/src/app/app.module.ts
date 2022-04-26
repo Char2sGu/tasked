@@ -16,7 +16,6 @@ import { GraphqlModule } from './graphql/graphql.module';
 import { LayoutModule } from './layout/layout.module';
 
 // TODO: offline support
-// TODO: single instance layout component
 
 registerLocaleData(en);
 

@@ -15,7 +15,7 @@ import { TeamDetailState } from '../team-detail/team-detail-state.service';
 export type Task =
   MembershipTaskListQuery['membership']['tasks']['results'][number];
 
-// TODO: animation on item removal
+// TODO: animate item removals
 // TODO: truncate long task descriptions
 // TODO: show a skeleton while loading
 
