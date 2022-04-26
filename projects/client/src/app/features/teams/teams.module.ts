@@ -31,6 +31,7 @@ import { UsernameModule } from '../../components/username/username.module';
 import { SharedModule } from '../../shared/shared.module';
 import { TeamCreationComponent } from './team-creation/team-creation.component';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
+import { TeamDetailLayoutDirective } from './team-detail/team-detail-layout.directive';
 import { TeamDetailSidebarComponent } from './team-detail-sidebar/team-detail-sidebar.component';
 import { TeamDetailSidebarMembershipListComponent } from './team-detail-sidebar-membership-list/team-detail-sidebar-membership-list.component';
 import { TeamDetailSidebarMembershipListItemComponent } from './team-detail-sidebar-membership-list-item/team-detail-sidebar-membership-list-item.component';
@@ -46,6 +47,7 @@ import { TeamDetailTabTasksComponent } from './team-detail-tab-tasks/team-detail
 import { TeamDetailTabTasksItemComponent } from './team-detail-tab-tasks-item/team-detail-tab-tasks-item.component';
 import { TeamDetailTabTasksItemAssignPopupComponent } from './team-detail-tab-tasks-item-assign-popup/team-detail-tab-tasks-item-assign-popup.component';
 import { TeamDetailTabTasksItemEditPopupComponent } from './team-detail-tab-tasks-item-edit-popup/team-detail-tab-tasks-item-edit-popup.component';
+import { TeamDetailTabsComponent } from './team-detail-tabs/team-detail-tabs.component';
 import { TeamDetailTaskCreationBarComponent } from './team-detail-task-creation-bar/team-detail-task-creation-bar.component';
 import { TeamListComponent } from './team-list/team-list.component';
 import { TeamListItemComponent } from './team-list-item/team-list-item.component';
@@ -77,6 +79,8 @@ import { TeamsRoutingModule } from './teams-routing.module';
     TeamRedirectorComponent,
     TeamListComponent,
     TeamListItemComponent,
+    TeamDetailTabsComponent,
+    TeamDetailLayoutDirective,
   ],
   imports: [
     SharedModule,

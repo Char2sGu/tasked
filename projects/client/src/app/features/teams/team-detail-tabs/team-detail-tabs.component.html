@@ -1,0 +1,56 @@
+<ng-container
+  *ngIf="{
+    team: team$ | async,
+    links: links$ | async,
+    sidebarOpen: sidebarOpen$ | async,
+    sidebarMode: sidebarMode$ | async,
+    linkIndexActive: linkIndexActive$ | async
+  } as data"
+>
+  <ng-container *ngIf="data.team && data.sidebarMode">
+    <ng-container *appTeamDetailLayout="'header'">
+      <div class="grow">
+        <app-back-button></app-back-button>
+      </div>
+      <div class="flex grow justify-center">
+        <span>{{ data.team.name }}</span>
+        <span class="text-medium-emphasis">#{{ data.team.id }}</span>
+      </div>
+      <div class="flex grow justify-end">
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+
+    <mat-drawer-container class="h-full">
+      <mat-drawer
+        class="fallback-css"
+        position="end"
+        [opened]="data.sidebarOpen"
+        [mode]="data.sidebarMode"
+        #drawer
+      >
+        <app-team-detail-sidebar></app-team-detail-sidebar>
+      </mat-drawer>
+      <mat-drawer-content class="h-full py-5 px-4 md:px-12">
+        <div class="flex h-full flex-col">
+          <nav mat-tab-nav-bar>
+            <a
+              matTabLink
+              *ngFor="let link of data.links; let index = index"
+              [routerLink]="link.commands"
+              routerLinkActive
+              [active]="index == data.linkIndexActive"
+            >
+              {{ link.title }}
+            </a>
+          </nav>
+          <div class="h-0 grow overflow-auto" [@tab]="data.linkIndexActive">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </ng-container>
+</ng-container>

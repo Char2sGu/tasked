@@ -73,6 +73,7 @@ export class SharedAxisAnimation extends Animation {
     ),
     group([
       query(':leave', [
+        PreserveChildRoutesAnimation.apply(),
         animate(
           `90ms ${AnimationCurves.ACCELERATION_CURVE}`,
           style({ opacity: 0 }),

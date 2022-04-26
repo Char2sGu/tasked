@@ -7,6 +7,7 @@ import { TeamDetailTabAssignmentsComponent } from './team-detail-tab-assignments
 import { TeamDetailTabRedirectorComponent } from './team-detail-tab-redirector/team-detail-tab-redirector.component';
 import { TeamDetailTabSettingsComponent } from './team-detail-tab-settings/team-detail-tab-settings.component';
 import { TeamDetailTabTasksComponent } from './team-detail-tab-tasks/team-detail-tab-tasks.component';
+import { TeamDetailTabsComponent } from './team-detail-tabs/team-detail-tabs.component';
 import { TeamListComponent } from './team-list/team-list.component';
 import { TeamRedirectorComponent } from './team-redirector/team-redirector.component';
 import { TeamsComponent } from './teams.component';
@@ -37,20 +38,26 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: TeamDetailTabRedirectorComponent,
-            pathMatch: 'exact',
-          },
-          {
-            path: 'assignments',
-            component: TeamDetailTabAssignmentsComponent,
-          },
-          {
-            path: 'tasks',
-            component: TeamDetailTabTasksComponent,
-          },
-          {
-            path: 'settings',
-            component: TeamDetailTabSettingsComponent,
+            component: TeamDetailTabsComponent,
+            children: [
+              {
+                path: '',
+                component: TeamDetailTabRedirectorComponent,
+                pathMatch: 'exact',
+              },
+              {
+                path: 'assignments',
+                component: TeamDetailTabAssignmentsComponent,
+              },
+              {
+                path: 'tasks',
+                component: TeamDetailTabTasksComponent,
+              },
+              {
+                path: 'settings',
+                component: TeamDetailTabSettingsComponent,
+              },
+            ],
           },
         ],
       },
