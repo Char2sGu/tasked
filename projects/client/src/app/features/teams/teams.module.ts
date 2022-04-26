@@ -31,22 +31,22 @@ import { UsernameModule } from '../../components/username/username.module';
 import { SharedModule } from '../../shared/shared.module';
 import { TeamCreationComponent } from './team-creation/team-creation.component';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
-import { TeamDetailAssignmentsComponent } from './team-detail-assignments/team-detail-assignments.component';
-import { TeamDetailAssignmentsItemComponent } from './team-detail-assignments-item/team-detail-assignments-item.component';
-import { TeamDetailAssignmentsItemDetailComponent } from './team-detail-assignments-item-detail/team-detail-assignments-item-detail.component';
-import { TeamDetailSettingsComponent } from './team-detail-settings/team-detail-settings.component';
-import { TeamDetailSettingsActionsComponent } from './team-detail-settings-actions/team-detail-settings-actions.component';
-import { TeamDetailSettingsSectionComponent } from './team-detail-settings-section/team-detail-settings-section.component';
 import { TeamDetailSidebarComponent } from './team-detail-sidebar/team-detail-sidebar.component';
 import { TeamDetailSidebarMembershipListComponent } from './team-detail-sidebar-membership-list/team-detail-sidebar-membership-list.component';
 import { TeamDetailSidebarMembershipListItemComponent } from './team-detail-sidebar-membership-list-item/team-detail-sidebar-membership-list-item.component';
 import { TeamDetailSidebarMembershipListItemMenuComponent } from './team-detail-sidebar-membership-list-item-menu/team-detail-sidebar-membership-list-item-menu.component';
+import { TeamDetailTabAssignmentsComponent } from './team-detail-tab-assignments/team-detail-tab-assignments.component';
+import { TeamDetailTabAssignmentsItemComponent } from './team-detail-tab-assignments-item/team-detail-tab-assignments-item.component';
+import { TeamDetailTabAssignmentsItemDetailComponent } from './team-detail-tab-assignments-item-detail/team-detail-tab-assignments-item-detail.component';
 import { TeamDetailTabRedirectorComponent } from './team-detail-tab-redirector/team-detail-tab-redirector.component';
+import { TeamDetailTabSettingsComponent } from './team-detail-tab-settings/team-detail-tab-settings.component';
+import { TeamDetailTabSettingsActionsComponent } from './team-detail-tab-settings-actions/team-detail-tab-settings-actions.component';
+import { TeamDetailTabSettingsSectionComponent } from './team-detail-tab-settings-section/team-detail-tab-settings-section.component';
+import { TeamDetailTabTasksComponent } from './team-detail-tab-tasks/team-detail-tab-tasks.component';
+import { TeamDetailTabTasksItemComponent } from './team-detail-tab-tasks-item/team-detail-tab-tasks-item.component';
+import { TeamDetailTabTasksItemAssignPopupComponent } from './team-detail-tab-tasks-item-assign-popup/team-detail-tab-tasks-item-assign-popup.component';
+import { TeamDetailTabTasksItemEditPopupComponent } from './team-detail-tab-tasks-item-edit-popup/team-detail-tab-tasks-item-edit-popup.component';
 import { TeamDetailTaskCreationBarComponent } from './team-detail-task-creation-bar/team-detail-task-creation-bar.component';
-import { TeamDetailTasksComponent } from './team-detail-tasks/team-detail-tasks.component';
-import { TeamDetailTasksItemComponent } from './team-detail-tasks-item/team-detail-tasks-item.component';
-import { TeamDetailTasksItemAssignPopupComponent } from './team-detail-tasks-item-assign-popup/team-detail-tasks-item-assign-popup.component';
-import { TeamDetailTasksItemEditPopupComponent } from './team-detail-tasks-item-edit-popup/team-detail-tasks-item-edit-popup.component';
 import { TeamListComponent } from './team-list/team-list.component';
 import { TeamListItemComponent } from './team-list-item/team-list-item.component';
 import { TeamRedirectorComponent } from './team-redirector/team-redirector.component';
@@ -58,17 +58,17 @@ import { TeamsRoutingModule } from './teams-routing.module';
     TeamsComponent,
     TeamDetailComponent,
     TeamCreationComponent,
-    TeamDetailAssignmentsComponent,
-    TeamDetailAssignmentsItemComponent,
-    TeamDetailAssignmentsItemDetailComponent,
-    TeamDetailTasksComponent,
-    TeamDetailTasksItemComponent,
-    TeamDetailTasksItemAssignPopupComponent,
-    TeamDetailTasksItemEditPopupComponent,
+    TeamDetailTabAssignmentsComponent,
+    TeamDetailTabAssignmentsItemComponent,
+    TeamDetailTabAssignmentsItemDetailComponent,
+    TeamDetailTabTasksComponent,
+    TeamDetailTabTasksItemComponent,
+    TeamDetailTabTasksItemAssignPopupComponent,
+    TeamDetailTabTasksItemEditPopupComponent,
     TeamDetailTaskCreationBarComponent,
-    TeamDetailSettingsComponent,
-    TeamDetailSettingsSectionComponent,
-    TeamDetailSettingsActionsComponent,
+    TeamDetailTabSettingsComponent,
+    TeamDetailTabSettingsSectionComponent,
+    TeamDetailTabSettingsActionsComponent,
     TeamDetailTabRedirectorComponent,
     TeamDetailSidebarComponent,
     TeamDetailSidebarMembershipListComponent,

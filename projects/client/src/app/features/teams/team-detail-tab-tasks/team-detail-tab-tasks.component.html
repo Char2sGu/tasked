@@ -1,0 +1,29 @@
+<div class="relative flex h-full flex-col overflow-auto pt-7">
+  <div class="flex-1 overflow-y-auto overflow-x-hidden">
+    <ng-container *ngIf="tasks$ | async as tasks">
+      <ngx-masonry *ngIf="tasks.length; else empty">
+        <app-team-detail-tab-tasks-item
+          ngxMasonryItem
+          *ngFor="let task of tasks; trackBy: taskTracker"
+          class="block w-full sm:w-1/2 lg:w-1/3"
+          [task]="task"
+        ></app-team-detail-tab-tasks-item>
+      </ngx-masonry>
+      <app-infinity-scroll-trigger
+        *ngIf="loadingMoreNeeded"
+        [loading]="loadingMore"
+        (trigger)="loadMore()"
+      ></app-infinity-scroll-trigger>
+      <ng-template #empty>
+        <app-empty-state-illustration
+          headline="Nothing here"
+          message="Add a task to start your awesome project!"
+        >
+          <app-illustration name="add-tasks"></app-illustration>
+        </app-empty-state-illustration>
+      </ng-template>
+    </ng-container>
+  </div>
+  <mat-divider></mat-divider>
+  <app-team-detail-task-creation-bar></app-team-detail-task-creation-bar>
+</div>

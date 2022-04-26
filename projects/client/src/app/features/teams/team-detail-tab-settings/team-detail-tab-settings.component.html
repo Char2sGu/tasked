@@ -1,0 +1,80 @@
+<div class="mat-typography mx-auto my-7 flex w-11/12 flex-col gap-7 md:w-9/12">
+  <app-team-detail-tab-settings-section>
+    <ng-container ngProjectAs="title" i18n>Basic</ng-container>
+    <ng-container ngProjectAs="content">
+      <mat-form-field>
+        <mat-label i18n>Name</mat-label>
+        <input
+          matInput
+          [disabled]="!(isCreator$ | async)"
+          maxlength="15"
+          [(ngModel)]="data.name"
+          (ngModelChange)="change$$.next($event)"
+        />
+        <mat-hint align="end">{{ data.name?.length }} / 15</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label i18n>Description</mat-label>
+        <textarea
+          matInput
+          rows="3"
+          [disabled]="!(isCreator$ | async)"
+          maxlength="100"
+          [(ngModel)]="data.description"
+          (ngModelChange)="change$$.next($event)"
+        ></textarea>
+        <mat-hint align="end">{{ data.description?.length }} / 100</mat-hint>
+      </mat-form-field>
+    </ng-container>
+  </app-team-detail-tab-settings-section>
+
+  <app-team-detail-tab-settings-section>
+    <ng-container ngProjectAs="title" i18n>Access</ng-container>
+    <ng-container ngProjectAs="content">
+      <div class="flex gap-1">
+        <mat-slide-toggle
+          [disabled]="!(isCreator$ | async)"
+          [(ngModel)]="data.isOpen"
+          (ngModelChange)="change$$.next($event)"
+        >
+          <span i18n>Open to public</span>
+        </mat-slide-toggle>
+        <app-help-icon
+          message="If turned off, others will be unable to join this team"
+          i18n-message
+        ></app-help-icon>
+      </div>
+    </ng-container>
+  </app-team-detail-tab-settings-section>
+
+  <section class="mt-14 flex flex-row-reverse">
+    <div class="flex gap-2">
+      <button
+        mat-raised-button
+        class="uppercase"
+        [disabled]="!(modified$ | async) || loading"
+        (click)="reset()"
+      >
+        <span i18n>Reset</span>
+      </button>
+      <button
+        mat-raised-button
+        class="uppercase"
+        color="primary"
+        [disabled]="!(modified$ | async) || loading"
+        (click)="save()"
+      >
+        <span *appLoading="loading; diameter: 25" i18n>Save</span>
+      </button>
+    </div>
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <section>
+    <app-team-detail-tab-settings-actions
+      [admin]="!!(isCreator$ | async)"
+    ></app-team-detail-tab-settings-actions>
+  </section>
+</div>

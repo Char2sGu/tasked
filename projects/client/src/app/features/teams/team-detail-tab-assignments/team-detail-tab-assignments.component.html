@@ -1,0 +1,67 @@
+<ng-container
+  *ngIf="{
+    assignmentsPending: assignmentsPending$ | async,
+    assignmentsCompleted: assignmentsCompleted$ | async
+  } as data"
+>
+  <mat-action-list>
+    <ng-container
+      *ngIf="
+        data.assignmentsPending && data.assignmentsCompleted;
+        else skeleton
+      "
+    >
+      <ng-container
+        *ngIf="
+          data.assignmentsPending.length || data.assignmentsCompleted.length;
+          else empty
+        "
+      >
+        <h3 matSubheader *ngIf="data.assignmentsPending.length" i18n>
+          Pending
+        </h3>
+
+        <app-team-detail-tab-assignments-item
+          *ngFor="let assignment of data.assignmentsPending"
+          [assignment]="assignment"
+        ></app-team-detail-tab-assignments-item>
+
+        <h3 matSubheader *ngIf="data.assignmentsCompleted.length" i18n>
+          Completed
+        </h3>
+
+        <app-team-detail-tab-assignments-item
+          *ngFor="let assignment of data.assignmentsCompleted"
+          [assignment]="assignment"
+        ></app-team-detail-tab-assignments-item>
+
+        <app-infinity-scroll-trigger
+          *ngIf="loadingMoreNeeded"
+          [loading]="loadingMore"
+          (trigger)="fetchMore()"
+        ></app-infinity-scroll-trigger>
+      </ng-container>
+    </ng-container>
+  </mat-action-list>
+</ng-container>
+
+<ng-template #skeleton>
+  <h3 matSubheader></h3>
+  <ngx-skeleton-loader
+    count="1"
+    [theme]="{ width: '80%' }"
+  ></ngx-skeleton-loader>
+  <ngx-skeleton-loader
+    count="1"
+    [theme]="{ width: '60%' }"
+  ></ngx-skeleton-loader>
+</ng-template>
+
+<ng-template #empty>
+  <app-empty-state-illustration
+    headline="No assignments"
+    message="Take your chance! It's the best time for fun!"
+  >
+    <app-illustration name="walking-outside"></app-illustration>
+  </app-empty-state-illustration>
+</ng-template>
