@@ -2,6 +2,7 @@
 @use '@angular/material' as mat;
 @use './utilities';
 @use './themes' as themes;
+@use './material-patches' as mat-patches;
 @use 'sass:map' as map;
 @use 'sass:color' as color;
 
@@ -78,3 +79,5 @@ body {
   }
   --pwa-theme-color: #{map.get($theme, 'color', 'background', 'app-bar')};
 }
+
+@include mat-patches.nav-list();

@@ -1,0 +1,25 @@
+// Angular Material is definitely a piece of shit
+
+// https://material.io/components/navigation-drawer
+@mixin nav-list {
+  mat-nav-list {
+    a[mat-list-item] {
+      height: 40px !important;
+      margin: 0 8px !important;
+      margin-bottom: 4px !important;
+      width: calc(100% - 16px) !important;
+      border-radius: 4px !important;
+      .mat-list-item-content {
+        padding: 0 8px !important;
+      }
+      mat-icon {
+        padding: initial !important;
+        margin-right: 32px;
+      }
+      .mat-list-text {
+        font-size: 13px !important;
+        padding: initial !important;
+      }
+    }
+  }
+}
