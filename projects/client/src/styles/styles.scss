@@ -60,11 +60,11 @@ body {
   @include text-selection($theme);
   mat-icon {
     color: rgba(0, 0, 0, 0.54);
-    .mat-button-disabled &,
-    .mat-primary &,
-    .router-link-active & {
-      color: inherit;
-    }
+  }
+  .mat-button-disabled mat-icon,
+  .mat-primary mat-icon,
+  .router-link-active mat-icon {
+    color: inherit;
   }
   --pwa-theme-color: #{map.get($theme, 'color', 'primary', 'default')};
 }
