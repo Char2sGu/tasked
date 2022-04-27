@@ -14,4 +14,14 @@
   <app-profile-btn></app-profile-btn>
 </app-header>
 
-<app-main-layout-sidenav *appLayout="'navigation'"></app-main-layout-sidenav>
+<mat-nav-list *appLayout="'navigation'">
+  <a
+    mat-list-item
+    *ngFor="let link of links"
+    [routerLink]="link.commands"
+    routerLinkActive="router-link-active"
+  >
+    <mat-icon matListIcon>{{ link.icon }}</mat-icon>
+    <div matLine i18n>{{ link.text }}</div>
+  </a>
+</mat-nav-list>
