@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -20,6 +21,7 @@ import { MainRoutingModule } from './main-routing.module';
     MatDividerModule,
     MatIconModule,
     MatListModule,
+    MatButtonModule,
     NgxSkeletonLoaderModule,
     LayoutModule,
     ProfileModule,

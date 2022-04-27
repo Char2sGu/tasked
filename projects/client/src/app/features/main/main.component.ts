@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { FadeThroughAnimation } from '../../common/animations';
 import { RouterOutletDataReader } from '../../common/router';
+import { AuthService } from '../auth/auth.service';
+
+// TODO: account switching
+// TODO: account page
 
 @Component({
   selector: 'app-main',
@@ -16,6 +20,7 @@ import { RouterOutletDataReader } from '../../common/router';
   ],
 })
 export class MainComponent implements OnInit {
+  user$ = this.authService.user$;
   links: Link[] = [
     {
       text: 'Teams',
@@ -29,7 +34,10 @@ export class MainComponent implements OnInit {
     },
   ];
 
-  constructor(public routerOutletDataReader: RouterOutletDataReader) {}
+  constructor(
+    public routerOutletDataReader: RouterOutletDataReader,
+    private authService: AuthService,
+  ) {}
 
   ngOnInit(): void {}
 }
