@@ -2,9 +2,11 @@
   *ngIf="{
     theme: theme$ | async,
     desktop: isBreakpointXLargeMatched$ | async,
-    navigationContent: navigationContent$ | async
+    headerContent: headerContent$ | async,
+    navigationContent: navigationContent$ | async,
+    navigatingAndBlocked: navigatingAndBlocked$ | async
   } as data"
-  class="flex h-full flex-col"
+  class="relative flex h-full flex-col"
   (navigationStart)="navigating$.next(true)"
   (navigationEnd)="navigating$.next(false)"
 >
@@ -13,13 +15,11 @@
     [class.text-primary]="data.theme == 'dark'"
     [color]="data.theme == 'light' ? 'primary' : undefined"
   >
-    <ng-container [cdkPortalOutlet]="headerContent$ | async"></ng-container>
+    <ng-container [cdkPortalOutlet]="data.headerContent"></ng-container>
   </mat-toolbar>
-  <mat-progress-bar
-    *ngIf="navigatingAndBlocked$ | async"
-    class="order-1"
-    mode="indeterminate"
-  ></mat-progress-bar>
+  <div *ngIf="data.navigatingAndBlocked" class="absolute inset-0 z-10">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
   <mat-sidenav-container class="order-3 h-full flex-1 overflow-auto">
     <mat-sidenav
       class="w-64"
