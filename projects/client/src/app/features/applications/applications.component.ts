@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ApplicationState } from './shared/application-state.service';
 
+// TODO: beautify
+
 @Component({
   selector: 'app-applications',
   templateUrl: './applications.component.html',

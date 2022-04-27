@@ -10,14 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class MainLayoutSidenavComponent implements OnInit {
   items: Item[] = [
     {
-      text: 'Applications',
-      commands: ['/', 'app', 'applications'],
-      icon: 'group_add',
-    },
-    {
       text: 'Teams',
       commands: ['/', 'app', 'teams'],
       icon: 'workspaces',
+    },
+    {
+      text: 'Applications',
+      commands: ['/', 'app', 'applications'],
+      icon: 'group_add',
     },
   ];
 
