@@ -1,0 +1,42 @@
+<mat-list *ngIf="user$ | async as user">
+  <h3 matSubheader>Profile</h3>
+  <app-settings-list-item
+    name="Username"
+    icon="fingerprint"
+    [value]="user.username"
+    [editable]="false"
+  ></app-settings-list-item>
+  <app-settings-list-item
+    name="Nickname"
+    icon="badge"
+    [value]="user.nickname"
+    [editable]="true"
+    (edit)="editNicknameModal.openDialog()"
+  >
+  </app-settings-list-item>
+  <app-settings-list-item
+    name="Password"
+    icon="password"
+    value=""
+    [editable]="true"
+    (edit)="editPasswordModal.openDialog()"
+  >
+  </app-settings-list-item>
+  <app-settings-list-item
+    name="Gender"
+    icon="star"
+    [value]="user.gender"
+    [editable]="true"
+    (edit)="editGenderModal.openDialog()"
+  ></app-settings-list-item>
+</mat-list>
+
+<ng-template appModal #editNicknameModal="appModal">
+  <app-settings-edit-nickname-modal></app-settings-edit-nickname-modal>
+</ng-template>
+<ng-template appModal #editPasswordModal="appModal">
+  <app-settings-edit-password-modal></app-settings-edit-password-modal>
+</ng-template>
+<ng-template appModal #editGenderModal="appModal">
+  <app-settings-edit-gender-modal></app-settings-edit-gender-modal>
+</ng-template>

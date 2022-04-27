@@ -1,6 +1,6 @@
 <div
   class="h-full"
-  [@fadeThrough]="routerOutletDataReader.read()?.['animationState']"
+  [@router]="routerOutletDataReader.read()?.['animationState']"
 >
   <router-outlet></router-outlet>
 </div>
@@ -11,20 +11,22 @@
 >
   <app-theme-button></app-theme-button>
   <app-refetch-button></app-refetch-button>
-  <app-profile-btn></app-profile-btn>
+  <a mat-icon-button matTooltip="Settings" [routerLink]="['settings']">
+    <mat-icon>settings</mat-icon>
+  </a>
 </app-header>
 
 <div class="flex h-full flex-col" *appLayout="'navigation'">
-  <mat-action-list class="mb-2" *ngIf="user$ | async as user">
-    <button mat-list-item>
+  <mat-list class="mb-2" *ngIf="user$ | async as user">
+    <mat-list-item>
       <div matLine>
         {{ user.nickname || user.username }}
       </div>
       <div matLine class="text-medium-emphasis">
-        {{ (user.nickname && user.username) || 'Account Settings' }}
+        {{ (user.nickname && user.username) || 'Logged in as' }}
       </div>
-    </button>
-  </mat-action-list>
+    </mat-list-item>
+  </mat-list>
 
   <mat-divider></mat-divider>
 

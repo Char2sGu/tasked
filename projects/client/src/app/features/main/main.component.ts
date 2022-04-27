@@ -1,12 +1,14 @@
 import { transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
-import { FadeThroughAnimation } from '../../common/animations';
+import {
+  FadeThroughAnimation,
+  SharedAxisAnimation,
+} from '../../common/animations';
 import { RouterOutletDataReader } from '../../common/router';
 import { AuthService } from '../auth/auth.service';
 
 // TODO: account switching
-// TODO: account page
 
 @Component({
   selector: 'app-main',
@@ -14,8 +16,14 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./main.component.scss'],
   viewProviders: [RouterOutletDataReader],
   animations: [
-    trigger('fadeThrough', [
+    trigger('router', [
       transition('teams <=> applications', [FadeThroughAnimation.apply()]),
+      transition('teams => settings, applications => settings', [
+        SharedAxisAnimation.apply('z', 'forward'),
+      ]),
+      transition('settings => teams, settings => applications', [
+        SharedAxisAnimation.apply('z', 'backward'),
+      ]),
     ]),
   ],
 })

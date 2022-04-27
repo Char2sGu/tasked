@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { ProfileModule } from '../../components/profile/profile.module';
@@ -22,6 +23,7 @@ import { MainRoutingModule } from './main-routing.module';
     MatIconModule,
     MatListModule,
     MatButtonModule,
+    MatTooltipModule,
     NgxSkeletonLoaderModule,
     LayoutModule,
     ProfileModule,
