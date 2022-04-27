@@ -52,6 +52,18 @@ body {
   }
 }
 
+@mixin scrollbar($theme) {
+  @debug map.get($theme, 'color');
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: map.get($theme, 'color', 'foreground', 'divider');
+  }
+}
+
 @include mat.core();
 @include mat.all-component-themes(themes.$theme-base);
 .theme-light {
@@ -59,6 +71,7 @@ body {
   @include mat.all-component-colors($theme);
   @include router-link-active($theme);
   @include text-selection($theme);
+  @include scrollbar($theme);
   mat-icon {
     color: rgba(0, 0, 0, 0.54);
   }
@@ -74,6 +87,7 @@ body {
   @include mat.all-component-colors($theme);
   @include router-link-active($theme);
   @include text-selection($theme);
+  @include scrollbar($theme);
   ngx-skeleton-loader {
     opacity: 0.05;
   }
