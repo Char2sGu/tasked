@@ -5,14 +5,15 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Directive({
-  selector: '[navigation]',
+  selector: '[navigationStart],[navigationEnd]',
 })
 export class RouterEventsDirective implements OnInit, OnDestroy {
-  @Output() navigation = new EventEmitter();
+  @Output() navigationStart = new EventEmitter();
+  @Output() navigationEnd = new EventEmitter();
 
   private subscription?: Subscription;
 
@@ -20,7 +21,8 @@ export class RouterEventsDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) this.navigation.emit();
+      if (event instanceof NavigationStart) this.navigationStart.emit();
+      if (event instanceof NavigationEnd) this.navigationEnd.emit();
     });
   }
 

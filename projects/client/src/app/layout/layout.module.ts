@@ -4,6 +4,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
@@ -28,6 +29,7 @@ import { LayoutDirective } from './layout.directive';
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
+    MatProgressBarModule,
     ModalModule,
   ],
   exports: [LayoutComponent, LayoutDirective, HeaderComponent],

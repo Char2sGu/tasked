@@ -10,7 +10,14 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { BehaviorSubject, debounceTime, first, map, Observable } from 'rxjs';
+import {
+  BehaviorSubject,
+  debounceTime,
+  first,
+  map,
+  Observable,
+  Subject,
+} from 'rxjs';
 
 import { Breakpoint } from '../common/breakpoint.enum';
 import { ModalDirective } from '../components/modal/modal.directive';
@@ -36,6 +43,9 @@ export class LayoutComponent implements OnInit {
 
   headerContent$ = this.useContent(this.contents.header$);
   navigationContent$ = this.useContent(this.contents.navigation$);
+
+  navigating$ = new Subject();
+  navigatingAndBlocked$ = this.navigating$.pipe(debounceTime(200));
 
   @ViewChild(MatSidenav) navigatorSide!: MatSidenav;
   @ViewChild(ModalDirective) navigatorBottom!: ModalDirective;
