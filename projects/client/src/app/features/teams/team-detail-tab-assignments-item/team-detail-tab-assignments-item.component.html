@@ -2,10 +2,10 @@
   <button
     mat-list-item
     *ngIf="assignment"
-    class="fallback-css"
+    class="css"
     (click)="expanded = !expanded"
   >
-    <div class="fallback-css summary flex w-full items-center">
+    <div class="css summary flex w-full items-center">
       <div
         (click)="$event.stopPropagation()"
         (touchstart)="$event.stopPropagation()"
@@ -21,10 +21,10 @@
       </div>
 
       <div class="ml-[1%] w-0 grow">
-        <div matLine class="fallback-css">
+        <div matLine class="css">
           {{ assignment.task.title }}
         </div>
-        <div matLine class="fallback-css text-medium-emphasis gap-1">
+        <div matLine class="css text-medium-emphasis gap-1">
           <span matTooltip="Creator" i18n-matTooltip>
             <mat-icon class="translate-y-0.5" inline>person</mat-icon>
             <span>

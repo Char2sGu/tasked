@@ -1,4 +1,4 @@
-[mat-list-item].fallback-css {
+[mat-list-item].css {
   height: auto;
   ::ng-deep & {
     .mat-list-item-content {
@@ -6,11 +6,11 @@
       overflow: hidden;
     }
   }
-  .summary.fallback-css {
+  .summary.css {
     height: 72px;
   }
 }
 
-[matLine].fallback-css {
+[matLine].css {
   display: flex;
 }

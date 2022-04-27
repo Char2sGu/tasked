@@ -53,8 +53,6 @@ body {
 }
 
 @mixin scrollbar($theme) {
-  @debug map.get($theme, 'color');
-
   ::-webkit-scrollbar {
     width: 8px;
   }
