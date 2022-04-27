@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TeamDetailTaskCreationBarComponent } from './team-detail-task-creation-bar.component';
+import { TeamDetailTaskCreationBarComponent } from './team-detail-tab-tasks-creation-bar.component';
 
 describe('TeamDetailTaskCreationBarComponent', () => {
   let component: TeamDetailTaskCreationBarComponent;

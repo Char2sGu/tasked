@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TeamDetailSidebarMembershipListItemComponent } from './team-detail-sidebar-membership-list-item.component';
+import { TeamDetailSidebarMembershipListItemComponent } from './team-detail-tabs-sidebar-membership-list-item.component';
 
 describe('TeamDetailSidebarMembershipListItemComponent', () => {
   let component: TeamDetailSidebarMembershipListItemComponent;

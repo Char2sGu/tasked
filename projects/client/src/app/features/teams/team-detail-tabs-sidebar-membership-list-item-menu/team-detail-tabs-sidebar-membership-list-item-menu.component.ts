@@ -19,9 +19,12 @@ type Membership =
   RoomMembershipListQuery['room']['memberships']['results'][number];
 
 @Component({
-  selector: 'app-team-detail-sidebar-membership-list-item-menu',
-  templateUrl: './team-detail-sidebar-membership-list-item-menu.component.html',
-  styleUrls: ['./team-detail-sidebar-membership-list-item-menu.component.scss'],
+  selector: 'app-team-detail-tabs-sidebar-membership-list-item-menu',
+  templateUrl:
+    './team-detail-tabs-sidebar-membership-list-item-menu.component.html',
+  styleUrls: [
+    './team-detail-tabs-sidebar-membership-list-item-menu.component.scss',
+  ],
 })
 export class TeamDetailSidebarMembershipListItemMenuComponent
   implements OnInit, OnDestroy

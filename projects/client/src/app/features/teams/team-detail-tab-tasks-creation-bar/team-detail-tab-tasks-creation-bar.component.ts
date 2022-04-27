@@ -8,9 +8,9 @@ import { MembershipTaskListGQL, TaskCreateGQL } from '../../../graphql';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
 
 @Component({
-  selector: 'app-team-detail-task-creation-bar',
-  templateUrl: './team-detail-task-creation-bar.component.html',
-  styleUrls: ['./team-detail-task-creation-bar.component.scss'],
+  selector: 'app-team-detail-tab-tasks-creation-bar',
+  templateUrl: './team-detail-tab-tasks-creation-bar.component.html',
+  styleUrls: ['./team-detail-tab-tasks-creation-bar.component.scss'],
 })
 export class TeamDetailTaskCreationBarComponent implements OnInit {
   data = '';

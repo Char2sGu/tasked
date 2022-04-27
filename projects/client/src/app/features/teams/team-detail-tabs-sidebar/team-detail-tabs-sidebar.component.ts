@@ -8,9 +8,9 @@ import { RoomDetailGQL, RoomDetailQuery } from '../../../graphql';
 type Team = RoomDetailQuery['room'];
 
 @Component({
-  selector: 'app-team-detail-sidebar',
-  templateUrl: './team-detail-sidebar.component.html',
-  styleUrls: ['./team-detail-sidebar.component.scss'],
+  selector: 'app-team-detail-tabs-sidebar',
+  templateUrl: './team-detail-tabs-sidebar.component.html',
+  styleUrls: ['./team-detail-tabs-sidebar.component.scss'],
 })
 export class TeamDetailSidebarComponent implements OnInit {
   team$!: Observable<Team>;

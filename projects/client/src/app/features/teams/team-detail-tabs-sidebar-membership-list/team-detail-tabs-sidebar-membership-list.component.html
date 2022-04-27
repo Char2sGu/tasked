@@ -17,8 +17,8 @@
 </ng-container>
 
 <mat-action-list>
-  <app-team-detail-sidebar-membership-list-item
+  <app-team-detail-tabs-sidebar-membership-list-item
     *ngFor="let membership of memberships$ | async"
     [membership]="membership"
-  ></app-team-detail-sidebar-membership-list-item>
+  ></app-team-detail-tabs-sidebar-membership-list-item>
 </mat-action-list>

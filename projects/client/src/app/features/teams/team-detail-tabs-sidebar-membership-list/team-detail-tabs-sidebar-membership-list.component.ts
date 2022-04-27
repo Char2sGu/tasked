@@ -15,9 +15,9 @@ type Membership =
   RoomMembershipListQuery['room']['memberships']['results'][number];
 
 @Component({
-  selector: 'app-team-detail-sidebar-membership-list',
-  templateUrl: './team-detail-sidebar-membership-list.component.html',
-  styleUrls: ['./team-detail-sidebar-membership-list.component.scss'],
+  selector: 'app-team-detail-tabs-sidebar-membership-list',
+  templateUrl: './team-detail-tabs-sidebar-membership-list.component.html',
+  styleUrls: ['./team-detail-tabs-sidebar-membership-list.component.scss'],
 })
 export class TeamDetailSidebarMembershipListComponent implements OnInit {
   memberships$!: Observable<Membership[]>;
