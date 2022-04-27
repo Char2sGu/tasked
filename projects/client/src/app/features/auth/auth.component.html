@@ -7,13 +7,13 @@
 </main>
 
 <app-header
-  *appLayout="'header'; let sidenav = sidenav"
-  (menuToggle)="sidenav.toggle()"
+  *appLayout="'header'; let navigator = navigator"
+  (menuToggle)="navigator.toggle()"
 >
   <app-theme-button></app-theme-button>
 </app-header>
 
-<mat-nav-list *appLayout="'sidenav'">
+<mat-nav-list *appLayout="'navigation'">
   <a
     mat-list-item
     routerLink="/auth/login"

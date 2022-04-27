@@ -1,5 +1,9 @@
 <div
-  *ngIf="{ theme: theme$ | async, desktop: desktop$ | async } as data"
+  *ngIf="{
+    theme: theme$ | async,
+    desktop: isBreakpointXLargeMatched$ | async,
+    navigationContent: navigationContent$ | async
+  } as data"
   class="flex h-full flex-col"
 >
   <mat-toolbar
@@ -7,7 +11,7 @@
     [class.text-primary]="data.theme == 'dark'"
     [color]="data.theme == 'light' ? 'primary' : undefined"
   >
-    <ng-container *cdkPortalOutlet="header$ | async"></ng-container>
+    <ng-container *cdkPortalOutlet="headerContent$ | async"></ng-container>
   </mat-toolbar>
   <mat-sidenav-container class="order-2 h-full flex-1 overflow-auto">
     <mat-sidenav
@@ -15,12 +19,14 @@
       [class]="data.desktop ? 'bg-transparent-important' : undefined"
       [opened]="data.desktop"
       [mode]="data.desktop ? 'side' : 'over'"
-      #sidenav
     >
-      <ng-container *cdkPortalOutlet="sidenav$ | async"></ng-container>
+      <ng-container *cdkPortalOutlet="data.navigationContent"></ng-container>
     </mat-sidenav>
     <mat-sidenav-content>
       <ng-content></ng-content>
     </mat-sidenav-content>
   </mat-sidenav-container>
+  <ng-template #bottomSheet>
+    <ng-container *cdkPortalOutlet="data.navigationContent"></ng-container>
+  </ng-template>
 </div>

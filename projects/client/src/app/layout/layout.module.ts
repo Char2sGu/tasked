@@ -2,6 +2,7 @@ import { LayoutModule as ResponsiveLayoutModule } from '@angular/cdk/layout';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { NgModule } from '@angular/core';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -25,6 +26,7 @@ import { LayoutDirective } from './layout.directive';
     MatToolbarModule,
     MatButtonModule,
     SidenavModule,
+    MatBottomSheetModule,
   ],
   exports: [LayoutComponent, LayoutDirective, HeaderComponent],
 })
