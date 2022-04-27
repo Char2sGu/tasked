@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../../shared/shared.module';
@@ -37,6 +38,7 @@ import { ProfileFormComponent } from './profile-form/profile-form.component';
     MatDialogModule,
     MatInputModule,
     MatSelectModule,
+    MatTooltipModule,
     UsernameModule,
     ModalModule,
   ],
