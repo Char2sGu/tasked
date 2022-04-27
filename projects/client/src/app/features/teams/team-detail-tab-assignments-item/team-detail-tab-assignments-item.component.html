@@ -64,8 +64,8 @@
     </div>
 
     <div
-      *ngIf="expanded && assignment.task.description"
       class="mat-typography mb-4 whitespace-pre-line px-12"
+      [@expansion]="!!(expanded && assignment.task.description)"
     >
       {{ assignment.task.description }}
     </div>

@@ -1,5 +1,13 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Input, OnInit } from '@angular/core';
+import { AnimationCurves } from '@angular/material/core';
 import { Data } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { timer } from 'rxjs';
@@ -19,6 +27,15 @@ type Assignment =
   selector: 'app-team-detail-tab-assignments-item',
   templateUrl: './team-detail-tab-assignments-item.component.html',
   styleUrls: ['./team-detail-tab-assignments-item.component.scss'],
+  animations: [
+    trigger('expansion', [
+      state('false', style({ height: '0', visibility: 'hidden', margin: '0' })),
+      state('true', style({ height: '*', visibility: 'visible', margin: '*' })),
+      transition('false <=> true', [
+        animate(`225ms ${AnimationCurves.STANDARD_CURVE}`),
+      ]),
+    ]),
+  ],
 })
 export class TeamDetailTabAssignmentsItemComponent implements OnInit {
   @Input() assignment?: Assignment;
