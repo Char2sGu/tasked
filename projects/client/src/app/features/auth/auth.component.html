@@ -6,11 +6,12 @@
   <router-outlet></router-outlet>
 </main>
 
-<ng-container *appLayout="'header'">
-  <app-header>
-    <app-theme-button></app-theme-button>
-  </app-header>
-</ng-container>
+<app-header
+  *appLayout="'header'; let sidenav = sidenav"
+  (menuToggle)="sidenav.toggle()"
+>
+  <app-theme-button></app-theme-button>
+</app-header>
 
 <mat-nav-list *appLayout="'sidenav'">
   <a

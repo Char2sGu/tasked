@@ -53,13 +53,16 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {}
 
   private useContent(content$: Observable<LayoutContent>) {
-    const context: LayoutContentContext = { sidenav: this.sidenav };
-    const viewContainerRef = this.viewContainerRef; // this have no use, the portal will use the view container of the outlet directive. have no idea why this is necessary.
     return content$.pipe(
       debounceTime(100),
       map(
         (content) =>
-          content && new TemplatePortal(content, viewContainerRef, context),
+          content &&
+          new TemplatePortal<LayoutContentContext>(
+            content,
+            this.viewContainerRef, // logical view container where the portal lives but not renders
+            { sidenav: this.sidenav },
+          ),
       ),
     );
   }
