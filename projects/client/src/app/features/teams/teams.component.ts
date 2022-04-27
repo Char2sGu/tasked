@@ -1,4 +1,4 @@
-import { query, style, transition, trigger } from '@angular/animations';
+import { transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 import { SharedAxisAnimation } from '../../common/animations';
@@ -13,8 +13,6 @@ import { RouterOutletDataReader } from '../../common/router';
     trigger('routerAnimation', [
       transition('list => detail', [SharedAxisAnimation.apply('z', 'forward')]),
       transition('detail => list', [
-        // mat-drawer's styles break after its `ngOnDestroy` is called
-        query('mat-drawer', style({ transform: 'none' }), { optional: true }),
         SharedAxisAnimation.apply('z', 'backward'),
       ]),
       transition('list => creation', [

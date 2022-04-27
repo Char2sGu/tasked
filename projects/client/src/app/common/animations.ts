@@ -19,6 +19,16 @@ export abstract class Animation {
 }
 
 /**
+ * Fix Angular Material's animation issues.
+ */
+export class MaterialPatchesAnimation extends Animation {
+  static override content: AnimationReferenceMetadata = animation([
+    // mat-drawer's styles break after its `ngOnDestroy` is called
+    query('mat-drawer', style({ transform: 'none' }), { optional: true }),
+  ]);
+}
+
+/**
  * Prevent child routes from bering removed.
  * @see https://github.com/angular/angular/issues/15477#issuecomment-377619882
  */
@@ -33,6 +43,7 @@ export class PreserveChildRoutesAnimation extends Animation {
  */
 export class FadeThroughAnimation extends Animation {
   static override content: AnimationReferenceMetadata = animation([
+    MaterialPatchesAnimation.apply(),
     style({ position: 'relative' }),
     query(':enter, :leave', [
       style({ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }),
@@ -66,6 +77,7 @@ export class FadeThroughAnimation extends Animation {
  */
 export class SharedAxisAnimation extends Animation {
   static override content: AnimationReferenceMetadata = animation([
+    MaterialPatchesAnimation.apply(),
     style({
       position: 'relative',
       overflowX: '{{ overflowX }}',
