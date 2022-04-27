@@ -1,49 +1,58 @@
 <form
-  class="flex h-full items-center justify-center"
+  class="h-full p-8 md:mx-auto md:w-[488px]"
   (ngSubmit)="submit$$.next($event)"
   #form="ngForm"
 >
-  <app-auth-form-layout class="h-72">
-    <ng-container ngProjectAs="title" i18n>Login</ng-container>
+  <div class="my-16">
+    <h1 class="mb-4 text-3xl font-semibold">Welcome!</h1>
+    <h3 class="text-medium-emphasis">
+      Put your credentials below to continue your journey
+    </h3>
+  </div>
 
-    <ng-container ngProjectAs="content">
-      <mat-form-field>
-        <mat-label i18n>Username</mat-label>
-        <input
-          matInput
-          name="username"
-          type="text"
-          autocomplete="username"
-          required
-          [(ngModel)]="data.username"
-          #username="ngModel"
-        />
-      </mat-form-field>
+  <div class="flex flex-col items-stretch">
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <div matPrefix class="mr-2">
+        <mat-icon>fingerprint</mat-icon>
+      </div>
+      <input
+        matInput
+        name="username"
+        type="text"
+        autocomplete="username"
+        required
+        [(ngModel)]="data.username"
+        #username="ngModel"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <div matPrefix class="mr-2">
+        <mat-icon>lock_open</mat-icon>
+      </div>
+      <input
+        matInput
+        name="password"
+        type="password"
+        autocomplete="current-password"
+        required
+        [(ngModel)]="data.password"
+        #password="ngModel"
+      />
+    </mat-form-field>
+  </div>
 
-      <mat-form-field>
-        <mat-label i18n>Password</mat-label>
-        <input
-          matInput
-          name="password"
-          type="password"
-          autocomplete="current-password"
-          required
-          [(ngModel)]="data.password"
-          #password="ngModel"
-        />
-      </mat-form-field>
-    </ng-container>
-
-    <ng-container ngProjectAs="actions">
-      <button
-        mat-raised-button
-        class="uppercase"
-        [disabled]="form.invalid || loading"
-        color="primary"
-        type="submit"
-      >
-        <span *appLoading="loading; diameter: 30" i18n>Submit</span>
-      </button>
-    </ng-container>
-  </app-auth-form-layout>
+  <div class="mt-8">
+    <button
+      mat-raised-button
+      class="w-full uppercase"
+      [disabled]="form.invalid || loading"
+      color="primary"
+      type="submit"
+      color="primary"
+    >
+      <span *appLoading="loading; diameter: 30">Login</span>
+    </button>
+  </div>
 </form>

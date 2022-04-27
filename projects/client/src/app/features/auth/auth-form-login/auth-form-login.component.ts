@@ -18,7 +18,9 @@ export class AuthFormLoginComponent implements OnInit {
   loading = false;
   submit$$ = new Subject<Event>();
 
-  @ViewChild(MatInput) private firstInput?: MatInput;
+  @ViewChild(MatInput) set firstInput(input: MatInput) {
+    setTimeout(() => input.focus());
+  }
 
   constructor(
     private router: Router,
@@ -28,9 +30,6 @@ export class AuthFormLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.submit$$.pipe(throttleTime(1000)).subscribe(() => this.submit());
-    setTimeout(() => {
-      this.firstInput?.focus();
-    });
   }
 
   private submit() {

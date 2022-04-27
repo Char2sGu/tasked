@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatInput } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { Subject } from 'rxjs';
@@ -24,6 +25,10 @@ export class AuthFormSignupComponent implements OnInit {
   };
   loading = false;
   submit$$ = new Subject<Event>();
+
+  @ViewChild(MatInput) set firstInput(input: MatInput) {
+    setTimeout(() => input.focus());
+  }
 
   constructor(
     private router: Router,

@@ -1,25 +1,116 @@
 <form
-  class="flex h-full items-center justify-center"
+  class="mx-auto h-full max-w-[488px] p-8"
   (ngSubmit)="submit$$.next($event)"
   #form="ngForm"
 >
-  <app-auth-form-layout class="h-[588px]">
-    <ng-container ngProjectAs="title" i18n>Signup</ng-container>
+  <div class="my-16">
+    <h1 class="mb-4 text-3xl font-semibold">Sign Up</h1>
+    <h3 class="text-medium-emphasis">
+      Get started to better collaborate with your teams and keep projects well
+      organized
+    </h3>
+  </div>
 
-    <ng-container ngProjectAs="content">
-      <app-profile-form name="data" [(ngModel)]="data"></app-profile-form>
-    </ng-container>
+  <div class="-mt-8 flex flex-col items-stretch">
+    <mat-form-field appearance="outline">
+      <mat-label i18n>Username</mat-label>
+      <div matPrefix class="mr-2">
+        <mat-icon>fingerprint</mat-icon>
+      </div>
+      <input
+        matInput
+        name="username"
+        type="text"
+        autocomplete="username"
+        required
+        maxlength="15"
+        pattern="^([a-zA-Z0-9_-])+$"
+        [(ngModel)]="data.username"
+        #username="ngModel"
+      />
+      <mat-error *ngIf="!username.valid" i18n>
+        Consists of only alphanumeric, underscores or hyphens
+      </mat-error>
+      <app-help-icon
+        matSuffix
+        message="Your immutable and unique credential"
+        i18n-message
+      ></app-help-icon>
+    </mat-form-field>
 
-    <ng-container ngProjectAs="actions">
-      <button
-        mat-raised-button
-        class="uppercase"
-        [disabled]="!form.valid || loading"
-        color="primary"
-        type="submit"
-      >
-        <span *appLoading="loading; diameter: 30" i18n>Confirm</span>
-      </button>
-    </ng-container>
-  </app-auth-form-layout>
+    <mat-form-field appearance="outline">
+      <mat-label i18n>Real Name</mat-label>
+      <div matPrefix class="mr-2">
+        <mat-icon>badge</mat-icon>
+      </div>
+      <input
+        matInput
+        name="nickname"
+        type="text"
+        autocomplete="nickname"
+        maxlength="15"
+        pattern="^[^\s]*$"
+        [(ngModel)]="data.nickname"
+      />
+      <app-help-icon
+        matSuffix
+        message="Will be displayed to others instead of your username and can be updated whenever you like"
+        i18n-message
+      ></app-help-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label i18n>Password</mat-label>
+      <div matPrefix class="mr-2">
+        <mat-icon>lock_open</mat-icon>
+      </div>
+      <input
+        matInput
+        name="password"
+        type="password"
+        autocomplete="new-password"
+        required
+        minlength="6"
+        maxlength="20"
+        [(ngModel)]="data.password"
+        (ngModelChange)="passwordConfirm.reset()"
+        #password="ngModel"
+      />
+      <mat-error *ngIf="!password.valid" i18n>6 - 20 characters</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label i18n>Confirm Password</mat-label>
+      <div matPrefix class="mr-2">
+        <mat-icon>verified_user</mat-icon>
+      </div>
+      <input
+        matInput
+        name="passwordConfirm"
+        type="password"
+        autocomplete="new-password"
+        [disabled]="!password.value"
+        required
+        [equals]="data.password"
+        [(ngModel)]="data.passwordConfirm"
+        #passwordConfirm="ngModel"
+      />
+      <mat-error *ngIf="!passwordConfirm.valid" i18n>
+        Password not match
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="mt-8">
+    <button
+      mat-raised-button
+      class="w-full uppercase"
+      [disabled]="form.invalid || loading"
+      color="primary"
+      type="submit"
+      color="primary"
+    >
+      <span *appLoading="loading; diameter: 30">Create Account</span>
+    </button>
+  </div>
 </form>
