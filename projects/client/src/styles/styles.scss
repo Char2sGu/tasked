@@ -81,3 +81,7 @@ body {
 }
 
 @include mat-patches.nav-list();
+
+* {
+  transition: background-color 300ms ease;
+}
