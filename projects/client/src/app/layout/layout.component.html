@@ -35,9 +35,11 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
   <ng-template appModal>
-    <ng-container
-      [cdkPortalOutlet]="data.navigationContent"
-      (navigationStart)="navigatorBottom.close()"
-    ></ng-container>
+    <div class="h-[60vh]">
+      <ng-container
+        [cdkPortalOutlet]="data.navigationContent"
+        (navigationStart)="navigatorBottom.close()"
+      ></ng-container>
+    </div>
   </ng-template>
 </div>
