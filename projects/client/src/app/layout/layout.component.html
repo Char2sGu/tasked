@@ -11,7 +11,7 @@
     [class.text-primary]="data.theme == 'dark'"
     [color]="data.theme == 'light' ? 'primary' : undefined"
   >
-    <ng-container *cdkPortalOutlet="headerContent$ | async"></ng-container>
+    <ng-container [cdkPortalOutlet]="headerContent$ | async"></ng-container>
   </mat-toolbar>
   <mat-sidenav-container class="order-2 h-full flex-1 overflow-auto">
     <mat-sidenav
@@ -19,14 +19,18 @@
       [class]="data.desktop ? 'bg-transparent-important' : undefined"
       [opened]="data.desktop"
       [mode]="data.desktop ? 'side' : 'over'"
+      (navigation)="data.desktop ? null : navigatorSide.close()"
     >
-      <ng-container *cdkPortalOutlet="data.navigationContent"></ng-container>
+      <ng-container [cdkPortalOutlet]="data.navigationContent"></ng-container>
     </mat-sidenav>
     <mat-sidenav-content>
       <ng-content></ng-content>
     </mat-sidenav-content>
   </mat-sidenav-container>
-  <ng-template #bottomSheet>
-    <ng-container *cdkPortalOutlet="data.navigationContent"></ng-container>
+  <ng-template appModal>
+    <ng-container
+      [cdkPortalOutlet]="data.navigationContent"
+      (navigation)="navigatorBottom.close()"
+    ></ng-container>
   </ng-template>
 </div>

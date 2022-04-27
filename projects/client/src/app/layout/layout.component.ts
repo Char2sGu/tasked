@@ -9,14 +9,14 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BehaviorSubject, debounceTime, first, map, Observable } from 'rxjs';
 
 import { Breakpoint } from '../common/breakpoint.enum';
+import { ModalDirective } from '../components/modal/modal.directive';
 import { ThemeService } from '../core/theme.service';
 
-// TODO: close bottom navigator on navigation
+// TODO: beautify bottom navigator
 
 @Component({
   selector: 'app-layout',
@@ -37,8 +37,8 @@ export class LayoutComponent implements OnInit {
   headerContent$ = this.useContent(this.contents.header$);
   navigationContent$ = this.useContent(this.contents.navigation$);
 
-  @ViewChild(MatSidenav) private sidenav!: MatSidenav;
-  @ViewChild('bottomSheet') private bottomSheet!: TemplateRef<never>;
+  @ViewChild(MatSidenav) navigatorSide!: MatSidenav;
+  @ViewChild(ModalDirective) navigatorBottom!: ModalDirective;
   private contentContext: LayoutContentContext = {
     navigator: { toggle: () => this.toggleNavigator() },
   };
@@ -48,7 +48,6 @@ export class LayoutComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private themeService: ThemeService,
     private viewContainerRef: ViewContainerRef,
-    private bottomSheetService: MatBottomSheet,
   ) {}
 
   ngOnInit(): void {}
@@ -73,8 +72,8 @@ export class LayoutComponent implements OnInit {
       .pipe(first())
       .subscribe((isLargerThanSmall) =>
         isLargerThanSmall
-          ? this.sidenav.toggle()
-          : this.bottomSheetService.open(this.bottomSheet),
+          ? this.navigatorSide.toggle()
+          : this.navigatorBottom.openSheet(),
       );
   }
 }
