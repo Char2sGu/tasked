@@ -1,16 +1,11 @@
 import { Directive, Input } from '@angular/core';
-import {
-  AbstractControl,
-  NG_VALIDATORS,
-  ValidationErrors,
-  Validator,
-} from '@angular/forms';
+import { AbstractControl, ValidationErrors, Validator } from '@angular/forms';
+
+import { provideValidator } from './shared/validation-common';
 
 @Directive({
   selector: '[equals]',
-  providers: [
-    { provide: NG_VALIDATORS, useExisting: EqualsValidator, multi: true },
-  ],
+  providers: [provideValidator(EqualsValidator)],
 })
 export class EqualsValidator implements Validator {
   @Input() equals = '';

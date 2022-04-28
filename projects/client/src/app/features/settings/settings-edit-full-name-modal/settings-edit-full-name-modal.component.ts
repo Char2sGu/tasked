@@ -24,7 +24,7 @@ export class SettingsEditFullNameModalComponent implements OnInit {
       .saveProfile({ nickname: this.value })
       .subscribe(
         this.settingsService.buildNotifyingObserver(
-          'Nickname updated',
+          'Full name updated',
           'Update failed',
         ),
       );

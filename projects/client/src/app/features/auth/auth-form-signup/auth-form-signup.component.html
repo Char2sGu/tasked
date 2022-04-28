@@ -22,14 +22,13 @@
         name="username"
         type="text"
         autocomplete="username"
+        validation="username"
         required
-        maxlength="15"
-        pattern="^([a-zA-Z0-9_-])+$"
         [(ngModel)]="data.username"
         #username="ngModel"
       />
-      <mat-error *ngIf="!username.valid" i18n>
-        Consists of only alphanumeric, underscores or hyphens
+      <mat-error *ngIf="username | validationErrorMessage | async as message">
+        {{ message }}
       </mat-error>
       <app-help-icon
         matSuffix
@@ -45,18 +44,21 @@
       </div>
       <input
         matInput
-        name="name"
+        name="full-name"
         type="text"
         autocomplete="name"
-        maxlength="15"
-        pattern="^[^\s]*$"
+        validation="full-name"
         [(ngModel)]="data.nickname"
+        #fullName="ngModel"
       />
       <app-help-icon
         matSuffix
         message="Will be displayed to others instead of your username and can be updated whenever you like"
         i18n-message
       ></app-help-icon>
+      <mat-error *ngIf="fullName | validationErrorMessage | async as message">
+        {{ message }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -69,14 +71,15 @@
         name="password"
         type="password"
         autocomplete="new-password"
+        validation="password"
         required
-        minlength="6"
-        maxlength="20"
         [(ngModel)]="data.password"
         (ngModelChange)="passwordConfirm.reset()"
         #password="ngModel"
       />
-      <mat-error *ngIf="!password.valid" i18n>6 - 20 characters</mat-error>
+      <mat-error *ngIf="password | validationErrorMessage | async as message">
+        {{ message }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -95,7 +98,7 @@
         [(ngModel)]="data.passwordConfirm"
         #passwordConfirm="ngModel"
       />
-      <mat-error *ngIf="!passwordConfirm.valid" i18n>
+      <mat-error *ngIf="passwordConfirm.invalid" i18n>
         Password not match
       </mat-error>
     </mat-form-field>

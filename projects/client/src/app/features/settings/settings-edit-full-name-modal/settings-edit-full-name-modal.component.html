@@ -11,12 +11,15 @@
         name="name"
         type="text"
         autocomplete="name"
+        validation="full-name"
         required
-        maxlength="15"
-        pattern="^[^\s]*$"
         [ngModel]="value ?? user.nickname"
         (ngModelChange)="value = $event"
+        #model="ngModel"
       />
+      <mat-error *ngIf="model | validationErrorMessage | async as message">
+        {{ message }}
+      </mat-error>
     </mat-form-field>
   </form>
 </app-settings-edit-modal>
