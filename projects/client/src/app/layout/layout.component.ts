@@ -12,7 +12,9 @@ import {
 import { MatSidenav } from '@angular/material/sidenav';
 import {
   BehaviorSubject,
+  concat,
   debounceTime,
+  distinct,
   first,
   map,
   Observable,
@@ -20,6 +22,7 @@ import {
 } from 'rxjs';
 
 import { Breakpoint } from '../common/breakpoint.enum';
+import { skipFalsy } from '../common/rxjs';
 import { ModalDirective } from '../components/modal/modal.directive';
 import { ThemeService } from '../core/theme.service';
 
@@ -62,9 +65,11 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {}
 
   private useContent(content$: Observable<LayoutContent>) {
-    // TODO: prevent layout flickering
-    return content$.pipe(
-      debounceTime(100),
+    return concat(
+      content$.pipe(skipFalsy(), first()), // do not debounce initial content to prevent flickering
+      content$.pipe(debounceTime(100)),
+    ).pipe(
+      distinct(),
       map(
         (content) =>
           content &&
