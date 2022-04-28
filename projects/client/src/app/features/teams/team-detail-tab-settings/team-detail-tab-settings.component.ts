@@ -7,17 +7,15 @@ import { debounceTime, finalize, first, map } from 'rxjs/operators';
 import { filterKeys, pick } from '../../../common/form.utils';
 import { isEmpty } from '../../../common/form.utils';
 import { NotificationType } from '../../../common/notification-type.enum';
+import { AuthService } from '../../../core/auth.service';
 import {
   RoomDetailGQL,
   RoomDetailQuery,
   RoomUpdateGQL,
   RoomUpdateInput,
 } from '../../../graphql';
-import { AuthService } from '../../../core/auth.service';
 
 type Team = RoomDetailQuery['room'];
-
-// TODO: use action list and dialogs
 
 @Component({
   selector: 'app-team-detail-tab-settings',

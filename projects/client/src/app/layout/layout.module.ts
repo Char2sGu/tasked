@@ -15,8 +15,6 @@ import { HeaderComponent } from './header/header.component';
 import { LayoutComponent } from './layout.component';
 import { LayoutDirective } from './layout.directive';
 
-// TODO: material style navigation drawer
-
 @NgModule({
   declarations: [LayoutComponent, LayoutDirective, HeaderComponent],
   imports: [
