@@ -24,6 +24,9 @@
       <div matLine class="text-medium-emphasis">
         {{ (user.nickname && user.username) || 'Logged in as' }}
       </div>
+      <a mat-icon-button [routerLink]="['settings']">
+        <mat-icon>manage_accounts</mat-icon>
+      </a>
     </mat-list-item>
   </mat-list>
 
