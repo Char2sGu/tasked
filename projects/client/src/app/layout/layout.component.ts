@@ -15,17 +15,13 @@ import {
   debounceTime,
   first,
   map,
-  merge,
   Observable,
-  skip,
   Subject,
 } from 'rxjs';
 
 import { Breakpoint } from '../common/breakpoint.enum';
 import { ModalDirective } from '../components/modal/modal.directive';
 import { ThemeService } from '../core/theme.service';
-
-// TODO: beautify bottom navigator
 
 @Component({
   selector: 'app-layout',

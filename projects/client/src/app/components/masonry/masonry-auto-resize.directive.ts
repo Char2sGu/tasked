@@ -13,7 +13,8 @@ export class MasonryAutoResizeDirective implements OnInit, OnDestroy {
     private elementRef: ElementRef<HTMLElement>,
     private masonry: NgxMasonryComponent,
   ) {
-    this.masonry.options = { resize: false, percentPosition: true };
+    this.masonry.options.resize = false;
+    this.masonry.options.percentPosition = true;
   }
 
   ngOnInit(): void {

@@ -1,7 +1,11 @@
+import { Type } from '@angular/core';
 import { filter, Observable, OperatorFunction, timer } from 'rxjs';
 
 export const skipFalsy = <T>(): OperatorFunction<T, NonNullable<T>> =>
   filter((v): v is NonNullable<T> => !!v);
+
+export const takeInstanceOf = <T, R>(type: Type<R>): OperatorFunction<T, R> =>
+  filter((v: unknown): v is R => v instanceof type);
 
 export const postpone =
   (time: number) =>
