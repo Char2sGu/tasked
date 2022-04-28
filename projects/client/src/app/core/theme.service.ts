@@ -9,12 +9,12 @@ import { ThemeStorage } from './theme.storage';
 export class ThemeService {
   public current: LocalStorageItem<Theme>;
 
-  private $root: HTMLHtmlElement;
+  private $root: HTMLElement;
   private $themeColorMeta: HTMLMetaElement;
 
   constructor(storage: ThemeStorage) {
     this.current = storage.next(storage.value ?? this.getPreference());
-    this.$root = document.documentElement as HTMLHtmlElement;
+    this.$root = document.body as HTMLElement;
     this.$themeColorMeta = document.querySelector(
       'meta[name="theme-color"]',
     ) as HTMLMetaElement;

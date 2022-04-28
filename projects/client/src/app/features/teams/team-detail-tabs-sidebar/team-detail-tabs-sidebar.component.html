@@ -8,7 +8,9 @@
       <p>{{ (team$ | async)?.description }}</p>
     </ng-template>
     <ng-template #elseBlock>
-      <p class="opacity-60" i18n>No description provided...</p>
+      <p class="text-l-secondary-text dark:text-d-secondary-text" i18n>
+        No description provided...
+      </p>
     </ng-template>
   </section>
 

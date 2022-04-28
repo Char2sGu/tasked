@@ -1,19 +1,25 @@
 <mat-list-item>
   <div matLine fxLayout fxLayoutAlign="start center">
     <app-username [user]="application?.owner" [color]="true"></app-username>
-    <mat-icon inline class="opacity-60">arrow_right</mat-icon>
+    <mat-icon inline class="text-l-secondary-text dark:text-d-secondary-text">
+      arrow_right
+    </mat-icon>
     <span>{{ application?.room?.name }}</span>
-    <span class="opacity-60">#{{ application?.room?.id }}</span>
+    <span class="text-l-secondary-text dark:text-d-secondary-text">
+      #{{ application?.room?.id }}
+    </span>
   </div>
   <div
     matLine
-    [class]="{
-      'opacity-60': !application?.message
-    }"
+    [class]="
+      !application?.message
+        ? 'text-l-secondary-text dark:text-d-secondary-text'
+        : undefined
+    "
   >
     {{ application?.message || '...' }}
   </div>
-  <div matLine class="opacity-60">
+  <div matLine class="text-l-secondary-text dark:text-d-secondary-text">
     {{ application?.createdAt | date: 'mediumTime' }}
   </div>
 
@@ -41,7 +47,7 @@
   </ng-container>
 
   <ng-template #status>
-    <div class="mat-body opacity-60">
+    <div class="mat-body text-l-secondary-text dark:text-d-secondary-text">
       {{ application ? applicationStatusText[application.status] : null }}
     </div>
   </ng-template>

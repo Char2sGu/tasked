@@ -2,7 +2,9 @@
   <div matLine>
     <mat-icon *ngIf="!team?.membership" inline>send</mat-icon>
     <span>{{ team?.name }}</span>
-    <span class="opacity-60">#{{ team?.id }}</span>
+    <span class="text-l-secondary-text dark:text-d-secondary-text"
+      >#{{ team?.id }}</span
+    >
   </div>
   <div matLine>
     <app-username [user]="team?.creator"></app-username>

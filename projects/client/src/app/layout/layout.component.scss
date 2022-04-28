@@ -1,8 +1,0 @@
-@use '../../styles/themes' as themes;
-@use 'sass:map' as map;
-
-:host-context(.theme-dark) {
-  mat-toolbar.css {
-    color: map.get(themes.$theme-dark, 'color', 'primary', 'text');
-  }
-}

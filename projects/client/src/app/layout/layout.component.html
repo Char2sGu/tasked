@@ -12,7 +12,7 @@
 >
   <mat-toolbar
     *ngIf="data.contentOfHeader"
-    class="css mat-elevation-z4 z-[2] order-4 md:order-2"
+    class="mat-elevation-z4 z-[2] order-4 dark:text-d-primary-text md:order-2"
     [color]="data.theme == 'light' ? 'primary' : undefined"
   >
     <ng-container [cdkPortalOutlet]="data.contentOfHeader"></ng-container>
