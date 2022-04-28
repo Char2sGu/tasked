@@ -1,6 +1,8 @@
 /res
-/docker-compose.json
+/docker-compose*.json
 **/dockerfile
+/LICENSE
+**/README.md
 
 # ↓ From .gitignore
 
