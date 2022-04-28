@@ -48,9 +48,6 @@ export class UsersService {
     if (entity != user)
       throw new ForbiddenException('Cannot update other users');
 
-    if (entity.isUpdatedRecently())
-      throw new ForbiddenException('Cannot update again recently');
-
     return entity.assign(data);
   }
 }
