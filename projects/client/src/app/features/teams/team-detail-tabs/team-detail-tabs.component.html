@@ -48,7 +48,11 @@
               {{ link.title }}
             </a>
           </nav>
-          <div class="h-0 grow overflow-auto" [@tab]="data.linkIndexActive">
+          <div
+            class="h-0 grow overflow-auto"
+            *ngIf="data.linkIndexActive != null"
+            [@tab]="data.linkIndexActive"
+          >
             <router-outlet></router-outlet>
           </div>
         </div>
