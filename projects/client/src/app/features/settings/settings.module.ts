@@ -15,9 +15,9 @@ import { ModalModule } from '../../components/modal/modal.module';
 import { RadioListModule } from '../../components/radio-list/radio-list.module';
 import { SharedModule } from '../../shared/shared.module';
 import { SettingsComponent } from './settings.component';
+import { SettingsEditFullNameModalComponent } from './settings-edit-full-name-modal/settings-edit-full-name-modal.component';
 import { SettingsEditGenderModalComponent } from './settings-edit-gender-modal/settings-edit-gender-modal.component';
 import { SettingsEditModalComponent } from './settings-edit-modal/settings-edit-modal.component';
-import { SettingsEditNicknameModalComponent } from './settings-edit-nickname-modal/settings-edit-nickname-modal.component';
 import { SettingsEditPasswordModalComponent } from './settings-edit-password-modal/settings-edit-password-modal.component';
 import { SettingsListComponent } from './settings-list/settings-list.component';
 import { SettingsListItemComponent } from './settings-list-item/settings-list-item.component';
@@ -28,7 +28,7 @@ import { SettingsRoutingModule } from './settings-routing.module';
     SettingsComponent,
     SettingsListItemComponent,
     SettingsListComponent,
-    SettingsEditNicknameModalComponent,
+    SettingsEditFullNameModalComponent,
     SettingsEditPasswordModalComponent,
     SettingsEditGenderModalComponent,
     SettingsEditModalComponent,

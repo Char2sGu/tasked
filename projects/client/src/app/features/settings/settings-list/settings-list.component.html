@@ -7,11 +7,11 @@
     [editable]="false"
   ></app-settings-list-item>
   <app-settings-list-item
-    name="Nickname"
+    name="Full Name"
     icon="badge"
     [value]="user.nickname"
     [editable]="true"
-    (edit)="editNicknameModal.openDialog()"
+    (edit)="editFullNameModal.openDialog()"
   >
   </app-settings-list-item>
   <app-settings-list-item
@@ -31,8 +31,8 @@
   ></app-settings-list-item>
 </mat-list>
 
-<ng-template appModal #editNicknameModal="appModal">
-  <app-settings-edit-nickname-modal></app-settings-edit-nickname-modal>
+<ng-template appModal #editFullNameModal="appModal">
+  <app-settings-edit-full-name-modal></app-settings-edit-full-name-modal>
 </ng-template>
 <ng-template appModal #editPasswordModal="appModal">
   <app-settings-edit-password-modal></app-settings-edit-password-modal>

@@ -39,15 +39,15 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label i18n>Nickname</mat-label>
+      <mat-label i18n>Full Name</mat-label>
       <div matPrefix class="mr-2">
         <mat-icon>badge</mat-icon>
       </div>
       <input
         matInput
-        name="nickname"
+        name="name"
         type="text"
-        autocomplete="nickname"
+        autocomplete="name"
         maxlength="15"
         pattern="^[^\s]*$"
         [(ngModel)]="data.nickname"

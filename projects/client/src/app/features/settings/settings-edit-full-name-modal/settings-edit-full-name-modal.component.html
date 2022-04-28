@@ -1,6 +1,6 @@
 <app-settings-edit-modal
   *ngIf="user$ | async as user"
-  headline="Nickname"
+  headline="Full Name"
   [invalid]="form.invalid ?? true"
   (save)="onSave()"
 >
@@ -8,9 +8,9 @@
     <mat-form-field class="w-full" appearance="standard">
       <input
         matInput
-        name="nickname"
+        name="name"
         type="text"
-        autocomplete="nickname"
+        autocomplete="name"
         required
         maxlength="15"
         pattern="^[^\s]*$"

@@ -4,11 +4,11 @@ import { ModalRef } from '../../../components/modal/modal.directive';
 import { SettingsService } from '../shared/settings.service';
 
 @Component({
-  selector: 'app-settings-edit-nickname-modal',
-  templateUrl: './settings-edit-nickname-modal.component.html',
-  styleUrls: ['./settings-edit-nickname-modal.component.scss'],
+  selector: 'app-settings-edit-full-name-modal',
+  templateUrl: './settings-edit-full-name-modal.component.html',
+  styleUrls: ['./settings-edit-full-name-modal.component.scss'],
 })
-export class SettingsEditNicknameModalComponent implements OnInit {
+export class SettingsEditFullNameModalComponent implements OnInit {
   user$ = this.settingsService.user$;
   value?: string;
   constructor(
