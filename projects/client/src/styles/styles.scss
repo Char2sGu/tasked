@@ -8,20 +8,6 @@
 @tailwind base;
 @tailwind utilities;
 
-@layer utilities {
-  // Material Text Colors
-  // https://material.io/design/color/text-legibility.html
-  .text-high-emphasis {
-    opacity: 0.87;
-  }
-  .text-medium-emphasis {
-    opacity: 0.6;
-  }
-  .text-disabled {
-    opacity: 0.38;
-  }
-}
-
 html,
 body {
   height: 100%;

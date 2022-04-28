@@ -21,7 +21,7 @@
       <div matLine>
         {{ user.nickname || user.username }}
       </div>
-      <div matLine class="text-medium-emphasis">
+      <div matLine class="opacity-60">
         {{ (user.nickname && user.username) || 'Logged in as' }}
       </div>
       <a mat-icon-button [routerLink]="['settings']">
