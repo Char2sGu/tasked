@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -83,6 +84,7 @@ import { TeamsRoutingModule } from './teams-routing.module';
   imports: [
     SharedModule,
     TeamsRoutingModule,
+    FormsModule,
     MatDividerModule,
     MatIconModule,
     MatFormFieldModule,

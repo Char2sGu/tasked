@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -13,6 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BackButtonModule } from '../../components/back-button/back-button.module';
 import { ModalModule } from '../../components/modal/modal.module';
 import { RadioListModule } from '../../components/radio-list/radio-list.module';
+import { ThemeSwitcherModule } from '../../components/theme-switcher/theme-switcher.module';
 import { SharedModule } from '../../shared/shared.module';
 import { SettingsComponent } from './settings.component';
 import { SettingsEditFullNameModalComponent } from './settings-edit-full-name-modal/settings-edit-full-name-modal.component';
@@ -23,7 +25,6 @@ import { SettingsListComponent } from './settings-list/settings-list.component';
 import { SettingsListButtonItemComponent } from './settings-list-button-item/settings-list-button-item.component';
 import { SettingsListNormalItemComponent } from './settings-list-normal-item/settings-list-normal-item.component';
 import { SettingsRoutingModule } from './settings-routing.module';
-import { ThemeSwitcherModule } from '../../components/theme-switcher/theme-switcher.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ThemeSwitcherModule } from '../../components/theme-switcher/theme-switc
   imports: [
     SharedModule,
     SettingsRoutingModule,
+    FormsModule,
     MatToolbarModule,
     MatListModule,
     MatButtonModule,
