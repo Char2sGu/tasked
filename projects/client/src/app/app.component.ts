@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { FadeThroughAnimation } from './common/animations';
 import { RouterOutletDataReader } from './common/router';
-import { ThemeService } from './core/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -17,12 +16,7 @@ import { ThemeService } from './core/theme.service';
   ],
 })
 export class AppComponent implements OnInit {
-  constructor(
-    public routerOutletDataReader: RouterOutletDataReader,
-    private theme: ThemeService,
-  ) {}
+  constructor(public routerOutletDataReader: RouterOutletDataReader) {}
 
-  ngOnInit(): void {
-    this.theme.init();
-  }
+  ngOnInit(): void {}
 }
