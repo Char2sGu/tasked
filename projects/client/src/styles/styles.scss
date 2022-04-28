@@ -1,6 +1,5 @@
 @use '../../../../node_modules/angular-notifier/styles'; // don't know why it's require a relative path
 @use '@angular/material' as mat;
-@use './utilities';
 @use './themes' as themes;
 @use './material-patches' as mat-patches;
 @use 'sass:map' as map;
@@ -8,6 +7,8 @@
 
 @tailwind base;
 @tailwind utilities;
+
+// integrate with tailwind's built in dark mode
 
 @layer utilities {
   // Material Text Colors

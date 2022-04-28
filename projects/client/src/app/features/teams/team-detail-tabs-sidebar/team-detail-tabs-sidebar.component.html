@@ -1,6 +1,6 @@
 <mat-list fxLayout="column">
   <h3 matSubheader i18n>Description</h3>
-  <section class="description mat-typography preserve">
+  <section class="description mat-typography whitespace-pre-wrap">
     <ng-container
       *ngIf="(team$ | async)?.description; then thenBlock; else elseBlock"
     ></ng-container>
@@ -8,7 +8,7 @@
       <p>{{ (team$ | async)?.description }}</p>
     </ng-template>
     <ng-template #elseBlock>
-      <p class="opacity--2" i18n>No description provided...</p>
+      <p class="text-medium-emphasis" i18n>No description provided...</p>
     </ng-template>
   </section>
 
