@@ -21,10 +21,11 @@
     "test:server": "npm run test:server:unit & npm run test:server:e2e",
     "test:server:unit": "jest --config ./projects/server/jest.config.unit.js",
     "test:server:e2e": "jest --config ./projects/server/jest.config.e2e.js",
-    "format": "prettier --write \"{projects/**/*,*}.{html,css,less,scss,sass,ts,js,json,md}\"",
-    "lint": "eslint \"projects/**/*.ts\" --cache --fix",
+    "client:i18n": "ng extract-i18n --format=json --output-path projects/client/src/locales/",
+    "server:db": "ts-node -r tsconfig-paths/register ./projects/server/src/db.ts init",
     "codegen": "graphql-codegen",
-    "db": "ts-node -r tsconfig-paths/register ./projects/server/src/db.ts init"
+    "format": "prettier --write \"{projects/**/*,*}.{html,css,less,scss,sass,ts,js,json,md}\"",
+    "lint": "eslint \"projects/**/*.ts\" --cache --fix"
   },
   "dependencies": {
     "@angular/animations": "~13.1.0",
