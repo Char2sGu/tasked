@@ -2,12 +2,14 @@ version: '3.9'
 
 services:
   client:
+    image: char2s/tasked_frontend
     build:
       context: .
       dockerfile: projects/client/.docker/dockerfile
     ports:
       - 80:80
   server:
+    image: char2s/tasked_backend
     build:
       context: .
       dockerfile: projects/server/.docker/dockerfile
