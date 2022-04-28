@@ -7,7 +7,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { AuthService } from '../features/auth/auth.service';
+import { AuthService } from '../core/auth.service';
 
 @Injectable()
 export class GraphqlAuthInterceptor implements HttpInterceptor {

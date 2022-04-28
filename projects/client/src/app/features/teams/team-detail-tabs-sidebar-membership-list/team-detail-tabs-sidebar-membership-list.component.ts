@@ -9,7 +9,7 @@ import {
   RoomMembershipListGQL,
   RoomMembershipListQuery,
 } from '../../../graphql';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../../core/auth.service';
 
 type Membership =
   RoomMembershipListQuery['room']['memberships']['results'][number];

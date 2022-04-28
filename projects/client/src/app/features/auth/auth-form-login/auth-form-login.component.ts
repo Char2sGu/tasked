@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 import { finalize, throttleTime } from 'rxjs/operators';
 
 import { NotificationType } from '../../../common/notification-type.enum';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../../core/auth.service';
 
 @Component({
   selector: 'app-auth-form-login',

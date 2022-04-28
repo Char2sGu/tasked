@@ -13,7 +13,7 @@ import {
   RoomUpdateGQL,
   RoomUpdateInput,
 } from '../../../graphql';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../../core/auth.service';
 
 type Team = RoomDetailQuery['room'];
 

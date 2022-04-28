@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FadeThroughAnimation } from '../../common/animations';
 import { RouterOutletDataReader } from '../../common/router';
-import { AuthService } from './auth.service';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   selector: 'app-auth',

@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { combineLatest } from 'rxjs';
 
 import { skipFalsy } from '../../../common/rxjs';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../../core/auth.service';
 import { TeamsActivatedMapStorage } from '../teams-activated-map.storage';
 import { TeamDetailState } from './team-detail-state.service';
 

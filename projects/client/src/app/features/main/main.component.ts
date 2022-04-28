@@ -6,7 +6,7 @@ import {
   SharedAxisAnimation,
 } from '../../common/animations';
 import { RouterOutletDataReader } from '../../common/router';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../../core/auth.service';
 
 // TODO: account switching
 

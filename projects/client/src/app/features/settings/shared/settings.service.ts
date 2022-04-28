@@ -4,7 +4,7 @@ import { concatMap, first, map, Observable, Observer } from 'rxjs';
 
 import { skipFalsy } from '../../../common/rxjs';
 import { UserFragment, UserUpdateGQL, UserUpdateInput } from '../../../graphql';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../../core/auth.service';
 
 export type User = UserFragment;
 

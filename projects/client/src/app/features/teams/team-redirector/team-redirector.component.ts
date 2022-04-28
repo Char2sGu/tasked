@@ -5,7 +5,7 @@ import { first, map } from 'rxjs/operators';
 
 import { skipFalsy } from '../../../common/rxjs';
 import { RoomListGQL } from '../../../graphql';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../../core/auth.service';
 import { TeamsActivatedMapStorage } from '../teams-activated-map.storage';
 
 @Component({
