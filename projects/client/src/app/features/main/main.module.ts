@@ -6,7 +6,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
-import { ProfileModule } from '../../components/profile/profile.module';
 import { RefetchButtonModule } from '../../components/refetch-button/refetch-button.module';
 import { ThemeButtonModule } from '../../components/theme-button/theme-button.module';
 import { LayoutModule } from '../../layout/layout.module';
@@ -26,7 +25,6 @@ import { MainRoutingModule } from './main-routing.module';
     MatTooltipModule,
     NgxSkeletonLoaderModule,
     LayoutModule,
-    ProfileModule,
     RefetchButtonModule,
     ThemeButtonModule,
   ],

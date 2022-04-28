@@ -7,7 +7,6 @@ import { concatMap, finalize, throttleTime } from 'rxjs/operators';
 
 import { filterKeys } from '../../../common/form.utils';
 import { NotificationType } from '../../../common/notification-type.enum';
-import { ProfileFormData } from '../../../components/profile/profile-form/profile-form-data.interface';
 import { Gender, UserCreateGQL, UserCreateInput } from '../../../graphql';
 import { AuthService } from '../auth.service';
 
@@ -17,8 +16,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./auth-form-signup.component.scss'],
 })
 export class AuthFormSignupComponent implements OnInit {
-  data: ProfileFormData = {
+  data = {
     username: '',
+    nickname: '',
     password: '',
     passwordConfirm: '',
     gender: Gender.Unknown,
@@ -60,17 +60,16 @@ export class AuthFormSignupComponent implements OnInit {
         concatMap(() => this.auth.login(username, password)),
         finalize(() => (this.loading = false)),
       )
-      .subscribe(
-        () => {
-          const next = this.route.snapshot.queryParams['next'];
-          this.router.navigate([next ?? '/']);
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/']);
         },
-        () => {
+        error: () => {
           this.notifier.notify(
             NotificationType.Error,
             $localize`Username "${username}" is already taken`,
           );
         },
-      );
+      });
   }
 }
