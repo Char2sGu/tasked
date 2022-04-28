@@ -1,0 +1,23 @@
+<div class="w-[60vw] max-w-[224px]">
+  <h2 matDialogTitle>{{ headline }}</h2>
+
+  <div matDialogContent>
+    <ng-content></ng-content>
+  </div>
+
+  <div matDialogActions class="flex justify-end">
+    <button mat-button matDialogClose class="uppercase" color="primary">
+      Cancel
+    </button>
+    <button
+      mat-button
+      matDialogClose
+      class="uppercase"
+      color="primary"
+      [disabled]="invalid"
+      (click)="save.emit()"
+    >
+      Save
+    </button>
+  </div>
+</div>

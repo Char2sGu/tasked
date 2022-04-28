@@ -1,0 +1,13 @@
+<mat-radio-group
+  class="flex w-full flex-col items-stretch"
+  [ngModel]="value"
+  (ngModelChange)="valueChange.emit($event)"
+>
+  <mat-radio-button
+    class="flex h-12 items-center"
+    *ngFor="let option of options"
+    [value]="option.value"
+  >
+    <span class="ml-4">{{ option.text }}</span>
+  </mat-radio-button>
+</mat-radio-group>

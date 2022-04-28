@@ -1,1 +1,11 @@
-<p>settings-edit-gender-modal works!</p>
+<app-settings-edit-modal
+  *ngIf="user$ | async as user"
+  headline="Gender"
+  (save)="onSave()"
+>
+  <app-radio-list
+    [value]="value ?? user.gender"
+    (valueChange)="value = $event"
+    [options]="options"
+  ></app-radio-list>
+</app-settings-edit-modal>

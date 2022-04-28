@@ -16,6 +16,7 @@ import { GraphqlModule } from './graphql/graphql.module';
 import { LayoutModule } from './layout/layout.module';
 
 // TODO: offline support
+// TODO: reuseable form field
 
 registerLocaleData(en);
 

@@ -1,1 +1,22 @@
-<p>settings-edit-nickname-modal works!</p>
+<app-settings-edit-modal
+  *ngIf="user$ | async as user"
+  headline="Nickname"
+  [invalid]="form.invalid ?? true"
+  (save)="onSave()"
+>
+  <form (ngSubmit)="onSave()" #form="ngForm">
+    <mat-form-field class="w-full" appearance="standard">
+      <input
+        matInput
+        name="nickname"
+        type="text"
+        autocomplete="nickname"
+        required
+        maxlength="15"
+        pattern="^[^\s]*$"
+        [ngModel]="value ?? user.nickname"
+        (ngModelChange)="value = $event"
+      />
+    </mat-form-field>
+  </form>
+</app-settings-edit-modal>
