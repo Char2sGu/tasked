@@ -1,0 +1,12 @@
+<button mat-list-item matRipple>
+  <mat-icon matListIcon>{{ icon }}</mat-icon>
+  <div matLine>
+    <span>{{ name }}</span>
+  </div>
+  <div class="flex items-center">
+    <span class="text-medium-emphasis">
+      <ng-content></ng-content>
+    </span>
+    <mat-icon class="ml-1">chevron_right</mat-icon>
+  </div>
+</button>

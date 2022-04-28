@@ -1,34 +1,28 @@
 <mat-list *ngIf="user$ | async as user">
   <h3 matSubheader>Profile</h3>
-  <app-settings-list-item
-    name="Username"
-    icon="fingerprint"
-    [value]="user.username"
-    [editable]="false"
-  ></app-settings-list-item>
-  <app-settings-list-item
+  <app-settings-list-normal-item name="Username" icon="fingerprint">
+    {{ user.username }}
+  </app-settings-list-normal-item>
+  <app-settings-list-button-item
     name="Full Name"
     icon="badge"
-    [value]="user.nickname"
-    [editable]="true"
-    (edit)="editFullNameModal.openDialog()"
+    (click)="editFullNameModal.openDialog()"
   >
-  </app-settings-list-item>
-  <app-settings-list-item
+    {{ user.nickname }}
+  </app-settings-list-button-item>
+  <app-settings-list-button-item
     name="Password"
     icon="password"
     value=""
-    [editable]="true"
-    (edit)="editPasswordModal.openDialog()"
-  >
-  </app-settings-list-item>
-  <app-settings-list-item
+    (click)="editPasswordModal.openDialog()"
+  ></app-settings-list-button-item>
+  <app-settings-list-button-item
     name="Gender"
     icon="star"
-    [value]="user.gender"
-    [editable]="true"
-    (edit)="editGenderModal.openDialog()"
-  ></app-settings-list-item>
+    (click)="editGenderModal.openDialog()"
+  >
+    {{ user.gender }}
+  </app-settings-list-button-item>
 </mat-list>
 
 <ng-template appModal #editFullNameModal="appModal">

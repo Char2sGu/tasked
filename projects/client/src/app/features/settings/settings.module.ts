@@ -20,18 +20,20 @@ import { SettingsEditGenderModalComponent } from './settings-edit-gender-modal/s
 import { SettingsEditModalComponent } from './settings-edit-modal/settings-edit-modal.component';
 import { SettingsEditPasswordModalComponent } from './settings-edit-password-modal/settings-edit-password-modal.component';
 import { SettingsListComponent } from './settings-list/settings-list.component';
-import { SettingsListItemComponent } from './settings-list-item/settings-list-item.component';
+import { SettingsListButtonItemComponent } from './settings-list-button-item/settings-list-button-item.component';
+import { SettingsListNormalItemComponent } from './settings-list-normal-item/settings-list-normal-item.component';
 import { SettingsRoutingModule } from './settings-routing.module';
 
 @NgModule({
   declarations: [
     SettingsComponent,
-    SettingsListItemComponent,
     SettingsListComponent,
     SettingsEditFullNameModalComponent,
     SettingsEditPasswordModalComponent,
     SettingsEditGenderModalComponent,
     SettingsEditModalComponent,
+    SettingsListButtonItemComponent,
+    SettingsListNormalItemComponent,
   ],
   imports: [
     SharedModule,
