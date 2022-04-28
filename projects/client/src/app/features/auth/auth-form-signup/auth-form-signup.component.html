@@ -11,7 +11,7 @@
     </h3>
   </div>
 
-  <div class="-mt-8 flex flex-col items-stretch">
+  <div class="-mt-10 flex flex-col items-stretch">
     <mat-form-field appearance="outline">
       <mat-label i18n>Username</mat-label>
       <div matPrefix class="mr-2">
@@ -104,7 +104,7 @@
     </mat-form-field>
   </div>
 
-  <div class="mt-8">
+  <div class="mt-6">
     <button
       mat-raised-button
       class="w-full uppercase"
@@ -115,5 +115,10 @@
     >
       <span *appLoading="loading; diameter: 30">Create Account</span>
     </button>
+  </div>
+
+  <div class="mat-typography mt-2 text-right">
+    <span>Already have an account?</span>
+    <a mat-button color="primary" [routerLink]="['../login']">Log In</a>
   </div>
 </form>

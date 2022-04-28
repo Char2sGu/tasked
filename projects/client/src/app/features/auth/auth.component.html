@@ -6,28 +6,41 @@
   <router-outlet></router-outlet>
 </main>
 
-<app-header
-  *appLayout="'header'; let navigator = navigator"
-  (menuToggle)="navigator.toggle()"
->
-  <app-theme-button></app-theme-button>
-</app-header>
+<ng-container
+  *ngIf="isDesktop$ | async; then layoutDesktop; else layoutMobile"
+></ng-container>
 
-<mat-nav-list *appLayout="'navigation'">
-  <a
-    mat-list-item
-    routerLink="/auth/login"
-    routerLinkActive="router-link-active"
+<ng-template #layoutDesktop>
+  <app-header
+    *appLayout="'header'; let navigator = navigator"
+    (menuToggle)="navigator.toggle()"
   >
-    <mat-icon matListIcon>login</mat-icon>
-    <span matLine i18n>Login</span>
-  </a>
-  <a
-    mat-list-item
-    routerLink="/auth/signup"
-    routerLinkActive="router-link-active"
-  >
-    <mat-icon matListIcon>person_add</mat-icon>
-    <span matLine i18n>Signup</span>
-  </a>
-</mat-nav-list>
+    <app-theme-button></app-theme-button>
+  </app-header>
+
+  <mat-nav-list *appLayout="'navigation'">
+    <a
+      mat-list-item
+      routerLink="/auth/login"
+      routerLinkActive="router-link-active"
+    >
+      <mat-icon matListIcon>login</mat-icon>
+      <span matLine i18n>Login</span>
+    </a>
+    <a
+      mat-list-item
+      routerLink="/auth/signup"
+      routerLinkActive="router-link-active"
+    >
+      <mat-icon matListIcon>person_add</mat-icon>
+      <span matLine i18n>Signup</span>
+    </a>
+  </mat-nav-list>
+</ng-template>
+
+<ng-template #layoutMobile>
+  <ng-container *appLayout="'header'">
+    <div class="grow"></div>
+    <app-theme-button></app-theme-button>
+  </ng-container>
+</ng-template>

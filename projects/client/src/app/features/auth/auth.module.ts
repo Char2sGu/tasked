@@ -15,6 +15,7 @@ import { AuthComponent } from './auth.component';
 import { AuthFormLoginComponent } from './auth-form-login/auth-form-login.component';
 import { AuthFormSignupComponent } from './auth-form-signup/auth-form-signup.component';
 import { AuthRoutingModule } from './auth-routing.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 // TODO: better auto-focus implementation
 
@@ -34,6 +35,7 @@ import { AuthRoutingModule } from './auth-routing.module';
     MatCardModule,
     MatButtonModule,
     MatSelectModule,
+    MatToolbarModule,
     LayoutModule,
     LoadingModule,
     ThemeButtonModule,

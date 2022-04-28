@@ -1,7 +1,10 @@
 import { transition, trigger } from '@angular/animations';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 
 import { FadeThroughAnimation } from '../../common/animations';
+import { Breakpoint } from '../../common/breakpoint.enum';
 import { RouterOutletDataReader } from '../../common/router';
 import { AuthService } from '../../core/auth.service';
 
@@ -17,8 +20,13 @@ import { AuthService } from '../../core/auth.service';
   ],
 })
 export class AuthComponent implements OnInit {
+  isDesktop$ = this.breakpointObserver
+    .observe(Breakpoint.Middle)
+    .pipe(map((state) => state.matches));
+
   constructor(
     public routerOutletDataReader: RouterOutletDataReader,
+    private breakpointObserver: BreakpointObserver,
     private auth: AuthService,
   ) {}
 

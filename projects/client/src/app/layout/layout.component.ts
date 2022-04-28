@@ -15,7 +15,9 @@ import {
   debounceTime,
   first,
   map,
+  merge,
   Observable,
+  skip,
   Subject,
 } from 'rxjs';
 
@@ -41,14 +43,15 @@ export class LayoutComponent implements OnInit {
     .observe(Breakpoint.Small)
     .pipe(map((state) => state.matches));
 
-  headerContent$ = this.useContent(this.contents.header$);
-  navigationContent$ = this.useContent(this.contents.navigation$);
+  contentOfHeader$ = this.useContent(this.contents.header$);
+  contentOfNavigator$ = this.useContent(this.contents.navigation$);
 
   navigating$ = new Subject();
   navigatingAndBlocked$ = this.navigating$.pipe(debounceTime(200));
 
-  @ViewChild(MatSidenav) navigatorSide!: MatSidenav;
-  @ViewChild(ModalDirective) navigatorBottom!: ModalDirective;
+  @ViewChild(MatSidenav) navigatorSide?: MatSidenav;
+  @ViewChild(ModalDirective) navigatorBottom?: ModalDirective;
+
   private contentContext: LayoutContentContext = {
     navigator: { toggle: () => this.toggleNavigator() },
   };
@@ -63,6 +66,7 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {}
 
   private useContent(content$: Observable<LayoutContent>) {
+    // TODO: prevent layout flickering
     return content$.pipe(
       debounceTime(100),
       map(
@@ -80,11 +84,10 @@ export class LayoutComponent implements OnInit {
   private toggleNavigator() {
     this.isBreakpointSmallMatched$
       .pipe(first())
-      .subscribe((isLargerThanSmall) =>
-        isLargerThanSmall
-          ? this.navigatorSide.toggle()
-          : this.navigatorBottom.openSheet(),
-      );
+      .subscribe((isLargerThanSmall) => {
+        if (isLargerThanSmall) this.navigatorSide?.toggle();
+        else this.navigatorBottom?.openSheet();
+      });
   }
 }
 
