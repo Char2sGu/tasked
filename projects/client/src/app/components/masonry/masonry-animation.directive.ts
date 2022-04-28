@@ -25,6 +25,7 @@ export class MasonryAnimationDirective {
   };
 
   constructor(private masonry: NgxMasonryComponent) {
+    this.masonry.options = this.masonry.options ?? {};
     this.masonry.options.animations = this.animation;
   }
 }
