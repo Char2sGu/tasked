@@ -23,6 +23,11 @@
   >
     {{ user.gender }}
   </app-settings-list-button-item>
+
+  <h3 matSubheader>Appearance</h3>
+  <app-settings-list-normal-item name="Dark Mode" icon="dark_mode">
+    <app-theme-switcher></app-theme-switcher>
+  </app-settings-list-normal-item>
 </mat-list>
 
 <ng-template appModal #editFullNameModal="appModal">

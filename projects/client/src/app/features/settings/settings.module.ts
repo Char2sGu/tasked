@@ -23,6 +23,7 @@ import { SettingsListComponent } from './settings-list/settings-list.component';
 import { SettingsListButtonItemComponent } from './settings-list-button-item/settings-list-button-item.component';
 import { SettingsListNormalItemComponent } from './settings-list-normal-item/settings-list-normal-item.component';
 import { SettingsRoutingModule } from './settings-routing.module';
+import { ThemeSwitcherModule } from '../../components/theme-switcher/theme-switcher.module';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { SettingsRoutingModule } from './settings-routing.module';
     RadioListModule,
     MatSnackBarModule,
     ModalModule,
+    ThemeSwitcherModule,
   ],
 })
 export class SettingsModule {}
