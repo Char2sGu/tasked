@@ -1,10 +1,5 @@
-<form
-  fxLayout
-  fxLayoutAlign="start center"
-  fxLayoutGap="8px"
-  (ngSubmit)="create()"
->
-  <mat-form-field fxFlex appearance="standard">
+<form class="flex items-center gap-2" (ngSubmit)="create()">
+  <mat-form-field class="grow" appearance="standard">
     <mat-label i18n>New Task</mat-label>
     <input
       matInput

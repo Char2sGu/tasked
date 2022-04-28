@@ -1,6 +1,6 @@
 <div class="relative flex h-full flex-col gap-4 py-7 px-8 md:px-[20%]">
   <form class="flex items-center gap-4" (ngSubmit)="load()">
-    <mat-form-field fxFlex appearance="standard">
+    <mat-form-field class="grow" appearance="standard">
       <mat-label i18n>Search</mat-label>
       <input matInput name="search" type="search" [(ngModel)]="searchValue" />
       <mat-hint i18n>Search by team name or "#" + ID</mat-hint>
@@ -14,7 +14,7 @@
 
   <ng-container *ngIf="teams$ | async as teams">
     <ng-container *ngIf="teams.length; else empty">
-      <mat-action-list class="overflow-auto" fxFlex>
+      <mat-action-list class="grow overflow-auto">
         <app-team-list-item
           *ngFor="let team of teams"
           [team]="team"

@@ -1,10 +1,13 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Directive, Injectable, TemplateRef } from '@angular/core';
-import { MediaObserver } from '@angular/flex-layout';
 import {
   MatBottomSheet,
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { first, map } from 'rxjs';
+
+import { Breakpoint } from '../../common/breakpoint.enum';
 
 @Injectable()
 export class ModalRef {
@@ -22,18 +25,22 @@ export class ModalRef {
 export class ModalDirective {
   private sheetRef?: MatBottomSheetRef<never>;
   private dialogRef?: MatDialogRef<never>;
+  private isPhone$ = this.breakpointObserver
+    .observe(Breakpoint.Small)
+    .pipe(map((state) => !state.matches));
 
   constructor(
     private templateRef: TemplateRef<never>,
-    private media: MediaObserver,
+    private breakpointObserver: BreakpointObserver,
     private dialog: MatDialog,
     private sheet: MatBottomSheet,
   ) {}
 
-  open(breakpoint = 'xs'): void {
-    const isPhone = this.media.isActive(breakpoint);
-    if (isPhone) this.openSheet();
-    else this.openDialog();
+  open(): void {
+    this.isPhone$.pipe(first()).subscribe((isPhone) => {
+      if (isPhone) this.openSheet();
+      else this.openDialog();
+    });
   }
 
   openDialog(): void {

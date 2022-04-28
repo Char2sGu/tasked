@@ -1,4 +1,4 @@
-<mat-list fxLayout="column">
+<mat-list class="flex flex-col">
   <h3 matSubheader i18n>Description</h3>
   <section class="description mat-typography whitespace-pre-wrap">
     <ng-container
@@ -16,7 +16,7 @@
 
   <mat-divider></mat-divider>
 
-  <div class="memberships" fxFlex>
+  <div class="memberships grow">
     <app-team-detail-tabs-sidebar-membership-list></app-team-detail-tabs-sidebar-membership-list>
   </div>
 </mat-list>
