@@ -8,8 +8,6 @@
 @tailwind base;
 @tailwind utilities;
 
-// integrate with tailwind's built in dark mode
-
 @layer utilities {
   // Material Text Colors
   // https://material.io/design/color/text-legibility.html
@@ -65,7 +63,7 @@ body {
 
 @include mat.core();
 @include mat.all-component-themes(themes.$theme-base);
-.theme-light {
+html:not(.dark) {
   $theme: themes.$theme-light;
   @include mat.all-component-colors($theme);
   @include router-link-active($theme);
@@ -81,7 +79,8 @@ body {
   }
   --pwa-theme-color: #{map.get($theme, 'color', 'primary', 'default')};
 }
-.theme-dark {
+
+html.dark {
   $theme: themes.$theme-dark;
   @include mat.all-component-colors($theme);
   @include router-link-active($theme);

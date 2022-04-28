@@ -25,18 +25,14 @@ export class ThemeService {
   }
 
   apply(theme: Theme): void {
-    this.$root.classList.remove(this.getClassName(this.current.value));
-    this.$root.classList.add(this.getClassName(theme));
+    if (theme == 'light') this.$root.classList.remove('dark');
+    else this.$root.classList.add('dark');
     this.$themeColorMeta.content = this.getThemeColor();
     this.current.next(theme).save();
   }
 
   toggle(): void {
     this.apply(this.current.value == 'light' ? 'dark' : 'light');
-  }
-
-  private getClassName(theme: Theme) {
-    return `theme-${theme}`;
   }
 
   private getPreference(): Theme {
