@@ -18,12 +18,12 @@ import {
   first,
   map,
   Observable,
-  Subject,
 } from 'rxjs';
 
 import { Breakpoint } from '../common/breakpoint.enum';
 import { skipFalsy } from '../common/rxjs';
 import { ModalDirective } from '../components/modal/modal.directive';
+import { RouterStatus } from '../core/router-status.service';
 import { ThemeService } from '../core/theme.service';
 
 @Component({
@@ -45,8 +45,7 @@ export class LayoutComponent implements OnInit {
   contentOfHeader$ = this.useContent(this.contents.header$);
   contentOfNavigator$ = this.useContent(this.contents.navigation$);
 
-  navigating$ = new Subject();
-  navigatingAndBlocked$ = this.navigating$.pipe(debounceTime(200));
+  loading$ = this.routerStatus.navigatingAndLoading$;
 
   @ViewChild(MatSidenav) navigatorSide?: MatSidenav;
   @ViewChild(ModalDirective) navigatorBottom?: ModalDirective;
@@ -57,12 +56,17 @@ export class LayoutComponent implements OnInit {
 
   constructor(
     private contents: LayoutContents,
+    private routerStatus: RouterStatus,
     private breakpointObserver: BreakpointObserver,
     private themeService: ThemeService,
     private viewContainerRef: ViewContainerRef,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.routerStatus.navigating$
+      .pipe(skipFalsy())
+      .subscribe(() => this.closeNavigator());
+  }
 
   private useContent(content$: Observable<LayoutContent>) {
     return concat(
@@ -87,8 +91,15 @@ export class LayoutComponent implements OnInit {
       .pipe(first())
       .subscribe((isLargerThanSmall) => {
         if (isLargerThanSmall) this.navigatorSide?.toggle();
-        else this.navigatorBottom?.openSheet();
+        else this.navigatorBottom?.openSheet(); // bottom navigator is definitely closed at this point
       });
+  }
+
+  private closeNavigator() {
+    this.isBreakpointXLargeMatched$.pipe(first()).subscribe((isDesktop) => {
+      if (!isDesktop) this.navigatorSide?.close();
+      this.navigatorBottom?.close();
+    });
   }
 }
 

@@ -4,11 +4,9 @@
     isDesktop: isBreakpointXLargeMatched$ | async,
     contentOfHeader: contentOfHeader$ | async,
     contentOfNavigator: contentOfNavigator$ | async,
-    navigatingAndBlocked: navigatingAndBlocked$ | async
+    loading: loading$ | async
   } as data"
   class="relative flex h-full flex-col"
-  (navigationStart)="navigating$.next(true)"
-  (navigationEnd)="navigating$.next(false)"
 >
   <mat-toolbar
     *ngIf="data.contentOfHeader"
@@ -18,7 +16,7 @@
     <ng-container [cdkPortalOutlet]="data.contentOfHeader"></ng-container>
   </mat-toolbar>
 
-  <div *ngIf="data.navigatingAndBlocked" class="absolute inset-0 z-10">
+  <div *ngIf="data.loading" class="absolute inset-0 z-10">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
 
@@ -29,7 +27,6 @@
       [class]="{ 'bg-transparent': data.isDesktop }"
       [opened]="data.isDesktop"
       [mode]="data.isDesktop ? 'side' : 'over'"
-      (navigationStart)="data.isDesktop ? null : navigatorSide?.close()"
     >
       <ng-container [cdkPortalOutlet]="data.contentOfNavigator"></ng-container>
     </mat-sidenav>
@@ -43,7 +40,6 @@
       <div class="h-[60vh]">
         <ng-container
           [cdkPortalOutlet]="data.contentOfNavigator"
-          (navigationStart)="navigatorBottom?.close()"
         ></ng-container>
       </div>
     </ng-template>
