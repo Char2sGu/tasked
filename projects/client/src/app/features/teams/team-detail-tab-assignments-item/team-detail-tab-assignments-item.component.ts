@@ -9,12 +9,11 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Input, OnInit } from '@angular/core';
 import { AnimationCurves } from '@angular/material/core';
 import { Data } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
 import { timer } from 'rxjs';
 import { concatMap, finalize, map } from 'rxjs/operators';
 
 import { Breakpoint } from '../../../common/breakpoint.enum';
-import { NotificationType } from '../../../common/notification-type.enum';
+import { Notifier } from '../../../core/notifier.service';
 import {
   AssignmentUpdateGQL,
   MembershipAssignmentListQuery,
@@ -54,7 +53,7 @@ export class TeamDetailTabAssignmentsItemComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private updateGql: AssignmentUpdateGQL,
-    private notifier: NotifierService,
+    private notifier: Notifier,
   ) {}
 
   ngOnInit(): void {
@@ -118,10 +117,7 @@ export class TeamDetailTabAssignmentsItemComponent implements OnInit {
       )
       .subscribe({
         error: () => {
-          this.notifier.notify(
-            NotificationType.Error,
-            $localize`Failed to update the assignment`,
-          );
+          this.notifier.error($localize`Failed to update the assignment`);
         },
       });
   }

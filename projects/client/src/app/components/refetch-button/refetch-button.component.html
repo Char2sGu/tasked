@@ -2,7 +2,7 @@
   mat-icon-button
   [disabled]="disabled"
   matTooltip="Refresh"
-  (click)="refetch()"
+  (click)="onClick()"
 >
   <mat-icon *appLoading="loading; diameter: 20; color: 'accent'">
     refresh

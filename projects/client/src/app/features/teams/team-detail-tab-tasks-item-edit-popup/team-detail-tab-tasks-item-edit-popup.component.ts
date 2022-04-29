@@ -6,11 +6,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { NotifierService } from 'angular-notifier';
 import { delay, finalize } from 'rxjs';
 
-import { NotificationType } from '../../../common/notification-type.enum';
 import { ModalRef } from '../../../components/modal/modal.directive';
+import { Notifier } from '../../../core/notifier.service';
 import { TaskUpdateGQL } from '../../../graphql';
 import { Task } from '../team-detail-tab-tasks/team-detail-tab-tasks.component';
 
@@ -31,7 +30,7 @@ export class TeamDetailTabTasksItemEditPopupComponent
 
   constructor(
     private modal: ModalRef,
-    private notifier: NotifierService,
+    private notifier: Notifier,
     private updateGql: TaskUpdateGQL,
   ) {}
 
@@ -58,11 +57,11 @@ export class TeamDetailTabTasksItemEditPopupComponent
       .subscribe({
         next: () => {
           this.modified = false;
-          this.notifier.notify(NotificationType.Success, 'Task updated');
+          this.notifier.success('Task updated');
           this.modal.close();
         },
         error: () => {
-          this.notifier.notify(NotificationType.Error, 'Update failed');
+          this.notifier.error('Failed to update');
         },
       });
   }

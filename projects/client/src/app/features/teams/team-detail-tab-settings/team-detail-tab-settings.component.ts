@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { debounceTime, finalize, first, map } from 'rxjs/operators';
 
 import { filterKeys, pick } from '../../../common/form.utils';
 import { isEmpty } from '../../../common/form.utils';
-import { NotificationType } from '../../../common/notification-type.enum';
 import { AuthService } from '../../../core/auth.service';
+import { Notifier } from '../../../core/notifier.service';
 import {
   RoomDetailGQL,
   RoomDetailQuery,
@@ -39,7 +38,7 @@ export class TeamDetailTabSettingsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
-    private notifier: NotifierService,
+    private notifier: Notifier,
     private queryGql: RoomDetailGQL,
     private updateGql: RoomUpdateGQL,
   ) {}
@@ -82,20 +81,14 @@ export class TeamDetailTabSettingsComponent implements OnInit {
             this.loading = false;
           }),
         )
-        .subscribe(
-          () => {
-            this.notifier.notify(
-              NotificationType.Success,
-              $localize`Changes have been saved successfully`,
-            );
+        .subscribe({
+          next: () => {
+            this.notifier.success($localize`Changes saved`);
           },
-          () => {
-            this.notifier.notify(
-              NotificationType.Error,
-              $localize`Failed to save the changes`,
-            );
+          error: () => {
+            this.notifier.error($localize`Failed to save changes`);
           },
-        );
+        });
     });
   }
 }

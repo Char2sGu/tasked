@@ -54,7 +54,6 @@
     "@nestjs/throttler": "^2.0.1",
     "@ng-web-apis/common": "^2.0.0",
     "@ng-web-apis/intersection-observer": "^2.1.0",
-    "angular-notifier": "^11.0.0",
     "apollo-angular": "^3.0.1",
     "apollo-server-express": "^3.6.7",
     "apollo-server-plugin-base": "^3.5.2",

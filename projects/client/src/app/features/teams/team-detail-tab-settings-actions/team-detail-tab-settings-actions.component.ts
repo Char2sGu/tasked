@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { concatMap, finalize, first, map } from 'rxjs/operators';
 
-import { NotificationType } from '../../../common/notification-type.enum';
+import { Notifier } from '../../../core/notifier.service';
 import {
   MembershipDeleteGQL,
   RoomDeleteGQL,
@@ -29,7 +28,7 @@ export class TeamDetailTabSettingsActionsComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private notifier: NotifierService,
+    private notifier: Notifier,
     private apollo: Apollo,
     private teamGql: RoomDetailGQL,
     private membershipDeleteGql: MembershipDeleteGQL,
@@ -46,16 +45,16 @@ export class TeamDetailTabSettingsActionsComponent implements OnInit {
   exit(): void {
     this.mutate(
       (team) => this.membershipDeleteGql.mutate({ id: team.membership!.id }),
-      $localize`Exited the team`,
-      $localize`Failed to exit the team`,
+      $localize`Exited`,
+      $localize`Failed to exit`,
     );
   }
 
   disband(): void {
     this.mutate(
       (team) => this.teamDeleteGql.mutate({ id: team.id }),
-      $localize`Disbanded the team`,
-      $localize`Failed to disband the team`,
+      $localize`Team disbanded`,
+      $localize`Failed to disband`,
     );
   }
 
@@ -77,16 +76,16 @@ export class TeamDetailTabSettingsActionsComponent implements OnInit {
           this.loading = false;
         }),
       )
-      .subscribe(
-        ([, team]) => {
-          this.notifier.notify(NotificationType.Success, messageOnSucceed);
+      .subscribe({
+        next: ([, team]) => {
+          this.notifier.success(messageOnSucceed);
           this.router.navigate(['/app/teams']);
           const cache = this.apollo.client.cache;
           cache.evict({ id: cache.identify(team) });
         },
-        () => {
-          this.notifier.notify(NotificationType.Error, messageOnFail);
+        error: () => {
+          this.notifier.error(messageOnFail);
         },
-      );
+      });
   }
 }

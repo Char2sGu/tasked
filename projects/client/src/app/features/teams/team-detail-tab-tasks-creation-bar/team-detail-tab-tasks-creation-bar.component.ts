@@ -1,9 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { NotifierService } from 'angular-notifier';
 import { combineLatest, concatMap, first } from 'rxjs';
 
-import { NotificationType } from '../../../common/notification-type.enum';
 import { skipFalsy } from '../../../common/rxjs';
+import { Notifier } from '../../../core/notifier.service';
 import { MembershipTaskListGQL, TaskCreateGQL } from '../../../graphql';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
 
@@ -20,7 +19,7 @@ export class TeamDetailTaskCreationBarComponent implements OnInit {
 
   constructor(
     private state: TeamDetailState,
-    private notifier: NotifierService,
+    private notifier: Notifier,
     private listGql: MembershipTaskListGQL,
     private gql: TaskCreateGQL,
   ) {}
@@ -62,19 +61,13 @@ export class TeamDetailTaskCreationBarComponent implements OnInit {
       )
       .subscribe({
         next: () => {
-          this.notifier.notify(
-            NotificationType.Success,
-            $localize`Task created`,
-          );
+          this.notifier.success($localize`Task created`);
           this.data = '';
           setTimeout(() => this.input.nativeElement.focus());
           this.pending = false;
         },
         error: () => {
-          this.notifier.notify(
-            NotificationType.Error,
-            $localize`Failed to create the task`,
-          );
+          this.notifier.error($localize`Failed to create the task`);
           this.pending = false;
         },
       });

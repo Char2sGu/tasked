@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { concatMap, first, map, Observable, Observer } from 'rxjs';
 
 import { skipFalsy } from '../../../common/rxjs';
-import { UserFragment, UserUpdateGQL, UserUpdateInput } from '../../../graphql';
 import { AuthService } from '../../../core/auth.service';
+import { Notifier } from '../../../core/notifier.service';
+import { UserFragment, UserUpdateGQL, UserUpdateInput } from '../../../graphql';
 
 export type User = UserFragment;
 
@@ -14,7 +14,7 @@ export class SettingsService {
 
   constructor(
     private authService: AuthService,
-    private snackbarService: MatSnackBar,
+    private notifier: Notifier,
     private userUpdateGql: UserUpdateGQL,
   ) {}
 
@@ -34,10 +34,8 @@ export class SettingsService {
     onerror: string,
   ): Partial<Observer<T>> {
     return {
-      next: () =>
-        this.snackbarService.open(onsuccess, 'Got it', { duration: 3000 }),
-      error: () =>
-        this.snackbarService.open(onerror, 'Fine', { duration: 3000 }),
+      next: () => this.notifier.success(onsuccess),
+      error: () => this.notifier.error(onerror),
     };
   }
 }

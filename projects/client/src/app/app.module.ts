@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { NotifierModule } from 'angular-notifier';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -16,6 +15,7 @@ import { GraphqlModule } from './graphql/graphql.module';
 import { LayoutModule } from './layout/layout.module';
 
 // TODO: offline support
+// TODO: reduce notifications
 
 registerLocaleData(en);
 
@@ -32,7 +32,6 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    NotifierModule,
     GraphqlModule,
     AppRoutingModule,
     IllustrationModule,

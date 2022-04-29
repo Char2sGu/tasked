@@ -1,11 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
 import { combineLatest, forkJoin, Subscription } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
-import { NotificationType } from '../../../common/notification-type.enum';
 import { ModalRef } from '../../../components/modal/modal.directive';
+import { Notifier } from '../../../core/notifier.service';
 import {
   AssignmentCreateGQL,
   AssignmentDeleteGQL,
@@ -38,7 +37,7 @@ export class TeamDetailTabTasksItemAssignPopupComponent
   constructor(
     public modal: ModalRef,
     private route: ActivatedRoute,
-    private notifier: NotifierService,
+    private notifier: Notifier,
     private membershipListGqL: RoomMembershipListGQL,
     private assignmentListGql: TaskAssignmentListGQL,
     private assignmentCreateGql: AssignmentCreateGQL,
@@ -127,16 +126,12 @@ export class TeamDetailTabTasksItemAssignPopupComponent
               },
               { creation: 0, deletion: 0 },
             );
-            this.notifier.notify(
-              NotificationType.Success,
+            this.notifier.success(
               $localize`Assigned: ${creation}; Revoked: ${deletion}`,
             );
           },
           () => {
-            this.notifier.notify(
-              NotificationType.Error,
-              $localize`Failed to update the assignments`,
-            );
+            this.notifier.error($localize`Failed to update the assignments`);
           },
         );
   }

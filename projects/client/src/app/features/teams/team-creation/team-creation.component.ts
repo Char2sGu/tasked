@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
 import { finalize } from 'rxjs/operators';
 
-import { NotificationType } from '../../../common/notification-type.enum';
+import { Notifier } from '../../../core/notifier.service';
 import { RoomCreateGQL, RoomListGQL } from '../../../graphql';
 
 @Component({
@@ -22,7 +21,7 @@ export class TeamCreationComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private notifier: NotifierService,
+    private notifier: Notifier,
     private createGql: RoomCreateGQL,
     private listGql: RoomListGQL,
   ) {}
@@ -62,19 +61,12 @@ export class TeamCreationComponent implements OnInit {
       )
       .subscribe({
         next: (result) => {
-          this.notifier.notify(
-            NotificationType.Success,
-            $localize`Team created successfully`,
-          );
           this.router.navigate(['/app/rooms', result.data!.createRoom.id], {
             relativeTo: this.route,
           });
         },
         error: () => {
-          this.notifier.notify(
-            NotificationType.Error,
-            $localize`Failed to create the room`,
-          );
+          this.notifier.error($localize`Operation failed`);
         },
       });
   }

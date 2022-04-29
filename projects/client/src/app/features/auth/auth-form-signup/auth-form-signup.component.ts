@@ -1,14 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatInput } from '@angular/material/input';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { concatMap, finalize, throttleTime } from 'rxjs/operators';
 
 import { filterKeys } from '../../../common/form.utils';
-import { NotificationType } from '../../../common/notification-type.enum';
-import { Gender, UserCreateGQL, UserCreateInput } from '../../../graphql';
 import { AuthService } from '../../../core/auth.service';
+import { Notifier } from '../../../core/notifier.service';
+import { Gender, UserCreateGQL, UserCreateInput } from '../../../graphql';
+
+// TODO: detailed error message
 
 @Component({
   selector: 'app-auth-form-signup',
@@ -32,9 +33,8 @@ export class AuthFormSignupComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private auth: AuthService,
-    private notifier: NotifierService,
+    private notifier: Notifier,
     private userCreateGql: UserCreateGQL,
   ) {}
 
@@ -65,8 +65,7 @@ export class AuthFormSignupComponent implements OnInit {
           this.router.navigate(['/']);
         },
         error: () => {
-          this.notifier.notify(
-            NotificationType.Error,
+          this.notifier.error(
             $localize`Username "${username}" is already taken`,
           );
         },

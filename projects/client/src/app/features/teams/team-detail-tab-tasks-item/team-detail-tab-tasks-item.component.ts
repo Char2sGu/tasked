@@ -1,10 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
-import { NotificationType } from '../../../common/notification-type.enum';
+import { Notifier } from '../../../core/notifier.service';
 import {
   MembershipTaskListGQL,
   RoomDetailGQL,
@@ -26,7 +25,7 @@ export class TeamDetailTabTasksItemComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private notifier: NotifierService,
+    private notifier: Notifier,
     private listGql: MembershipTaskListGQL,
     private deleteGql: TaskDeleteGQL,
     private teamDetailGql: RoomDetailGQL,
@@ -75,9 +74,9 @@ export class TeamDetailTabTasksItemComponent implements OnInit, OnDestroy {
   ) {
     if (this.loading) return;
     this.loading = true;
-    mutation.pipe(finalize(() => (this.loading = false))).subscribe(
-      () => this.notifier.notify(NotificationType.Success, messageOnSucceed),
-      () => this.notifier.notify(NotificationType.Error, messageOnFail),
-    );
+    mutation.pipe(finalize(() => (this.loading = false))).subscribe({
+      next: () => this.notifier.success(messageOnSucceed),
+      error: () => this.notifier.error(messageOnFail),
+    });
   }
 }

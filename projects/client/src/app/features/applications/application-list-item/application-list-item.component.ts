@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NotifierService } from 'angular-notifier';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
-import { NotificationType } from '../../../common/notification-type.enum';
+import { Notifier } from '../../../core/notifier.service';
 import {
   ApplicationAcceptGQL,
   ApplicationDeleteGQL,
@@ -33,7 +32,7 @@ export class ApplicationListItemComponent implements OnInit {
   };
 
   constructor(
-    private notifier: NotifierService,
+    private notifier: Notifier,
     private listGql: ApplicationListGQL,
     private acceptGql: ApplicationAcceptGQL,
     private rejectGql: ApplicationRejectGQL,
@@ -119,8 +118,8 @@ export class ApplicationListItemComponent implements OnInit {
     if (this.loading) return;
     this.loading = true;
     mutation.pipe(finalize(() => (this.loading = false))).subscribe(
-      () => this.notifier.notify(NotificationType.Success, messageOnSuccess),
-      () => this.notifier.notify(NotificationType.Error, messageOnFailure),
+      () => this.notifier.success(messageOnSuccess),
+      () => this.notifier.error(messageOnFailure),
     );
   }
 }

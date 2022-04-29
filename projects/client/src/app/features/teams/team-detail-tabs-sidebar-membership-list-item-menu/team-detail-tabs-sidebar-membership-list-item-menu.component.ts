@@ -1,10 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
 import { combineLatest, Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
-import { NotificationType } from '../../../common/notification-type.enum';
+import { AuthService } from '../../../core/auth.service';
+import { Notifier } from '../../../core/notifier.service';
 import {
   MembershipDeleteGQL,
   MembershipUpdateGQL,
@@ -13,7 +13,6 @@ import {
   RoomMembershipListGQL,
   RoomMembershipListQuery,
 } from '../../../graphql';
-import { AuthService } from '../../../core/auth.service';
 
 type Membership =
   RoomMembershipListQuery['room']['memberships']['results'][number];
@@ -41,7 +40,7 @@ export class TeamDetailSidebarMembershipListItemMenuComponent
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
-    private notifier: NotifierService,
+    private notifier: Notifier,
     private teamGql: RoomDetailGQL,
     private listGql: RoomMembershipListGQL,
     private updateGql: MembershipUpdateGQL,
@@ -143,16 +142,15 @@ export class TeamDetailSidebarMembershipListItemMenuComponent
   ) {
     if (this.loading) return;
     if (this.membership)
-      mutation(this.membership).subscribe(
-        () => {
-          this.notifier.notify(NotificationType.Success, messageSuccess);
-        },
-        () => {
-          this.notifier.notify(NotificationType.Error, messageFail);
-        },
-        () => {
-          this.loading = false;
-        },
-      );
+      mutation(this.membership)
+        .pipe(finalize(() => (this.loading = false)))
+        .subscribe({
+          next: () => {
+            this.notifier.success(messageSuccess);
+          },
+          error: () => {
+            this.notifier.error(messageFail);
+          },
+        });
   }
 }

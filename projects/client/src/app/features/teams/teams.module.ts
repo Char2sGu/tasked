@@ -12,7 +12,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -96,7 +95,6 @@ import { TeamsRoutingModule } from './teams-routing.module';
     MatTabsModule,
     MatInputModule,
     MatButtonModule,
-    MatSnackBarModule,
     MatSlideToggleModule,
     MatToolbarModule,
     MatDialogModule,

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { NotifierService } from 'angular-notifier';
 import { Apollo } from 'apollo-angular';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { AuthTokenStorage } from '../features/auth/auth-token.storage';
 import { AuthGQL, AuthMutation, MeGQL, MeQuery } from '../graphql';
+import { Notifier } from './notifier.service';
 
 type User = MeQuery['me'];
 type AuthResult = AuthMutation['auth'];
@@ -20,7 +20,7 @@ export class AuthService {
 
   constructor(
     public token: AuthTokenStorage,
-    private notifier: NotifierService,
+    private notifier: Notifier,
     private apollo: Apollo,
     private authGql: AuthGQL,
     private meGql: MeGQL,
@@ -48,6 +48,6 @@ export class AuthService {
   logout(): void {
     this.token.next(null).save();
     this.apollo.client.clearStore();
-    this.notifier.hideAll();
+    this.notifier.clear();
   }
 }

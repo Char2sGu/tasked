@@ -1,10 +1,9 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
 import { finalize } from 'rxjs/operators';
 
-import { NotificationType } from '../../../common/notification-type.enum';
 import { ModalDirective } from '../../../components/modal/modal.directive';
+import { Notifier } from '../../../core/notifier.service';
 import {
   ApplicationCreateGQL,
   ApplicationListGQL,
@@ -25,7 +24,7 @@ export class TeamListItemComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private notifier: NotifierService,
+    private notifier: Notifier,
     private applicationCreateGql: ApplicationCreateGQL,
     private applicationListGql: ApplicationListGQL,
   ) {}
@@ -65,22 +64,16 @@ export class TeamListItemComponent implements OnInit {
         },
       )
       .pipe(finalize(() => (this.loading = false)))
-      .subscribe(
-        () => {
-          this.notifier.notify(
-            NotificationType.Success,
-            $localize`Application sent`,
-          );
+      .subscribe({
+        next: () => {
+          this.notifier.success($localize`Application sent`);
           this.modal.close();
           this.router.navigate(['/app/applications']);
         },
-        () => {
-          this.notifier.notify(
-            NotificationType.Error,
-            $localize`Failed to send the application`,
-          );
+        error: () => {
+          this.notifier.error($localize`Failed to send the application`);
         },
-      );
+      });
   }
 }
 

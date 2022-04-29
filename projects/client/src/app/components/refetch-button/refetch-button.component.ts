@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NotifierService } from 'angular-notifier';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { from } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-
-import { NotificationType } from '../../common/notification-type.enum';
 
 @Component({
   selector: 'app-refetch-button',
@@ -12,24 +9,22 @@ import { NotificationType } from '../../common/notification-type.enum';
   styleUrls: ['./refetch-button.component.scss'],
 })
 export class RefetchButtonComponent implements OnInit {
+  @Output() refetch = new EventEmitter();
   loading = false;
   disabled = false;
 
-  constructor(private apollo: Apollo, private notifier: NotifierService) {}
+  constructor(private apollo: Apollo) {}
 
   ngOnInit(): void {}
 
-  refetch(): void {
+  onClick(): void {
     if (this.disabled) return;
     this.disabled = true;
     this.loading = true;
     from(this.apollo.client.refetchQueries({ include: 'active' }))
       .pipe(
         tap(() => {
-          this.notifier.notify(
-            NotificationType.Success,
-            $localize`Data refreshed`,
-          );
+          this.refetch.emit();
         }),
         finalize(() => {
           this.loading = false;
