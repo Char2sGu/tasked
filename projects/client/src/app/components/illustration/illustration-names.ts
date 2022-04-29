@@ -4,6 +4,7 @@ export const ILLUSTRATION_NAMES = [
   'teamwork',
   'walking-outside',
   'empty-street',
+  'void',
 ] as const;
 
 export type IllustrationName = typeof ILLUSTRATION_NAMES[number];

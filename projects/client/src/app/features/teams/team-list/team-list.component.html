@@ -2,7 +2,7 @@
   <form class="flex items-center gap-4" (ngSubmit)="load()">
     <mat-form-field class="grow" appearance="standard">
       <mat-label i18n>Search</mat-label>
-      <input matInput name="search" type="search" [(ngModel)]="searchValue" />
+      <input matInput name="search" type="search" [(ngModel)]="searchInput" />
       <mat-hint i18n>Search by team name or "#" + ID</mat-hint>
     </mat-form-field>
     <button mat-icon-button [disabled]="loading">
@@ -26,10 +26,19 @@
       <div class="flex grow flex-col items-center justify-center">
         <app-empty-state-illustration
           class="-mt-12"
+          *ngIf="!searchMode"
           headline="No teams yet"
           message="Search to join a team, or create your own!"
         >
           <app-illustration name="teamwork"></app-illustration>
+        </app-empty-state-illustration>
+        <app-empty-state-illustration
+          class="-mt-12"
+          *ngIf="searchMode"
+          headline="No result found"
+          message="Check your keywords or search again by ID"
+        >
+          <app-illustration name="void"></app-illustration>
         </app-empty-state-illustration>
       </div>
     </ng-template>

@@ -4,8 +4,6 @@ import { finalize, map } from 'rxjs/operators';
 
 import { RoomListGQL, RoomListQuery } from '../../../graphql';
 
-// TODO: different empty state illustration when no search result
-
 @Component({
   selector: 'app-team-list',
   templateUrl: './team-list.component.html',
@@ -13,7 +11,8 @@ import { RoomListGQL, RoomListQuery } from '../../../graphql';
 })
 export class TeamListComponent implements OnInit {
   teams$!: Observable<Team[]>;
-  searchValue = '';
+  searchInput = '';
+  searchMode = false;
   loading = false;
 
   constructor(private listGql: RoomListGQL) {}
@@ -26,28 +25,30 @@ export class TeamListComponent implements OnInit {
     if (this.loading) return;
     this.loading = true;
 
-    this.teams$ = (this.searchValue ? this.search() : this.list()).pipe(
+    this.teams$ = (this.searchInput ? this.search() : this.list()).pipe(
       finalize(() => (this.loading = false)),
     );
-    if (!this.searchValue) this.list();
+    if (!this.searchInput) this.list();
     else this.search();
   }
 
   private list() {
+    this.searchMode = false;
     return this.listGql
       .fetch({ joinedOnly: true })
       .pipe(map((result) => result.data.rooms.results));
   }
 
   private search() {
-    const searchId = /^#(\d+)$/.exec(this.searchValue)?.[1];
+    this.searchMode = true;
+    const searchId = /^#(\d+)$/.exec(this.searchInput)?.[1];
     return this.listGql
       .fetch(
         {
           filter:
             searchId != undefined
               ? { id: searchId }
-              : { name__like: `%${this.searchValue}%` },
+              : { name__like: `%${this.searchInput}%` },
         },
         { fetchPolicy: 'network-only' },
       )
