@@ -1,14 +1,8 @@
 import { transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
-import {
-  FadeThroughAnimation,
-  SharedAxisAnimation,
-} from '../../common/animations';
+import { FadeThroughAnimation } from '../../common/animations';
 import { RouterOutletDataReader } from '../../common/router.helpers';
-import { AuthService } from '../../core/auth.service';
-
-// TODO: account switching
 
 @Component({
   selector: 'app-main',
@@ -16,19 +10,12 @@ import { AuthService } from '../../core/auth.service';
   styleUrls: ['./main.component.scss'],
   viewProviders: [RouterOutletDataReader],
   animations: [
-    trigger('router', [
+    trigger('fadeThrough', [
       transition('teams <=> applications', [FadeThroughAnimation.apply()]),
-      transition('teams => settings, applications => settings', [
-        SharedAxisAnimation.apply('z', 'forward'),
-      ]),
-      transition('settings => teams, settings => applications', [
-        SharedAxisAnimation.apply('z', 'backward'),
-      ]),
     ]),
   ],
 })
-export class MainComponent implements OnInit {
-  user$ = this.authService.user$;
+export class MainLayoutComponent implements OnInit {
   links: Link[] = [
     {
       text: 'Teams',
@@ -42,10 +29,7 @@ export class MainComponent implements OnInit {
     },
   ];
 
-  constructor(
-    public routerOutletDataReader: RouterOutletDataReader,
-    private authService: AuthService,
-  ) {}
+  constructor(public routerOutletDataReader: RouterOutletDataReader) {}
 
   ngOnInit(): void {}
 }

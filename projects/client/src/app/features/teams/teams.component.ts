@@ -2,7 +2,7 @@ import { transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 import { SharedAxisAnimation } from '../../common/animations';
-import { RouterOutletDataReader } from '../../common/router';
+import { RouterOutletDataReader } from '../../common/router.helpers';
 
 @Component({
   selector: 'app-teams',

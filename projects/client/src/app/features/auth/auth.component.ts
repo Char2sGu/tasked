@@ -5,7 +5,7 @@ import { map } from 'rxjs';
 
 import { FadeThroughAnimation } from '../../common/animations';
 import { Breakpoint } from '../../common/breakpoint.enum';
-import { RouterOutletDataReader } from '../../common/router';
+import { RouterOutletDataReader } from '../../common/router.helpers';
 import { AuthService } from '../../core/auth.service';
 
 @Component({
