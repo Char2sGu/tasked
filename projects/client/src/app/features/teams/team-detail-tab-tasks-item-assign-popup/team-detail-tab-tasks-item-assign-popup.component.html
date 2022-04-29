@@ -1,43 +1,62 @@
-<mat-list *ngIf="loadingInitial">
-  <mat-list-item *ngFor="let i of [0, 1, 2]">
-    <ngx-skeleton-loader
-      matLine
-      count="1"
-      [theme]="{ width: '30%' }"
-    ></ngx-skeleton-loader>
-  </mat-list-item>
-</mat-list>
-
-<mat-selection-list #list>
-  <mat-list-option
-    *ngFor="let item of items; trackBy: identifyItem"
-    [(selected)]="item.selected"
-  >
-    <div matLine>
-      <app-username [user]="item.membership.owner"></app-username>
-    </div>
-  </mat-list-option>
-</mat-selection-list>
-
-<div class="flex justify-between">
-  <div>
-    <button mat-button class="uppercase" (click)="list.selectAll()" i18n>
-      Fill
-    </button>
-    <button mat-button class="uppercase" (click)="list.deselectAll()" i18n>
-      Clear
-    </button>
-  </div>
-
-  <div>
-    <button
-      mat-button
-      class="uppercase"
-      [disabled]="loadingUpdate"
-      (click)="update()"
-      i18n
-    >
-      Confirm
-    </button>
-  </div>
+<div class="flex h-[488px] flex-col">
+  <ng-container *ngIf="items$ | async as items; else skeleton">
+    <ng-container *ngIf="items.length; else empty">
+      <div class="h-0 grow overflow-auto">
+        <mat-selection-list #list>
+          <mat-list-option
+            *ngFor="let item of items; trackBy: itemTracker"
+            [(selected)]="item.selected"
+          >
+            <div matLine>
+              <app-username [user]="item.membership.owner"></app-username>
+            </div>
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+      <div class="flex justify-between">
+        <div>
+          <button mat-button class="uppercase" (click)="list.selectAll()" i18n>
+            Fill
+          </button>
+          <button
+            mat-button
+            class="uppercase"
+            (click)="list.deselectAll()"
+            i18n
+          >
+            Clear
+          </button>
+        </div>
+        <div>
+          <button
+            mat-button
+            class="uppercase"
+            [disabled]="busy"
+            (click)="update(items)"
+            i18n
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #empty>
+      <div class="flex grow items-center justify-center">
+        <app-empty-state-illustration headline="No members yet...">
+          <app-illustration name="empty-street"></app-illustration>
+        </app-empty-state-illustration>
+      </div>
+    </ng-template>
+  </ng-container>
+  <ng-template #skeleton>
+    <mat-list>
+      <mat-list-item *ngFor="let i of [0, 1, 2]">
+        <ngx-skeleton-loader
+          matLine
+          count="1"
+          [theme]="{ width: '30%' }"
+        ></ngx-skeleton-loader>
+      </mat-list-item>
+    </mat-list>
+  </ng-template>
 </div>
