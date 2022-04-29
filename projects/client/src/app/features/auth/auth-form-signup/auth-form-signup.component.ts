@@ -9,8 +9,6 @@ import { AuthService } from '../../../core/auth.service';
 import { Notifier } from '../../../core/notifier.service';
 import { Gender, UserCreateGQL, UserCreateInput } from '../../../graphql';
 
-// TODO: detailed error message
-
 @Component({
   selector: 'app-auth-form-signup',
   templateUrl: './auth-form-signup.component.html',

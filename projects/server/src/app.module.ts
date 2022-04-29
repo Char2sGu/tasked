@@ -24,6 +24,7 @@ import { ValidationModule } from './validation/validation.module';
 // TODO: assignment steps
 // TODO: server-sent event
 // TODO: support sync with offline client
+// TODO: complete error messages and error codes
 
 @Module({
   imports: [

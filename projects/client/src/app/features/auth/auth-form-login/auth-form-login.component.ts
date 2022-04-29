@@ -45,8 +45,8 @@ export class AuthFormLoginComponent implements OnInit {
         next: () => {
           this.router.navigate(['/']);
         },
-        error: () => {
-          this.notifier.error($localize`Invalid username or password`);
+        error: (err) => {
+          this.notifier.error(err.message);
         },
       });
   }
