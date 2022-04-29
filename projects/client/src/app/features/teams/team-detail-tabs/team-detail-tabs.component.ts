@@ -11,8 +11,6 @@ import { skipFalsy } from '../../../common/rxjs';
 import { Role } from '../../../graphql';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
 
-// TODO: fix tab animation
-
 @Component({
   selector: 'app-team-detail-tabs',
   templateUrl: './team-detail-tabs.component.html',

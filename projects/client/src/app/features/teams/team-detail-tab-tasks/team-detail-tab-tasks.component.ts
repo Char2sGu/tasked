@@ -16,7 +16,6 @@ export type Task =
   MembershipTaskListQuery['membership']['tasks']['results'][number];
 
 // TODO: animate item removals
-// TODO: truncate long task descriptions
 // TODO: show a skeleton while loading
 
 @Component({

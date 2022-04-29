@@ -18,8 +18,8 @@
     </div>
   </mat-card-subtitle>
 
-  <mat-card-content class="whitespace-pre-wrap">{{
-    task?.description
+  <mat-card-content class="whitespace-pre-wrap break-words">{{
+    task?.description | truncation: 100
   }}</mat-card-content>
 
   <mat-card-actions>
