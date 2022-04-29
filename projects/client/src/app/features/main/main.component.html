@@ -18,7 +18,7 @@
 <div class="flex h-full flex-col" *appLayout="'navigation'">
   <mat-list class="mb-2" *ngIf="user$ | async as user">
     <mat-list-item>
-      <div matLine>
+      <div matLine class="font-medium">
         {{ user.nickname || user.username }}
       </div>
       <div matLine class="text-l-secondary-text dark:text-d-secondary-text">
