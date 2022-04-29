@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { debounceTime, finalize, first, map } from 'rxjs/operators';
 
@@ -9,12 +8,10 @@ import { AuthService } from '../../../core/auth.service';
 import { Notifier } from '../../../core/notifier.service';
 import {
   RoomDetailGQL,
-  RoomDetailQuery,
   RoomUpdateGQL,
   RoomUpdateInput,
 } from '../../../graphql';
-
-type Team = RoomDetailQuery['room'];
+import { TeamDetailState } from '../team-detail/team-detail-state.service';
 
 @Component({
   selector: 'app-team-detail-tab-settings',
@@ -29,28 +26,22 @@ export class TeamDetailTabSettingsComponent implements OnInit {
   };
 
   change$$ = new Subject();
-  team$!: Observable<Team>;
+  team$ = this.state.team$;
   isCreator$!: Observable<boolean>;
   modified$!: Observable<boolean>;
 
   loading = false;
 
   constructor(
-    private route: ActivatedRoute,
-    private auth: AuthService,
+    private state: TeamDetailState,
+    private authService: AuthService,
     private notifier: Notifier,
     private queryGql: RoomDetailGQL,
     private updateGql: RoomUpdateGQL,
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.parent!.snapshot.paramMap.get('id')!;
-
-    this.team$ = this.queryGql
-      .watch({ id })
-      .valueChanges.pipe(map((result) => result.data.room));
-
-    this.isCreator$ = combineLatest([this.team$, this.auth.user$]).pipe(
+    this.isCreator$ = combineLatest([this.team$, this.authService.user$]).pipe(
       map(([team, user]) => team.creator.id == user!.id),
     );
 

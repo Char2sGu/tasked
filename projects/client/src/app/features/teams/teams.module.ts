@@ -21,7 +21,6 @@ import { BackButtonModule } from '../../components/back-button/back-button.modul
 import { ConfirmationModule } from '../../components/confirmation/confirmation.module';
 import { ContainerModule } from '../../components/container/container.module';
 import { EmptyStateModule } from '../../components/empty-state/empty-state.module';
-import { HelpIconModule } from '../../components/help-icon/help-icon.module';
 import { IllustrationModule } from '../../components/illustration/illustration.module';
 import { InfinityScrollModule } from '../../components/infinity-scroll/infinity-scroll.module';
 import { LoadingModule } from '../../components/loading/loading.module';
@@ -102,7 +101,6 @@ import { TeamsRoutingModule } from './teams-routing.module';
     NgxSkeletonLoaderModule,
     InfinityScrollModule,
     ModalModule,
-    HelpIconModule,
     LoadingModule,
     UsernameModule,
     ContainerModule,
