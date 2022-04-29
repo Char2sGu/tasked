@@ -12,6 +12,8 @@ import {
 } from '../../../graphql';
 import { Task } from '../team-detail-tab-tasks/team-detail-tab-tasks.component';
 
+// TODO: use side sheet for task assigning https://material.io/components/sheets-side
+
 @Component({
   selector: 'app-team-detail-tab-tasks-item',
   templateUrl: './team-detail-tab-tasks-item.component.html',

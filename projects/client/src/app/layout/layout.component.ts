@@ -14,7 +14,7 @@ import {
   BehaviorSubject,
   concat,
   debounceTime,
-  distinct,
+  distinctUntilChanged,
   first,
   map,
   Observable,
@@ -69,7 +69,7 @@ export class LayoutComponent implements OnInit {
       content$.pipe(skipFalsy(), first()), // do not debounce initial content to prevent flickering
       content$.pipe(debounceTime(100)),
     ).pipe(
-      distinct(), // TODO: use distinctUntilChanged()?
+      distinctUntilChanged(),
       map(
         (content) =>
           content &&
