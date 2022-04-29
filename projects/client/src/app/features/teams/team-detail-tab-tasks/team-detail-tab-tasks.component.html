@@ -1,7 +1,8 @@
-<div class="relative flex h-full flex-col overflow-auto pt-7">
-  <div class="flex-1 overflow-y-auto overflow-x-hidden">
-    <ng-container *ngIf="tasks$ | async as tasks">
-      <ngx-masonry *ngIf="tasks.length; else empty">
+<div class="relative flex h-full flex-col pt-7" *ngIf="tasks$ | async as tasks">
+  <ng-container *ngIf="tasks.length; then list; else empty"></ng-container>
+  <ng-template #list>
+    <div class="h-0 grow overflow-y-auto overflow-x-hidden">
+      <ngx-masonry>
         <app-team-detail-tab-tasks-item
           ngxMasonryItem
           *ngFor="let task of tasks; trackBy: taskTracker"
@@ -14,17 +15,18 @@
         [loading]="loadingMore"
         (trigger)="loadMore()"
       ></app-infinity-scroll-trigger>
-      <ng-template #empty>
-        <app-empty-state-illustration
-          class="mt-20"
-          headline="Nothing here"
-          message="Add a task to start your awesome project!"
-        >
-          <app-illustration name="add-tasks"></app-illustration>
-        </app-empty-state-illustration>
-      </ng-template>
-    </ng-container>
-  </div>
+    </div>
+  </ng-template>
+  <ng-template #empty>
+    <div class="flex grow items-center justify-center">
+      <app-empty-state-illustration
+        headline="Nothing here"
+        message="Add a task to start your awesome project!"
+      >
+        <app-illustration name="add-tasks"></app-illustration>
+      </app-empty-state-illustration>
+    </div>
+  </ng-template>
   <mat-divider></mat-divider>
   <app-team-detail-tab-tasks-creation-bar></app-team-detail-tab-tasks-creation-bar>
 </div>

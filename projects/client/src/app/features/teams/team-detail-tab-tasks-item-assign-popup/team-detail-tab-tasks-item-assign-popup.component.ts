@@ -17,6 +17,8 @@ import {
 } from '../../../graphql';
 import { Task } from '../team-detail-tab-tasks/team-detail-tab-tasks.component';
 
+// TODO: fixed height
+
 @Component({
   selector: 'app-team-detail-tab-tasks-item-assign-popup',
   templateUrl: './team-detail-tab-tasks-item-assign-popup.component.html',

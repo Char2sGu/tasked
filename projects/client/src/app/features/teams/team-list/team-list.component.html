@@ -13,15 +13,26 @@
   <mat-divider></mat-divider>
 
   <ng-container *ngIf="teams$ | async as teams">
-    <ng-container *ngIf="teams.length; else empty">
-      <mat-action-list class="grow overflow-auto">
-        <app-team-list-item
-          *ngFor="let team of teams"
-          [team]="team"
-        ></app-team-list-item>
-      </mat-action-list>
-    </ng-container>
-
+    <mat-action-list
+      class="grow overflow-auto"
+      *ngIf="teams.length; else empty"
+    >
+      <app-team-list-item
+        *ngFor="let team of teams"
+        [team]="team"
+      ></app-team-list-item>
+    </mat-action-list>
+    <ng-template #empty>
+      <div class="flex grow flex-col items-center justify-center">
+        <app-empty-state-illustration
+          class="-mt-12"
+          headline="No teams yet"
+          message="Search to join a team, or create your own!"
+        >
+          <app-illustration name="teamwork"></app-illustration>
+        </app-empty-state-illustration>
+      </div>
+    </ng-template>
     <a mat-stroked-button class="uppercase" color="primary" routerLink="create">
       <div class="flex w-full items-center justify-center gap-1">
         <mat-icon>add</mat-icon>
@@ -29,14 +40,4 @@
       </div>
     </a>
   </ng-container>
-
-  <ng-template #empty>
-    <app-empty-state-illustration
-      class="mt-24 grow"
-      headline="No teams yet"
-      message="Search to join a team, or create your own!"
-    >
-      <app-illustration name="teamwork"></app-illustration>
-    </app-empty-state-illustration>
-  </ng-template>
 </div>
