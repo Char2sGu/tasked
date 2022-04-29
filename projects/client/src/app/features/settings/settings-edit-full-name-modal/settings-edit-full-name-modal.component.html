@@ -21,5 +21,6 @@
         {{ message }}
       </mat-error>
     </mat-form-field>
+    <button hidden type="submit" [disabled]="form.invalid"></button>
   </form>
 </app-settings-edit-modal>

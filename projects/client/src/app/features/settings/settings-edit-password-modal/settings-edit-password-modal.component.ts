@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ModalRef } from '../../../components/modal/modal.directive';
 import { SettingsService } from '../shared/settings.service';
 
 @Component({
@@ -10,11 +11,15 @@ import { SettingsService } from '../shared/settings.service';
 export class SettingsEditPasswordModalComponent implements OnInit {
   value = '';
   valueForConfirm = '';
-  constructor(private settingsService: SettingsService) {}
+  constructor(
+    private modalRef: ModalRef,
+    private settingsService: SettingsService,
+  ) {}
 
   ngOnInit(): void {}
 
   onSave(): void {
+    this.modalRef.close();
     this.settingsService
       .saveProfile({ password: this.value })
       .subscribe(
