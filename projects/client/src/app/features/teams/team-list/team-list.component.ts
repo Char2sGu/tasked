@@ -4,6 +4,8 @@ import { finalize, map } from 'rxjs/operators';
 
 import { RoomListGQL, RoomListQuery } from '../../../graphql';
 
+// TODO: different empty state illustration when no search result
+
 @Component({
   selector: 'app-team-list',
   templateUrl: './team-list.component.html',

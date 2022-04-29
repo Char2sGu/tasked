@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { combineLatest, first } from 'rxjs';
 
-import { Role, RoomDetailGQL } from '../../../graphql';
+import { Role } from '../../../graphql';
+import { TeamDetailState } from '../team-detail/team-detail-state.service';
 
 @Component({
   selector: 'app-team-detail-tab-redirector',
@@ -9,25 +11,22 @@ import { Role, RoomDetailGQL } from '../../../graphql';
   styleUrls: ['./team-detail-tab-redirector.component.scss'],
 })
 export class TeamDetailTabRedirectorComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private teamGql: RoomDetailGQL,
-  ) {}
+  constructor(private state: TeamDetailState, private router: Router) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')!;
-    this.teamGql.fetch({ id }).subscribe((result) => {
-      this.router.navigate(
-        [
-          '/app/teams',
-          id,
-          result.data.room.membership!.role == Role.Member
-            ? 'assignments'
-            : 'tasks',
-        ],
-        { replaceUrl: true },
-      );
-    });
+    combineLatest([this.state.team$, this.state.membership$])
+      .pipe(first())
+      .subscribe(([team, membership]) => {
+        this.router.navigate(
+          [
+            '/',
+            'app',
+            'teams',
+            team.id,
+            membership.role == Role.Member ? 'assignments' : 'tasks',
+          ],
+          { replaceUrl: true },
+        );
+      });
   }
 }

@@ -3,7 +3,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { RouterLinkActive } from '@angular/router';
-import { combineLatest, EMPTY, map, Observable, startWith } from 'rxjs';
+import { EMPTY, map, mapTo, merge, Observable, startWith } from 'rxjs';
 
 import { SharedAxisAnimation } from '../../../common/animations';
 import { Breakpoint } from '../../../common/breakpoint.enum';
@@ -34,18 +34,16 @@ export class TeamDetailTabsComponent implements OnInit {
   @ViewChildren(RouterLinkActive)
   set linkStates(linkStatesQueryList: QueryList<RouterLinkActive>) {
     if (!linkStatesQueryList.length) return;
-    // wait for directive initializations
-    setTimeout(() => {
-      const linkStates = linkStatesQueryList.toArray();
-      const current = linkStates.findIndex((state) => state.isActive);
-      console.debug(current);
-      this.linkIndexActive$ = combineLatest(
-        linkStates.map((state) => state.isActiveChange),
-      ).pipe(
-        map((activities) => activities.findIndex((isActive) => isActive)),
-        startWith(current),
-      );
-    });
+    const linkStates = linkStatesQueryList.toArray();
+    this.linkIndexActive$ = merge(
+      ...linkStates.map((linkState, index) =>
+        linkState.isActiveChange.pipe(
+          startWith(linkState.isActive),
+          skipFalsy(),
+          mapTo(index),
+        ),
+      ),
+    );
   }
 
   constructor(

@@ -69,7 +69,7 @@ export class LayoutComponent implements OnInit {
       content$.pipe(skipFalsy(), first()), // do not debounce initial content to prevent flickering
       content$.pipe(debounceTime(100)),
     ).pipe(
-      distinct(),
+      distinct(), // TODO: use distinctUntilChanged()?
       map(
         (content) =>
           content &&

@@ -38,13 +38,13 @@ const routes: Routes = [
         children: [
           {
             path: '',
+            component: TeamDetailTabRedirectorComponent,
+            pathMatch: 'exact',
+          },
+          {
+            path: '',
             component: TeamDetailTabsComponent,
             children: [
-              {
-                path: '',
-                component: TeamDetailTabRedirectorComponent,
-                pathMatch: 'exact',
-              },
               {
                 path: 'assignments',
                 component: TeamDetailTabAssignmentsComponent,
