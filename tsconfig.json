@@ -2,8 +2,18 @@
 {
   "extends": "./tsconfig.common.json",
   "compilerOptions": {
+    // module lazy importing
+    "module": "es2020",
+    // better auto-import
     "paths": {
       "common": ["projects/common/src"]
     }
+  },
+  // Angular Language Service
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
   }
 }
