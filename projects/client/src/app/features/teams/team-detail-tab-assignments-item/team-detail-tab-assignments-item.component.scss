@@ -1,16 +1,8 @@
-[mat-list-item].css {
-  height: auto;
+[mat-list-item] {
   ::ng-deep & {
     .mat-list-item-content {
       flex-wrap: wrap;
       overflow: hidden;
     }
   }
-  .summary.css {
-    height: 72px;
-  }
-}
-
-[matLine].css {
-  display: flex;
 }

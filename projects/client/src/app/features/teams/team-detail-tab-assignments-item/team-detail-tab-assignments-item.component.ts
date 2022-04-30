@@ -28,9 +28,23 @@ type Assignment =
   styleUrls: ['./team-detail-tab-assignments-item.component.scss'],
   animations: [
     trigger('expansion', [
-      state('false', style({ height: '0', visibility: 'hidden', margin: '0' })),
-      state('true', style({ height: '*', visibility: 'visible', margin: '*' })),
-      transition('false <=> true', [
+      state(
+        'false, void',
+        style({
+          height: '0',
+          visibility: 'hidden',
+          margin: '0',
+        }),
+      ),
+      state(
+        'true',
+        style({
+          height: '*',
+          visibility: 'visible',
+          margin: '*',
+        }),
+      ),
+      transition('false <=> true, true => void', [
         animate(`225ms ${AnimationCurves.STANDARD_CURVE}`),
       ]),
     ]),
