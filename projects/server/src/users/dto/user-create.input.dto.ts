@@ -1,5 +1,6 @@
 import { InputType } from '@nestjs/graphql';
 import { Length, Matches } from 'class-validator';
+import { patterns } from 'common';
 
 import { CommonFilter } from '../../common/common-filter.enum';
 import { Field } from '../../common/field.decorator';
@@ -11,12 +12,12 @@ import { User } from '../entities/user.entity';
 export class UserCreateInput {
   @Field(() => String)
   @IsUnique(() => User, 'username', [CommonFilter.Crud])
-  @Matches(/^([a-zA-Z0-9_-])+$/)
+  @Matches(patterns.username)
   @Length(1, 15)
   username!: string;
 
   @Field(() => String, { nullable: true })
-  @Matches(/^[^\s]*$/)
+  @Matches(patterns.nickname)
   @Length(1, 15)
   nickname?: string;
 

@@ -19,7 +19,7 @@ export class FullNameValidation extends Validation {
     },
     {
       validator: Validators.pattern(/^[^\s]*$/),
-      message: 'Cannot contain spaces',
+      message: 'Cannot contain consecutive white spaces',
     },
   ];
 

@@ -1,5 +1,6 @@
 import { Directive } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { patterns } from 'common';
 
 import {
   provideValidator,
@@ -18,7 +19,7 @@ export class UsernameValidation extends Validation {
       message: 'Username must be at most 15 characters long',
     },
     {
-      validator: Validators.pattern(/^([a-zA-Z0-9_-])+$/),
+      validator: Validators.pattern(patterns.username),
       message: "Username must consist of only letters, numbers, '_' and '-'",
     },
   ];
