@@ -12,7 +12,7 @@ COPY ./ ./
 RUN npm run build:libs \
     && npm run build:server \
     && DB_PATH=data/db.sqlite3 node dist/server/db.js init \
-    # prune cannot be performed in the final phrase, otherwise the image size will not decrease
+    # prune cannot be performed in the final stage, otherwise the image size will not decrease
     && npm prune --production
 
 
@@ -25,8 +25,8 @@ COPY package*.json ./
 COPY --from=build /app/node_modules/ node_modules/
 COPY --from=build /app/projects projects/
 
-# this prunes nothing, but creates workspace symlinks in node_modules
-RUN npm prune
+# since we've pruned in a previous stage, this prune have no direct-effect, but as a side-effect, this creates workspace symlinks in node_modules
+RUN npm prune --production
 
 COPY --from=build /app/dist/ dist/
 COPY --from=build /app/data/ data/
