@@ -8,9 +8,8 @@ describe('SettingsListNormalItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SettingsListNormalItemComponent ]
-    })
-    .compileComponents();
+      declarations: [SettingsListNormalItemComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
