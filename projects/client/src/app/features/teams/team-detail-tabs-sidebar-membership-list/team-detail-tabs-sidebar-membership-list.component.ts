@@ -3,13 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
+import { AuthService } from '../../../core/auth.service';
 import {
   Role,
   RoomDetailGQL,
   RoomMembershipListGQL,
   RoomMembershipListQuery,
 } from '../../../graphql';
-import { AuthService } from '../../../core/auth.service';
 
 type Membership =
   RoomMembershipListQuery['room']['memberships']['results'][number];

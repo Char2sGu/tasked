@@ -1,17 +1,11 @@
-import { Injectable } from '@angular/core';
 import { gql } from 'apollo-angular';
+import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -109,7 +103,7 @@ export type ApplicationOrderMap = {
 export enum ApplicationStatus {
   Accepted = 'Accepted',
   Pending = 'Pending',
-  Rejected = 'Rejected',
+  Rejected = 'Rejected'
 }
 
 export type Assignment = {
@@ -204,7 +198,7 @@ export type AuthResult = {
 export enum Gender {
   Female = 'Female',
   Male = 'Male',
-  Unknown = 'Unknown',
+  Unknown = 'Unknown'
 }
 
 export type Membership = {
@@ -219,6 +213,7 @@ export type Membership = {
   updatedAt: Scalars['DateTime'];
 };
 
+
 export type MembershipAssignmentsArgs = {
   filter?: InputMaybe<AssignmentFilterMap>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -226,6 +221,7 @@ export type MembershipAssignmentsArgs = {
   order?: InputMaybe<AssignmentOrderMap>;
   ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
+
 
 export type MembershipTasksArgs = {
   filter?: InputMaybe<TaskFilterMap>;
@@ -311,78 +307,96 @@ export type Mutation = {
   updateUser: User;
 };
 
+
 export type MutationAcceptApplicationArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationAuthArgs = {
   password: Scalars['String'];
   username: Scalars['String'];
 };
 
+
 export type MutationCreateApplicationArgs = {
   data: ApplicationCreateInput;
 };
+
 
 export type MutationCreateAssignmentArgs = {
   data: AssignmentCreateInput;
 };
 
+
 export type MutationCreateRoomArgs = {
   data: RoomCreateInput;
 };
+
 
 export type MutationCreateTaskArgs = {
   data: TaskCreateInput;
 };
 
+
 export type MutationCreateUserArgs = {
   data: UserCreateInput;
 };
+
 
 export type MutationDeleteApplicationArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationDeleteAssignmentArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationDeleteMembershipArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationDeleteRoomArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationDeleteTaskArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationRejectApplicationArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationUpdateAssignmentArgs = {
   data: AssignmentUpdateInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateMembershipArgs = {
   data: MembershipUpdateInput;
   id: Scalars['ID'];
 };
+
 
 export type MutationUpdateRoomArgs = {
   data: RoomUpdateInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateTaskArgs = {
   data: TaskUpdateInput;
   id: Scalars['ID'];
 };
+
 
 export type MutationUpdateUserArgs = {
   data: UserUpdateInput;
@@ -442,9 +456,11 @@ export type Query = {
   users: PaginatedUsers;
 };
 
+
 export type QueryApplicationArgs = {
   id: Scalars['ID'];
 };
+
 
 export type QueryApplicationsArgs = {
   filter?: InputMaybe<ApplicationFilterMap>;
@@ -453,9 +469,11 @@ export type QueryApplicationsArgs = {
   order?: InputMaybe<ApplicationOrderMap>;
 };
 
+
 export type QueryAssignmentArgs = {
   id: Scalars['ID'];
 };
+
 
 export type QueryAssignmentsArgs = {
   filter?: InputMaybe<AssignmentFilterMap>;
@@ -465,9 +483,11 @@ export type QueryAssignmentsArgs = {
   ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
+
 export type QueryMembershipArgs = {
   id: Scalars['ID'];
 };
+
 
 export type QueryMembershipsArgs = {
   filter?: InputMaybe<MembershipFilterMap>;
@@ -476,9 +496,11 @@ export type QueryMembershipsArgs = {
   order?: InputMaybe<MembershipOrderMap>;
 };
 
+
 export type QueryRoomArgs = {
   id: Scalars['ID'];
 };
+
 
 export type QueryRoomsArgs = {
   filter?: InputMaybe<RoomFilterMap>;
@@ -488,9 +510,11 @@ export type QueryRoomsArgs = {
   order?: InputMaybe<RoomOrderMap>;
 };
 
+
 export type QueryTaskArgs = {
   id: Scalars['ID'];
 };
+
 
 export type QueryTasksArgs = {
   filter?: InputMaybe<TaskFilterMap>;
@@ -500,9 +524,11 @@ export type QueryTasksArgs = {
   ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
+
 export type QueryUserArgs = {
   id: Scalars['ID'];
 };
+
 
 export type QueryUsersArgs = {
   filter?: InputMaybe<UserFilterMap>;
@@ -513,12 +539,12 @@ export type QueryUsersArgs = {
 
 export enum QueryOrder {
   Asc = 'ASC',
-  Desc = 'DESC',
+  Desc = 'DESC'
 }
 
 export enum Role {
   Manager = 'Manager',
-  Member = 'Member',
+  Member = 'Member'
 }
 
 export type Room = {
@@ -537,12 +563,14 @@ export type Room = {
   updatedAt: Scalars['DateTime'];
 };
 
+
 export type RoomApplicationsArgs = {
   filter?: InputMaybe<ApplicationFilterMap>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   order?: InputMaybe<ApplicationOrderMap>;
 };
+
 
 export type RoomAssignmentsArgs = {
   filter?: InputMaybe<AssignmentFilterMap>;
@@ -552,12 +580,14 @@ export type RoomAssignmentsArgs = {
   ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
+
 export type RoomMembershipsArgs = {
   filter?: InputMaybe<MembershipFilterMap>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   order?: InputMaybe<MembershipOrderMap>;
 };
+
 
 export type RoomTasksArgs = {
   filter?: InputMaybe<TaskFilterMap>;
@@ -663,6 +693,7 @@ export type Task = {
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
+
 
 export type TaskAssignmentsArgs = {
   filter?: InputMaybe<AssignmentFilterMap>;
@@ -772,12 +803,14 @@ export type User = {
   username: Scalars['String'];
 };
 
+
 export type UserApplicationsArgs = {
   filter?: InputMaybe<ApplicationFilterMap>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   order?: InputMaybe<ApplicationOrderMap>;
 };
+
 
 export type UserAssignmentsArgs = {
   filter?: InputMaybe<AssignmentFilterMap>;
@@ -787,12 +820,14 @@ export type UserAssignmentsArgs = {
   ownOnly?: InputMaybe<Scalars['Boolean']>;
 };
 
+
 export type UserMembershipsArgs = {
   filter?: InputMaybe<MembershipFilterMap>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   order?: InputMaybe<MembershipOrderMap>;
 };
+
 
 export type UserRoomsArgs = {
   filter?: InputMaybe<RoomFilterMap>;
@@ -801,6 +836,7 @@ export type UserRoomsArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order?: InputMaybe<RoomOrderMap>;
 };
+
 
 export type UserTasksArgs = {
   filter?: InputMaybe<TaskFilterMap>;
@@ -899,437 +935,160 @@ export type ApplicationAcceptMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-export type ApplicationAcceptMutation = {
-  __typename?: 'Mutation';
-  acceptApplication: {
-    __typename?: 'AcceptApplicationResult';
-    application: {
-      __typename?: 'Application';
-      id: string;
-      message?: string | null;
-      status: ApplicationStatus;
-      createdAt: any;
-      owner: {
-        __typename?: 'User';
-        id: string;
-        username: string;
-        nickname?: string | null;
-      };
-      room: { __typename?: 'Room'; id: string; name: string };
-    };
-    membership: {
-      __typename?: 'Membership';
-      id: string;
-      role: Role;
-      owner: {
-        __typename?: 'User';
-        id: string;
-        username: string;
-        nickname?: string | null;
-        gender: Gender;
-      };
-    };
-  };
-};
+
+export type ApplicationAcceptMutation = { __typename?: 'Mutation', acceptApplication: { __typename?: 'AcceptApplicationResult', application: { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, room: { __typename?: 'Room', id: string, name: string } }, membership: { __typename?: 'Membership', id: string, role: Role, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender } } } };
 
 export type ApplicationCreateMutationVariables = Exact<{
   data: ApplicationCreateInput;
 }>;
 
-export type ApplicationCreateMutation = {
-  __typename?: 'Mutation';
-  createApplication: {
-    __typename?: 'Application';
-    id: string;
-    message?: string | null;
-    status: ApplicationStatus;
-    createdAt: any;
-    owner: {
-      __typename?: 'User';
-      id: string;
-      username: string;
-      nickname?: string | null;
-    };
-    room: { __typename?: 'Room'; id: string; name: string };
-  };
-};
+
+export type ApplicationCreateMutation = { __typename?: 'Mutation', createApplication: { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, room: { __typename?: 'Room', id: string, name: string } } };
 
 export type ApplicationDeleteMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-export type ApplicationDeleteMutation = {
-  __typename?: 'Mutation';
-  deleteApplication: { __typename?: 'Application'; id: string };
-};
+
+export type ApplicationDeleteMutation = { __typename?: 'Mutation', deleteApplication: { __typename?: 'Application', id: string } };
 
 export type ApplicationListQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type ApplicationListQuery = {
-  __typename?: 'Query';
-  applications: {
-    __typename?: 'PaginatedApplications';
-    total: number;
-    results: Array<{
-      __typename?: 'Application';
-      id: string;
-      message?: string | null;
-      status: ApplicationStatus;
-      createdAt: any;
-      owner: {
-        __typename?: 'User';
-        id: string;
-        username: string;
-        nickname?: string | null;
-      };
-      room: { __typename?: 'Room'; id: string; name: string };
-    }>;
-  };
-};
+
+export type ApplicationListQuery = { __typename?: 'Query', applications: { __typename?: 'PaginatedApplications', total: number, results: Array<{ __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, room: { __typename?: 'Room', id: string, name: string } }> } };
 
 export type ApplicationRejectMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-export type ApplicationRejectMutation = {
-  __typename?: 'Mutation';
-  rejectApplication: {
-    __typename?: 'Application';
-    id: string;
-    message?: string | null;
-    status: ApplicationStatus;
-    createdAt: any;
-    owner: {
-      __typename?: 'User';
-      id: string;
-      username: string;
-      nickname?: string | null;
-    };
-    room: { __typename?: 'Room'; id: string; name: string };
-  };
-};
 
-export type ApplicationFragment = {
-  __typename?: 'Application';
-  id: string;
-  message?: string | null;
-  status: ApplicationStatus;
-  createdAt: any;
-  owner: {
-    __typename?: 'User';
-    id: string;
-    username: string;
-    nickname?: string | null;
-  };
-  room: { __typename?: 'Room'; id: string; name: string };
-};
+export type ApplicationRejectMutation = { __typename?: 'Mutation', rejectApplication: { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, room: { __typename?: 'Room', id: string, name: string } } };
+
+export type ApplicationFragment = { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, room: { __typename?: 'Room', id: string, name: string } };
 
 export type AssignmentCreateMutationVariables = Exact<{
   data: AssignmentCreateInput;
 }>;
 
-export type AssignmentCreateMutation = {
-  __typename?: 'Mutation';
-  createAssignment: {
-    __typename?: 'Assignment';
-    id: string;
-    recipient: { __typename?: 'Membership'; id: string };
-  };
-};
+
+export type AssignmentCreateMutation = { __typename?: 'Mutation', createAssignment: { __typename?: 'Assignment', id: string, recipient: { __typename?: 'Membership', id: string } } };
 
 export type AssignmentDeleteMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-export type AssignmentDeleteMutation = {
-  __typename?: 'Mutation';
-  deleteAssignment: { __typename?: 'Assignment'; id: string };
-};
+
+export type AssignmentDeleteMutation = { __typename?: 'Mutation', deleteAssignment: { __typename?: 'Assignment', id: string } };
 
 export type AssignmentUpdateMutationVariables = Exact<{
   id: Scalars['ID'];
   data: AssignmentUpdateInput;
 }>;
 
-export type AssignmentUpdateMutation = {
-  __typename?: 'Mutation';
-  updateAssignment: {
-    __typename?: 'Assignment';
-    id: string;
-    isCompleted: boolean;
-    isImportant: boolean;
-    updatedAt: any;
-  };
-};
 
-export type AssignmentFragment = {
-  __typename?: 'Assignment';
-  id: string;
-  recipient: { __typename?: 'Membership'; id: string };
-};
+export type AssignmentUpdateMutation = { __typename?: 'Mutation', updateAssignment: { __typename?: 'Assignment', id: string, isCompleted: boolean, isImportant: boolean, updatedAt: any } };
+
+export type AssignmentFragment = { __typename?: 'Assignment', id: string, recipient: { __typename?: 'Membership', id: string } };
 
 export type AuthMutationVariables = Exact<{
   username: Scalars['String'];
   password: Scalars['String'];
 }>;
 
-export type AuthMutation = {
-  __typename?: 'Mutation';
-  auth: { __typename?: 'AuthResult'; token: string };
-};
 
-export type MeQueryVariables = Exact<{ [key: string]: never }>;
+export type AuthMutation = { __typename?: 'Mutation', auth: { __typename?: 'AuthResult', token: string } };
 
-export type MeQuery = {
-  __typename?: 'Query';
-  me: {
-    __typename?: 'User';
-    id: string;
-    username: string;
-    nickname?: string | null;
-    gender: Gender;
-    updatedAt: any;
-  };
-};
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender, updatedAt: any } };
 
 export type MembershipAssignmentListQueryVariables = Exact<{
   id: Scalars['ID'];
   offset?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type MembershipAssignmentListQuery = {
-  __typename?: 'Query';
-  membership: {
-    __typename?: 'Membership';
-    id: string;
-    assignments: {
-      __typename?: 'PaginatedAssignments';
-      total: number;
-      results: Array<{
-        __typename?: 'Assignment';
-        id: string;
-        isCompleted: boolean;
-        isImportant: boolean;
-        createdAt: any;
-        updatedAt: any;
-        recipient: { __typename?: 'Membership'; id: string };
-        task: {
-          __typename?: 'Task';
-          id: string;
-          title: string;
-          description?: string | null;
-          creator: {
-            __typename?: 'Membership';
-            id: string;
-            role: Role;
-            owner: {
-              __typename?: 'User';
-              id: string;
-              username: string;
-              nickname?: string | null;
-              gender: Gender;
-            };
-          };
-        };
-      }>;
-    };
-  };
-};
+
+export type MembershipAssignmentListQuery = { __typename?: 'Query', membership: { __typename?: 'Membership', id: string, assignments: { __typename?: 'PaginatedAssignments', total: number, results: Array<{ __typename?: 'Assignment', id: string, isCompleted: boolean, isImportant: boolean, createdAt: any, updatedAt: any, recipient: { __typename?: 'Membership', id: string }, task: { __typename?: 'Task', id: string, title: string, description?: string | null, creator: { __typename?: 'Membership', id: string, role: Role, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender } } } }> } } };
 
 export type MembershipDeleteMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-export type MembershipDeleteMutation = {
-  __typename?: 'Mutation';
-  deleteMembership: { __typename?: 'Membership'; id: string };
-};
+
+export type MembershipDeleteMutation = { __typename?: 'Mutation', deleteMembership: { __typename?: 'Membership', id: string } };
 
 export type MembershipTaskListQueryVariables = Exact<{
   id: Scalars['ID'];
   offset?: InputMaybe<Scalars['Int']>;
 }>;
 
-export type MembershipTaskListQuery = {
-  __typename?: 'Query';
-  membership: {
-    __typename?: 'Membership';
-    id: string;
-    tasks: {
-      __typename?: 'PaginatedTasks';
-      total: number;
-      results: Array<{
-        __typename?: 'Task';
-        id: string;
-        title: string;
-        description?: string | null;
-        createdAt: any;
-        assignments: { __typename?: 'PaginatedAssignments'; total: number };
-      }>;
-    };
-  };
-};
+
+export type MembershipTaskListQuery = { __typename?: 'Query', membership: { __typename?: 'Membership', id: string, tasks: { __typename?: 'PaginatedTasks', total: number, results: Array<{ __typename?: 'Task', id: string, title: string, description?: string | null, createdAt: any, assignments: { __typename?: 'PaginatedAssignments', total: number } }> } } };
 
 export type MembershipUpdateMutationVariables = Exact<{
   id: Scalars['ID'];
   data: MembershipUpdateInput;
 }>;
 
-export type MembershipUpdateMutation = {
-  __typename?: 'Mutation';
-  updateMembership: {
-    __typename?: 'Membership';
-    id: string;
-    role: Role;
-    owner: {
-      __typename?: 'User';
-      id: string;
-      username: string;
-      nickname?: string | null;
-      gender: Gender;
-    };
-  };
-};
 
-export type MembershipFragment = {
-  __typename?: 'Membership';
-  id: string;
-  role: Role;
-  owner: {
-    __typename?: 'User';
-    id: string;
-    username: string;
-    nickname?: string | null;
-    gender: Gender;
-  };
-};
+export type MembershipUpdateMutation = { __typename?: 'Mutation', updateMembership: { __typename?: 'Membership', id: string, role: Role, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender } } };
+
+export type MembershipFragment = { __typename?: 'Membership', id: string, role: Role, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender } };
 
 export type TaskAssignmentListQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-export type TaskAssignmentListQuery = {
-  __typename?: 'Query';
-  task: {
-    __typename?: 'Task';
-    id: string;
-    assignments: {
-      __typename?: 'PaginatedAssignments';
-      total: number;
-      results: Array<{
-        __typename?: 'Assignment';
-        id: string;
-        recipient: { __typename?: 'Membership'; id: string };
-      }>;
-    };
-  };
-};
+
+export type TaskAssignmentListQuery = { __typename?: 'Query', task: { __typename?: 'Task', id: string, assignments: { __typename?: 'PaginatedAssignments', total: number, results: Array<{ __typename?: 'Assignment', id: string, recipient: { __typename?: 'Membership', id: string } }> } } };
 
 export type TaskCreateMutationVariables = Exact<{
   data: TaskCreateInput;
 }>;
 
-export type TaskCreateMutation = {
-  __typename?: 'Mutation';
-  createTask: {
-    __typename?: 'Task';
-    id: string;
-    title: string;
-    description?: string | null;
-    createdAt: any;
-    assignments: { __typename?: 'PaginatedAssignments'; total: number };
-  };
-};
+
+export type TaskCreateMutation = { __typename?: 'Mutation', createTask: { __typename?: 'Task', id: string, title: string, description?: string | null, createdAt: any, assignments: { __typename?: 'PaginatedAssignments', total: number } } };
 
 export type TaskDeleteMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-export type TaskDeleteMutation = {
-  __typename?: 'Mutation';
-  deleteTask: { __typename?: 'Task'; id: string };
-};
+
+export type TaskDeleteMutation = { __typename?: 'Mutation', deleteTask: { __typename?: 'Task', id: string } };
 
 export type TaskUpdateMutationVariables = Exact<{
   id: Scalars['ID'];
   data: TaskUpdateInput;
 }>;
 
-export type TaskUpdateMutation = {
-  __typename?: 'Mutation';
-  updateTask: {
-    __typename?: 'Task';
-    id: string;
-    title: string;
-    description?: string | null;
-    createdAt: any;
-    assignments: { __typename?: 'PaginatedAssignments'; total: number };
-  };
-};
 
-export type TaskFragment = {
-  __typename?: 'Task';
-  id: string;
-  title: string;
-  description?: string | null;
-  createdAt: any;
-  assignments: { __typename?: 'PaginatedAssignments'; total: number };
-};
+export type TaskUpdateMutation = { __typename?: 'Mutation', updateTask: { __typename?: 'Task', id: string, title: string, description?: string | null, createdAt: any, assignments: { __typename?: 'PaginatedAssignments', total: number } } };
+
+export type TaskFragment = { __typename?: 'Task', id: string, title: string, description?: string | null, createdAt: any, assignments: { __typename?: 'PaginatedAssignments', total: number } };
 
 export type RoomCreateMutationVariables = Exact<{
   data: RoomCreateInput;
 }>;
 
-export type RoomCreateMutation = {
-  __typename?: 'Mutation';
-  createRoom: {
-    __typename?: 'Room';
-    id: string;
-    name: string;
-    description?: string | null;
-    isOpen: boolean;
-    creator: {
-      __typename?: 'User';
-      id: string;
-      username: string;
-      nickname?: string | null;
-    };
-    membership?: { __typename?: 'Membership'; id: string; role: Role } | null;
-  };
-};
+
+export type RoomCreateMutation = { __typename?: 'Mutation', createRoom: { __typename?: 'Room', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null } };
 
 export type RoomDeleteMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-export type RoomDeleteMutation = {
-  __typename?: 'Mutation';
-  deleteRoom: { __typename?: 'Room'; id: string };
-};
+
+export type RoomDeleteMutation = { __typename?: 'Mutation', deleteRoom: { __typename?: 'Room', id: string } };
 
 export type RoomDetailQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-export type RoomDetailQuery = {
-  __typename?: 'Query';
-  room: {
-    __typename?: 'Room';
-    id: string;
-    name: string;
-    description?: string | null;
-    isOpen: boolean;
-    creator: {
-      __typename?: 'User';
-      id: string;
-      username: string;
-      nickname?: string | null;
-    };
-    membership?: { __typename?: 'Membership'; id: string; role: Role } | null;
-  };
-};
+
+export type RoomDetailQuery = { __typename?: 'Query', room: { __typename?: 'Room', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null } };
 
 export type RoomListQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']>;
@@ -1337,828 +1096,636 @@ export type RoomListQueryVariables = Exact<{
   joinedOnly?: InputMaybe<Scalars['Boolean']>;
 }>;
 
-export type RoomListQuery = {
-  __typename?: 'Query';
-  rooms: {
-    __typename?: 'PaginatedRooms';
-    total: number;
-    results: Array<{
-      __typename?: 'Room';
-      id: string;
-      name: string;
-      description?: string | null;
-      isOpen: boolean;
-      creator: {
-        __typename?: 'User';
-        id: string;
-        username: string;
-        nickname?: string | null;
-      };
-      membership?: { __typename?: 'Membership'; id: string; role: Role } | null;
-    }>;
-  };
-};
+
+export type RoomListQuery = { __typename?: 'Query', rooms: { __typename?: 'PaginatedRooms', total: number, results: Array<{ __typename?: 'Room', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null }> } };
 
 export type RoomMembershipListQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-export type RoomMembershipListQuery = {
-  __typename?: 'Query';
-  room: {
-    __typename?: 'Room';
-    id: string;
-    memberships: {
-      __typename?: 'PaginatedMemberships';
-      total: number;
-      results: Array<{
-        __typename?: 'Membership';
-        id: string;
-        role: Role;
-        owner: {
-          __typename?: 'User';
-          id: string;
-          username: string;
-          nickname?: string | null;
-          gender: Gender;
-        };
-      }>;
-    };
-  };
-};
+
+export type RoomMembershipListQuery = { __typename?: 'Query', room: { __typename?: 'Room', id: string, memberships: { __typename?: 'PaginatedMemberships', total: number, results: Array<{ __typename?: 'Membership', id: string, role: Role, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender } }> } } };
 
 export type RoomUpdateMutationVariables = Exact<{
   id: Scalars['ID'];
   data: RoomUpdateInput;
 }>;
 
-export type RoomUpdateMutation = {
-  __typename?: 'Mutation';
-  updateRoom: {
-    __typename?: 'Room';
-    id: string;
-    name: string;
-    description?: string | null;
-    isOpen: boolean;
-    creator: {
-      __typename?: 'User';
-      id: string;
-      username: string;
-      nickname?: string | null;
-    };
-    membership?: { __typename?: 'Membership'; id: string; role: Role } | null;
-  };
-};
 
-export type RoomFragment = {
-  __typename?: 'Room';
-  id: string;
-  name: string;
-  description?: string | null;
-  isOpen: boolean;
-  creator: {
-    __typename?: 'User';
-    id: string;
-    username: string;
-    nickname?: string | null;
-  };
-  membership?: { __typename?: 'Membership'; id: string; role: Role } | null;
-};
+export type RoomUpdateMutation = { __typename?: 'Mutation', updateRoom: { __typename?: 'Room', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null } };
+
+export type RoomFragment = { __typename?: 'Room', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null };
 
 export type UserCreateMutationVariables = Exact<{
   data: UserCreateInput;
 }>;
 
-export type UserCreateMutation = {
-  __typename?: 'Mutation';
-  createUser: {
-    __typename?: 'User';
-    id: string;
-    username: string;
-    nickname?: string | null;
-    gender: Gender;
-    updatedAt: any;
-  };
-};
+
+export type UserCreateMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender, updatedAt: any } };
 
 export type UserUpdateMutationVariables = Exact<{
   id: Scalars['ID'];
   data: UserUpdateInput;
 }>;
 
-export type UserUpdateMutation = {
-  __typename?: 'Mutation';
-  updateUser: {
-    __typename?: 'User';
-    id: string;
-    username: string;
-    nickname?: string | null;
-    gender: Gender;
-    updatedAt: any;
-  };
-};
 
-export type UserFragment = {
-  __typename?: 'User';
-  id: string;
-  username: string;
-  nickname?: string | null;
-  gender: Gender;
-  updatedAt: any;
-};
+export type UserUpdateMutation = { __typename?: 'Mutation', updateUser: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender, updatedAt: any } };
+
+export type UserFragment = { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender, updatedAt: any };
 
 export const ApplicationFragmentDoc = gql`
-  fragment Application on Application {
+    fragment Application on Application {
+  id
+  owner {
     id
-    owner {
-      id
-      username
-      nickname
-    }
-    room {
-      id
-      name
-    }
-    message
-    status
-    createdAt
+    username
+    nickname
   }
-`;
-export const AssignmentFragmentDoc = gql`
-  fragment Assignment on Assignment {
-    id
-    recipient {
-      id
-    }
-  }
-`;
-export const MembershipFragmentDoc = gql`
-  fragment Membership on Membership {
-    id
-    owner {
-      id
-      username
-      nickname
-      gender
-    }
-    role
-  }
-`;
-export const TaskFragmentDoc = gql`
-  fragment Task on Task {
-    id
-    title
-    description
-    assignments {
-      total
-    }
-    createdAt
-  }
-`;
-export const RoomFragmentDoc = gql`
-  fragment Room on Room {
+  room {
     id
     name
-    description
-    isOpen
-    creator {
-      id
-      username
-      nickname
-    }
-    membership {
-      id
-      role
-    }
   }
-`;
-export const UserFragmentDoc = gql`
-  fragment User on User {
+  message
+  status
+  createdAt
+}
+    `;
+export const AssignmentFragmentDoc = gql`
+    fragment Assignment on Assignment {
+  id
+  recipient {
+    id
+  }
+}
+    `;
+export const MembershipFragmentDoc = gql`
+    fragment Membership on Membership {
+  id
+  owner {
     id
     username
     nickname
     gender
+  }
+  role
+}
+    `;
+export const TaskFragmentDoc = gql`
+    fragment Task on Task {
+  id
+  title
+  description
+  assignments {
+    total
+  }
+  createdAt
+}
+    `;
+export const RoomFragmentDoc = gql`
+    fragment Room on Room {
+  id
+  name
+  description
+  isOpen
+  creator {
+    id
+    username
+    nickname
+  }
+  membership {
+    id
+    role
+  }
+}
+    `;
+export const UserFragmentDoc = gql`
+    fragment User on User {
+  id
+  username
+  nickname
+  gender
+  updatedAt
+}
+    `;
+export const ApplicationAcceptDocument = gql`
+    mutation ApplicationAccept($id: ID!) {
+  acceptApplication(id: $id) {
+    application {
+      ...Application
+    }
+    membership {
+      ...Membership
+    }
+  }
+}
+    ${ApplicationFragmentDoc}
+${MembershipFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class ApplicationAcceptGQL extends Apollo.Mutation<ApplicationAcceptMutation, ApplicationAcceptMutationVariables> {
+    override document = ApplicationAcceptDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const ApplicationCreateDocument = gql`
+    mutation ApplicationCreate($data: ApplicationCreateInput!) {
+  createApplication(data: $data) {
+    ...Application
+  }
+}
+    ${ApplicationFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class ApplicationCreateGQL extends Apollo.Mutation<ApplicationCreateMutation, ApplicationCreateMutationVariables> {
+    override document = ApplicationCreateDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const ApplicationDeleteDocument = gql`
+    mutation ApplicationDelete($id: ID!) {
+  deleteApplication(id: $id) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class ApplicationDeleteGQL extends Apollo.Mutation<ApplicationDeleteMutation, ApplicationDeleteMutationVariables> {
+    override document = ApplicationDeleteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const ApplicationListDocument = gql`
+    query ApplicationList($offset: Int) {
+  applications(limit: 20, offset: $offset, order: {id: DESC}) {
+    total
+    results {
+      ...Application
+    }
+  }
+}
+    ${ApplicationFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class ApplicationListGQL extends Apollo.Query<ApplicationListQuery, ApplicationListQueryVariables> {
+    override document = ApplicationListDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const ApplicationRejectDocument = gql`
+    mutation ApplicationReject($id: ID!) {
+  rejectApplication(id: $id) {
+    ...Application
+  }
+}
+    ${ApplicationFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class ApplicationRejectGQL extends Apollo.Mutation<ApplicationRejectMutation, ApplicationRejectMutationVariables> {
+    override document = ApplicationRejectDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AssignmentCreateDocument = gql`
+    mutation AssignmentCreate($data: AssignmentCreateInput!) {
+  createAssignment(data: $data) {
+    ...Assignment
+  }
+}
+    ${AssignmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AssignmentCreateGQL extends Apollo.Mutation<AssignmentCreateMutation, AssignmentCreateMutationVariables> {
+    override document = AssignmentCreateDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AssignmentDeleteDocument = gql`
+    mutation AssignmentDelete($id: ID!) {
+  deleteAssignment(id: $id) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AssignmentDeleteGQL extends Apollo.Mutation<AssignmentDeleteMutation, AssignmentDeleteMutationVariables> {
+    override document = AssignmentDeleteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AssignmentUpdateDocument = gql`
+    mutation AssignmentUpdate($id: ID!, $data: AssignmentUpdateInput!) {
+  updateAssignment(id: $id, data: $data) {
+    id
+    isCompleted
+    isImportant
     updatedAt
   }
-`;
-export const ApplicationAcceptDocument = gql`
-  mutation ApplicationAccept($id: ID!) {
-    acceptApplication(id: $id) {
-      application {
-        ...Application
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AssignmentUpdateGQL extends Apollo.Mutation<AssignmentUpdateMutation, AssignmentUpdateMutationVariables> {
+    override document = AssignmentUpdateDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AuthDocument = gql`
+    mutation Auth($username: String!, $password: String!) {
+  auth(username: $username, password: $password) {
+    token
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AuthGQL extends Apollo.Mutation<AuthMutation, AuthMutationVariables> {
+    override document = AuthDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const MeDocument = gql`
+    query Me {
+  me {
+    ...User
+  }
+}
+    ${UserFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MeGQL extends Apollo.Query<MeQuery, MeQueryVariables> {
+    override document = MeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const MembershipAssignmentListDocument = gql`
+    query MembershipAssignmentList($id: ID!, $offset: Int) {
+  membership(id: $id) {
+    id
+    assignments(limit: 20, offset: $offset, order: {updatedAt: DESC}) {
+      total
+      results {
+        id
+        recipient {
+          id
+        }
+        task {
+          id
+          title
+          description
+          creator {
+            ...Membership
+          }
+        }
+        isCompleted
+        isImportant
+        createdAt
+        updatedAt
       }
-      membership {
+    }
+  }
+}
+    ${MembershipFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MembershipAssignmentListGQL extends Apollo.Query<MembershipAssignmentListQuery, MembershipAssignmentListQueryVariables> {
+    override document = MembershipAssignmentListDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const MembershipDeleteDocument = gql`
+    mutation MembershipDelete($id: ID!) {
+  deleteMembership(id: $id) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MembershipDeleteGQL extends Apollo.Mutation<MembershipDeleteMutation, MembershipDeleteMutationVariables> {
+    override document = MembershipDeleteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const MembershipTaskListDocument = gql`
+    query MembershipTaskList($id: ID!, $offset: Int) {
+  membership(id: $id) {
+    id
+    tasks(limit: 20, offset: $offset, order: {id: DESC}) {
+      total
+      results {
+        ...Task
+      }
+    }
+  }
+}
+    ${TaskFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MembershipTaskListGQL extends Apollo.Query<MembershipTaskListQuery, MembershipTaskListQueryVariables> {
+    override document = MembershipTaskListDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const MembershipUpdateDocument = gql`
+    mutation MembershipUpdate($id: ID!, $data: MembershipUpdateInput!) {
+  updateMembership(id: $id, data: $data) {
+    ...Membership
+  }
+}
+    ${MembershipFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MembershipUpdateGQL extends Apollo.Mutation<MembershipUpdateMutation, MembershipUpdateMutationVariables> {
+    override document = MembershipUpdateDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const TaskAssignmentListDocument = gql`
+    query TaskAssignmentList($id: ID!) {
+  task(id: $id) {
+    id
+    assignments {
+      total
+      results {
+        ...Assignment
+      }
+    }
+  }
+}
+    ${AssignmentFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class TaskAssignmentListGQL extends Apollo.Query<TaskAssignmentListQuery, TaskAssignmentListQueryVariables> {
+    override document = TaskAssignmentListDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const TaskCreateDocument = gql`
+    mutation TaskCreate($data: TaskCreateInput!) {
+  createTask(data: $data) {
+    ...Task
+  }
+}
+    ${TaskFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class TaskCreateGQL extends Apollo.Mutation<TaskCreateMutation, TaskCreateMutationVariables> {
+    override document = TaskCreateDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const TaskDeleteDocument = gql`
+    mutation TaskDelete($id: ID!) {
+  deleteTask(id: $id) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class TaskDeleteGQL extends Apollo.Mutation<TaskDeleteMutation, TaskDeleteMutationVariables> {
+    override document = TaskDeleteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const TaskUpdateDocument = gql`
+    mutation TaskUpdate($id: ID!, $data: TaskUpdateInput!) {
+  updateTask(id: $id, data: $data) {
+    ...Task
+  }
+}
+    ${TaskFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class TaskUpdateGQL extends Apollo.Mutation<TaskUpdateMutation, TaskUpdateMutationVariables> {
+    override document = TaskUpdateDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const RoomCreateDocument = gql`
+    mutation RoomCreate($data: RoomCreateInput!) {
+  createRoom(data: $data) {
+    ...Room
+  }
+}
+    ${RoomFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RoomCreateGQL extends Apollo.Mutation<RoomCreateMutation, RoomCreateMutationVariables> {
+    override document = RoomCreateDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const RoomDeleteDocument = gql`
+    mutation RoomDelete($id: ID!) {
+  deleteRoom(id: $id) {
+    id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RoomDeleteGQL extends Apollo.Mutation<RoomDeleteMutation, RoomDeleteMutationVariables> {
+    override document = RoomDeleteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const RoomDetailDocument = gql`
+    query RoomDetail($id: ID!) {
+  room(id: $id) {
+    ...Room
+  }
+}
+    ${RoomFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RoomDetailGQL extends Apollo.Query<RoomDetailQuery, RoomDetailQueryVariables> {
+    override document = RoomDetailDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const RoomListDocument = gql`
+    query RoomList($offset: Int, $filter: RoomFilterMap, $joinedOnly: Boolean) {
+  rooms(limit: 20, offset: $offset, filter: $filter, joinedOnly: $joinedOnly) {
+    total
+    results {
+      ...Room
+    }
+  }
+}
+    ${RoomFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RoomListGQL extends Apollo.Query<RoomListQuery, RoomListQueryVariables> {
+    override document = RoomListDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const RoomMembershipListDocument = gql`
+    query RoomMembershipList($id: ID!) {
+  room(id: $id) {
+    id
+    memberships {
+      total
+      results {
         ...Membership
       }
     }
   }
-  ${ApplicationFragmentDoc}
-  ${MembershipFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class ApplicationAcceptGQL extends Apollo.Mutation<
-  ApplicationAcceptMutation,
-  ApplicationAcceptMutationVariables
-> {
-  override document = ApplicationAcceptDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
 }
-export const ApplicationCreateDocument = gql`
-  mutation ApplicationCreate($data: ApplicationCreateInput!) {
-    createApplication(data: $data) {
-      ...Application
+    ${MembershipFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RoomMembershipListGQL extends Apollo.Query<RoomMembershipListQuery, RoomMembershipListQueryVariables> {
+    override document = RoomMembershipListDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
     }
   }
-  ${ApplicationFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class ApplicationCreateGQL extends Apollo.Mutation<
-  ApplicationCreateMutation,
-  ApplicationCreateMutationVariables
-> {
-  override document = ApplicationCreateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const ApplicationDeleteDocument = gql`
-  mutation ApplicationDelete($id: ID!) {
-    deleteApplication(id: $id) {
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class ApplicationDeleteGQL extends Apollo.Mutation<
-  ApplicationDeleteMutation,
-  ApplicationDeleteMutationVariables
-> {
-  override document = ApplicationDeleteDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const ApplicationListDocument = gql`
-  query ApplicationList($offset: Int) {
-    applications(limit: 20, offset: $offset, order: { id: DESC }) {
-      total
-      results {
-        ...Application
-      }
-    }
-  }
-  ${ApplicationFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class ApplicationListGQL extends Apollo.Query<
-  ApplicationListQuery,
-  ApplicationListQueryVariables
-> {
-  override document = ApplicationListDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const ApplicationRejectDocument = gql`
-  mutation ApplicationReject($id: ID!) {
-    rejectApplication(id: $id) {
-      ...Application
-    }
-  }
-  ${ApplicationFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class ApplicationRejectGQL extends Apollo.Mutation<
-  ApplicationRejectMutation,
-  ApplicationRejectMutationVariables
-> {
-  override document = ApplicationRejectDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AssignmentCreateDocument = gql`
-  mutation AssignmentCreate($data: AssignmentCreateInput!) {
-    createAssignment(data: $data) {
-      ...Assignment
-    }
-  }
-  ${AssignmentFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class AssignmentCreateGQL extends Apollo.Mutation<
-  AssignmentCreateMutation,
-  AssignmentCreateMutationVariables
-> {
-  override document = AssignmentCreateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AssignmentDeleteDocument = gql`
-  mutation AssignmentDelete($id: ID!) {
-    deleteAssignment(id: $id) {
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class AssignmentDeleteGQL extends Apollo.Mutation<
-  AssignmentDeleteMutation,
-  AssignmentDeleteMutationVariables
-> {
-  override document = AssignmentDeleteDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AssignmentUpdateDocument = gql`
-  mutation AssignmentUpdate($id: ID!, $data: AssignmentUpdateInput!) {
-    updateAssignment(id: $id, data: $data) {
-      id
-      isCompleted
-      isImportant
-      updatedAt
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class AssignmentUpdateGQL extends Apollo.Mutation<
-  AssignmentUpdateMutation,
-  AssignmentUpdateMutationVariables
-> {
-  override document = AssignmentUpdateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const AuthDocument = gql`
-  mutation Auth($username: String!, $password: String!) {
-    auth(username: $username, password: $password) {
-      token
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthGQL extends Apollo.Mutation<
-  AuthMutation,
-  AuthMutationVariables
-> {
-  override document = AuthDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const MeDocument = gql`
-  query Me {
-    me {
-      ...User
-    }
-  }
-  ${UserFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class MeGQL extends Apollo.Query<MeQuery, MeQueryVariables> {
-  override document = MeDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const MembershipAssignmentListDocument = gql`
-  query MembershipAssignmentList($id: ID!, $offset: Int) {
-    membership(id: $id) {
-      id
-      assignments(limit: 20, offset: $offset, order: { updatedAt: DESC }) {
-        total
-        results {
-          id
-          recipient {
-            id
-          }
-          task {
-            id
-            title
-            description
-            creator {
-              ...Membership
-            }
-          }
-          isCompleted
-          isImportant
-          createdAt
-          updatedAt
-        }
-      }
-    }
-  }
-  ${MembershipFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class MembershipAssignmentListGQL extends Apollo.Query<
-  MembershipAssignmentListQuery,
-  MembershipAssignmentListQueryVariables
-> {
-  override document = MembershipAssignmentListDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const MembershipDeleteDocument = gql`
-  mutation MembershipDelete($id: ID!) {
-    deleteMembership(id: $id) {
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class MembershipDeleteGQL extends Apollo.Mutation<
-  MembershipDeleteMutation,
-  MembershipDeleteMutationVariables
-> {
-  override document = MembershipDeleteDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const MembershipTaskListDocument = gql`
-  query MembershipTaskList($id: ID!, $offset: Int) {
-    membership(id: $id) {
-      id
-      tasks(limit: 20, offset: $offset, order: { id: DESC }) {
-        total
-        results {
-          ...Task
-        }
-      }
-    }
-  }
-  ${TaskFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class MembershipTaskListGQL extends Apollo.Query<
-  MembershipTaskListQuery,
-  MembershipTaskListQueryVariables
-> {
-  override document = MembershipTaskListDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const MembershipUpdateDocument = gql`
-  mutation MembershipUpdate($id: ID!, $data: MembershipUpdateInput!) {
-    updateMembership(id: $id, data: $data) {
-      ...Membership
-    }
-  }
-  ${MembershipFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class MembershipUpdateGQL extends Apollo.Mutation<
-  MembershipUpdateMutation,
-  MembershipUpdateMutationVariables
-> {
-  override document = MembershipUpdateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const TaskAssignmentListDocument = gql`
-  query TaskAssignmentList($id: ID!) {
-    task(id: $id) {
-      id
-      assignments {
-        total
-        results {
-          ...Assignment
-        }
-      }
-    }
-  }
-  ${AssignmentFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class TaskAssignmentListGQL extends Apollo.Query<
-  TaskAssignmentListQuery,
-  TaskAssignmentListQueryVariables
-> {
-  override document = TaskAssignmentListDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const TaskCreateDocument = gql`
-  mutation TaskCreate($data: TaskCreateInput!) {
-    createTask(data: $data) {
-      ...Task
-    }
-  }
-  ${TaskFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class TaskCreateGQL extends Apollo.Mutation<
-  TaskCreateMutation,
-  TaskCreateMutationVariables
-> {
-  override document = TaskCreateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const TaskDeleteDocument = gql`
-  mutation TaskDelete($id: ID!) {
-    deleteTask(id: $id) {
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class TaskDeleteGQL extends Apollo.Mutation<
-  TaskDeleteMutation,
-  TaskDeleteMutationVariables
-> {
-  override document = TaskDeleteDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const TaskUpdateDocument = gql`
-  mutation TaskUpdate($id: ID!, $data: TaskUpdateInput!) {
-    updateTask(id: $id, data: $data) {
-      ...Task
-    }
-  }
-  ${TaskFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class TaskUpdateGQL extends Apollo.Mutation<
-  TaskUpdateMutation,
-  TaskUpdateMutationVariables
-> {
-  override document = TaskUpdateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const RoomCreateDocument = gql`
-  mutation RoomCreate($data: RoomCreateInput!) {
-    createRoom(data: $data) {
-      ...Room
-    }
-  }
-  ${RoomFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class RoomCreateGQL extends Apollo.Mutation<
-  RoomCreateMutation,
-  RoomCreateMutationVariables
-> {
-  override document = RoomCreateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const RoomDeleteDocument = gql`
-  mutation RoomDelete($id: ID!) {
-    deleteRoom(id: $id) {
-      id
-    }
-  }
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class RoomDeleteGQL extends Apollo.Mutation<
-  RoomDeleteMutation,
-  RoomDeleteMutationVariables
-> {
-  override document = RoomDeleteDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const RoomDetailDocument = gql`
-  query RoomDetail($id: ID!) {
-    room(id: $id) {
-      ...Room
-    }
-  }
-  ${RoomFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class RoomDetailGQL extends Apollo.Query<
-  RoomDetailQuery,
-  RoomDetailQueryVariables
-> {
-  override document = RoomDetailDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const RoomListDocument = gql`
-  query RoomList($offset: Int, $filter: RoomFilterMap, $joinedOnly: Boolean) {
-    rooms(
-      limit: 20
-      offset: $offset
-      filter: $filter
-      joinedOnly: $joinedOnly
-    ) {
-      total
-      results {
-        ...Room
-      }
-    }
-  }
-  ${RoomFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class RoomListGQL extends Apollo.Query<
-  RoomListQuery,
-  RoomListQueryVariables
-> {
-  override document = RoomListDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
-export const RoomMembershipListDocument = gql`
-  query RoomMembershipList($id: ID!) {
-    room(id: $id) {
-      id
-      memberships {
-        total
-        results {
-          ...Membership
-        }
-      }
-    }
-  }
-  ${MembershipFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class RoomMembershipListGQL extends Apollo.Query<
-  RoomMembershipListQuery,
-  RoomMembershipListQueryVariables
-> {
-  override document = RoomMembershipListDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
-  }
-}
 export const RoomUpdateDocument = gql`
-  mutation RoomUpdate($id: ID!, $data: RoomUpdateInput!) {
-    updateRoom(id: $id, data: $data) {
-      ...Room
-    }
-  }
-  ${RoomFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class RoomUpdateGQL extends Apollo.Mutation<
-  RoomUpdateMutation,
-  RoomUpdateMutationVariables
-> {
-  override document = RoomUpdateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    mutation RoomUpdate($id: ID!, $data: RoomUpdateInput!) {
+  updateRoom(id: $id, data: $data) {
+    ...Room
   }
 }
+    ${RoomFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RoomUpdateGQL extends Apollo.Mutation<RoomUpdateMutation, RoomUpdateMutationVariables> {
+    override document = RoomUpdateDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const UserCreateDocument = gql`
-  mutation UserCreate($data: UserCreateInput!) {
-    createUser(data: $data) {
-      ...User
-    }
-  }
-  ${UserFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class UserCreateGQL extends Apollo.Mutation<
-  UserCreateMutation,
-  UserCreateMutationVariables
-> {
-  override document = UserCreateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    mutation UserCreate($data: UserCreateInput!) {
+  createUser(data: $data) {
+    ...User
   }
 }
+    ${UserFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UserCreateGQL extends Apollo.Mutation<UserCreateMutation, UserCreateMutationVariables> {
+    override document = UserCreateDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const UserUpdateDocument = gql`
-  mutation UserUpdate($id: ID!, $data: UserUpdateInput!) {
-    updateUser(id: $id, data: $data) {
-      ...User
-    }
-  }
-  ${UserFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class UserUpdateGQL extends Apollo.Mutation<
-  UserUpdateMutation,
-  UserUpdateMutationVariables
-> {
-  override document = UserUpdateDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    mutation UserUpdate($id: ID!, $data: UserUpdateInput!) {
+  updateUser(id: $id, data: $data) {
+    ...User
   }
 }
+    ${UserFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UserUpdateGQL extends Apollo.Mutation<UserUpdateMutation, UserUpdateMutationVariables> {
+    override document = UserUpdateDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
