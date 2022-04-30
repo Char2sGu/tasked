@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest, first } from 'rxjs';
 
-import { Role } from '../../../graphql';
+import { Role } from '../../../graphql/codegen';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
 
 @Component({

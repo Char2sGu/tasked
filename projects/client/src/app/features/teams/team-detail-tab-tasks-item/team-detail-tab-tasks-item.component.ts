@@ -9,7 +9,7 @@ import {
   RoomDetailGQL,
   TaskDeleteGQL,
   TaskUpdateInput,
-} from '../../../graphql';
+} from '../../../graphql/codegen';
 import { Task } from '../team-detail-tab-tasks/team-detail-tab-tasks.component';
 
 // TODO: use side sheet for task assigning https://material.io/components/sheets-side

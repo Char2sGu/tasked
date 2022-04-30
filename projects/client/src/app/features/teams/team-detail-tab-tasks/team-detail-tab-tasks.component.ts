@@ -9,7 +9,7 @@ import {
   MembershipTaskListGQL,
   MembershipTaskListQuery,
   MembershipTaskListQueryVariables,
-} from '../../../graphql';
+} from '../../../graphql/codegen';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
 
 export type Task =

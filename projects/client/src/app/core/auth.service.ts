@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { AuthTokenStorage } from '../features/auth/auth-token.storage';
-import { AuthGQL, AuthMutation, MeGQL, MeQuery } from '../graphql';
+import { AuthGQL, AuthMutation, MeGQL, MeQuery } from '../graphql/codegen';
 import { Notifier } from './notifier.service';
 
 type User = MeQuery['me'];

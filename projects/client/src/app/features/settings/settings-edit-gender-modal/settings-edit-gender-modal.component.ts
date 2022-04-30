@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RadioListOption } from '../../../components/radio-list/radio-list/radio-list.component';
-import { Gender } from '../../../graphql';
+import { Gender } from '../../../graphql/codegen';
 import { SettingsService } from '../shared/settings.service';
 
 @Component({

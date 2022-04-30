@@ -3,7 +3,7 @@ import { combineLatest, concatMap, first } from 'rxjs';
 
 import { skipFalsy } from '../../../common/rxjs';
 import { Notifier } from '../../../core/notifier.service';
-import { MembershipTaskListGQL, TaskCreateGQL } from '../../../graphql';
+import { MembershipTaskListGQL, TaskCreateGQL } from '../../../graphql/codegen';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
 
 @Component({

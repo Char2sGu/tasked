@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, concatMap, filter, map, of, switchMap } from 'rxjs';
 
-import { RoomDetailGQL, RoomDetailQuery } from '../../../graphql';
+import { RoomDetailGQL, RoomDetailQuery } from '../../../graphql/codegen';
 
 export type Team = RoomDetailQuery['room'];
 export type Membership = NonNullable<Team['membership']>;

@@ -4,7 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Role, RoomDetailGQL, RoomMembershipListQuery } from '../../../graphql';
+import {
+  Role,
+  RoomDetailGQL,
+  RoomMembershipListQuery,
+} from '../../../graphql/codegen';
 
 type Membership =
   RoomMembershipListQuery['room']['memberships']['results'][number];

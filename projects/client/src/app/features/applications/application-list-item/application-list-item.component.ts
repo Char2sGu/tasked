@@ -11,7 +11,7 @@ import {
   ApplicationRejectGQL,
   ApplicationStatus,
   RoomMembershipListGQL,
-} from '../../../graphql';
+} from '../../../graphql/codegen';
 
 type Application = ApplicationListQuery['applications']['results'][number];
 

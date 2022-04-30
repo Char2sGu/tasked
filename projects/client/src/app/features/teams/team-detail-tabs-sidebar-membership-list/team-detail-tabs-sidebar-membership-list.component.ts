@@ -9,7 +9,7 @@ import {
   RoomDetailGQL,
   RoomMembershipListGQL,
   RoomMembershipListQuery,
-} from '../../../graphql';
+} from '../../../graphql/codegen';
 
 type Membership =
   RoomMembershipListQuery['room']['memberships']['results'][number];

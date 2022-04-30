@@ -8,7 +8,7 @@ import {
   ApplicationCreateGQL,
   ApplicationListGQL,
   RoomListQuery,
-} from '../../../graphql';
+} from '../../../graphql/codegen';
 
 @Component({
   selector: 'app-team-list-item',

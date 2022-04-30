@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 
 import { Notifier } from '../../../core/notifier.service';
-import { RoomCreateGQL, RoomListGQL } from '../../../graphql';
+import { RoomCreateGQL, RoomListGQL } from '../../../graphql/codegen';
 
 @Component({
   selector: 'app-team-creation',

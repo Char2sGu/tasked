@@ -10,7 +10,7 @@ import { delay, finalize } from 'rxjs';
 
 import { ModalRef } from '../../../components/modal/modal.directive';
 import { Notifier } from '../../../core/notifier.service';
-import { TaskUpdateGQL } from '../../../graphql';
+import { TaskUpdateGQL } from '../../../graphql/codegen';
 import { Task } from '../team-detail-tab-tasks/team-detail-tab-tasks.component';
 
 @Component({

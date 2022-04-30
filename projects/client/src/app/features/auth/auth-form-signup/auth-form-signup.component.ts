@@ -7,7 +7,11 @@ import { concatMap, finalize, throttleTime } from 'rxjs/operators';
 import { filterKeys } from '../../../common/form.utils';
 import { AuthService } from '../../../core/auth.service';
 import { Notifier } from '../../../core/notifier.service';
-import { Gender, UserCreateGQL, UserCreateInput } from '../../../graphql';
+import {
+  Gender,
+  UserCreateGQL,
+  UserCreateInput,
+} from '../../../graphql/codegen';
 
 @Component({
   selector: 'app-auth-form-signup',

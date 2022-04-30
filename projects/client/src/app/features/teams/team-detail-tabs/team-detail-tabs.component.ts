@@ -8,7 +8,7 @@ import { EMPTY, map, mapTo, merge, Observable, startWith } from 'rxjs';
 import { SharedAxisAnimation } from '../../../common/animations';
 import { Breakpoint } from '../../../common/breakpoint.enum';
 import { skipFalsy } from '../../../common/rxjs';
-import { Role } from '../../../graphql';
+import { Role } from '../../../graphql/codegen';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
 
 @Component({

@@ -17,7 +17,7 @@ import { Notifier } from '../../../core/notifier.service';
 import {
   AssignmentUpdateGQL,
   MembershipAssignmentListQuery,
-} from '../../../graphql';
+} from '../../../graphql/codegen';
 
 type Assignment =
   MembershipAssignmentListQuery['membership']['assignments']['results'][number];

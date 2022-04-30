@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
-import { RoomListGQL, RoomListQuery } from '../../../graphql';
+import { RoomListGQL, RoomListQuery } from '../../../graphql/codegen';
 
 @Component({
   selector: 'app-team-list',

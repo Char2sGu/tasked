@@ -23,7 +23,7 @@ import {
   RoomMembershipListQuery,
   TaskAssignmentListGQL,
   TaskAssignmentListQuery,
-} from '../../../graphql';
+} from '../../../graphql/codegen';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
 import { Task } from '../team-detail-tab-tasks/team-detail-tab-tasks.component';
 

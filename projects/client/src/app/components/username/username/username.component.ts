@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
-import { Gender, UserFragment } from '../../../graphql';
+import { Gender, UserFragment } from '../../../graphql/codegen';
 
 type User = Pick<UserFragment, 'username' | 'nickname'> &
   Partial<Pick<UserFragment, 'gender'>>;

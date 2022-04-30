@@ -10,7 +10,7 @@ import {
   RoomDeleteGQL,
   RoomDetailGQL,
   RoomDetailQuery,
-} from '../../../graphql';
+} from '../../../graphql/codegen';
 
 type Team = RoomDetailQuery['room'];
 

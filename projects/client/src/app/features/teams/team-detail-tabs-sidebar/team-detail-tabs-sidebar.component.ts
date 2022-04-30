@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { RoomDetailGQL, RoomDetailQuery } from '../../../graphql';
+import { RoomDetailGQL, RoomDetailQuery } from '../../../graphql/codegen';
 
 type Team = RoomDetailQuery['room'];
 

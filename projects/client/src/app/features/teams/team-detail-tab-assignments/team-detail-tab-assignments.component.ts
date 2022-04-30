@@ -6,7 +6,7 @@ import {
   MembershipAssignmentListGQL,
   MembershipAssignmentListQuery,
   MembershipAssignmentListQueryVariables,
-} from '../../../graphql';
+} from '../../../graphql/codegen';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
 
 type Assignment =
