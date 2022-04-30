@@ -1,9 +1,8 @@
 import { transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
-import { RouterLinkActive } from '@angular/router';
-import { EMPTY, map, mapTo, merge, Observable, startWith } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { SharedAxisAnimation } from '../../../common/animations';
 import { Breakpoint } from '../../../common/breakpoint.enum';
@@ -27,22 +26,7 @@ export class TeamDetailTabsComponent implements OnInit {
   sidebarOpen$!: Observable<boolean>;
   sidebarMode$!: Observable<MatDrawerMode>;
   links$!: Observable<TabLink[]>;
-  linkIndexActive$: Observable<number> = EMPTY;
-
-  @ViewChildren(RouterLinkActive)
-  set linkStates(linkStatesQueryList: QueryList<RouterLinkActive>) {
-    if (!linkStatesQueryList.length) return;
-    const linkStates = linkStatesQueryList.toArray();
-    this.linkIndexActive$ = merge(
-      ...linkStates.map((linkState, index) =>
-        linkState.isActiveChange.pipe(
-          startWith(linkState.isActive),
-          skipFalsy(),
-          mapTo(index),
-        ),
-      ),
-    );
-  }
+  linkIndexActive?: number;
 
   constructor(
     private state: TeamDetailState,

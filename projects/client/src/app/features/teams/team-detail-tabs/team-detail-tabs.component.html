@@ -3,8 +3,7 @@
     team: team$ | async,
     links: links$ | async,
     sidebarOpen: sidebarOpen$ | async,
-    sidebarMode: sidebarMode$ | async,
-    linkIndexActive: linkIndexActive$ | async
+    sidebarMode: sidebarMode$ | async
   } as data"
 >
   <ng-container *ngIf="data.team && data.sidebarMode">
@@ -43,15 +42,16 @@
               *ngFor="let link of data.links; let index = index"
               [routerLink]="link.commands"
               routerLinkActive
-              [active]="index == data.linkIndexActive"
+              [active]="linkIndexActive == index"
+              (isActiveChange)="$event ? (linkIndexActive = index) : null"
             >
               {{ link.title }}
             </a>
           </nav>
           <div
             class="h-0 grow overflow-auto"
-            *ngIf="data.linkIndexActive != null"
-            [@tab]="data.linkIndexActive"
+            *ngIf="linkIndexActive != null"
+            [@tab]="linkIndexActive"
           >
             <router-outlet></router-outlet>
           </div>
