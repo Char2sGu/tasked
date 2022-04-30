@@ -24,7 +24,7 @@
     "test:server:unit": "jest --config ./projects/server/jest.config.unit.js",
     "test:server:e2e": "jest --config ./projects/server/jest.config.e2e.js",
     "client:i18n": "ng extract-i18n --format=json --output-path projects/client/src/locales/",
-    "server:db": "ts-node -r tsconfig-paths/register ./projects/server/src/db.ts init",
+    "server:db": "ts-node -r tsconfig-paths/register ./projects/server/src/db.ts",
     "codegen": "graphql-codegen",
     "format": "prettier --write \"{projects/**/*,*}.{html,css,less,scss,sass,ts,js,json,md}\"",
     "lint": "eslint \"projects/**/*.ts\" --cache --fix"
@@ -42,6 +42,7 @@
     "@angular/router": "~13.1.0",
     "@angular/service-worker": "~13.1.0",
     "@apollo/client": "^3.5.10",
+    "@faker-js/faker": "^6.2.0",
     "@mikro-orm/core": "^5.1.1",
     "@mikro-orm/nestjs": "^5.0.1",
     "@mikro-orm/sqlite": "^5.1.1",
