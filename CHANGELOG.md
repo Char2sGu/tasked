@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0-3](https://github.com/TheNightmareX/tasked/compare/v0.2.0-2...v0.2.0-3) (2022-04-30)
+
+
+### Features
+
+* adjust full name regexp pattern ([da2484b](https://github.com/TheNightmareX/tasked/commit/da2484bf096f31a9e23b6cb7e24942961f6055a0))
+* **server:** implement database seeding ([85ff9bf](https://github.com/TheNightmareX/tasked/commit/85ff9bf0af4141ff77ba12f5b79e39625c7e6607))
+
+
+### Bug Fixes
+
+* **client:** fix assignment expansion animation on route leave ([6997c11](https://github.com/TheNightmareX/tasked/commit/6997c118c7a05e66e28706992f4ef3e6b57e85b3))
+* **client:** fix tab activation in production environment ([0f0e971](https://github.com/TheNightmareX/tasked/commit/0f0e9712788cc460b6e84d967acad3e1e6d3da5e))
+
 ## [0.2.0-2](https://github.com/TheNightmareX/tasked/compare/v0.2.0-1...v0.2.0-2) (2022-04-29)
 
 
