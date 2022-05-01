@@ -12,7 +12,7 @@
   <span matLine>
     {{ membership ? roleText[membership.role] : null }}
   </span>
-  <div class="menu-helper" [matMenuTriggerFor]="menu" #helper></div>
+  <div class="absolute h-0 w-0" [matMenuTriggerFor]="menu" #helper></div>
 </button>
 
 <mat-menu #menu>
