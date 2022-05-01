@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { concatMap, first, map, Observable, Observer } from 'rxjs';
 
-import { skipFalsy } from '../../../common/rxjs';
+import { skipNullable } from '../../../common/rxjs';
 import { AuthService } from '../../../core/auth.service';
 import { Notifier } from '../../../core/notifier.service';
 import {
@@ -14,7 +14,7 @@ export type User = UserFragment;
 
 @Injectable()
 export class SettingsService {
-  user$ = this.authService.user$.pipe(skipFalsy());
+  user$ = this.authService.user$.pipe(skipNullable());
 
   constructor(
     private authService: AuthService,
@@ -24,11 +24,11 @@ export class SettingsService {
 
   saveProfile(data: UserUpdateInput): Observable<User> {
     return this.authService.user$.pipe(
-      skipFalsy(),
+      skipNullable(),
       first(),
       concatMap(({ id }) => this.userUpdateGql.mutate({ id, data })),
       map((result) => result.data),
-      skipFalsy(),
+      skipNullable(),
       map((data) => data.updateUser),
     );
   }

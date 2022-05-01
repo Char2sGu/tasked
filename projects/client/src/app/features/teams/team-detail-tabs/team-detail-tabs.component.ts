@@ -6,7 +6,7 @@ import { map, Observable } from 'rxjs';
 
 import { SharedAxisAnimation } from '../../../common/animations';
 import { Breakpoint } from '../../../common/breakpoint.enum';
-import { skipFalsy } from '../../../common/rxjs';
+import { skipNullable } from '../../../common/rxjs';
 import { Role } from '../../../graphql/codegen';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
 
@@ -44,7 +44,7 @@ export class TeamDetailTabsComponent implements OnInit {
     );
 
     this.links$ = this.state.membership$.pipe(
-      skipFalsy(),
+      skipNullable(),
       map((membership) => [
         membership.role == Role.Member
           ? { title: $localize`Assignments`, commands: ['assignments'] }

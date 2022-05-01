@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { combineLatest } from 'rxjs';
 
-import { skipFalsy } from '../../../common/rxjs';
+import { skipNullable } from '../../../common/rxjs';
 import { AuthService } from '../../../core/auth.service';
 import { TeamsActivatedMapStorage } from '../teams-activated-map.storage';
 import { TeamDetailState } from './team-detail-state.service';
@@ -29,7 +29,7 @@ export class TeamDetailComponent implements OnInit {
   ngOnInit(): void {
     combineLatest([
       this.state.team$,
-      this.auth.user$.pipe(skipFalsy()),
+      this.auth.user$.pipe(skipNullable()),
     ]).subscribe(([team, user]) => {
       const map = this.activatedTeamsMap;
       map.value[user.id] = team.id;

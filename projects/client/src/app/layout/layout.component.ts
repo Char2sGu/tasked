@@ -21,7 +21,7 @@ import {
 } from 'rxjs';
 
 import { Breakpoint } from '../common/breakpoint.enum';
-import { skipFalsy } from '../common/rxjs';
+import { skipNullable } from '../common/rxjs';
 import { ModalDirective } from '../components/modal/modal.directive';
 import { RouterStatus } from '../core/router-status.service';
 import { ThemeService } from '../core/theme.service';
@@ -66,13 +66,13 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.routerStatus.navigating$
-      .pipe(skipFalsy())
+      .pipe(skipNullable())
       .subscribe(() => this.closeNavigator());
   }
 
   private useContent(content$: Observable<LayoutContent>) {
     return concat(
-      content$.pipe(skipFalsy(), first()), // do not debounce initial content to prevent flickering
+      content$.pipe(skipNullable(), first()), // do not debounce initial content to prevent flickering
       content$.pipe(debounceTime(100)),
     ).pipe(
       distinctUntilChanged(),

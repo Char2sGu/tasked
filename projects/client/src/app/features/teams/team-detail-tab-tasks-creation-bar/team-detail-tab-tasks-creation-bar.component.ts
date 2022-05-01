@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { combineLatest, concatMap, first } from 'rxjs';
 
-import { skipFalsy } from '../../../common/rxjs';
+import { skipNullable } from '../../../common/rxjs';
 import { Notifier } from '../../../core/notifier.service';
 import { MembershipTaskListGQL, TaskCreateGQL } from '../../../graphql/codegen';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
@@ -30,7 +30,10 @@ export class TeamDetailTaskCreationBarComponent implements OnInit {
     if (this.pending) return;
     this.pending = true;
 
-    combineLatest([this.state.team$, this.state.membership$.pipe(skipFalsy())])
+    combineLatest([
+      this.state.team$,
+      this.state.membership$.pipe(skipNullable()),
+    ])
       .pipe(
         first(),
         concatMap(([team, membership]) =>

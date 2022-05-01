@@ -4,7 +4,7 @@ import { NgxMasonryComponent } from 'ngx-masonry';
 import { from, Observable } from 'rxjs';
 import { finalize, first, map, switchMap, tap } from 'rxjs/operators';
 
-import { skipFalsy } from '../../../common/rxjs';
+import { skipNullable } from '../../../common/rxjs';
 import {
   MembershipTaskListGQL,
   MembershipTaskListQuery,
@@ -45,7 +45,7 @@ export class TeamDetailTabTasksComponent implements OnInit {
 
   ngOnInit(): void {
     this.tasks$ = this.state.membership$.pipe(
-      skipFalsy(),
+      skipNullable(),
       first(),
       tap(({ id }) => (this.query = this.listGql.watch({ id }))),
       switchMap(() => this.query.valueChanges),

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 
-import { skipFalsy } from '../../../common/rxjs';
+import { skipNullable } from '../../../common/rxjs';
 import { AuthService } from '../../../core/auth.service';
 import { RoomListGQL } from '../../../graphql/codegen';
 import { TeamsActivatedMapStorage } from '../teams-activated-map.storage';
@@ -24,7 +24,7 @@ export class TeamRedirectorComponent {
   ngOnInit(): void {
     combineLatest([
       this.listGql.fetch().pipe(map((result) => result.data.rooms.results)),
-      this.auth.user$.pipe(first(), skipFalsy()),
+      this.auth.user$.pipe(first(), skipNullable()),
     ]).subscribe(([teams, user]) => {
       const map = this.activatedTeamsMap;
       if (user.id in map.value) {
