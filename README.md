@@ -27,8 +27,8 @@ A task management [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive
 git clone https://github.com/TheNightmareX/tasked
 npm i
 cp .env.template .env
-npm run server:db init
-npm run server:db seed
+npm run server:cli db:init
+npm run server:cli db:seed
 npm run dev
 ```
 
