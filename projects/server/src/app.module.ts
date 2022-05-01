@@ -5,6 +5,7 @@ import { MikroFlusherModule } from '@nestjs-devkit/mikro-graphql-flusher';
 import { ApplicationsModule } from './applications/applications.module';
 import { AssignmentsModule } from './assignments/assignments.module';
 import { AuthModule } from './auth/auth.module';
+import { CliModule } from './cli/cli.module';
 import { ContextModule } from './context/context.module';
 import { CoreModule } from './core/core.module';
 import { GraphqlModule } from './graphql/graphql.module';
@@ -42,6 +43,7 @@ import { ValidationModule } from './validation/validation.module';
     ApplicationsModule,
     TasksModule,
     AssignmentsModule,
+    CliModule,
   ],
 })
 export class AppModule {}

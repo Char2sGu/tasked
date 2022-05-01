@@ -14,7 +14,7 @@ RUN apk add g++ make python3 \
 COPY ./ ./
 RUN npm run build:libs \
     && npm run build:server \
-    && DB_PATH=data/db.sqlite3 node dist/server/db.js init \
+    && DB_PATH=data/db.sqlite3 node dist/server/main.js db:init \
     # prune shound't be performed in the final stage, otherwise the image size will not decrease
     && npm prune --production
 
