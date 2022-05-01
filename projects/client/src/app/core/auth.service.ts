@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
+import dayjs from 'dayjs';
 import { default as decodeJwt, JwtPayload } from 'jwt-decode';
-import { Observable, of, switchMap } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 
 import { skipNullable } from '../common/rxjs';
 import { AuthTokenStorage } from '../features/auth/auth-token.storage';
@@ -16,10 +16,21 @@ type AuthResult = AuthMutation['auth'];
   providedIn: 'root',
 })
 export class AuthService {
-  token$ = this.tokenStorage.value$$.pipe(
-    map((token) => (token && this.verifyToken(token) ? token : null)),
-  );
-  user$ = this.watchUser();
+  readonly authorization$: Observable<Authorization | null> =
+    this.tokenStorage.value$$.pipe(
+      map((token) => {
+        if (!token) return null;
+        const payload: JwtPayload = decodeJwt(token);
+        if (!payload.exp) return null;
+        const expiresAfter = dayjs(payload.exp * 1000).diff();
+        const authorization: Authorization = {
+          token,
+          expiresAfter: expiresAfter > 0 ? expiresAfter : 0,
+        };
+        return authorization;
+      }),
+    );
+  readonly user$ = this.watchUser();
 
   constructor(
     private tokenStorage: AuthTokenStorage,
@@ -44,9 +55,9 @@ export class AuthService {
   }
 
   private watchUser(): Observable<User | null> {
-    return this.token$.pipe(
-      switchMap((token) =>
-        token
+    return this.authorization$.pipe(
+      switchMap((authorization) =>
+        authorization
           ? this.meGql
               .watch()
               .valueChanges.pipe(map((result) => result.data.me))
@@ -55,10 +66,9 @@ export class AuthService {
       catchError(() => of(null)),
     );
   }
+}
 
-  private verifyToken(token: string): boolean {
-    const payload: JwtPayload = decodeJwt(token);
-    if (payload.exp && payload.exp < Date.now() / 1000) return false;
-    return true;
-  }
+export interface Authorization {
+  token: string;
+  expiresAfter: number;
 }

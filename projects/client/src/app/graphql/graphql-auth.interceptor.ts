@@ -17,11 +17,13 @@ export class GraphqlAuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    return this.authService.token$.pipe(
+    return this.authService.authorization$.pipe(
       first(),
-      map((token) =>
-        token
-          ? request.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
+      map((authorization) =>
+        authorization
+          ? request.clone({
+              setHeaders: { Authorization: `Bearer ${authorization.token}` },
+            })
           : request,
       ),
       concatMap((request) => next.handle(request)),

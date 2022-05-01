@@ -1,12 +1,16 @@
 import { transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subject, switchMap, takeUntil, timer } from 'rxjs';
 
 import {
   FadeThroughAnimation,
   SharedAxisAnimation,
 } from '../../common/animations';
 import { RouterOutletDataReader } from '../../common/router.helpers';
+import { skipNullable } from '../../common/rxjs';
 import { AuthService } from '../../core/auth.service';
+import { Notifier } from '../../core/notifier.service';
 
 @Component({
   selector: 'app-main',
@@ -25,7 +29,7 @@ import { AuthService } from '../../core/auth.service';
     ]),
   ],
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   user$ = this.authService.user$;
   links: Link[] = [
     {
@@ -40,12 +44,31 @@ export class MainComponent implements OnInit {
     },
   ];
 
+  private destroy$ = new Subject();
+
   constructor(
     public routerOutletDataReader: RouterOutletDataReader,
+    private router: Router,
     private authService: AuthService,
+    private notifier: Notifier,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.authorization$
+      .pipe(
+        skipNullable(),
+        switchMap((auth) => timer(auth.expiresAfter)),
+        takeUntil(this.destroy$),
+      )
+      .subscribe(() => {
+        this.notifier.info('Session expired');
+        this.router.navigate(['/', 'auth']);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+  }
 }
 
 interface Link {
