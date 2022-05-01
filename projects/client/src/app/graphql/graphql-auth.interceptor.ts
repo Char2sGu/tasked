@@ -5,22 +5,26 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { concatMap, first, map, Observable } from 'rxjs';
 
 import { AuthService } from '../core/auth.service';
 
 @Injectable()
 export class GraphqlAuthInterceptor implements HttpInterceptor {
-  constructor(private auth: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    if (this.auth.token.value)
-      request = request.clone({
-        setHeaders: { Authorization: `Bearer ${this.auth.token.value}` },
-      });
-    return next.handle(request);
+    return this.authService.token$.pipe(
+      first(),
+      map((token) =>
+        token
+          ? request.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
+          : request,
+      ),
+      concatMap((request) => next.handle(request)),
+    );
   }
 }
