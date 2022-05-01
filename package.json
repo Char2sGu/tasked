@@ -74,6 +74,7 @@
     "jwt-decode": "^3.1.2",
     "masonry-layout": "^4.2.2",
     "mikro-orm-soft-delete": "^0.1.0",
+    "nest-commander": "^2.5.0",
     "ngx-masonry": "^13.0.0",
     "ngx-skeleton-loader": "^5.0.0",
     "reflect-metadata": "^0.1.13",

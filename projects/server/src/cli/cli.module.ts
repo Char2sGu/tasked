@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 
-import { DbService } from './db/db.service';
+import { DbInitCommand } from './db-init/db-init.command';
+import { DbSeedCommand } from './db-seed/db-seed.command';
 
 @Module({
-  providers: [DbService],
+  providers: [DbInitCommand, DbSeedCommand],
 })
 export class CliModule {}

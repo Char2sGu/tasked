@@ -1,34 +1,24 @@
 import { NestFactory } from '@nestjs/core';
 import * as classValidator from 'class-validator';
+import { CommandFactory } from 'nest-commander';
 
 import { AppModule } from './app.module';
-import { DbService } from './cli/db/db.service';
 import { PORT } from './common/env.constants';
 
-// TODO: restructure CLI functions
-
 async function bootstrap() {
-  const [, , action] = process.argv;
+  const [, , ...args] = process.argv;
 
-  if (!action) {
+  if (args.length) {
+    await CommandFactory.run(AppModule, ['warn', 'error']);
+  } else {
     const app = await NestFactory.create(AppModule);
     app.enableCors();
-
     // Use Nest DI in class-validator custom validators.
     // https://github.com/nestjs/nest/issues/528#issuecomment-403212561
     classValidator.useContainer(app.select(AppModule), {
       fallbackOnErrors: true,
     });
-
     await app.listen(PORT);
-  } else {
-    const app = await NestFactory.createApplicationContext(AppModule, {
-      logger: false,
-    });
-    app.useLogger(false);
-    if (action == 'db:init') await app.get(DbService).init();
-    if (action == 'db:seed') await app.get(DbService).seed();
-    await app.close();
   }
 }
 bootstrap();

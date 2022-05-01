@@ -1,6 +1,6 @@
-import { faker } from '@faker-js/faker';
-import { EntityManager, MikroORM } from '@mikro-orm/core';
-import { Injectable } from '@nestjs/common';
+import faker from '@faker-js/faker';
+import { EntityManager } from '@mikro-orm/sqlite';
+import { Command, CommandRunner } from 'nest-commander';
 
 import { Application } from '../../applications/entities/application.entity';
 import { ApplicationStatus } from '../../applications/entities/application-status.enum';
@@ -12,18 +12,14 @@ import { Task } from '../../tasks/entities/task.entity';
 import { Gender } from '../../users/entities/gender.enum';
 import { User } from '../../users/entities/user.entity';
 
-// TODO: restructure
+@Command({
+  name: 'db:seed',
+  description: 'Seed the database with random generated data',
+})
+export class DbSeedCommand implements CommandRunner {
+  constructor(private em: EntityManager) {}
 
-@Injectable()
-export class DbService {
-  constructor(private orm: MikroORM, private em: EntityManager) {}
-
-  async init(): Promise<void> {
-    const schemaGenerator = this.orm.getSchemaGenerator();
-    await schemaGenerator.execute(await schemaGenerator.generate());
-  }
-
-  async seed(): Promise<void> {
+  async run(): Promise<void> {
     const em = this.em.fork();
 
     const users: User[] = [];
@@ -166,33 +162,29 @@ export class DbService {
           }),
         );
       });
-    }),
-      em.persist(assignments);
+    });
+    em.persist(assignments);
 
     await em.flush();
     console.log(users.map((user) => user.username));
-
-    function oneOf<T>(source: T[]): T {
-      return someOf(source, 1).values().next().value;
-    }
-    function someOf<T>(
-      source: T[],
-      size: number,
-      distinctFrom?: Set<T>,
-    ): Set<T> {
-      const results = new Set<T>();
-      size = size < 1 ? Math.round(size * source.length) : size;
-      size = source.length > size ? size : source.length;
-      while (results.size < size) {
-        const i = faker.datatype.number({ min: 0, max: source.length - 1 });
-        const item = source[i];
-        if (distinctFrom?.has(item)) continue;
-        results.add(item);
-      }
-      return results;
-    }
-    function possibility(value: number): boolean {
-      return Math.random() <= value;
-    }
   }
+}
+
+function oneOf<T>(source: T[]): T {
+  return someOf(source, 1).values().next().value;
+}
+function someOf<T>(source: T[], size: number, distinctFrom?: Set<T>): Set<T> {
+  const results = new Set<T>();
+  size = size < 1 ? Math.round(size * source.length) : size;
+  size = source.length > size ? size : source.length;
+  while (results.size < size) {
+    const i = faker.datatype.number({ min: 0, max: source.length - 1 });
+    const item = source[i];
+    if (distinctFrom?.has(item)) continue;
+    results.add(item);
+  }
+  return results;
+}
+function possibility(value: number): boolean {
+  return Math.random() <= value;
 }
