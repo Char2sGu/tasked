@@ -15,7 +15,7 @@ import { AuthContextMiddleware } from './auth-context.middleware';
     MikroOrmModule.forFeature([User]),
     JwtModule.register({
       secret: SECRET_KEY,
-      signOptions: { expiresIn: '1 weeks' },
+      signOptions: { expiresIn: '3 days' },
     }),
   ],
   providers: [
