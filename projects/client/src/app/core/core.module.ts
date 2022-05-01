@@ -5,6 +5,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { Notifier, SnackbarNotifier } from './notifier.service';
 import { PostponementInterceptor } from './postponement.interceptor';
+import { PwaService } from './pwa.service';
 import { RouterHistory } from './router-history.service';
 import { ThemeService } from './theme.service';
 
@@ -20,8 +21,13 @@ import { ThemeService } from './theme.service';
   ],
 })
 export class CoreModule {
-  constructor(themeService: ThemeService, routerHistory: RouterHistory) {
+  constructor(
+    themeService: ThemeService,
+    routerHistory: RouterHistory,
+    pwaService: PwaService,
+  ) {
     themeService.init();
     routerHistory.init();
+    pwaService.init();
   }
 }
