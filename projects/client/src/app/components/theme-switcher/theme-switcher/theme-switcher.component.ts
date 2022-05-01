@@ -8,7 +8,7 @@ import { ThemeService } from '../../../core/theme.service';
   styleUrls: ['./theme-switcher.component.scss'],
 })
 export class ThemeSwitcherComponent implements OnInit {
-  theme$ = this.themeService.current.value$$;
+  theme$ = this.themeService.theme$;
 
   constructor(private themeService: ThemeService) {}
 

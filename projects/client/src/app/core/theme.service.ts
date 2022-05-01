@@ -1,44 +1,65 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
+import {
+  combineLatest,
+  distinctUntilChanged,
+  first,
+  map,
+  merge,
+  Observable,
+  skip,
+} from 'rxjs';
 
-import { LocalStorageItem } from '../common/local-storage';
 import { ThemeStorage } from './theme.storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  public current: LocalStorageItem<Theme>;
+  readonly theme$: Observable<Theme>;
+  readonly themeStored$ = this.storage.value$$;
+  readonly themePreferred$ = this.watchPreference();
+  readonly themePreferredChange$ = this.themePreferred$.pipe(skip(1));
+  private $root = document.body as HTMLElement;
+  private $themeColorMeta = this.queryMeta();
 
-  private $root: HTMLElement;
-  private $themeColorMeta: HTMLMetaElement;
-
-  constructor(storage: ThemeStorage) {
-    this.current = storage.next(storage.value ?? this.getPreference());
-    this.$root = document.body as HTMLElement;
-    this.$themeColorMeta = document.querySelector(
-      'meta[name="theme-color"]',
-    ) as HTMLMetaElement;
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private storage: ThemeStorage,
+  ) {
+    this.theme$ = combineLatest([this.themeStored$, this.themePreferred$]).pipe(
+      map(([stored, preferred]) => stored ?? preferred),
+      distinctUntilChanged(),
+    );
   }
 
   init(): void {
-    this.apply(this.current.value);
+    merge(this.theme$.pipe(first()), this.themePreferredChange$).subscribe(
+      (theme) => this.apply(theme),
+    );
   }
 
   apply(theme: Theme): void {
     if (theme == 'light') this.$root.classList.remove('dark');
     else this.$root.classList.add('dark');
     this.$themeColorMeta.content = this.getThemeColor();
-    this.current.next(theme).save();
+    this.storage.next(theme).save();
   }
 
   toggle(): void {
-    this.apply(this.current.value == 'light' ? 'dark' : 'light');
+    this.apply(this.storage.value == 'light' ? 'dark' : 'light');
   }
 
-  private getPreference(): Theme {
-    return window.matchMedia('(prefers-color-scheme: light)').matches
-      ? 'light'
-      : 'dark';
+  private watchPreference(): Observable<Theme> {
+    return this.breakpointObserver
+      .observe('(prefers-color-scheme: light)')
+      .pipe(map((state) => (state.matches ? 'light' : 'dark')));
+  }
+
+  private queryMeta(): HTMLMetaElement {
+    return document.querySelector(
+      'meta[name="theme-color"]',
+    ) as HTMLMetaElement;
   }
 
   private getThemeColor() {

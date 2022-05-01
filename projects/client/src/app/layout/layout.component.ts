@@ -33,7 +33,7 @@ import { ThemeService } from '../core/theme.service';
   providers: [forwardRef(() => LayoutConfiguration)],
 })
 export class LayoutComponent implements OnInit {
-  theme$ = this.themeService.current.value$$;
+  theme$ = this.themeService.theme$;
 
   isBreakpointXLargeMatched$ = this.breakpointObserver
     .observe(Breakpoint.XLarge)

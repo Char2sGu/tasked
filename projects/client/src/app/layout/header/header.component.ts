@@ -16,7 +16,7 @@ import { ThemeService } from '../../core/theme.service';
 export class HeaderComponent implements OnInit {
   @HostBinding('class') class = 'flex grow items-center';
   @Output() menuToggle = new EventEmitter();
-  theme$ = this.themeService.current.value$$;
+  theme$ = this.themeService.theme$;
 
   constructor(private themeService: ThemeService) {}
 

@@ -8,7 +8,13 @@ import { ThemeService } from '../../core/theme.service';
   styleUrls: ['./theme-button.component.scss'],
 })
 export class ThemeButtonComponent implements OnInit {
-  constructor(public theme: ThemeService) {}
+  theme$ = this.themeService.theme$;
+
+  constructor(private themeService: ThemeService) {}
 
   ngOnInit(): void {}
+
+  onClick(): void {
+    this.themeService.toggle();
+  }
 }

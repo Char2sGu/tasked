@@ -1,3 +1,4 @@
+import { LayoutModule as ResponsiveLayoutModule } from '@angular/cdk/layout';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -8,7 +9,7 @@ import { RouterHistory } from './router-history.service';
 import { ThemeService } from './theme.service';
 
 @NgModule({
-  imports: [MatSnackBarModule],
+  imports: [ResponsiveLayoutModule, MatSnackBarModule],
   providers: [
     { provide: Notifier, useClass: SnackbarNotifier },
     {

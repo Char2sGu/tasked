@@ -1,11 +1,10 @@
 <button
   mat-icon-button
-  matTooltip="Switch to {{
-    theme.current.value == 'light' ? 'dark' : 'light'
-  }} theme"
-  (click)="theme.toggle()"
+  *ngIf="theme$ | async as theme"
+  matTooltip="Switch to {{ theme == 'light' ? 'dark' : 'light' }} theme"
+  (click)="onClick()"
 >
   <mat-icon>
-    {{ theme.current.value == 'light' ? 'brightness_4' : 'brightness_high' }}
+    {{ theme == 'light' ? 'brightness_4' : 'brightness_high' }}
   </mat-icon>
 </button>
