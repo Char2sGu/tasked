@@ -39,7 +39,11 @@
           <nav mat-tab-nav-bar>
             <a
               matTabLink
-              *ngFor="let link of data.links; let index = index"
+              *ngFor="
+                let link of data.links;
+                let index = index;
+                trackBy: linkTracker
+              "
               [routerLink]="link.commands"
               routerLinkActive
               [active]="linkIndexActive == index"

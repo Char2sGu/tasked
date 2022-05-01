@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TrackByFunction } from '@angular/core';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
@@ -11,6 +11,7 @@ import { RoomListGQL, RoomListQuery } from '../../../graphql/codegen';
 })
 export class TeamListComponent implements OnInit {
   teams$!: Observable<Team[]>;
+  teamTracker: TrackByFunction<Team> = (_, item) => item.id;
   searchInput = '';
   searchMode = false;
   loading = false;

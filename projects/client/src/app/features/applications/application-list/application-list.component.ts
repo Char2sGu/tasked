@@ -1,7 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TrackByFunction } from '@angular/core';
 
 import { AuthService } from '../../../core/auth.service';
-import { ApplicationState } from '../shared/application-state.service';
+import {
+  Application,
+  ApplicationState,
+} from '../shared/application-state.service';
 
 @Component({
   selector: 'app-application-list',
@@ -10,6 +13,7 @@ import { ApplicationState } from '../shared/application-state.service';
 })
 export class ApplicationListComponent implements OnInit {
   @Input() scrollableContainer?: HTMLElement;
+  itemTracker: TrackByFunction<Application> = (_, item) => item.id;
 
   constructor(public auth: AuthService, public state: ApplicationState) {}
 

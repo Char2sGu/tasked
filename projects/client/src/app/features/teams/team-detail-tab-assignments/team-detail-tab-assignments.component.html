@@ -15,14 +15,20 @@
     >
       <h3 matSubheader *ngIf="data.assignmentsPending.length" i18n>Pending</h3>
       <app-team-detail-tab-assignments-item
-        *ngFor="let assignment of data.assignmentsPending"
+        *ngFor="
+          let assignment of data.assignmentsPending;
+          trackBy: assignmentTracker
+        "
         [assignment]="assignment"
       ></app-team-detail-tab-assignments-item>
       <h3 matSubheader *ngIf="data.assignmentsCompleted.length" i18n>
         Completed
       </h3>
       <app-team-detail-tab-assignments-item
-        *ngFor="let assignment of data.assignmentsCompleted"
+        *ngFor="
+          let assignment of data.assignmentsCompleted;
+          trackBy: assignmentTracker
+        "
         [assignment]="assignment"
       ></app-team-detail-tab-assignments-item>
       <app-infinity-scroll-trigger

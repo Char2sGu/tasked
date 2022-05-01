@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TrackByFunction } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -21,6 +21,7 @@ type Membership =
 })
 export class TeamDetailSidebarMembershipListComponent implements OnInit {
   memberships$!: Observable<Membership[]>;
+  membershipTracker: TrackByFunction<Membership> = (_, item) => item.id;
   loading = true;
 
   constructor(

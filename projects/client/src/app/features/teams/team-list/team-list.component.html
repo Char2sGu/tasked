@@ -18,7 +18,7 @@
       *ngIf="teams.length; else empty"
     >
       <app-team-list-item
-        *ngFor="let team of teams"
+        *ngFor="let team of teams; trackBy: teamTracker"
         [team]="team"
       ></app-team-list-item>
     </mat-action-list>

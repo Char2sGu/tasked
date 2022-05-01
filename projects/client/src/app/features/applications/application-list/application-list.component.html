@@ -4,7 +4,7 @@
   <ng-container *ngFor="let group of groups">
     <h2 matSubheader>{{ group[0] }}</h2>
     <app-application-list-item
-      *ngFor="let item of group[1]"
+      *ngFor="let item of group[1]; trackBy: itemTracker"
       [application]="item"
       [own]="(auth.user$ | async)?.id == item.owner.id"
     ></app-application-list-item>

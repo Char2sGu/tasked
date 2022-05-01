@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TrackByFunction } from '@angular/core';
 import { QueryRef } from 'apollo-angular';
 import { concatMap, finalize, first, from, map, Observable, tap } from 'rxjs';
 
@@ -22,6 +22,7 @@ export class TeamDetailTabAssignmentsComponent implements OnInit {
   assignmentsCompleted$!: Observable<Assignment[]>;
   loadingMore = false;
   loadingMoreNeeded = false;
+  assignmentTracker: TrackByFunction<Assignment> = (_, item) => item.id;
 
   private query!: QueryRef<
     MembershipAssignmentListQuery,

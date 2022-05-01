@@ -1,6 +1,6 @@
 import { transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TrackByFunction } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { map, Observable } from 'rxjs';
 
@@ -27,6 +27,7 @@ export class TeamDetailTabsComponent implements OnInit {
   sidebarMode$!: Observable<MatDrawerMode>;
   links$!: Observable<TabLink[]>;
   linkIndexActive?: number;
+  linkTracker: TrackByFunction<TabLink> = (_, item) => item.title;
 
   constructor(
     private state: TeamDetailState,
