@@ -13,7 +13,7 @@
     "release": "standard-version --no-verify",
     "dev": "concurrently \"npm:dev:*\"",
     "dev:client": "ng serve",
-    "dev:server": "nest start server -w",
+    "dev:server": "ts-node-dev -P projects/server/tsconfig.app.json --files -r tsconfig-paths/register projects/server/src/main.ts",
     "dev:libs": "tsc -b tsconfig.libs.json -w",
     "build": "npm run build:libs && concurrently \"npm:build:client\" \"npm:build:server\"",
     "build:client": "ng build",
@@ -24,7 +24,7 @@
     "test:server:unit": "jest --config ./projects/server/jest.config.unit.js",
     "test:server:e2e": "jest --config ./projects/server/jest.config.e2e.js",
     "client:i18n": "ng extract-i18n --format=json --output-path projects/client/src/locales/",
-    "server:db": "ts-node -r tsconfig-paths/register ./projects/server/src/db.ts",
+    "server:db": "ts-node -r tsconfig-paths/register --files ./projects/server/src/db.ts",
     "codegen": "graphql-codegen",
     "format": "prettier --write \"{projects/**/*,*}.{html,css,less,scss,sass,ts,js,json,md}\"",
     "lint": "eslint \"projects/**/*.ts\" --cache --fix"
@@ -125,6 +125,7 @@
     "ts-jest": "^27.0.3",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
+    "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^3.10.1",
     "typescript": "~4.5.2"
   }

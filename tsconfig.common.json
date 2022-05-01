@@ -16,6 +16,5 @@
     "lib": ["es2020", "dom"],
     "esModuleInterop": true,
     "skipLibCheck": true
-  },
-  "ts-node": { "files": true }
+  }
 }
