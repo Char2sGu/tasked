@@ -170,6 +170,7 @@ export class DbService {
       em.persist(assignments);
 
     await em.flush();
+    console.log(users.map((user) => user.username));
 
     function oneOf<T>(source: T[]): T {
       return someOf(source, 1).values().next().value;
