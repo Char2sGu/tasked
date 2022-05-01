@@ -1,25 +1,30 @@
-# TODO: use alpine
-# alpine works in v0.1.x, but causes errors in v0.2.x for unknown reasons
+# we cannot use ubuntu for build and alpine for production, as some dependencies cannot work properly after platform changes
+FROM node:16-alpine AS build
 
-FROM node:16 AS build
-
-WORKDIR /app
+WORKDIR /app 
 
 COPY package*.json ./
-RUN npm ci
+# alpine have no built-in build requirements for node-gyp, so we have to install them manually
+# https://stackoverflow.com/questions/54428608/docker-node-alpine-image-build-fails-on-node-gyp
+RUN apk add g++ make python3 \
+    && ln -s /usr/bin/python3 /usr/bin/python \
+    && ln -s /usr/bin/pip3 /usr/bin/pip \
+    && npm ci
 
 COPY ./ ./
 RUN npm run build:libs \
     && npm run build:server \
     && DB_PATH=data/db.sqlite3 node dist/server/db.js init \
-    # prune cannot be performed in the final stage, otherwise the image size will not decrease
+    # prune shound't be performed in the final stage, otherwise the image size will not decrease
     && npm prune --production
 
 
 
-FROM node:16 AS production
+FROM node:16-alpine AS production
 
 WORKDIR /app
+VOLUME /app/data
+EXPOSE 3000
 
 COPY package*.json ./
 COPY --from=build /app/node_modules/ node_modules/
@@ -30,8 +35,5 @@ RUN npm prune --production
 
 COPY --from=build /app/dist/ dist/
 COPY --from=build /app/data/ data/
-
-EXPOSE 3000
-VOLUME /app/data
 
 CMD PORT=3000 node dist/server/main.js
