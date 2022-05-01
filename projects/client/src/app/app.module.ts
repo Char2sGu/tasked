@@ -17,7 +17,6 @@ import { LayoutModule } from './layout/layout.module';
 // TODO: offline support
 // TODO: reduce notifications
 // TODO: refresh user token at intervals
-// TODO: notify on PWA upgrade
 
 registerLocaleData(en);
 

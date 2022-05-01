@@ -8,8 +8,6 @@ import {
 import { RouterOutletDataReader } from '../../common/router.helpers';
 import { AuthService } from '../../core/auth.service';
 
-// TODO: account switching
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',

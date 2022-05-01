@@ -1,5 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
 import {
   combineLatest,
   distinctUntilChanged,
@@ -20,10 +21,10 @@ export class ThemeService {
   readonly themeStored$ = this.storage.value$$;
   readonly themePreferred$ = this.watchPreference();
   readonly themePreferredChange$ = this.themePreferred$.pipe(skip(1));
-  private $root = document.body as HTMLElement;
-  private $themeColorMeta = this.queryMeta();
+  private $root = this.document.body;
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private breakpointObserver: BreakpointObserver,
     private storage: ThemeStorage,
   ) {
@@ -42,7 +43,6 @@ export class ThemeService {
   apply(theme: Theme): void {
     if (theme == 'light') this.$root.classList.remove('dark');
     else this.$root.classList.add('dark');
-    this.$themeColorMeta.content = this.getThemeColor();
     this.storage.next(theme).save();
   }
 
@@ -54,18 +54,6 @@ export class ThemeService {
     return this.breakpointObserver
       .observe('(prefers-color-scheme: light)')
       .pipe(map((state) => (state.matches ? 'light' : 'dark')));
-  }
-
-  private queryMeta(): HTMLMetaElement {
-    return document.querySelector(
-      'meta[name="theme-color"]',
-    ) as HTMLMetaElement;
-  }
-
-  private getThemeColor() {
-    return getComputedStyle(this.$root)
-      .getPropertyValue('--pwa-theme-color')
-      .trim();
   }
 }
 
