@@ -2,8 +2,8 @@
   *ngIf="{
     theme: theme$ | async,
     isDesktop: isBreakpointXLargeMatched$ | async,
-    contentOfHeader: contentOfHeader$ | async,
-    contentOfNavigator: contentOfNavigator$ | async,
+    contentOfHeader: contents.header | async,
+    contentOfNavigator: contents.navigation | async,
     loading: loading$ | async
   } as data"
   class="relative flex h-full flex-col"

@@ -30,7 +30,7 @@ import { ThemeService } from '../core/theme.service';
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
-  providers: [forwardRef(() => LayoutContents)],
+  providers: [forwardRef(() => LayoutConfiguration)],
 })
 export class LayoutComponent implements OnInit {
   theme$ = this.themeService.current.value$$;
@@ -42,8 +42,10 @@ export class LayoutComponent implements OnInit {
     .observe(Breakpoint.Small)
     .pipe(map((state) => state.matches));
 
-  contentOfHeader$ = this.useContent(this.contents.header$);
-  contentOfNavigator$ = this.useContent(this.contents.navigation$);
+  contents = {
+    header: this.useContent(this.configuration.header$),
+    navigation: this.useContent(this.configuration.navigation$),
+  };
 
   loading$ = this.routerStatus.navigatingAndLoading$;
 
@@ -55,7 +57,7 @@ export class LayoutComponent implements OnInit {
   };
 
   constructor(
-    private contents: LayoutContents,
+    private configuration: LayoutConfiguration,
     private routerStatus: RouterStatus,
     private breakpointObserver: BreakpointObserver,
     private themeService: ThemeService,
@@ -104,7 +106,7 @@ export class LayoutComponent implements OnInit {
 }
 
 @Injectable()
-export class LayoutContents {
+export class LayoutConfiguration {
   header$ = new BehaviorSubject<LayoutContent>(null);
   navigation$ = new BehaviorSubject<LayoutContent>(null);
 }

@@ -8,28 +8,28 @@ import {
 import { BehaviorSubject } from 'rxjs';
 
 import {
+  LayoutConfiguration,
   LayoutContent,
   LayoutContentContext,
-  LayoutContents,
 } from './layout.component';
 
 @Directive({
   selector: '[appLayout]',
 })
 export class LayoutDirective implements OnInit, OnDestroy {
-  @Input() appLayout!: LayoutContentNames;
+  @Input() appLayout!: LayoutContentName;
 
   private target!: BehaviorSubject<LayoutContent>;
   private previous!: LayoutContent;
 
   constructor(
-    private contents: LayoutContents,
+    private configuration: LayoutConfiguration,
     private templateRef: TemplateRef<LayoutContentContext>,
   ) {}
 
   ngOnInit(): void {
     if (!this.appLayout) return;
-    this.target = this.contents[`${this.appLayout}$`];
+    this.target = this.configuration[`${this.appLayout}$`];
     setTimeout(() => {
       this.previous = this.target.getValue();
       this.target.next(this.templateRef);
@@ -50,6 +50,8 @@ export class LayoutDirective implements OnInit, OnDestroy {
   ): context is LayoutContentContext => true;
 }
 
-type LayoutContentNames = {
-  [Key in keyof LayoutContents]: Key extends `${infer Name}$` ? Name : never;
-}[keyof LayoutContents];
+type LayoutContentName = {
+  [Key in keyof LayoutConfiguration]: Key extends `${infer Name}$`
+    ? Name
+    : never;
+}[keyof LayoutConfiguration];
