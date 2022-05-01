@@ -6,7 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { AnimationCurves } from '@angular/material/core';
 import { Data } from '@angular/router';
 import { timer } from 'rxjs';
@@ -50,7 +50,9 @@ type Assignment =
     ]),
   ],
 })
-export class TeamDetailTabAssignmentsItemComponent implements OnInit {
+export class TeamDetailTabAssignmentsItemComponent
+  implements OnInit, OnChanges
+{
   @Input() assignment?: Assignment;
   expanded = false;
   completionIcon = '';
@@ -70,7 +72,9 @@ export class TeamDetailTabAssignmentsItemComponent implements OnInit {
     private notifier: Notifier,
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngOnChanges(): void {
     if (!this.assignment) return;
 
     this.completionIcon = this.assignment.isCompleted
