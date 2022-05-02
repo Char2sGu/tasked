@@ -4,13 +4,14 @@ A task management [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive
 
 ## Features
 
-- Responsive - Desktop, Tablet and Phone
+- Responsive - All Devices: Desktop, Tablet and Phone
 - Robust GraphQL API - Restricted Query Depth, Breadth, and Frequency
 - Rich Transitions - Material Motion System
-- Lazy loading - Load Contents on Demand
+- Lazy Loading - Load Contents on Demand
 - Dark Mode - Orthodox Material Dark Theme
 - Bulk GraphQL Operations - Less HTTP Requests
 - Well-organized State - Synced Locally based on Mutations
+- Server CLI Commands - Easy Management
 
 ## Main Tech Stack
 
@@ -34,39 +35,20 @@ npm run dev
 
 ## Deployment
 
-1. Get the resources:
-   ```sh
-   git clone https://github.com/TheNightmareX/tasked
-   ```
-1. Configure the application:
-   ```sh
-   cp .env.template .env
-   ```
-1. Launch the application:
-   ```sh
-   docker compose up
-   ```
+### Local Deployment
 
-### Building the Image behind a Proxy
-
-Before `docker compose up` or `docker compose build`, create `docker-compose.override.yaml`:
-
-```yaml
-services:
-  client:
-    build:
-      args:
-        - HTTP_PROXY=http://host.docker.internal:10809
-        - HTTPS_PROXY=http://host.docker.internal:10809
-  server:
-    build:
-      args:
-        - HTTP_PROXY=http://host.docker.internal:10809
-        - HTTPS_PROXY=http://host.docker.internal:10809
+```sh
+git clone https://github.com/TheNightmareX/tasked
+cp .env.template .env
+docker compose up
 ```
 
-### PWA(HTTPS)
+### Azure App Service Deployment
+
+See `/.azure`.
+
+### PWA Features and HTTPS
 
 PWA features require a HTTPS context.
 
-It is always **recommended** to have a server running outside the container and configure a reverse proxy toward the server running inside the container. But when using HTTPS, this becomes **required** to do so, since it is not a good practice to configure SSL certificates in the App scope.
+It's never a good practice to configure SSL stuff at the app scope. When deploying apps to the cloud, HTTPS usually automatically enabled, but when deploying locally, you'll need a outer server to enable HTTPS for the inner server running within docker.
