@@ -47,7 +47,16 @@
   <div class="grow"></div>
 
   <div class="m-2 flex flex-col items-stretch">
-    <button mat-stroked-button class="uppercase" [routerLink]="['/', 'auth']">
+    <button
+      mat-stroked-button
+      class="uppercase"
+      [appConfirmation]="{
+        title: 'Logout?',
+        message: 'You can log back in at any time',
+        action: 'Logout'
+      }"
+      (confirm)="onLogout()"
+    >
       <mat-icon class="mr-1">logout</mat-icon>
       <span>Logout</span>
     </button>

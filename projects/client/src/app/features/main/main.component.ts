@@ -69,6 +69,10 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next(null);
   }
+
+  onLogout(): void {
+    this.router.navigate(['/', 'auth']);
+  }
 }
 
 interface Link {
