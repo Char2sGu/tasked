@@ -3,6 +3,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { Initializable } from '../common/dependency-injection';
 import { Notifier, SnackbarNotifier } from './notifier.service';
 import { PostponementInterceptor } from './postponement.interceptor';
 import { PwaService } from './pwa.service';
@@ -18,16 +19,9 @@ import { ThemeService } from './theme.service';
       useClass: PostponementInterceptor,
       multi: true,
     },
+    Initializable.provide(PwaService),
+    Initializable.provide(RouterHistory),
+    Initializable.provide(ThemeService),
   ],
 })
-export class CoreModule {
-  constructor(
-    themeService: ThemeService,
-    routerHistory: RouterHistory,
-    pwaService: PwaService,
-  ) {
-    themeService.init();
-    routerHistory.init();
-    pwaService.init();
-  }
-}
+export class CoreModule {}

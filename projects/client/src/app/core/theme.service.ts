@@ -11,12 +11,13 @@ import {
   skip,
 } from 'rxjs';
 
+import { Initializable } from '../common/dependency-injection';
 import { ThemeStorage } from './theme.storage';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ThemeService {
+export class ThemeService implements Initializable {
   readonly theme$: Observable<Theme>;
   readonly themeStored$ = this.storage.value$$;
   readonly themePreferred$ = this.watchPreference();
@@ -34,7 +35,7 @@ export class ThemeService {
     );
   }
 
-  init(): void {
+  async init(): Promise<void> {
     merge(this.theme$.pipe(first()), this.themePreferredChange$).subscribe(
       (theme) => this.apply(theme),
     );
