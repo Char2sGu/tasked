@@ -6,7 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AnimationCurves } from '@angular/material/core';
 import { Data } from '@angular/router';
 import { timer } from 'rxjs';
@@ -50,15 +50,9 @@ type Assignment =
     ]),
   ],
 })
-export class TeamDetailTabAssignmentsItemComponent
-  implements OnInit, OnChanges
-{
+export class TeamDetailTabAssignmentsItemComponent implements OnInit {
   @Input() assignment?: Assignment;
   expanded = false;
-  completionIcon = '';
-  completionTooltip = '';
-  importanceIcon = '';
-  importanceTooltip = '';
 
   isDesktop$ = this.breakpointObserver
     .observe(Breakpoint.Middle)
@@ -74,27 +68,12 @@ export class TeamDetailTabAssignmentsItemComponent
 
   ngOnInit(): void {}
 
-  ngOnChanges(): void {
-    if (!this.assignment) return;
-
-    this.completionIcon = this.assignment.isCompleted
-      ? 'radio_button_checked'
-      : 'radio_button_unchecked';
-    this.completionTooltip = this.assignment.isCompleted
-      ? $localize`Mark as pending`
-      : $localize`Mark as completed`;
-    this.importanceIcon = this.assignment.isImportant ? 'star' : 'star_outline';
-    this.importanceTooltip = this.assignment.isImportant
-      ? $localize`Remove importance mark`
-      : $localize`Mark as important`;
-  }
-
-  switchCompletion(): void {
+  toggleCompletion(): void {
     if (!this.assignment) return;
     this.update({ isCompleted: !this.assignment.isCompleted });
   }
 
-  switchImportance(): void {
+  toggleImportance(): void {
     if (!this.assignment) return;
     this.update({ isImportant: !this.assignment.isImportant });
   }

@@ -13,10 +13,18 @@
       >
         <button
           mat-icon-button
-          [matTooltip]="completionTooltip"
-          (click)="switchCompletion()"
+          [matTooltip]="
+            assignment.isCompleted ? 'Mark as pending' : 'Mark as completed'
+          "
+          (click)="toggleCompletion()"
         >
-          <mat-icon>{{ completionIcon }}</mat-icon>
+          <mat-icon>
+            {{
+              assignment.isCompleted
+                ? 'radio_button_checked'
+                : 'radio_button_unchecked'
+            }}
+          </mat-icon>
         </button>
       </div>
 
@@ -58,10 +66,12 @@
       >
         <button
           mat-icon-button
-          [matTooltip]="importanceTooltip"
-          (click)="switchImportance()"
+          [matTooltip]="assignment.isImportant ? 'Unstar' : 'Star'"
+          (click)="toggleImportance()"
         >
-          <mat-icon>{{ importanceIcon }}</mat-icon>
+          <mat-icon [color]="assignment.isImportant ? 'accent' : undefined">
+            {{ assignment.isImportant ? 'star' : 'star_outline' }}
+          </mat-icon>
         </button>
       </div>
     </div>
