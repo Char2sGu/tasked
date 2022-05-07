@@ -12,23 +12,31 @@
         data.assignmentsPending.length || data.assignmentsCompleted.length;
         else empty
       "
+      appFlipScope
+      [(appFlipScopeActive)]="flipRequired"
     >
       <h3 matSubheader *ngIf="data.assignmentsPending.length" i18n>Pending</h3>
       <app-team-detail-tab-assignments-item
+        class="block"
         *ngFor="
           let assignment of data.assignmentsPending;
+          let index = index;
           trackBy: assignmentTracker
         "
+        [appFlip]="assignmentTracker(index, assignment)"
         [assignment]="assignment"
       ></app-team-detail-tab-assignments-item>
       <h3 matSubheader *ngIf="data.assignmentsCompleted.length" i18n>
         Completed
       </h3>
       <app-team-detail-tab-assignments-item
+        class="block"
         *ngFor="
           let assignment of data.assignmentsCompleted;
+          let index = index;
           trackBy: assignmentTracker
         "
+        [appFlip]="assignmentTracker(index, assignment)"
         [assignment]="assignment"
       ></app-team-detail-tab-assignments-item>
       <app-infinity-scroll-trigger
