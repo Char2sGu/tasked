@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/TheNightmareX/tasked/compare/v0.2.0...v0.3.0) (2022-05-07)
+
+
+### Features
+
+* **client:** colorize assignment stars ([26a1dab](https://github.com/TheNightmareX/tasked/commit/26a1dab781f2e46cd8c07baaff0c49b0a18b23c1))
+* **client:** implement FLIP animation for assignment list ([95c1ca8](https://github.com/TheNightmareX/tasked/commit/95c1ca8c521644c5d734b0d8803310c4c15a8345))
+* **client:** notify and logout on sesson expiry ([a077705](https://github.com/TheNightmareX/tasked/commit/a077705659882315c8ae28797583c66288999e7d))
+* **client:** notify on new version ([8da48ad](https://github.com/TheNightmareX/tasked/commit/8da48ad898180004a7fd5630fa98ebea8e984187))
+* **client:** show confirmation on logout ([cf2d1ea](https://github.com/TheNightmareX/tasked/commit/cf2d1ea5fc613ed3dccf838116c9945186f42909))
+* **client:** track all potentially changable `ngFor` items ([d1dd192](https://github.com/TheNightmareX/tasked/commit/d1dd192a648f2d54c1f418f9dc51c47f29eae46a))
+* **client:** watch system color preference changes ([2ce631a](https://github.com/TheNightmareX/tasked/commit/2ce631a85b344c162eeccb3f4d8c22831da3525f))
+* **server:** fully integrate cli actions into app ([84131a4](https://github.com/TheNightmareX/tasked/commit/84131a4a5edcb12e491f38ca0573a42960d9af4c))
+* **server:** print usernames after database seeding ([d68fa37](https://github.com/TheNightmareX/tasked/commit/d68fa378b5b7752cd27e7f507a4d6c5acecd6441))
+* **server:** shorten token expiration to 3 days ([9cd6ba5](https://github.com/TheNightmareX/tasked/commit/9cd6ba56c5ec98b142fc5a96a5a8b4a663f772b2))
+
+
+### Bug Fixes
+
+* **client:** fix wrong ng-deep scope ([e8eb558](https://github.com/TheNightmareX/tasked/commit/e8eb5586e708c949f3e381aaac2bba05cb329b84))
+* **client:** update assignment data on change ([d88c6e6](https://github.com/TheNightmareX/tasked/commit/d88c6e66001819402ccabb74a252739ffee9cf12))
+
 ## [0.2.0](https://github.com/TheNightmareX/tasked/compare/v0.2.0-3...v0.2.0) (2022-05-01)
 
 ## [0.2.0-3](https://github.com/TheNightmareX/tasked/compare/v0.2.0-2...v0.2.0-3) (2022-04-30)
