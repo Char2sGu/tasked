@@ -9,8 +9,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Input, OnInit } from '@angular/core';
 import { AnimationCurves } from '@angular/material/core';
 import { Data } from '@angular/router';
-import { timer } from 'rxjs';
-import { concatMap, finalize, map } from 'rxjs/operators';
+import { concat, finalize, map, mapTo, Observable, timer } from 'rxjs';
 
 import { Breakpoint } from '../../../common/breakpoint.enum';
 import { Notifier } from '../../../core/notifier.service';
@@ -53,12 +52,10 @@ type Assignment =
 export class TeamDetailTabAssignmentsItemComponent implements OnInit {
   @Input() assignment?: Assignment;
   expanded = false;
-
+  busy = false;
   isDesktop$ = this.breakpointObserver
     .observe(Breakpoint.Middle)
     .pipe(map((state) => state.matches));
-
-  private loading = false;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -68,54 +65,47 @@ export class TeamDetailTabAssignmentsItemComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  toggleCompletion(): void {
-    if (!this.assignment) return;
-    this.update({ isCompleted: !this.assignment.isCompleted });
+  onRadioButtonClick(): void {
+    if (!this.assignment || this.busy) return;
+    this.update(this.assignment, {
+      isCompleted: !this.assignment.isCompleted,
+    }).subscribe({
+      error: () => this.notifier.error('Update failed'),
+    });
   }
 
-  toggleImportance(): void {
-    if (!this.assignment) return;
-    this.update({ isImportant: !this.assignment.isImportant });
+  onStarButtonClick(): void {
+    if (!this.assignment || this.busy) return;
+    this.update(this.assignment, {
+      isImportant: !this.assignment.isImportant,
+    }).subscribe({
+      error: () => this.notifier.error('Star failed'),
+    });
   }
 
-  private update(data: Data) {
-    if (!this.assignment) return;
-    if (this.loading) return;
-
-    const { id, isImportant, isCompleted } = this.assignment;
-
-    this.loading = true;
-    timer(200)
-      .pipe(
-        concatMap(() =>
-          this.updateGql.mutate(
-            {
-              id: this.assignment!.id,
-              data,
+  private update(assignment: Assignment, data: Data): Observable<void> {
+    const { id, isImportant, isCompleted } = assignment;
+    return concat(
+      timer(200),
+      this.updateGql.mutate(
+        { id, data },
+        {
+          optimisticResponse: {
+            __typename: 'Mutation',
+            updateAssignment: {
+              __typename: 'Assignment',
+              id,
+              isCompleted,
+              isImportant,
+              updatedAt: new Date().toISOString(),
+              ...data,
             },
-            {
-              optimisticResponse: {
-                __typename: 'Mutation',
-                updateAssignment: {
-                  __typename: 'Assignment',
-                  id,
-                  isCompleted,
-                  isImportant,
-                  updatedAt: new Date().toISOString(),
-                  ...data,
-                },
-              },
-            },
-          ),
-        ),
-        finalize(() => {
-          this.loading = false;
-        }),
-      )
-      .subscribe({
-        error: () => {
-          this.notifier.error($localize`Failed to update the assignment`);
+          },
         },
-      });
+      ),
+    ).pipe(
+      finalize(() => (this.busy = false)),
+      mapTo(undefined),
+    );
   }
 }

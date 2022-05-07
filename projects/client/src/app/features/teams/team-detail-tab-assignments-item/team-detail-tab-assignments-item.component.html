@@ -16,7 +16,7 @@
           [matTooltip]="
             assignment.isCompleted ? 'Mark as pending' : 'Mark as completed'
           "
-          (click)="toggleCompletion()"
+          (click)="onRadioButtonClick()"
         >
           <mat-icon>
             {{
@@ -67,7 +67,7 @@
         <button
           mat-icon-button
           [matTooltip]="assignment.isImportant ? 'Unstar' : 'Star'"
-          (click)="toggleImportance()"
+          (click)="onStarButtonClick()"
         >
           <mat-icon [color]="assignment.isImportant ? 'accent' : undefined">
             {{ assignment.isImportant ? 'star' : 'star_outline' }}
