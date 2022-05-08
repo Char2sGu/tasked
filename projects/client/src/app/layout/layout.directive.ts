@@ -18,6 +18,7 @@ import {
 })
 export class LayoutDirective implements OnInit, OnDestroy {
   @Input() appLayout!: LayoutContentName;
+  @Input() appLayoutClear = false;
 
   private target!: BehaviorSubject<LayoutContent>;
   private previous!: LayoutContent;
@@ -32,7 +33,7 @@ export class LayoutDirective implements OnInit, OnDestroy {
     this.target = this.configuration[`${this.appLayout}$`];
     setTimeout(() => {
       this.previous = this.target.getValue();
-      this.target.next(this.templateRef);
+      this.target.next(this.appLayoutClear ? null : this.templateRef);
     });
   }
 

@@ -14,6 +14,7 @@ import { BackButtonModule } from '../../components/back-button/back-button.modul
 import { ModalModule } from '../../components/modal/modal.module';
 import { RadioListModule } from '../../components/radio-list/radio-list.module';
 import { ThemeSwitcherModule } from '../../components/theme-switcher/theme-switcher.module';
+import { LayoutModule } from '../../layout/layout.module';
 import { SharedModule } from '../../shared/shared.module';
 import { SettingsComponent } from './settings.component';
 import { SettingsEditFullNameModalComponent } from './settings-edit-full-name-modal/settings-edit-full-name-modal.component';
@@ -49,6 +50,7 @@ import { SettingsRoutingModule } from './settings-routing.module';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    LayoutModule,
     BackButtonModule,
     RadioListModule,
     ModalModule,

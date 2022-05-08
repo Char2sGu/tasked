@@ -3,6 +3,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -11,12 +12,11 @@ import { RouterModule } from '@angular/router';
 
 import { ModalModule } from '../components/modal/modal.module';
 import { SharedModule } from '../shared/shared.module';
-import { HeaderComponent } from './header/header.component';
 import { LayoutComponent } from './layout.component';
 import { LayoutDirective } from './layout.directive';
 
 @NgModule({
-  declarations: [LayoutComponent, LayoutDirective, HeaderComponent],
+  declarations: [LayoutComponent, LayoutDirective],
   imports: [
     SharedModule,
     RouterModule,
@@ -28,8 +28,9 @@ import { LayoutDirective } from './layout.directive';
     MatButtonModule,
     MatSidenavModule,
     MatProgressBarModule,
+    MatDividerModule,
     ModalModule,
   ],
-  exports: [LayoutComponent, LayoutDirective, HeaderComponent],
+  exports: [LayoutComponent, LayoutDirective],
 })
 export class LayoutModule {}

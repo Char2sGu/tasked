@@ -28,10 +28,10 @@ import { LoadingModule } from '../../components/loading/loading.module';
 import { MasonryModule } from '../../components/masonry/masonry.module';
 import { ModalModule } from '../../components/modal/modal.module';
 import { UsernameModule } from '../../components/username/username.module';
+import { LayoutModule } from '../../layout/layout.module';
 import { SharedModule } from '../../shared/shared.module';
 import { TeamCreationComponent } from './team-creation/team-creation.component';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
-import { TeamDetailLayoutDirective } from './team-detail/team-detail-layout.directive';
 import { TeamDetailTabAssignmentsComponent } from './team-detail-tab-assignments/team-detail-tab-assignments.component';
 import { TeamDetailTabAssignmentsItemComponent } from './team-detail-tab-assignments-item/team-detail-tab-assignments-item.component';
 import { TeamDetailTabRedirectorComponent } from './team-detail-tab-redirector/team-detail-tab-redirector.component';
@@ -78,7 +78,6 @@ import { TeamsRoutingModule } from './teams-routing.module';
     TeamRedirectorComponent,
     TeamListComponent,
     TeamListItemComponent,
-    TeamDetailLayoutDirective,
   ],
   imports: [
     SharedModule,
@@ -111,6 +110,7 @@ import { TeamsRoutingModule } from './teams-routing.module';
     IllustrationModule,
     BackButtonModule,
     FlipModule,
+    LayoutModule,
   ],
 })
 export class TeamsModule {}

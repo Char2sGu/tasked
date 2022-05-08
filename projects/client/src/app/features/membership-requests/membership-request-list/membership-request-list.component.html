@@ -1,14 +1,12 @@
 <mat-list *ngIf="state.membershipRequestGroups$ | async as groups">
-  <mat-divider *ngIf="groups.length"></mat-divider>
-
-  <ng-container *ngFor="let group of groups">
+  <ng-container *ngFor="let group of groups; let last = last">
     <h2 matSubheader>{{ group[0] }}</h2>
     <app-membership-request-list-item
       *ngFor="let item of group[1]; trackBy: itemTracker"
       [membershipRequest]="item"
       [own]="(auth.user$ | async)?.id == item.owner.id"
     ></app-membership-request-list-item>
-    <mat-divider></mat-divider>
+    <mat-divider *ngIf="!last"></mat-divider>
   </ng-container>
 
   <div *ngIf="groups.length && state.loadingMoreNeeded">

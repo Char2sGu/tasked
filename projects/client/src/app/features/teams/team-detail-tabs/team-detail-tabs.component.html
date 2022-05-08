@@ -7,7 +7,7 @@
   } as data"
 >
   <ng-container *ngIf="data.team && data.sidebarMode">
-    <ng-container *appTeamDetailLayout="'header'">
+    <ng-container *appLayout="'header'">
       <div class="grow">
         <app-back-button></app-back-button>
       </div>
@@ -23,6 +23,8 @@
         </button>
       </div>
     </ng-container>
+
+    <ng-container *appLayout="'navigation'; clear: true"></ng-container>
 
     <mat-drawer-container class="h-full">
       <mat-drawer

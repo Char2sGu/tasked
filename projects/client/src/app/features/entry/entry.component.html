@@ -5,16 +5,6 @@
   <router-outlet></router-outlet>
 </div>
 
-<app-header
-  *appLayout="'header'; let navigator = navigator"
-  (menuToggle)="navigator.toggle()"
->
-  <app-refetch-button></app-refetch-button>
-  <a mat-icon-button matTooltip="Settings" [routerLink]="['settings']">
-    <mat-icon>settings</mat-icon>
-  </a>
-</app-header>
-
 <div class="flex h-full flex-col" *appLayout="'navigation'">
   <mat-list class="mb-2" *ngIf="user$ | async as user">
     <mat-list-item>
@@ -25,7 +15,7 @@
         {{ (user.nickname && user.username) || 'Logged in as' }}
       </div>
       <a mat-icon-button [routerLink]="['settings']">
-        <mat-icon>manage_accounts</mat-icon>
+        <mat-icon>settings</mat-icon>
       </a>
     </mat-list-item>
   </mat-list>

@@ -1,14 +1,12 @@
+<ng-container *appLayout="'header'">
+  <div class="w-0 grow">
+    <app-back-button></app-back-button>
+  </div>
+  <div class="w-0 grow text-center">New Team</div>
+  <div class="w-0 grow"></div>
+</ng-container>
+
 <div class="mat-typography h-full">
-  <mat-toolbar>
-    <div class="w-0 grow">
-      <app-back-button></app-back-button>
-    </div>
-    <div class="w-0 grow text-center">New Team</div>
-    <div class="w-0 grow"></div>
-  </mat-toolbar>
-
-  <mat-divider></mat-divider>
-
   <form
     class="mx-auto flex w-4/5 max-w-[400px] flex-col gap-4 py-14"
     (ngSubmit)="submit()"

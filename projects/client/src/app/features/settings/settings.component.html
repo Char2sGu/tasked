@@ -1,5 +1,5 @@
 <div class="h-full">
-  <mat-toolbar class="bg-transparent">
+  <ng-container *appLayout="'header'">
     <div class="w-0 grow">
       <app-back-button mode="history"></app-back-button>
     </div>
@@ -7,7 +7,7 @@
       <span>Settings</span>
     </div>
     <div class="w-0 grow"></div>
-  </mat-toolbar>
+  </ng-container>
   <div class="p-4 md:mx-auto md:mt-12 md:w-[768px]">
     <app-settings-list></app-settings-list>
   </div>

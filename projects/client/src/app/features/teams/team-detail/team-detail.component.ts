@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { combineLatest } from 'rxjs';
 
 import { skipNullable } from '../../../common/rxjs';
@@ -15,10 +15,6 @@ import { TeamDetailState } from './team-detail-state.service';
 })
 export class TeamDetailComponent implements OnInit {
   team$ = this.state.team$;
-
-  // use templates directly instead of template portals because portals will
-  // destroy the view on destroy, which will break the animation.
-  header?: TemplateRef<never>;
 
   constructor(
     private state: TeamDetailState,

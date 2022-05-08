@@ -11,31 +11,31 @@
 ></ng-container>
 
 <ng-template #layoutDesktop>
-  <app-header
-    *appLayout="'header'; let navigator = navigator"
-    (menuToggle)="navigator.toggle()"
-  >
-    <app-theme-button></app-theme-button>
-  </app-header>
-
-  <mat-nav-list *appLayout="'navigation'">
-    <a
-      mat-list-item
-      routerLink="/auth/login"
-      routerLinkActive="router-link-active"
-    >
-      <mat-icon matListIcon>login</mat-icon>
-      <span matLine i18n>Login</span>
-    </a>
-    <a
-      mat-list-item
-      routerLink="/auth/signup"
-      routerLinkActive="router-link-active"
-    >
-      <mat-icon matListIcon>person_add</mat-icon>
-      <span matLine i18n>Signup</span>
-    </a>
-  </mat-nav-list>
+  <ng-container *appLayout="'header'; clear: true"></ng-container>
+  <ng-container *appLayout="'navigation'">
+    <div class="flex h-16 items-center justify-center">
+      <h1 class="text-xl">Tasked</h1>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-nav-list class="mt-2">
+      <a
+        mat-list-item
+        routerLink="/auth/login"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon matListIcon>login</mat-icon>
+        <span matLine i18n>Login</span>
+      </a>
+      <a
+        mat-list-item
+        routerLink="/auth/signup"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon matListIcon>person_add</mat-icon>
+        <span matLine i18n>Signup</span>
+      </a>
+    </mat-nav-list>
+  </ng-container>
 </ng-template>
 
 <ng-template #layoutMobile>

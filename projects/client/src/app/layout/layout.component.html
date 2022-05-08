@@ -2,44 +2,46 @@
   *ngIf="{
     theme: theme$ | async,
     isDesktop: isBreakpointXLargeMatched$ | async,
-    contentOfHeader: contents.header | async,
-    contentOfNavigator: contents.navigation | async,
+    contents: {
+      header: contents.header | async,
+      navigator: contents.navigation | async
+    },
     loading: loading$ | async
   } as data"
-  class="relative flex h-full flex-col"
+  class="relative h-full"
 >
-  <mat-toolbar
-    *ngIf="data.contentOfHeader"
-    class="z-[2] order-4 shadow-z4 dark:text-d-primary-text md:order-2"
-    [color]="data.theme == 'light' ? 'primary' : undefined"
-  >
-    <ng-container [cdkPortalOutlet]="data.contentOfHeader"></ng-container>
-  </mat-toolbar>
-
   <div *ngIf="data.loading" class="absolute inset-0 z-10">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
 
-  <mat-sidenav-container class="order-3 h-full flex-1 overflow-auto">
+  <mat-sidenav-container class="h-full overflow-auto">
     <mat-sidenav
-      *ngIf="data.contentOfNavigator"
+      *ngIf="data.contents.navigator"
       class="w-64"
       [class]="{ 'bg-transparent': data.isDesktop }"
       [opened]="data.isDesktop"
       [mode]="data.isDesktop ? 'side' : 'over'"
     >
-      <ng-container [cdkPortalOutlet]="data.contentOfNavigator"></ng-container>
+      <ng-container [cdkPortalOutlet]="data.contents.navigator"></ng-container>
     </mat-sidenav>
-    <mat-sidenav-content>
-      <ng-content></ng-content>
+    <mat-sidenav-content class="flex flex-col">
+      <header *ngIf="data.contents.header">
+        <mat-toolbar class="bg-inherit">
+          <ng-container [cdkPortalOutlet]="data.contents.header"></ng-container>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+      </header>
+      <main class="h-0 grow overflow-auto">
+        <ng-content></ng-content>
+      </main>
     </mat-sidenav-content>
   </mat-sidenav-container>
 
-  <ng-container *ngIf="data.contentOfNavigator">
+  <ng-container *ngIf="data.contents.navigator">
     <ng-template appModal>
       <div class="h-[60vh]">
         <ng-container
-          [cdkPortalOutlet]="data.contentOfNavigator"
+          [cdkPortalOutlet]="data.contents.navigator"
         ></ng-container>
       </div>
     </ng-template>
