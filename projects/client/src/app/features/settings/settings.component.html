@@ -1,7 +1,9 @@
 <div class="h-full">
-  <ng-container *appLayout="'header'">
+  <ng-container *appLayout="'header'; let navigator = navigator">
     <div class="w-0 grow">
-      <app-back-button mode="history"></app-back-button>
+      <button mat-icon-button (click)="navigator.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
     </div>
     <div class="w-0 grow text-center">
       <span>Settings</span>

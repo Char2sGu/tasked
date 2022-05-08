@@ -3,10 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, switchMap, takeUntil, timer } from 'rxjs';
 
-import {
-  FadeThroughAnimation,
-  SharedAxisAnimation,
-} from '../../common/animations';
+import { FadeThroughAnimation } from '../../common/animations';
 import { RouterOutletDataReader } from '../../common/router.helpers';
 import { skipNullable } from '../../common/rxjs';
 import { AuthService } from '../../core/auth.service';
@@ -19,15 +16,8 @@ import { Notifier } from '../../core/notifier.service';
   viewProviders: [RouterOutletDataReader],
   animations: [
     trigger('router', [
-      transition('teams <=> membership-requests', [
-        FadeThroughAnimation.apply(),
-      ]),
-      transition('teams => settings, membership-requests => settings', [
-        SharedAxisAnimation.apply('z', 'forward'),
-      ]),
-      transition('settings => teams, settings => membership-requests', [
-        SharedAxisAnimation.apply('z', 'backward'),
-      ]),
+      transition(':leave', []),
+      transition('* => *', [FadeThroughAnimation.apply()]),
     ]),
   ],
 })
@@ -43,6 +33,11 @@ export class EntryComponent implements OnInit, OnDestroy {
       text: 'Requests',
       commands: ['/', 'app', 'membership-requests'],
       icon: 'group_add',
+    },
+    {
+      text: 'Settings',
+      commands: ['/', 'app', 'settings'],
+      icon: 'settings',
     },
   ];
 
