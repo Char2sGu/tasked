@@ -11,7 +11,7 @@ import { RouterOutletDataReader } from './common/router.helpers';
   viewProviders: [RouterOutletDataReader],
   animations: [
     trigger('content', [
-      transition('auth <=> main', FadeThroughAnimation.apply()),
+      transition('auth <=> entry', FadeThroughAnimation.apply()),
     ]),
   ],
 })

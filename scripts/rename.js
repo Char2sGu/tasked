@@ -6,8 +6,9 @@ function rename(dirPath, replaceFrom, replaceTo) {
   names.forEach((name) => {
     const path = pathLib.join(dirPath, name);
     const stat = fs.statSync(path);
-    if (stat.isDirectory()) rename(path, replaceFrom, replaceTo);
     const newPath = pathLib.join(dirPath, name.replace(replaceFrom, replaceTo));
+    if (path == newPath) return;
+    if (stat.isDirectory()) rename(path, replaceFrom, replaceTo);
     console.debug(`${path} -> ${newPath}`);
     fs.renameSync(path, newPath);
   });

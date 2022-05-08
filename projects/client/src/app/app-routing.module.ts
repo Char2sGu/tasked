@@ -18,9 +18,9 @@ const routes: Routes = [
   {
     path: 'app',
     loadChildren: () =>
-      import('./features/main/main.module').then((m) => m.MainModule),
+      import('./features/entry/entry.module').then((m) => m.EntryModule),
     canLoad: [AuthGuard],
-    data: { animationState: 'main' },
+    data: { animationState: 'entry' },
   },
   {
     path: '**',

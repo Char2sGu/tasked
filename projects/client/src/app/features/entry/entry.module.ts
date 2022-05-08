@@ -10,14 +10,14 @@ import { ConfirmationModule } from '../../components/confirmation/confirmation.m
 import { RefetchButtonModule } from '../../components/refetch-button/refetch-button.module';
 import { LayoutModule } from '../../layout/layout.module';
 import { SharedModule } from '../../shared/shared.module';
-import { MainComponent } from './main.component';
-import { MainRoutingModule } from './main-routing.module';
+import { EntryComponent } from './entry.component';
+import { EntryRoutingModule } from './entry-routing.module';
 
 @NgModule({
-  declarations: [MainComponent],
+  declarations: [EntryComponent],
   imports: [
     SharedModule,
-    MainRoutingModule,
+    EntryRoutingModule,
     MatDividerModule,
     MatIconModule,
     MatListModule,
@@ -29,4 +29,4 @@ import { MainRoutingModule } from './main-routing.module';
     ConfirmationModule,
   ],
 })
-export class MainModule {}
+export class EntryModule {}

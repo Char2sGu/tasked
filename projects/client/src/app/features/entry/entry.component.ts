@@ -13,9 +13,9 @@ import { AuthService } from '../../core/auth.service';
 import { Notifier } from '../../core/notifier.service';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
+  selector: 'app-entry',
+  templateUrl: './entry.component.html',
+  styleUrls: ['./entry.component.scss'],
   viewProviders: [RouterOutletDataReader],
   animations: [
     trigger('router', [
@@ -31,7 +31,7 @@ import { Notifier } from '../../core/notifier.service';
     ]),
   ],
 })
-export class MainComponent implements OnInit, OnDestroy {
+export class EntryComponent implements OnInit, OnDestroy {
   user$ = this.authService.user$;
   links: Link[] = [
     {

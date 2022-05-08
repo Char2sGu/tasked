@@ -5,9 +5,9 @@ import { FadeThroughAnimation } from '../../common/animations';
 import { RouterOutletDataReader } from '../../common/router.helpers';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
+  selector: 'app-entry',
+  templateUrl: './entry.component.html',
+  styleUrls: ['./entry.component.scss'],
   viewProviders: [RouterOutletDataReader],
   animations: [
     trigger('fadeThrough', [
@@ -17,7 +17,7 @@ import { RouterOutletDataReader } from '../../common/router.helpers';
     ]),
   ],
 })
-export class MainLayoutComponent implements OnInit {
+export class EntryLayoutComponent implements OnInit {
   links: Link[] = [
     {
       text: 'Teams',
