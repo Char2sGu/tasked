@@ -1,0 +1,41 @@
+<ng-container
+  *ngIf="(state.membershipRequestGroups$ | async) ?? 'loading' as groups"
+>
+  <div
+    class="h-full overflow-auto"
+    *ngIf="groups.length; else empty"
+    #container
+  >
+    <div class="mx-auto w-[90%] max-w-[528px] py-12">
+      <app-membership-request-list
+        *ngIf="groups != 'loading'; else skeleton"
+        [scrollableContainer]="container"
+      ></app-membership-request-list>
+      <ng-template #skeleton>
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="{ width: '60%' }"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="{ width: '80%' }"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="{ width: '40%' }"
+        ></ngx-skeleton-loader>
+      </ng-template>
+    </div>
+  </div>
+  <ng-template #empty>
+    <div class="flex h-full items-center justify-center">
+      <app-empty-state-illustration
+        class="-mt-8"
+        headline="Seems empty"
+        message="Requests you sent or sent to you will show up here."
+      >
+        <app-illustration name="accept-request"></app-illustration>
+      </app-empty-state-illustration>
+    </div>
+  </ng-template>
+</ng-container>

@@ -12,10 +12,10 @@ import { ObjectType } from '@nestjs/graphql';
 import { hash } from 'bcryptjs';
 import dayjs from 'dayjs';
 
-import { PaginatedApplications } from '../../applications/dto/paginated-applications.obj.dto';
-import { Application } from '../../applications/entities/application.entity';
 import { BaseEntity } from '../../common/base-entity.entity';
 import { Field } from '../../common/field.decorator';
+import { PaginatedMembershipRequests } from '../../membership-requests/dto/paginated-membership-requests.obj.dto';
+import { MembershipRequest } from '../../membership-requests/entities/membership-request.entity';
 import { PaginatedMemberships } from '../../memberships/dto/paginated-memberships.obj.dto';
 import { Membership } from '../../memberships/entities/membership.entity';
 import { Quota } from '../../mikro/mikro-quota/quota.decorator';
@@ -51,13 +51,13 @@ export class User extends BaseEntity<User> {
   })
   teams = new Collection<Team>(this);
 
-  @Field(() => PaginatedApplications)
+  @Field(() => PaginatedMembershipRequests)
   @OneToMany({
-    entity: () => Application,
-    mappedBy: (application) => application.owner,
+    entity: () => MembershipRequest,
+    mappedBy: (membershipRequest) => membershipRequest.owner,
     cascade: [Cascade.ALL],
   })
-  applications = new Collection<Application>(this);
+  membershipRequests = new Collection<MembershipRequest>(this);
 
   @Field(() => PaginatedMemberships)
   @OneToMany({

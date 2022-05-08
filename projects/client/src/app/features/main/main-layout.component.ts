@@ -11,7 +11,9 @@ import { RouterOutletDataReader } from '../../common/router.helpers';
   viewProviders: [RouterOutletDataReader],
   animations: [
     trigger('fadeThrough', [
-      transition('teams <=> applications', [FadeThroughAnimation.apply()]),
+      transition('teams <=> membership-requests', [
+        FadeThroughAnimation.apply(),
+      ]),
     ]),
   ],
 })
@@ -23,8 +25,8 @@ export class MainLayoutComponent implements OnInit {
       icon: 'workspaces',
     },
     {
-      text: 'Applications',
-      commands: ['/', 'app', 'applications'],
+      text: 'Requests',
+      commands: ['/', 'app', 'membership-requests'],
       icon: 'group_add',
     },
   ];

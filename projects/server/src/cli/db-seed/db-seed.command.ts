@@ -2,9 +2,9 @@ import faker from '@faker-js/faker';
 import { EntityManager } from '@mikro-orm/sqlite';
 import { Command, CommandRunner } from 'nest-commander';
 
-import { Application } from '../../applications/entities/application.entity';
-import { ApplicationStatus } from '../../applications/entities/application-status.enum';
 import { Assignment } from '../../assignments/entities/assignment.entity';
+import { MembershipRequest } from '../../membership-requests/entities/membership-request.entity';
+import { MembershipRequestStatus } from '../../membership-requests/entities/membership-request-status.enum';
 import { Membership } from '../../memberships/entities/membership.entity';
 import { Role } from '../../memberships/entities/role.enum';
 import { Task } from '../../tasks/entities/task.entity';
@@ -53,12 +53,15 @@ export class DbSeedCommand implements CommandRunner {
     }
     em.persist(teams);
 
-    const applications: Application[] = [];
+    const membershipRequests: MembershipRequest[] = [];
     users.forEach((user) => {
-      const createFor = (teams: Team[], statusOptions: ApplicationStatus[]) =>
+      const createFor = (
+        teams: Team[],
+        statusOptions: MembershipRequestStatus[],
+      ) =>
         teams.forEach((team) => {
-          applications.push(
-            em.create(Application, {
+          membershipRequests.push(
+            em.create(MembershipRequest, {
               owner: user,
               team: team,
               status: oneOf(statusOptions),
@@ -73,22 +76,22 @@ export class DbSeedCommand implements CommandRunner {
         faker.datatype.number({ min: 0, max: 8 }),
       );
       const accepted = [...acceptedSet];
-      createFor(accepted, [ApplicationStatus.Accepted]);
+      createFor(accepted, [MembershipRequestStatus.Accepted]);
       const rejectedSet = someOf(
         teams,
         faker.datatype.number({ min: 0, max: 4 }),
         acceptedSet,
       );
       const rejected = [...rejectedSet];
-      createFor(rejected, [ApplicationStatus.Rejected]);
+      createFor(rejected, [MembershipRequestStatus.Rejected]);
       const reappliedSet = someOf(rejected, 0.5);
       const reapplied = [...reappliedSet];
       createFor(reapplied, [
-        ApplicationStatus.Pending,
-        ApplicationStatus.Accepted,
+        MembershipRequestStatus.Pending,
+        MembershipRequestStatus.Accepted,
       ]);
     });
-    em.persist(applications);
+    em.persist(membershipRequests);
 
     const memberships: Membership[] = [];
     teams.forEach((team) => {
@@ -100,12 +103,12 @@ export class DbSeedCommand implements CommandRunner {
         }),
       );
     });
-    applications.forEach((application) => {
-      if (application.status != ApplicationStatus.Accepted) return;
+    membershipRequests.forEach((membershipRequest) => {
+      if (membershipRequest.status != MembershipRequestStatus.Accepted) return;
       memberships.push(
         em.create(Membership, {
-          owner: application.owner,
-          team: application.team,
+          owner: membershipRequest.owner,
+          team: membershipRequest.team,
           role: possibility(
             faker.datatype.number({ min: 0.1, max: 0.3, precision: 0.1 }),
           )

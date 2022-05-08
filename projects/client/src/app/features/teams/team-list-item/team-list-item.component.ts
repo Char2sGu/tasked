@@ -5,8 +5,8 @@ import { finalize } from 'rxjs/operators';
 import { ModalDirective } from '../../../components/modal/modal.directive';
 import { Notifier } from '../../../core/notifier.service';
 import {
-  ApplicationCreateGQL,
-  ApplicationListGQL,
+  MembershipRequestCreateGQL,
+  MembershipRequestListGQL,
   TeamListQuery,
 } from '../../../graphql/codegen';
 
@@ -25,8 +25,8 @@ export class TeamListItemComponent implements OnInit {
   constructor(
     private router: Router,
     private notifier: Notifier,
-    private applicationCreateGql: ApplicationCreateGQL,
-    private applicationListGql: ApplicationListGQL,
+    private membershipRequestCreateGql: MembershipRequestCreateGQL,
+    private membershipRequestListGql: MembershipRequestListGQL,
   ) {}
 
   ngOnInit(): void {}
@@ -41,22 +41,22 @@ export class TeamListItemComponent implements OnInit {
   apply(): void {
     if (!this.team) return;
     this.loading = true;
-    this.applicationCreateGql
+    this.membershipRequestCreateGql
       .mutate(
         {
           data: { team: this.team.id, message: this.message },
         },
         {
           update: (_, result) => {
-            const query = this.applicationListGql.watch();
+            const query = this.membershipRequestListGql.watch();
             if (query.getCurrentResult().loading) return;
             query.updateQuery((prev) => ({
               ...prev,
-              applications: {
-                ...prev.applications,
+              membershipRequests: {
+                ...prev.membershipRequests,
                 results: [
-                  result.data!.createApplication,
-                  ...prev.applications.results,
+                  result.data!.createMembershipRequest,
+                  ...prev.membershipRequests.results,
                 ],
               },
             }));
@@ -66,12 +66,12 @@ export class TeamListItemComponent implements OnInit {
       .pipe(finalize(() => (this.loading = false)))
       .subscribe({
         next: () => {
-          this.notifier.success($localize`Application sent`);
+          this.notifier.success($localize`MembershipRequest sent`);
           this.modal.close();
-          this.router.navigate(['/app/applications']);
+          this.router.navigate(['/app/membership-requests']);
         },
         error: () => {
-          this.notifier.error($localize`Failed to send the application`);
+          this.notifier.error($localize`Failed to send the request`);
         },
       });
   }

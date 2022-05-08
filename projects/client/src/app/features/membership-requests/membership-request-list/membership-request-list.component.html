@@ -1,0 +1,20 @@
+<mat-list *ngIf="state.membershipRequestGroups$ | async as groups">
+  <mat-divider *ngIf="groups.length"></mat-divider>
+
+  <ng-container *ngFor="let group of groups">
+    <h2 matSubheader>{{ group[0] }}</h2>
+    <app-membership-request-list-item
+      *ngFor="let item of group[1]; trackBy: itemTracker"
+      [membershipRequest]="item"
+      [own]="(auth.user$ | async)?.id == item.owner.id"
+    ></app-membership-request-list-item>
+    <mat-divider></mat-divider>
+  </ng-container>
+
+  <div *ngIf="groups.length && state.loadingMoreNeeded">
+    <app-infinity-scroll-trigger
+      [loading]="state.loadingMore"
+      (trigger)="state.fetchMore()"
+    ></app-infinity-scroll-trigger>
+  </div>
+</mat-list>

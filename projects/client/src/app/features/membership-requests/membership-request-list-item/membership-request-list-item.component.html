@@ -1,0 +1,67 @@
+<mat-list-item>
+  <div matLine class="flex items-center">
+    <app-username
+      [user]="membershipRequest?.owner"
+      [color]="true"
+    ></app-username>
+    <mat-icon inline class="text-l-secondary-text dark:text-d-secondary-text">
+      arrow_right
+    </mat-icon>
+    <span>{{ membershipRequest?.team?.name }}</span>
+    <span class="text-l-secondary-text dark:text-d-secondary-text">
+      #{{ membershipRequest?.team?.id }}
+    </span>
+  </div>
+  <div
+    matLine
+    [class]="
+      !membershipRequest?.message
+        ? 'text-l-secondary-text dark:text-d-secondary-text'
+        : undefined
+    "
+  >
+    {{ membershipRequest?.message || '...' }}
+  </div>
+  <div matLine class="text-l-secondary-text dark:text-d-secondary-text">
+    {{ membershipRequest?.createdAt | date: 'mediumTime' }}
+  </div>
+
+  <ng-container *ngIf="own">
+    <ng-container
+      *ngIf="
+        membershipRequest?.status == MembershipRequestStatus.Pending;
+        else status
+      "
+    >
+      <button mat-icon-button [disabled]="loading" (click)="delete()">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="!own">
+    <ng-container
+      *ngIf="
+        membershipRequest?.status == MembershipRequestStatus.Pending;
+        else status
+      "
+    >
+      <button mat-icon-button [disabled]="loading" (click)="accept()">
+        <mat-icon>check</mat-icon>
+      </button>
+      <button mat-icon-button [disabled]="loading" (click)="reject()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #status>
+    <div class="mat-body text-l-secondary-text dark:text-d-secondary-text">
+      {{
+        membershipRequest
+          ? membershipRequestStatusText[membershipRequest.status]
+          : null
+      }}
+    </div>
+  </ng-template>
+</mat-list-item>

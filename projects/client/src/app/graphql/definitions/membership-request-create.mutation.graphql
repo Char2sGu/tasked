@@ -1,0 +1,5 @@
+mutation MembershipRequestCreate($data: MembershipRequestCreateInput!) {
+  createMembershipRequest(data: $data) {
+    ...MembershipRequest
+  }
+}

@@ -17,94 +17,11 @@ export type Scalars = {
   DateTime: any;
 };
 
-export type AcceptApplicationResult = {
-  __typename?: 'AcceptApplicationResult';
-  application: Application;
+export type AcceptMembershipRequestResult = {
+  __typename?: 'AcceptMembershipRequestResult';
   membership: Membership;
+  membershipRequest: MembershipRequest;
 };
-
-export type Application = {
-  __typename?: 'Application';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  message?: Maybe<Scalars['String']>;
-  owner: User;
-  status: ApplicationStatus;
-  team: Team;
-  updatedAt: Scalars['DateTime'];
-};
-
-export type ApplicationCreateInput = {
-  message?: InputMaybe<Scalars['String']>;
-  team: Scalars['ID'];
-};
-
-export type ApplicationFilterMap = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  createdAt__eq?: InputMaybe<Scalars['DateTime']>;
-  createdAt__gt?: InputMaybe<Scalars['DateTime']>;
-  createdAt__gte?: InputMaybe<Scalars['DateTime']>;
-  createdAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdAt__like?: InputMaybe<Scalars['String']>;
-  createdAt__lt?: InputMaybe<Scalars['DateTime']>;
-  createdAt__lte?: InputMaybe<Scalars['DateTime']>;
-  createdAt__ne?: InputMaybe<Scalars['DateTime']>;
-  createdAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id__eq?: InputMaybe<Scalars['ID']>;
-  id__gt?: InputMaybe<Scalars['ID']>;
-  id__gte?: InputMaybe<Scalars['ID']>;
-  id__in?: InputMaybe<Array<Scalars['ID']>>;
-  id__like?: InputMaybe<Scalars['String']>;
-  id__lt?: InputMaybe<Scalars['ID']>;
-  id__lte?: InputMaybe<Scalars['ID']>;
-  id__ne?: InputMaybe<Scalars['ID']>;
-  id__nin?: InputMaybe<Array<Scalars['ID']>>;
-  message?: InputMaybe<Scalars['String']>;
-  message__eq?: InputMaybe<Scalars['String']>;
-  message__gt?: InputMaybe<Scalars['String']>;
-  message__gte?: InputMaybe<Scalars['String']>;
-  message__in?: InputMaybe<Array<Scalars['String']>>;
-  message__like?: InputMaybe<Scalars['String']>;
-  message__lt?: InputMaybe<Scalars['String']>;
-  message__lte?: InputMaybe<Scalars['String']>;
-  message__ne?: InputMaybe<Scalars['String']>;
-  message__nin?: InputMaybe<Array<Scalars['String']>>;
-  status?: InputMaybe<ApplicationStatus>;
-  status__eq?: InputMaybe<ApplicationStatus>;
-  status__gt?: InputMaybe<ApplicationStatus>;
-  status__gte?: InputMaybe<ApplicationStatus>;
-  status__in?: InputMaybe<Array<ApplicationStatus>>;
-  status__like?: InputMaybe<Scalars['String']>;
-  status__lt?: InputMaybe<ApplicationStatus>;
-  status__lte?: InputMaybe<ApplicationStatus>;
-  status__ne?: InputMaybe<ApplicationStatus>;
-  status__nin?: InputMaybe<Array<ApplicationStatus>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__eq?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__gt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__gte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedAt__like?: InputMaybe<Scalars['String']>;
-  updatedAt__lt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__lte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__ne?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
-};
-
-export type ApplicationOrderMap = {
-  createdAt?: InputMaybe<QueryOrder>;
-  id?: InputMaybe<QueryOrder>;
-  message?: InputMaybe<QueryOrder>;
-  status?: InputMaybe<QueryOrder>;
-  updatedAt?: InputMaybe<QueryOrder>;
-};
-
-export enum ApplicationStatus {
-  Accepted = 'Accepted',
-  Pending = 'Pending',
-  Rejected = 'Rejected'
-}
 
 export type Assignment = {
   __typename?: 'Assignment';
@@ -281,25 +198,108 @@ export type MembershipOrderMap = {
   updatedAt?: InputMaybe<QueryOrder>;
 };
 
+export type MembershipRequest = {
+  __typename?: 'MembershipRequest';
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  message?: Maybe<Scalars['String']>;
+  owner: User;
+  status: MembershipRequestStatus;
+  team: Team;
+  updatedAt: Scalars['DateTime'];
+};
+
+export type MembershipRequestCreateInput = {
+  message?: InputMaybe<Scalars['String']>;
+  team: Scalars['ID'];
+};
+
+export type MembershipRequestFilterMap = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__eq?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdAt__like?: InputMaybe<Scalars['String']>;
+  createdAt__lt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__lte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__ne?: InputMaybe<Scalars['DateTime']>;
+  createdAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
+  id?: InputMaybe<Scalars['ID']>;
+  id__eq?: InputMaybe<Scalars['ID']>;
+  id__gt?: InputMaybe<Scalars['ID']>;
+  id__gte?: InputMaybe<Scalars['ID']>;
+  id__in?: InputMaybe<Array<Scalars['ID']>>;
+  id__like?: InputMaybe<Scalars['String']>;
+  id__lt?: InputMaybe<Scalars['ID']>;
+  id__lte?: InputMaybe<Scalars['ID']>;
+  id__ne?: InputMaybe<Scalars['ID']>;
+  id__nin?: InputMaybe<Array<Scalars['ID']>>;
+  message?: InputMaybe<Scalars['String']>;
+  message__eq?: InputMaybe<Scalars['String']>;
+  message__gt?: InputMaybe<Scalars['String']>;
+  message__gte?: InputMaybe<Scalars['String']>;
+  message__in?: InputMaybe<Array<Scalars['String']>>;
+  message__like?: InputMaybe<Scalars['String']>;
+  message__lt?: InputMaybe<Scalars['String']>;
+  message__lte?: InputMaybe<Scalars['String']>;
+  message__ne?: InputMaybe<Scalars['String']>;
+  message__nin?: InputMaybe<Array<Scalars['String']>>;
+  status?: InputMaybe<MembershipRequestStatus>;
+  status__eq?: InputMaybe<MembershipRequestStatus>;
+  status__gt?: InputMaybe<MembershipRequestStatus>;
+  status__gte?: InputMaybe<MembershipRequestStatus>;
+  status__in?: InputMaybe<Array<MembershipRequestStatus>>;
+  status__like?: InputMaybe<Scalars['String']>;
+  status__lt?: InputMaybe<MembershipRequestStatus>;
+  status__lte?: InputMaybe<MembershipRequestStatus>;
+  status__ne?: InputMaybe<MembershipRequestStatus>;
+  status__nin?: InputMaybe<Array<MembershipRequestStatus>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__eq?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedAt__like?: InputMaybe<Scalars['String']>;
+  updatedAt__lt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__lte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__ne?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
+};
+
+export type MembershipRequestOrderMap = {
+  createdAt?: InputMaybe<QueryOrder>;
+  id?: InputMaybe<QueryOrder>;
+  message?: InputMaybe<QueryOrder>;
+  status?: InputMaybe<QueryOrder>;
+  updatedAt?: InputMaybe<QueryOrder>;
+};
+
+export enum MembershipRequestStatus {
+  Accepted = 'Accepted',
+  Pending = 'Pending',
+  Rejected = 'Rejected'
+}
+
 export type MembershipUpdateInput = {
   role?: InputMaybe<Role>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  acceptApplication: AcceptApplicationResult;
+  acceptMembershipRequest: AcceptMembershipRequestResult;
   auth: AuthResult;
-  createApplication: Application;
   createAssignment: Assignment;
+  createMembershipRequest: MembershipRequest;
   createTask: Task;
   createTeam: Team;
   createUser: User;
-  deleteApplication: Application;
   deleteAssignment: Assignment;
   deleteMembership: Membership;
+  deleteMembershipRequest: MembershipRequest;
   deleteTask: Task;
   deleteTeam: Team;
-  rejectApplication: Application;
+  rejectMembershipRequest: MembershipRequest;
   updateAssignment: Assignment;
   updateMembership: Membership;
   updateTask: Task;
@@ -308,7 +308,7 @@ export type Mutation = {
 };
 
 
-export type MutationAcceptApplicationArgs = {
+export type MutationAcceptMembershipRequestArgs = {
   id: Scalars['ID'];
 };
 
@@ -319,13 +319,13 @@ export type MutationAuthArgs = {
 };
 
 
-export type MutationCreateApplicationArgs = {
-  data: ApplicationCreateInput;
+export type MutationCreateAssignmentArgs = {
+  data: AssignmentCreateInput;
 };
 
 
-export type MutationCreateAssignmentArgs = {
-  data: AssignmentCreateInput;
+export type MutationCreateMembershipRequestArgs = {
+  data: MembershipRequestCreateInput;
 };
 
 
@@ -344,17 +344,17 @@ export type MutationCreateUserArgs = {
 };
 
 
-export type MutationDeleteApplicationArgs = {
-  id: Scalars['ID'];
-};
-
-
 export type MutationDeleteAssignmentArgs = {
   id: Scalars['ID'];
 };
 
 
 export type MutationDeleteMembershipArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteMembershipRequestArgs = {
   id: Scalars['ID'];
 };
 
@@ -369,7 +369,7 @@ export type MutationDeleteTeamArgs = {
 };
 
 
-export type MutationRejectApplicationArgs = {
+export type MutationRejectMembershipRequestArgs = {
   id: Scalars['ID'];
 };
 
@@ -403,15 +403,15 @@ export type MutationUpdateUserArgs = {
   id: Scalars['ID'];
 };
 
-export type PaginatedApplications = {
-  __typename?: 'PaginatedApplications';
-  results: Array<Application>;
-  total: Scalars['Int'];
-};
-
 export type PaginatedAssignments = {
   __typename?: 'PaginatedAssignments';
   results: Array<Assignment>;
+  total: Scalars['Int'];
+};
+
+export type PaginatedMembershipRequests = {
+  __typename?: 'PaginatedMembershipRequests';
+  results: Array<MembershipRequest>;
   total: Scalars['Int'];
 };
 
@@ -441,12 +441,12 @@ export type PaginatedUsers = {
 
 export type Query = {
   __typename?: 'Query';
-  application: Application;
-  applications: PaginatedApplications;
   assignment: Assignment;
   assignments: PaginatedAssignments;
   me: User;
   membership: Membership;
+  membershipRequest: MembershipRequest;
+  membershipRequests: PaginatedMembershipRequests;
   memberships: PaginatedMemberships;
   task: Task;
   tasks: PaginatedTasks;
@@ -454,19 +454,6 @@ export type Query = {
   teams: PaginatedTeams;
   user: User;
   users: PaginatedUsers;
-};
-
-
-export type QueryApplicationArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type QueryApplicationsArgs = {
-  filter?: InputMaybe<ApplicationFilterMap>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order?: InputMaybe<ApplicationOrderMap>;
 };
 
 
@@ -486,6 +473,19 @@ export type QueryAssignmentsArgs = {
 
 export type QueryMembershipArgs = {
   id: Scalars['ID'];
+};
+
+
+export type QueryMembershipRequestArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryMembershipRequestsArgs = {
+  filter?: InputMaybe<MembershipRequestFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<MembershipRequestOrderMap>;
 };
 
 
@@ -656,7 +656,6 @@ export type TaskUpdateInput = {
 
 export type Team = {
   __typename?: 'Team';
-  applications: PaginatedApplications;
   assignments: PaginatedAssignments;
   createdAt: Scalars['DateTime'];
   creator: User;
@@ -664,18 +663,11 @@ export type Team = {
   id: Scalars['ID'];
   isOpen: Scalars['Boolean'];
   membership?: Maybe<Membership>;
+  membershipRequests: PaginatedMembershipRequests;
   memberships: PaginatedMemberships;
   name: Scalars['String'];
   tasks: PaginatedTasks;
   updatedAt: Scalars['DateTime'];
-};
-
-
-export type TeamApplicationsArgs = {
-  filter?: InputMaybe<ApplicationFilterMap>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order?: InputMaybe<ApplicationOrderMap>;
 };
 
 
@@ -685,6 +677,14 @@ export type TeamAssignmentsArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order?: InputMaybe<AssignmentOrderMap>;
   ownOnly?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type TeamMembershipRequestsArgs = {
+  filter?: InputMaybe<MembershipRequestFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<MembershipRequestOrderMap>;
 };
 
 
@@ -790,11 +790,11 @@ export type TeamUpdateInput = {
 
 export type User = {
   __typename?: 'User';
-  applications: PaginatedApplications;
   assignments: PaginatedAssignments;
   createdAt: Scalars['DateTime'];
   gender: Gender;
   id: Scalars['ID'];
+  membershipRequests: PaginatedMembershipRequests;
   memberships: PaginatedMemberships;
   nickname?: Maybe<Scalars['String']>;
   tasks: PaginatedTasks;
@@ -804,20 +804,20 @@ export type User = {
 };
 
 
-export type UserApplicationsArgs = {
-  filter?: InputMaybe<ApplicationFilterMap>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order?: InputMaybe<ApplicationOrderMap>;
-};
-
-
 export type UserAssignmentsArgs = {
   filter?: InputMaybe<AssignmentFilterMap>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   order?: InputMaybe<AssignmentOrderMap>;
   ownOnly?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type UserMembershipRequestsArgs = {
+  filter?: InputMaybe<MembershipRequestFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<MembershipRequestOrderMap>;
 };
 
 
@@ -931,42 +931,42 @@ export type UserUpdateInput = {
   password?: InputMaybe<Scalars['String']>;
 };
 
-export type ApplicationAcceptMutationVariables = Exact<{
+export type MembershipRequestAcceptMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type ApplicationAcceptMutation = { __typename?: 'Mutation', acceptApplication: { __typename?: 'AcceptApplicationResult', application: { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } }, membership: { __typename?: 'Membership', id: string, role: Role, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender } } } };
+export type MembershipRequestAcceptMutation = { __typename?: 'Mutation', acceptMembershipRequest: { __typename?: 'AcceptMembershipRequestResult', membershipRequest: { __typename?: 'MembershipRequest', id: string, message?: string | null, status: MembershipRequestStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } }, membership: { __typename?: 'Membership', id: string, role: Role, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender } } } };
 
-export type ApplicationCreateMutationVariables = Exact<{
-  data: ApplicationCreateInput;
+export type MembershipRequestCreateMutationVariables = Exact<{
+  data: MembershipRequestCreateInput;
 }>;
 
 
-export type ApplicationCreateMutation = { __typename?: 'Mutation', createApplication: { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } } };
+export type MembershipRequestCreateMutation = { __typename?: 'Mutation', createMembershipRequest: { __typename?: 'MembershipRequest', id: string, message?: string | null, status: MembershipRequestStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } } };
 
-export type ApplicationDeleteMutationVariables = Exact<{
+export type MembershipRequestDeleteMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type ApplicationDeleteMutation = { __typename?: 'Mutation', deleteApplication: { __typename?: 'Application', id: string } };
+export type MembershipRequestDeleteMutation = { __typename?: 'Mutation', deleteMembershipRequest: { __typename?: 'MembershipRequest', id: string } };
 
-export type ApplicationListQueryVariables = Exact<{
+export type MembershipRequestListQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type ApplicationListQuery = { __typename?: 'Query', applications: { __typename?: 'PaginatedApplications', total: number, results: Array<{ __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } }> } };
+export type MembershipRequestListQuery = { __typename?: 'Query', membershipRequests: { __typename?: 'PaginatedMembershipRequests', total: number, results: Array<{ __typename?: 'MembershipRequest', id: string, message?: string | null, status: MembershipRequestStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } }> } };
 
-export type ApplicationRejectMutationVariables = Exact<{
+export type MembershipRequestRejectMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type ApplicationRejectMutation = { __typename?: 'Mutation', rejectApplication: { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } } };
+export type MembershipRequestRejectMutation = { __typename?: 'Mutation', rejectMembershipRequest: { __typename?: 'MembershipRequest', id: string, message?: string | null, status: MembershipRequestStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } } };
 
-export type ApplicationFragment = { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } };
+export type MembershipRequestFragment = { __typename?: 'MembershipRequest', id: string, message?: string | null, status: MembershipRequestStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } };
 
 export type AssignmentCreateMutationVariables = Exact<{
   data: AssignmentCreateInput;
@@ -1133,8 +1133,8 @@ export type UserUpdateMutation = { __typename?: 'Mutation', updateUser: { __type
 
 export type UserFragment = { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender, updatedAt: any };
 
-export const ApplicationFragmentDoc = gql`
-    fragment Application on Application {
+export const MembershipRequestFragmentDoc = gql`
+    fragment MembershipRequest on MembershipRequest {
   id
   owner {
     id
@@ -1207,51 +1207,51 @@ export const UserFragmentDoc = gql`
   updatedAt
 }
     `;
-export const ApplicationAcceptDocument = gql`
-    mutation ApplicationAccept($id: ID!) {
-  acceptApplication(id: $id) {
-    application {
-      ...Application
+export const MembershipRequestAcceptDocument = gql`
+    mutation MembershipRequestAccept($id: ID!) {
+  acceptMembershipRequest(id: $id) {
+    membershipRequest {
+      ...MembershipRequest
     }
     membership {
       ...Membership
     }
   }
 }
-    ${ApplicationFragmentDoc}
+    ${MembershipRequestFragmentDoc}
 ${MembershipFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
   })
-  export class ApplicationAcceptGQL extends Apollo.Mutation<ApplicationAcceptMutation, ApplicationAcceptMutationVariables> {
-    override document = ApplicationAcceptDocument;
+  export class MembershipRequestAcceptGQL extends Apollo.Mutation<MembershipRequestAcceptMutation, MembershipRequestAcceptMutationVariables> {
+    override document = MembershipRequestAcceptDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
-export const ApplicationCreateDocument = gql`
-    mutation ApplicationCreate($data: ApplicationCreateInput!) {
-  createApplication(data: $data) {
-    ...Application
+export const MembershipRequestCreateDocument = gql`
+    mutation MembershipRequestCreate($data: MembershipRequestCreateInput!) {
+  createMembershipRequest(data: $data) {
+    ...MembershipRequest
   }
 }
-    ${ApplicationFragmentDoc}`;
+    ${MembershipRequestFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
   })
-  export class ApplicationCreateGQL extends Apollo.Mutation<ApplicationCreateMutation, ApplicationCreateMutationVariables> {
-    override document = ApplicationCreateDocument;
+  export class MembershipRequestCreateGQL extends Apollo.Mutation<MembershipRequestCreateMutation, MembershipRequestCreateMutationVariables> {
+    override document = MembershipRequestCreateDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
-export const ApplicationDeleteDocument = gql`
-    mutation ApplicationDelete($id: ID!) {
-  deleteApplication(id: $id) {
+export const MembershipRequestDeleteDocument = gql`
+    mutation MembershipRequestDelete($id: ID!) {
+  deleteMembershipRequest(id: $id) {
     id
   }
 }
@@ -1260,47 +1260,47 @@ export const ApplicationDeleteDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class ApplicationDeleteGQL extends Apollo.Mutation<ApplicationDeleteMutation, ApplicationDeleteMutationVariables> {
-    override document = ApplicationDeleteDocument;
+  export class MembershipRequestDeleteGQL extends Apollo.Mutation<MembershipRequestDeleteMutation, MembershipRequestDeleteMutationVariables> {
+    override document = MembershipRequestDeleteDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
-export const ApplicationListDocument = gql`
-    query ApplicationList($offset: Int) {
-  applications(limit: 20, offset: $offset, order: {id: DESC}) {
+export const MembershipRequestListDocument = gql`
+    query MembershipRequestList($offset: Int) {
+  membershipRequests(limit: 20, offset: $offset, order: {id: DESC}) {
     total
     results {
-      ...Application
+      ...MembershipRequest
     }
   }
 }
-    ${ApplicationFragmentDoc}`;
+    ${MembershipRequestFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
   })
-  export class ApplicationListGQL extends Apollo.Query<ApplicationListQuery, ApplicationListQueryVariables> {
-    override document = ApplicationListDocument;
+  export class MembershipRequestListGQL extends Apollo.Query<MembershipRequestListQuery, MembershipRequestListQueryVariables> {
+    override document = MembershipRequestListDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
-export const ApplicationRejectDocument = gql`
-    mutation ApplicationReject($id: ID!) {
-  rejectApplication(id: $id) {
-    ...Application
+export const MembershipRequestRejectDocument = gql`
+    mutation MembershipRequestReject($id: ID!) {
+  rejectMembershipRequest(id: $id) {
+    ...MembershipRequest
   }
 }
-    ${ApplicationFragmentDoc}`;
+    ${MembershipRequestFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
   })
-  export class ApplicationRejectGQL extends Apollo.Mutation<ApplicationRejectMutation, ApplicationRejectMutationVariables> {
-    override document = ApplicationRejectDocument;
+  export class MembershipRequestRejectGQL extends Apollo.Mutation<MembershipRequestRejectMutation, MembershipRequestRejectMutationVariables> {
+    override document = MembershipRequestRejectDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

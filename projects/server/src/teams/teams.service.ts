@@ -91,7 +91,7 @@ export class TeamsService {
       throw new ForbiddenException('Cannot delete teams not created by you');
 
     await this.repo.populate(team, [
-      'applications',
+      'membershipRequests',
       'memberships',
       'memberships.assignments',
       'memberships.tasks',

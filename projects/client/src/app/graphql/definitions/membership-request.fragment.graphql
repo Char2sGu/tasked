@@ -1,0 +1,15 @@
+fragment MembershipRequest on MembershipRequest {
+  id
+  owner {
+    id
+    username
+    nickname
+  }
+  team {
+    id
+    name
+  }
+  message
+  status
+  createdAt
+}

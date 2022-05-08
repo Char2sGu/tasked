@@ -19,11 +19,13 @@ import { Notifier } from '../../core/notifier.service';
   viewProviders: [RouterOutletDataReader],
   animations: [
     trigger('router', [
-      transition('teams <=> applications', [FadeThroughAnimation.apply()]),
-      transition('teams => settings, applications => settings', [
+      transition('teams <=> membership-requests', [
+        FadeThroughAnimation.apply(),
+      ]),
+      transition('teams => settings, membership-requests => settings', [
         SharedAxisAnimation.apply('z', 'forward'),
       ]),
-      transition('settings => teams, settings => applications', [
+      transition('settings => teams, settings => membership-requests', [
         SharedAxisAnimation.apply('z', 'backward'),
       ]),
     ]),
@@ -38,8 +40,8 @@ export class MainComponent implements OnInit, OnDestroy {
       icon: 'workspaces',
     },
     {
-      text: 'Applications',
-      commands: ['/', 'app', 'applications'],
+      text: 'Requests',
+      commands: ['/', 'app', 'membership-requests'],
       icon: 'group_add',
     },
   ];

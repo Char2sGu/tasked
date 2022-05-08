@@ -1,0 +1,10 @@
+mutation MembershipRequestAccept($id: ID!) {
+  acceptMembershipRequest(id: $id) {
+    membershipRequest {
+      ...MembershipRequest
+    }
+    membership {
+      ...Membership
+    }
+  }
+}

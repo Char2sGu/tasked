@@ -9,11 +9,11 @@ import {
 } from '@mikro-orm/core';
 import { ObjectType } from '@nestjs/graphql';
 
-import { Application } from '../../applications/entities/application.entity';
 import { BaseEntity } from '../../common/base-entity.entity';
 import { CommonFilter } from '../../common/common-filter.enum';
 import { Field } from '../../common/field.decorator';
 import { Context } from '../../context/context.class';
+import { MembershipRequest } from '../../membership-requests/entities/membership-request.entity';
 import { PaginatedMemberships } from '../../memberships/dto/paginated-memberships.obj.dto';
 import { Membership } from '../../memberships/entities/membership.entity';
 import { Quota } from '../../mikro/mikro-quota/quota.decorator';
@@ -50,11 +50,11 @@ export class Team extends BaseEntity<Team> {
   creator!: User;
 
   @OneToMany({
-    entity: () => Application,
-    mappedBy: (application) => application.team,
+    entity: () => MembershipRequest,
+    mappedBy: (membershipRequest) => membershipRequest.team,
     cascade: [Cascade.ALL],
   })
-  applications = new Collection<Application>(this);
+  membershipRequests = new Collection<MembershipRequest>(this);
 
   @Quota(50)
   @Field(() => PaginatedMemberships)

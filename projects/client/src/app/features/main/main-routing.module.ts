@@ -20,12 +20,12 @@ const routes: Routes = [
         data: { animationState: 'teams' },
       },
       {
-        path: 'applications',
+        path: 'membership-requests',
         loadChildren: () =>
-          import('../applications/applications.module').then(
-            (m) => m.ApplicationsModule,
+          import('../membership-requests/membership-requests.module').then(
+            (m) => m.MembershipRequestsModule,
           ),
-        data: { animationState: 'applications' },
+        data: { animationState: 'membership-requests' },
       },
       {
         path: 'settings',

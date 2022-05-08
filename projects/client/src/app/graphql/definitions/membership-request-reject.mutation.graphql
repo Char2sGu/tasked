@@ -1,0 +1,5 @@
+mutation MembershipRequestReject($id: ID!) {
+  rejectMembershipRequest(id: $id) {
+    ...MembershipRequest
+  }
+}

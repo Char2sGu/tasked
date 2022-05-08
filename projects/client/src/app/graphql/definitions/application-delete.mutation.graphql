@@ -1,5 +1,0 @@
-mutation ApplicationDelete($id: ID!) {
-  deleteApplication(id: $id) {
-    id
-  }
-}

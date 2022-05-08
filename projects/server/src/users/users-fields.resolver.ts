@@ -1,11 +1,11 @@
 import { Args, Parent, ResolveField, Resolver } from '@nestjs/graphql';
 
-import { ApplicationsService } from '../applications/applications.service';
-import { PaginatedApplications } from '../applications/dto/paginated-applications.obj.dto';
-import { QueryApplicationsArgs } from '../applications/dto/query-applications.args.dto';
 import { AssignmentsService } from '../assignments/assignments.service';
 import { PaginatedAssignments } from '../assignments/dto/paginated-assignments.obj.dto';
 import { QueryAssignmentsArgs } from '../assignments/dto/query-assignments.args.dto';
+import { PaginatedMembershipRequests } from '../membership-requests/dto/paginated-membership-requests.obj.dto';
+import { QueryMembershipRequestsArgs } from '../membership-requests/dto/query-membership-requests.args.dto';
+import { MembershipRequestsService } from '../membership-requests/membership-requests.service';
 import { PaginatedMemberships } from '../memberships/dto/paginated-memberships.obj.dto';
 import { QueryMembershipsArgs } from '../memberships/dto/query-memberships.args.dto';
 import { MembershipsService } from '../memberships/memberships.service';
@@ -21,7 +21,7 @@ import { User } from './entities/user.entity';
 export class UsersFieldsResolver {
   constructor(
     private teamsService: TeamsService,
-    private applicationsService: ApplicationsService,
+    private membershipRequestsService: MembershipRequestsService,
     private membershipsService: MembershipsService,
     private tasksService: TasksService,
     private assignmentsService: AssignmentsService,
@@ -36,11 +36,11 @@ export class UsersFieldsResolver {
   }
 
   @ResolveField()
-  async applications(
-    @Args() args: QueryApplicationsArgs,
+  async membershipRequests(
+    @Args() args: QueryMembershipRequestsArgs,
     @Parent() entity: User,
-  ): Promise<PaginatedApplications> {
-    return this.applicationsService.queryMany(args, { owner: entity });
+  ): Promise<PaginatedMembershipRequests> {
+    return this.membershipRequestsService.queryMany(args, { owner: entity });
   }
 
   @ResolveField()

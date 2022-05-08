@@ -1,0 +1,8 @@
+query MembershipRequestList($offset: Int) {
+  membershipRequests(limit: 20, offset: $offset, order: { id: DESC }) {
+    total
+    results {
+      ...MembershipRequest
+    }
+  }
+}

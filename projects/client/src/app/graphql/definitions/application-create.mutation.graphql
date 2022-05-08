@@ -1,5 +1,0 @@
-mutation ApplicationCreate($data: ApplicationCreateInput!) {
-  createApplication(data: $data) {
-    ...Application
-  }
-}

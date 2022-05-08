@@ -9,8 +9,8 @@ import supertest from 'supertest';
 
 import { Affair } from '../../src/affairs/entities/affair.entity';
 import { AppModule } from '../../src/app.module';
-import { Application } from '../../src/applications/entities/application.entity';
 import { Assignment } from '../../src/assignments/entities/assignment.entity';
+import { MembershipRequest } from '../../src/membership-requests/entities/membership-request.entity';
 import { Membership } from '../../src/memberships/entities/membership.entity';
 import { Task } from '../../src/tasks/entities/task.entity';
 import { Team } from '../../src/teams/entities/team.entity';
@@ -30,7 +30,7 @@ export async function prepareE2E({
           User,
           Membership,
           Team,
-          Application,
+          MembershipRequest,
           Affair,
           Task,
           Assignment,
