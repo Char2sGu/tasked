@@ -5,14 +5,14 @@ import { DataLoader } from '@nestjs-devkit/dataloader';
 import { Context } from '../context/context.class';
 import { Membership } from '../memberships/entities/membership.entity';
 import { Repository } from '../mikro/repository.class';
-import { Room } from './entities/room.entity';
+import { Team } from './entities/team.entity';
 
 /**
- * Load the user's own memberships in the rooms.
+ * Load the user's own memberships in the teams.
  */
 @Injectable()
-export class RoomMembershipLoader extends DataLoader<
-  Room,
+export class TeamMembershipLoader extends DataLoader<
+  Team,
   Membership | undefined
 > {
   constructor(
@@ -22,13 +22,13 @@ export class RoomMembershipLoader extends DataLoader<
     super();
   }
 
-  protected async resolve(rooms: Room[]): Promise<Membership[]> {
+  protected async resolve(teams: Team[]): Promise<Membership[]> {
     const memberships = await this.membershipRepo.find({
       owner: Context.current.user,
-      room: { $in: rooms },
+      team: { $in: teams },
     });
-    return rooms.map(
-      (room) => memberships.find((membership) => membership.room == room)!,
+    return teams.map(
+      (team) => memberships.find((membership) => membership.team == team)!,
     );
   }
 }

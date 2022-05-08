@@ -1,10 +1,10 @@
 import { ID, InputType, PartialType } from '@nestjs/graphql';
 
 import { Field } from '../../common/field.decorator';
-import { RoomCreateInput } from './room-create.input.dto';
+import { TeamCreateInput } from './team-create.input.dto';
 
 @InputType()
-export class RoomUpdateInput extends PartialType(RoomCreateInput) {
+export class TeamUpdateInput extends PartialType(TeamCreateInput) {
   @Field(() => ID, { nullable: true })
   creator?: number;
 

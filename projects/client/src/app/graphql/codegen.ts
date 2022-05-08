@@ -29,14 +29,14 @@ export type Application = {
   id: Scalars['ID'];
   message?: Maybe<Scalars['String']>;
   owner: User;
-  room: Room;
   status: ApplicationStatus;
+  team: Team;
   updatedAt: Scalars['DateTime'];
 };
 
 export type ApplicationCreateInput = {
   message?: InputMaybe<Scalars['String']>;
-  room: Scalars['ID'];
+  team: Scalars['ID'];
 };
 
 export type ApplicationFilterMap = {
@@ -208,8 +208,8 @@ export type Membership = {
   id: Scalars['ID'];
   owner: User;
   role: Role;
-  room: Room;
   tasks: PaginatedTasks;
+  team: Team;
   updatedAt: Scalars['DateTime'];
 };
 
@@ -291,19 +291,19 @@ export type Mutation = {
   auth: AuthResult;
   createApplication: Application;
   createAssignment: Assignment;
-  createRoom: Room;
   createTask: Task;
+  createTeam: Team;
   createUser: User;
   deleteApplication: Application;
   deleteAssignment: Assignment;
   deleteMembership: Membership;
-  deleteRoom: Room;
   deleteTask: Task;
+  deleteTeam: Team;
   rejectApplication: Application;
   updateAssignment: Assignment;
   updateMembership: Membership;
-  updateRoom: Room;
   updateTask: Task;
+  updateTeam: Team;
   updateUser: User;
 };
 
@@ -329,13 +329,13 @@ export type MutationCreateAssignmentArgs = {
 };
 
 
-export type MutationCreateRoomArgs = {
-  data: RoomCreateInput;
+export type MutationCreateTaskArgs = {
+  data: TaskCreateInput;
 };
 
 
-export type MutationCreateTaskArgs = {
-  data: TaskCreateInput;
+export type MutationCreateTeamArgs = {
+  data: TeamCreateInput;
 };
 
 
@@ -359,12 +359,12 @@ export type MutationDeleteMembershipArgs = {
 };
 
 
-export type MutationDeleteRoomArgs = {
+export type MutationDeleteTaskArgs = {
   id: Scalars['ID'];
 };
 
 
-export type MutationDeleteTaskArgs = {
+export type MutationDeleteTeamArgs = {
   id: Scalars['ID'];
 };
 
@@ -386,14 +386,14 @@ export type MutationUpdateMembershipArgs = {
 };
 
 
-export type MutationUpdateRoomArgs = {
-  data: RoomUpdateInput;
+export type MutationUpdateTaskArgs = {
+  data: TaskUpdateInput;
   id: Scalars['ID'];
 };
 
 
-export type MutationUpdateTaskArgs = {
-  data: TaskUpdateInput;
+export type MutationUpdateTeamArgs = {
+  data: TeamUpdateInput;
   id: Scalars['ID'];
 };
 
@@ -421,15 +421,15 @@ export type PaginatedMemberships = {
   total: Scalars['Int'];
 };
 
-export type PaginatedRooms = {
-  __typename?: 'PaginatedRooms';
-  results: Array<Room>;
-  total: Scalars['Int'];
-};
-
 export type PaginatedTasks = {
   __typename?: 'PaginatedTasks';
   results: Array<Task>;
+  total: Scalars['Int'];
+};
+
+export type PaginatedTeams = {
+  __typename?: 'PaginatedTeams';
+  results: Array<Team>;
   total: Scalars['Int'];
 };
 
@@ -448,10 +448,10 @@ export type Query = {
   me: User;
   membership: Membership;
   memberships: PaginatedMemberships;
-  room: Room;
-  rooms: PaginatedRooms;
   task: Task;
   tasks: PaginatedTasks;
+  team: Team;
+  teams: PaginatedTeams;
   user: User;
   users: PaginatedUsers;
 };
@@ -497,20 +497,6 @@ export type QueryMembershipsArgs = {
 };
 
 
-export type QueryRoomArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type QueryRoomsArgs = {
-  filter?: InputMaybe<RoomFilterMap>;
-  joinedOnly?: InputMaybe<Scalars['Boolean']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order?: InputMaybe<RoomOrderMap>;
-};
-
-
 export type QueryTaskArgs = {
   id: Scalars['ID'];
 };
@@ -522,6 +508,20 @@ export type QueryTasksArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order?: InputMaybe<TaskOrderMap>;
   ownOnly?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryTeamArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryTeamsArgs = {
+  filter?: InputMaybe<TeamFilterMap>;
+  joinedOnly?: InputMaybe<Scalars['Boolean']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<TeamOrderMap>;
 };
 
 
@@ -547,140 +547,6 @@ export enum Role {
   Member = 'Member'
 }
 
-export type Room = {
-  __typename?: 'Room';
-  applications: PaginatedApplications;
-  assignments: PaginatedAssignments;
-  createdAt: Scalars['DateTime'];
-  creator: User;
-  description?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  isOpen: Scalars['Boolean'];
-  membership?: Maybe<Membership>;
-  memberships: PaginatedMemberships;
-  name: Scalars['String'];
-  tasks: PaginatedTasks;
-  updatedAt: Scalars['DateTime'];
-};
-
-
-export type RoomApplicationsArgs = {
-  filter?: InputMaybe<ApplicationFilterMap>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order?: InputMaybe<ApplicationOrderMap>;
-};
-
-
-export type RoomAssignmentsArgs = {
-  filter?: InputMaybe<AssignmentFilterMap>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order?: InputMaybe<AssignmentOrderMap>;
-  ownOnly?: InputMaybe<Scalars['Boolean']>;
-};
-
-
-export type RoomMembershipsArgs = {
-  filter?: InputMaybe<MembershipFilterMap>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order?: InputMaybe<MembershipOrderMap>;
-};
-
-
-export type RoomTasksArgs = {
-  filter?: InputMaybe<TaskFilterMap>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order?: InputMaybe<TaskOrderMap>;
-  ownOnly?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type RoomCreateInput = {
-  description?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
-};
-
-export type RoomFilterMap = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  createdAt__eq?: InputMaybe<Scalars['DateTime']>;
-  createdAt__gt?: InputMaybe<Scalars['DateTime']>;
-  createdAt__gte?: InputMaybe<Scalars['DateTime']>;
-  createdAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdAt__like?: InputMaybe<Scalars['String']>;
-  createdAt__lt?: InputMaybe<Scalars['DateTime']>;
-  createdAt__lte?: InputMaybe<Scalars['DateTime']>;
-  createdAt__ne?: InputMaybe<Scalars['DateTime']>;
-  createdAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
-  description?: InputMaybe<Scalars['String']>;
-  description__eq?: InputMaybe<Scalars['String']>;
-  description__gt?: InputMaybe<Scalars['String']>;
-  description__gte?: InputMaybe<Scalars['String']>;
-  description__in?: InputMaybe<Array<Scalars['String']>>;
-  description__like?: InputMaybe<Scalars['String']>;
-  description__lt?: InputMaybe<Scalars['String']>;
-  description__lte?: InputMaybe<Scalars['String']>;
-  description__ne?: InputMaybe<Scalars['String']>;
-  description__nin?: InputMaybe<Array<Scalars['String']>>;
-  id?: InputMaybe<Scalars['ID']>;
-  id__eq?: InputMaybe<Scalars['ID']>;
-  id__gt?: InputMaybe<Scalars['ID']>;
-  id__gte?: InputMaybe<Scalars['ID']>;
-  id__in?: InputMaybe<Array<Scalars['ID']>>;
-  id__like?: InputMaybe<Scalars['String']>;
-  id__lt?: InputMaybe<Scalars['ID']>;
-  id__lte?: InputMaybe<Scalars['ID']>;
-  id__ne?: InputMaybe<Scalars['ID']>;
-  id__nin?: InputMaybe<Array<Scalars['ID']>>;
-  isOpen?: InputMaybe<Scalars['Boolean']>;
-  isOpen__eq?: InputMaybe<Scalars['Boolean']>;
-  isOpen__gt?: InputMaybe<Scalars['Boolean']>;
-  isOpen__gte?: InputMaybe<Scalars['Boolean']>;
-  isOpen__in?: InputMaybe<Array<Scalars['Boolean']>>;
-  isOpen__like?: InputMaybe<Scalars['String']>;
-  isOpen__lt?: InputMaybe<Scalars['Boolean']>;
-  isOpen__lte?: InputMaybe<Scalars['Boolean']>;
-  isOpen__ne?: InputMaybe<Scalars['Boolean']>;
-  isOpen__nin?: InputMaybe<Array<Scalars['Boolean']>>;
-  name?: InputMaybe<Scalars['String']>;
-  name__eq?: InputMaybe<Scalars['String']>;
-  name__gt?: InputMaybe<Scalars['String']>;
-  name__gte?: InputMaybe<Scalars['String']>;
-  name__in?: InputMaybe<Array<Scalars['String']>>;
-  name__like?: InputMaybe<Scalars['String']>;
-  name__lt?: InputMaybe<Scalars['String']>;
-  name__lte?: InputMaybe<Scalars['String']>;
-  name__ne?: InputMaybe<Scalars['String']>;
-  name__nin?: InputMaybe<Array<Scalars['String']>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__eq?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__gt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__gte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedAt__like?: InputMaybe<Scalars['String']>;
-  updatedAt__lt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__lte?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__ne?: InputMaybe<Scalars['DateTime']>;
-  updatedAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
-};
-
-export type RoomOrderMap = {
-  createdAt?: InputMaybe<QueryOrder>;
-  description?: InputMaybe<QueryOrder>;
-  id?: InputMaybe<QueryOrder>;
-  isOpen?: InputMaybe<QueryOrder>;
-  name?: InputMaybe<QueryOrder>;
-  updatedAt?: InputMaybe<QueryOrder>;
-};
-
-export type RoomUpdateInput = {
-  creator?: InputMaybe<Scalars['ID']>;
-  description?: InputMaybe<Scalars['String']>;
-  isOpen?: InputMaybe<Scalars['Boolean']>;
-  name?: InputMaybe<Scalars['String']>;
-};
-
 export type Task = {
   __typename?: 'Task';
   assignments: PaginatedAssignments;
@@ -689,7 +555,7 @@ export type Task = {
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   isActive: Scalars['Boolean'];
-  room: Room;
+  team: Team;
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
 };
@@ -705,7 +571,7 @@ export type TaskAssignmentsArgs = {
 
 export type TaskCreateInput = {
   description?: InputMaybe<Scalars['String']>;
-  room: Scalars['ID'];
+  team: Scalars['ID'];
   title: Scalars['String'];
 };
 
@@ -784,8 +650,142 @@ export type TaskOrderMap = {
 export type TaskUpdateInput = {
   description?: InputMaybe<Scalars['String']>;
   isActive?: InputMaybe<Scalars['Boolean']>;
-  room?: InputMaybe<Scalars['ID']>;
+  team?: InputMaybe<Scalars['ID']>;
   title?: InputMaybe<Scalars['String']>;
+};
+
+export type Team = {
+  __typename?: 'Team';
+  applications: PaginatedApplications;
+  assignments: PaginatedAssignments;
+  createdAt: Scalars['DateTime'];
+  creator: User;
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  isOpen: Scalars['Boolean'];
+  membership?: Maybe<Membership>;
+  memberships: PaginatedMemberships;
+  name: Scalars['String'];
+  tasks: PaginatedTasks;
+  updatedAt: Scalars['DateTime'];
+};
+
+
+export type TeamApplicationsArgs = {
+  filter?: InputMaybe<ApplicationFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<ApplicationOrderMap>;
+};
+
+
+export type TeamAssignmentsArgs = {
+  filter?: InputMaybe<AssignmentFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<AssignmentOrderMap>;
+  ownOnly?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type TeamMembershipsArgs = {
+  filter?: InputMaybe<MembershipFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<MembershipOrderMap>;
+};
+
+
+export type TeamTasksArgs = {
+  filter?: InputMaybe<TaskFilterMap>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<TaskOrderMap>;
+  ownOnly?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type TeamCreateInput = {
+  description?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+};
+
+export type TeamFilterMap = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__eq?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__gte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdAt__like?: InputMaybe<Scalars['String']>;
+  createdAt__lt?: InputMaybe<Scalars['DateTime']>;
+  createdAt__lte?: InputMaybe<Scalars['DateTime']>;
+  createdAt__ne?: InputMaybe<Scalars['DateTime']>;
+  createdAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
+  description?: InputMaybe<Scalars['String']>;
+  description__eq?: InputMaybe<Scalars['String']>;
+  description__gt?: InputMaybe<Scalars['String']>;
+  description__gte?: InputMaybe<Scalars['String']>;
+  description__in?: InputMaybe<Array<Scalars['String']>>;
+  description__like?: InputMaybe<Scalars['String']>;
+  description__lt?: InputMaybe<Scalars['String']>;
+  description__lte?: InputMaybe<Scalars['String']>;
+  description__ne?: InputMaybe<Scalars['String']>;
+  description__nin?: InputMaybe<Array<Scalars['String']>>;
+  id?: InputMaybe<Scalars['ID']>;
+  id__eq?: InputMaybe<Scalars['ID']>;
+  id__gt?: InputMaybe<Scalars['ID']>;
+  id__gte?: InputMaybe<Scalars['ID']>;
+  id__in?: InputMaybe<Array<Scalars['ID']>>;
+  id__like?: InputMaybe<Scalars['String']>;
+  id__lt?: InputMaybe<Scalars['ID']>;
+  id__lte?: InputMaybe<Scalars['ID']>;
+  id__ne?: InputMaybe<Scalars['ID']>;
+  id__nin?: InputMaybe<Array<Scalars['ID']>>;
+  isOpen?: InputMaybe<Scalars['Boolean']>;
+  isOpen__eq?: InputMaybe<Scalars['Boolean']>;
+  isOpen__gt?: InputMaybe<Scalars['Boolean']>;
+  isOpen__gte?: InputMaybe<Scalars['Boolean']>;
+  isOpen__in?: InputMaybe<Array<Scalars['Boolean']>>;
+  isOpen__like?: InputMaybe<Scalars['String']>;
+  isOpen__lt?: InputMaybe<Scalars['Boolean']>;
+  isOpen__lte?: InputMaybe<Scalars['Boolean']>;
+  isOpen__ne?: InputMaybe<Scalars['Boolean']>;
+  isOpen__nin?: InputMaybe<Array<Scalars['Boolean']>>;
+  name?: InputMaybe<Scalars['String']>;
+  name__eq?: InputMaybe<Scalars['String']>;
+  name__gt?: InputMaybe<Scalars['String']>;
+  name__gte?: InputMaybe<Scalars['String']>;
+  name__in?: InputMaybe<Array<Scalars['String']>>;
+  name__like?: InputMaybe<Scalars['String']>;
+  name__lt?: InputMaybe<Scalars['String']>;
+  name__lte?: InputMaybe<Scalars['String']>;
+  name__ne?: InputMaybe<Scalars['String']>;
+  name__nin?: InputMaybe<Array<Scalars['String']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__eq?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__gte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedAt__like?: InputMaybe<Scalars['String']>;
+  updatedAt__lt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__lte?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__ne?: InputMaybe<Scalars['DateTime']>;
+  updatedAt__nin?: InputMaybe<Array<Scalars['DateTime']>>;
+};
+
+export type TeamOrderMap = {
+  createdAt?: InputMaybe<QueryOrder>;
+  description?: InputMaybe<QueryOrder>;
+  id?: InputMaybe<QueryOrder>;
+  isOpen?: InputMaybe<QueryOrder>;
+  name?: InputMaybe<QueryOrder>;
+  updatedAt?: InputMaybe<QueryOrder>;
+};
+
+export type TeamUpdateInput = {
+  creator?: InputMaybe<Scalars['ID']>;
+  description?: InputMaybe<Scalars['String']>;
+  isOpen?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 export type User = {
@@ -797,8 +797,8 @@ export type User = {
   id: Scalars['ID'];
   memberships: PaginatedMemberships;
   nickname?: Maybe<Scalars['String']>;
-  rooms: PaginatedRooms;
   tasks: PaginatedTasks;
+  teams: PaginatedTeams;
   updatedAt: Scalars['DateTime'];
   username: Scalars['String'];
 };
@@ -829,21 +829,21 @@ export type UserMembershipsArgs = {
 };
 
 
-export type UserRoomsArgs = {
-  filter?: InputMaybe<RoomFilterMap>;
-  joinedOnly?: InputMaybe<Scalars['Boolean']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order?: InputMaybe<RoomOrderMap>;
-};
-
-
 export type UserTasksArgs = {
   filter?: InputMaybe<TaskFilterMap>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   order?: InputMaybe<TaskOrderMap>;
   ownOnly?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type UserTeamsArgs = {
+  filter?: InputMaybe<TeamFilterMap>;
+  joinedOnly?: InputMaybe<Scalars['Boolean']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<TeamOrderMap>;
 };
 
 export type UserCreateInput = {
@@ -936,14 +936,14 @@ export type ApplicationAcceptMutationVariables = Exact<{
 }>;
 
 
-export type ApplicationAcceptMutation = { __typename?: 'Mutation', acceptApplication: { __typename?: 'AcceptApplicationResult', application: { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, room: { __typename?: 'Room', id: string, name: string } }, membership: { __typename?: 'Membership', id: string, role: Role, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender } } } };
+export type ApplicationAcceptMutation = { __typename?: 'Mutation', acceptApplication: { __typename?: 'AcceptApplicationResult', application: { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } }, membership: { __typename?: 'Membership', id: string, role: Role, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender } } } };
 
 export type ApplicationCreateMutationVariables = Exact<{
   data: ApplicationCreateInput;
 }>;
 
 
-export type ApplicationCreateMutation = { __typename?: 'Mutation', createApplication: { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, room: { __typename?: 'Room', id: string, name: string } } };
+export type ApplicationCreateMutation = { __typename?: 'Mutation', createApplication: { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } } };
 
 export type ApplicationDeleteMutationVariables = Exact<{
   id: Scalars['ID'];
@@ -957,16 +957,16 @@ export type ApplicationListQueryVariables = Exact<{
 }>;
 
 
-export type ApplicationListQuery = { __typename?: 'Query', applications: { __typename?: 'PaginatedApplications', total: number, results: Array<{ __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, room: { __typename?: 'Room', id: string, name: string } }> } };
+export type ApplicationListQuery = { __typename?: 'Query', applications: { __typename?: 'PaginatedApplications', total: number, results: Array<{ __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } }> } };
 
 export type ApplicationRejectMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type ApplicationRejectMutation = { __typename?: 'Mutation', rejectApplication: { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, room: { __typename?: 'Room', id: string, name: string } } };
+export type ApplicationRejectMutation = { __typename?: 'Mutation', rejectApplication: { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } } };
 
-export type ApplicationFragment = { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, room: { __typename?: 'Room', id: string, name: string } };
+export type ApplicationFragment = { __typename?: 'Application', id: string, message?: string | null, status: ApplicationStatus, createdAt: any, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null }, team: { __typename?: 'Team', id: string, name: string } };
 
 export type AssignmentCreateMutationVariables = Exact<{
   data: AssignmentCreateInput;
@@ -1069,52 +1069,52 @@ export type TaskUpdateMutation = { __typename?: 'Mutation', updateTask: { __type
 
 export type TaskFragment = { __typename?: 'Task', id: string, title: string, description?: string | null, createdAt: any, assignments: { __typename?: 'PaginatedAssignments', total: number } };
 
-export type RoomCreateMutationVariables = Exact<{
-  data: RoomCreateInput;
+export type TeamCreateMutationVariables = Exact<{
+  data: TeamCreateInput;
 }>;
 
 
-export type RoomCreateMutation = { __typename?: 'Mutation', createRoom: { __typename?: 'Room', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null } };
+export type TeamCreateMutation = { __typename?: 'Mutation', createTeam: { __typename?: 'Team', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null } };
 
-export type RoomDeleteMutationVariables = Exact<{
+export type TeamDeleteMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type RoomDeleteMutation = { __typename?: 'Mutation', deleteRoom: { __typename?: 'Room', id: string } };
+export type TeamDeleteMutation = { __typename?: 'Mutation', deleteTeam: { __typename?: 'Team', id: string } };
 
-export type RoomDetailQueryVariables = Exact<{
+export type TeamDetailQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type RoomDetailQuery = { __typename?: 'Query', room: { __typename?: 'Room', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null } };
+export type TeamDetailQuery = { __typename?: 'Query', team: { __typename?: 'Team', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null } };
 
-export type RoomListQueryVariables = Exact<{
+export type TeamListQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']>;
-  filter?: InputMaybe<RoomFilterMap>;
+  filter?: InputMaybe<TeamFilterMap>;
   joinedOnly?: InputMaybe<Scalars['Boolean']>;
 }>;
 
 
-export type RoomListQuery = { __typename?: 'Query', rooms: { __typename?: 'PaginatedRooms', total: number, results: Array<{ __typename?: 'Room', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null }> } };
+export type TeamListQuery = { __typename?: 'Query', teams: { __typename?: 'PaginatedTeams', total: number, results: Array<{ __typename?: 'Team', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null }> } };
 
-export type RoomMembershipListQueryVariables = Exact<{
+export type TeamMembershipListQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type RoomMembershipListQuery = { __typename?: 'Query', room: { __typename?: 'Room', id: string, memberships: { __typename?: 'PaginatedMemberships', total: number, results: Array<{ __typename?: 'Membership', id: string, role: Role, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender } }> } } };
+export type TeamMembershipListQuery = { __typename?: 'Query', team: { __typename?: 'Team', id: string, memberships: { __typename?: 'PaginatedMemberships', total: number, results: Array<{ __typename?: 'Membership', id: string, role: Role, owner: { __typename?: 'User', id: string, username: string, nickname?: string | null, gender: Gender } }> } } };
 
-export type RoomUpdateMutationVariables = Exact<{
+export type TeamUpdateMutationVariables = Exact<{
   id: Scalars['ID'];
-  data: RoomUpdateInput;
+  data: TeamUpdateInput;
 }>;
 
 
-export type RoomUpdateMutation = { __typename?: 'Mutation', updateRoom: { __typename?: 'Room', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null } };
+export type TeamUpdateMutation = { __typename?: 'Mutation', updateTeam: { __typename?: 'Team', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null } };
 
-export type RoomFragment = { __typename?: 'Room', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null };
+export type TeamFragment = { __typename?: 'Team', id: string, name: string, description?: string | null, isOpen: boolean, creator: { __typename?: 'User', id: string, username: string, nickname?: string | null }, membership?: { __typename?: 'Membership', id: string, role: Role } | null };
 
 export type UserCreateMutationVariables = Exact<{
   data: UserCreateInput;
@@ -1141,7 +1141,7 @@ export const ApplicationFragmentDoc = gql`
     username
     nickname
   }
-  room {
+  team {
     id
     name
   }
@@ -1181,8 +1181,8 @@ export const TaskFragmentDoc = gql`
   createdAt
 }
     `;
-export const RoomFragmentDoc = gql`
-    fragment Room on Room {
+export const TeamFragmentDoc = gql`
+    fragment Team on Team {
   id
   name
   description
@@ -1576,27 +1576,27 @@ export const TaskUpdateDocument = gql`
       super(apollo);
     }
   }
-export const RoomCreateDocument = gql`
-    mutation RoomCreate($data: RoomCreateInput!) {
-  createRoom(data: $data) {
-    ...Room
+export const TeamCreateDocument = gql`
+    mutation TeamCreate($data: TeamCreateInput!) {
+  createTeam(data: $data) {
+    ...Team
   }
 }
-    ${RoomFragmentDoc}`;
+    ${TeamFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
   })
-  export class RoomCreateGQL extends Apollo.Mutation<RoomCreateMutation, RoomCreateMutationVariables> {
-    override document = RoomCreateDocument;
+  export class TeamCreateGQL extends Apollo.Mutation<TeamCreateMutation, TeamCreateMutationVariables> {
+    override document = TeamCreateDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
-export const RoomDeleteDocument = gql`
-    mutation RoomDelete($id: ID!) {
-  deleteRoom(id: $id) {
+export const TeamDeleteDocument = gql`
+    mutation TeamDelete($id: ID!) {
+  deleteTeam(id: $id) {
     id
   }
 }
@@ -1605,55 +1605,55 @@ export const RoomDeleteDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class RoomDeleteGQL extends Apollo.Mutation<RoomDeleteMutation, RoomDeleteMutationVariables> {
-    override document = RoomDeleteDocument;
+  export class TeamDeleteGQL extends Apollo.Mutation<TeamDeleteMutation, TeamDeleteMutationVariables> {
+    override document = TeamDeleteDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
-export const RoomDetailDocument = gql`
-    query RoomDetail($id: ID!) {
-  room(id: $id) {
-    ...Room
+export const TeamDetailDocument = gql`
+    query TeamDetail($id: ID!) {
+  team(id: $id) {
+    ...Team
   }
 }
-    ${RoomFragmentDoc}`;
+    ${TeamFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
   })
-  export class RoomDetailGQL extends Apollo.Query<RoomDetailQuery, RoomDetailQueryVariables> {
-    override document = RoomDetailDocument;
+  export class TeamDetailGQL extends Apollo.Query<TeamDetailQuery, TeamDetailQueryVariables> {
+    override document = TeamDetailDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
-export const RoomListDocument = gql`
-    query RoomList($offset: Int, $filter: RoomFilterMap, $joinedOnly: Boolean) {
-  rooms(limit: 20, offset: $offset, filter: $filter, joinedOnly: $joinedOnly) {
+export const TeamListDocument = gql`
+    query TeamList($offset: Int, $filter: TeamFilterMap, $joinedOnly: Boolean) {
+  teams(limit: 20, offset: $offset, filter: $filter, joinedOnly: $joinedOnly) {
     total
     results {
-      ...Room
+      ...Team
     }
   }
 }
-    ${RoomFragmentDoc}`;
+    ${TeamFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
   })
-  export class RoomListGQL extends Apollo.Query<RoomListQuery, RoomListQueryVariables> {
-    override document = RoomListDocument;
+  export class TeamListGQL extends Apollo.Query<TeamListQuery, TeamListQueryVariables> {
+    override document = TeamListDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
-export const RoomMembershipListDocument = gql`
-    query RoomMembershipList($id: ID!) {
-  room(id: $id) {
+export const TeamMembershipListDocument = gql`
+    query TeamMembershipList($id: ID!) {
+  team(id: $id) {
     id
     memberships {
       total
@@ -1668,26 +1668,26 @@ export const RoomMembershipListDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class RoomMembershipListGQL extends Apollo.Query<RoomMembershipListQuery, RoomMembershipListQueryVariables> {
-    override document = RoomMembershipListDocument;
+  export class TeamMembershipListGQL extends Apollo.Query<TeamMembershipListQuery, TeamMembershipListQueryVariables> {
+    override document = TeamMembershipListDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }
   }
-export const RoomUpdateDocument = gql`
-    mutation RoomUpdate($id: ID!, $data: RoomUpdateInput!) {
-  updateRoom(id: $id, data: $data) {
-    ...Room
+export const TeamUpdateDocument = gql`
+    mutation TeamUpdate($id: ID!, $data: TeamUpdateInput!) {
+  updateTeam(id: $id, data: $data) {
+    ...Team
   }
 }
-    ${RoomFragmentDoc}`;
+    ${TeamFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
   })
-  export class RoomUpdateGQL extends Apollo.Mutation<RoomUpdateMutation, RoomUpdateMutationVariables> {
-    override document = RoomUpdateDocument;
+  export class TeamUpdateGQL extends Apollo.Mutation<TeamUpdateMutation, TeamUpdateMutationVariables> {
+    override document = TeamUpdateDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

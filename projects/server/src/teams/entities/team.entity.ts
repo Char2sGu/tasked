@@ -19,7 +19,7 @@ import { Membership } from '../../memberships/entities/membership.entity';
 import { Quota } from '../../mikro/mikro-quota/quota.decorator';
 import { User } from '../../users/entities/user.entity';
 
-@Filter<Room>({
+@Filter<Team>({
   name: CommonFilter.Crud,
   cond: () => ({
     $or: [
@@ -30,7 +30,7 @@ import { User } from '../../users/entities/user.entity';
 })
 @Entity()
 @ObjectType()
-export class Room extends BaseEntity<Room> {
+export class Team extends BaseEntity<Team> {
   @Field(() => String, { orderable: true, filterable: true })
   @Property()
   name!: string;
@@ -51,7 +51,7 @@ export class Room extends BaseEntity<Room> {
 
   @OneToMany({
     entity: () => Application,
-    mappedBy: (application) => application.room,
+    mappedBy: (application) => application.team,
     cascade: [Cascade.ALL],
   })
   applications = new Collection<Application>(this);
@@ -60,7 +60,7 @@ export class Room extends BaseEntity<Room> {
   @Field(() => PaginatedMemberships)
   @OneToMany({
     entity: () => Membership,
-    mappedBy: (membership) => membership.room,
+    mappedBy: (membership) => membership.team,
     cascade: [Cascade.ALL],
   })
   memberships = new Collection<Membership>(this);

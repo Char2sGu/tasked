@@ -7,9 +7,9 @@ import { isEmpty } from '../../../common/form.utils';
 import { AuthService } from '../../../core/auth.service';
 import { Notifier } from '../../../core/notifier.service';
 import {
-  RoomDetailGQL,
-  RoomUpdateGQL,
-  RoomUpdateInput,
+  TeamDetailGQL,
+  TeamUpdateGQL,
+  TeamUpdateInput,
 } from '../../../graphql/codegen';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
 
@@ -19,7 +19,7 @@ import { TeamDetailState } from '../team-detail/team-detail-state.service';
   styleUrls: ['./team-detail-tab-settings.component.scss'],
 })
 export class TeamDetailTabSettingsComponent implements OnInit {
-  data: RoomUpdateInput = {
+  data: TeamUpdateInput = {
     name: '',
     description: '',
     isOpen: false,
@@ -36,8 +36,8 @@ export class TeamDetailTabSettingsComponent implements OnInit {
     private state: TeamDetailState,
     private authService: AuthService,
     private notifier: Notifier,
-    private queryGql: RoomDetailGQL,
-    private updateGql: RoomUpdateGQL,
+    private queryGql: TeamDetailGQL,
+    private updateGql: TeamUpdateGQL,
   ) {}
 
   ngOnInit(): void {

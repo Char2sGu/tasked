@@ -16,9 +16,9 @@ import { BaseEntity } from '../../common/base-entity.entity';
 import { CommonFilter } from '../../common/common-filter.enum';
 import { Field } from '../../common/field.decorator';
 import { Context } from '../../context/context.class';
-import { Room } from '../../rooms/entities/room.entity';
 import { PaginatedTasks } from '../../tasks/dto/paginated-tasks.obj.dto';
 import { Task } from '../../tasks/entities/task.entity';
+import { Team } from '../../teams/entities/team.entity';
 import { User } from '../../users/entities/user.entity';
 import { Role } from './role.enum';
 
@@ -26,12 +26,12 @@ import { Role } from './role.enum';
 @Filter<Membership>({
   name: CommonFilter.Crud,
   cond: () => ({
-    room: {
+    team: {
       memberships: { owner: Context.current.user, deletedAt: null },
     },
   }),
 })
-@Unique<Membership>({ properties: ['owner', 'room', 'deletedAt'] })
+@Unique<Membership>({ properties: ['owner', 'team', 'deletedAt'] })
 @Entity()
 export class Membership extends BaseEntity<Membership> {
   @Field(() => User)
@@ -40,11 +40,11 @@ export class Membership extends BaseEntity<Membership> {
   })
   owner!: User;
 
-  @Field(() => Room)
+  @Field(() => Team)
   @ManyToOne({
-    entity: () => Room,
+    entity: () => Team,
   })
-  room!: Room;
+  team!: Team;
 
   @Field(() => PaginatedAssignments)
   @OneToMany({

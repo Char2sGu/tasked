@@ -7,8 +7,8 @@ import { ApplicationStatus } from '../../applications/entities/application-statu
 import { Assignment } from '../../assignments/entities/assignment.entity';
 import { Membership } from '../../memberships/entities/membership.entity';
 import { Role } from '../../memberships/entities/role.enum';
-import { Room } from '../../rooms/entities/room.entity';
 import { Task } from '../../tasks/entities/task.entity';
+import { Team } from '../../teams/entities/team.entity';
 import { Gender } from '../../users/entities/gender.enum';
 import { User } from '../../users/entities/user.entity';
 
@@ -36,12 +36,12 @@ export class DbSeedCommand implements CommandRunner {
     }
     em.persist(users);
 
-    const rooms: Room[] = [];
-    while (rooms.length < 30) {
+    const teams: Team[] = [];
+    while (teams.length < 30) {
       const user = oneOf(users);
-      if (user.rooms.length == 20) continue;
-      rooms.push(
-        em.create(Room, {
+      if (user.teams.length == 20) continue;
+      teams.push(
+        em.create(Team, {
           creator: oneOf(users),
           name: faker.random.words(faker.datatype.number({ min: 1, max: 3 })),
           description: faker.datatype.boolean()
@@ -51,16 +51,16 @@ export class DbSeedCommand implements CommandRunner {
         }),
       );
     }
-    em.persist(rooms);
+    em.persist(teams);
 
     const applications: Application[] = [];
     users.forEach((user) => {
-      const createFor = (rooms: Room[], statusOptions: ApplicationStatus[]) =>
-        rooms.forEach((room) => {
+      const createFor = (teams: Team[], statusOptions: ApplicationStatus[]) =>
+        teams.forEach((team) => {
           applications.push(
             em.create(Application, {
               owner: user,
-              room: room,
+              team: team,
               status: oneOf(statusOptions),
               message: faker.datatype.boolean()
                 ? faker.random.words(faker.datatype.number({ min: 1, max: 10 }))
@@ -69,13 +69,13 @@ export class DbSeedCommand implements CommandRunner {
           );
         });
       const acceptedSet = someOf(
-        rooms,
+        teams,
         faker.datatype.number({ min: 0, max: 8 }),
       );
       const accepted = [...acceptedSet];
       createFor(accepted, [ApplicationStatus.Accepted]);
       const rejectedSet = someOf(
-        rooms,
+        teams,
         faker.datatype.number({ min: 0, max: 4 }),
         acceptedSet,
       );
@@ -91,11 +91,11 @@ export class DbSeedCommand implements CommandRunner {
     em.persist(applications);
 
     const memberships: Membership[] = [];
-    rooms.forEach((room) => {
+    teams.forEach((team) => {
       memberships.push(
         em.create(Membership, {
-          owner: room.creator,
-          room,
+          owner: team.creator,
+          team,
           role: Role.Manager,
         }),
       );
@@ -105,7 +105,7 @@ export class DbSeedCommand implements CommandRunner {
       memberships.push(
         em.create(Membership, {
           owner: application.owner,
-          room: application.room,
+          team: application.team,
           role: possibility(
             faker.datatype.number({ min: 0.1, max: 0.3, precision: 0.1 }),
           )
@@ -117,8 +117,8 @@ export class DbSeedCommand implements CommandRunner {
     em.persist(memberships);
 
     const tasks: Task[] = [];
-    rooms.forEach((room) => {
-      const managers = room.memberships
+    teams.forEach((team) => {
+      const managers = team.memberships
         .getItems()
         .filter((m) => m.role == Role.Manager);
       managers.forEach((manager) => {
@@ -127,7 +127,7 @@ export class DbSeedCommand implements CommandRunner {
         while (tasks.length - prevLength != count) {
           tasks.push(
             em.create(Task, {
-              room,
+              team,
               creator: manager,
               title: faker.random.words(
                 faker.datatype.number({ min: 1, max: 8 }),
@@ -149,7 +149,7 @@ export class DbSeedCommand implements CommandRunner {
 
     const assignments: Assignment[] = [];
     tasks.forEach((task) => {
-      const members = task.room.memberships
+      const members = task.team.memberships
         .getItems()
         .filter((membership) => membership.role == Role.Member);
       someOf(members, Math.random()).forEach((membership) => {

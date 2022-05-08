@@ -19,10 +19,10 @@ import {
   AssignmentCreateGQL,
   AssignmentDeleteGQL,
   Role,
-  RoomMembershipListGQL,
-  RoomMembershipListQuery,
   TaskAssignmentListGQL,
   TaskAssignmentListQuery,
+  TeamMembershipListGQL,
+  TeamMembershipListQuery,
 } from '../../../graphql/codegen';
 import { TeamDetailState } from '../team-detail/team-detail-state.service';
 import { Task } from '../team-detail-tab-tasks/team-detail-tab-tasks.component';
@@ -42,7 +42,7 @@ export class TeamDetailTabTasksItemAssignPopupComponent implements OnInit {
     public modal: ModalRef,
     private state: TeamDetailState,
     private notifier: Notifier,
-    private membershipListGqL: RoomMembershipListGQL,
+    private membershipListGqL: TeamMembershipListGQL,
     private assignmentListGql: TaskAssignmentListGQL,
     private assignmentCreateGql: AssignmentCreateGQL,
     private assignmentDeleteGql: AssignmentDeleteGQL,
@@ -58,7 +58,7 @@ export class TeamDetailTabTasksItemAssignPopupComponent implements OnInit {
           this.membershipListGqL
             .watch({ id: team.id })
             .valueChanges.pipe(
-              map((result) => result.data.room.memberships.results),
+              map((result) => result.data.team.memberships.results),
             ),
           this.assignmentListGql
             .watch({ id: task.id })
@@ -192,7 +192,7 @@ export class TeamDetailTabTasksItemAssignPopupComponent implements OnInit {
 }
 
 type Membership =
-  RoomMembershipListQuery['room']['memberships']['results'][number];
+  TeamMembershipListQuery['team']['memberships']['results'][number];
 
 type Assignment =
   TaskAssignmentListQuery['task']['assignments']['results'][number];

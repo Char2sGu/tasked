@@ -2,7 +2,7 @@ import { Component, OnInit, TrackByFunction } from '@angular/core';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
-import { RoomListGQL, RoomListQuery } from '../../../graphql/codegen';
+import { TeamListGQL, TeamListQuery } from '../../../graphql/codegen';
 
 @Component({
   selector: 'app-team-list',
@@ -16,7 +16,7 @@ export class TeamListComponent implements OnInit {
   searchMode = false;
   loading = false;
 
-  constructor(private listGql: RoomListGQL) {}
+  constructor(private listGql: TeamListGQL) {}
 
   ngOnInit(): void {
     this.teams$ = this.list();
@@ -37,7 +37,7 @@ export class TeamListComponent implements OnInit {
     this.searchMode = false;
     return this.listGql
       .fetch({ joinedOnly: true })
-      .pipe(map((result) => result.data.rooms.results));
+      .pipe(map((result) => result.data.teams.results));
   }
 
   private search() {
@@ -53,8 +53,8 @@ export class TeamListComponent implements OnInit {
         },
         { fetchPolicy: 'network-only' },
       )
-      .pipe(map((result) => result.data.rooms.results));
+      .pipe(map((result) => result.data.teams.results));
   }
 }
 
-type Team = RoomListQuery['rooms']['results'][number];
+type Team = TeamListQuery['teams']['results'][number];

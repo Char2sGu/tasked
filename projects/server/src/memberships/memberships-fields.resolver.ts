@@ -3,11 +3,11 @@ import { Args, Parent, ResolveField, Resolver } from '@nestjs/graphql';
 import { AssignmentsService } from '../assignments/assignments.service';
 import { PaginatedAssignments } from '../assignments/dto/paginated-assignments.obj.dto';
 import { QueryAssignmentsArgs } from '../assignments/dto/query-assignments.args.dto';
-import { Room } from '../rooms/entities/room.entity';
-import { RoomRefLoader } from '../rooms/room-ref.loader';
 import { PaginatedTasks } from '../tasks/dto/paginated-tasks.obj.dto';
 import { QueryTasksArgs } from '../tasks/dto/query-tasks.args.dto';
 import { TasksService } from '../tasks/tasks.service';
+import { Team } from '../teams/entities/team.entity';
+import { TeamRefLoader } from '../teams/team-ref.loader';
 import { User } from '../users/entities/user.entity';
 import { UserRefLoader } from '../users/user-ref.loader';
 import { Membership } from './entities/membership.entity';
@@ -16,7 +16,7 @@ import { Membership } from './entities/membership.entity';
 export class MembershipsFieldsResolver {
   constructor(
     private userRefLoader: UserRefLoader,
-    private roomRefLoader: RoomRefLoader,
+    private teamRefLoader: TeamRefLoader,
     private assignmentsService: AssignmentsService,
     private tasksService: TasksService,
   ) {}
@@ -27,8 +27,8 @@ export class MembershipsFieldsResolver {
   }
 
   @ResolveField()
-  async room(@Parent() entity: Membership): Promise<Room> {
-    return this.roomRefLoader.load(entity.room);
+  async team(@Parent() entity: Membership): Promise<Team> {
+    return this.teamRefLoader.load(entity.team);
   }
 
   @ResolveField()

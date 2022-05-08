@@ -19,8 +19,8 @@ import { Field } from '../../common/field.decorator';
 import { PaginatedMemberships } from '../../memberships/dto/paginated-memberships.obj.dto';
 import { Membership } from '../../memberships/entities/membership.entity';
 import { Quota } from '../../mikro/mikro-quota/quota.decorator';
-import { PaginatedRooms } from '../../rooms/dto/paginated-rooms.obj.dto';
-import { Room } from '../../rooms/entities/room.entity';
+import { PaginatedTeams } from '../../teams/dto/paginated-teams.obj.dto';
+import { Team } from '../../teams/entities/team.entity';
 import { Gender } from '../../users/entities/gender.enum';
 
 @ObjectType()
@@ -43,13 +43,13 @@ export class User extends BaseEntity<User> {
   gender!: Gender;
 
   @Quota(20)
-  @Field(() => PaginatedRooms)
+  @Field(() => PaginatedTeams)
   @OneToMany({
-    entity: () => Room,
-    mappedBy: (room) => room.creator,
+    entity: () => Team,
+    mappedBy: (team) => team.creator,
     cascade: [Cascade.ALL],
   })
-  rooms = new Collection<Room>(this);
+  teams = new Collection<Team>(this);
 
   @Field(() => PaginatedApplications)
   @OneToMany({

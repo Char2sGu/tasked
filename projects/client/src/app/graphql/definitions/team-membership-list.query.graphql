@@ -1,5 +1,5 @@
-query RoomMembershipList($id: ID!) {
-  room(id: $id) {
+query TeamMembershipList($id: ID!) {
+  team(id: $id) {
     id
     memberships {
       total

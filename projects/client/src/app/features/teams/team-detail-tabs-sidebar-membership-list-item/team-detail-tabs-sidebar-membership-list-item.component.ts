@@ -6,12 +6,12 @@ import { map } from 'rxjs/operators';
 
 import {
   Role,
-  RoomDetailGQL,
-  RoomMembershipListQuery,
+  TeamDetailGQL,
+  TeamMembershipListQuery,
 } from '../../../graphql/codegen';
 
 type Membership =
-  RoomMembershipListQuery['room']['memberships']['results'][number];
+  TeamMembershipListQuery['team']['memberships']['results'][number];
 
 @Component({
   selector: 'app-team-detail-tabs-sidebar-membership-list-item',
@@ -32,14 +32,14 @@ export class TeamDetailSidebarMembershipListItemComponent
   @ViewChild(MatMenuTrigger) private menuTrigger?: MatMenuTrigger;
   private subscription?: Subscription;
 
-  constructor(private route: ActivatedRoute, private teamGql: RoomDetailGQL) {}
+  constructor(private route: ActivatedRoute, private teamGql: TeamDetailGQL) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.subscription?.unsubscribe();
       this.subscription = this.teamGql
         .watch({ id: params.get('id')! })
-        .valueChanges.pipe(map(({ data }) => data.room))
+        .valueChanges.pipe(map(({ data }) => data.team))
         .subscribe((team) => {
           if (!this.membership) return;
 

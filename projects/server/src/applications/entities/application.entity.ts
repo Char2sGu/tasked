@@ -5,7 +5,7 @@ import { BaseEntity } from '../../common/base-entity.entity';
 import { CommonFilter } from '../../common/common-filter.enum';
 import { Field } from '../../common/field.decorator';
 import { Context } from '../../context/context.class';
-import { Room } from '../../rooms/entities/room.entity';
+import { Team } from '../../teams/entities/team.entity';
 import { User } from '../../users/entities/user.entity';
 import { ApplicationStatus } from './application-status.enum';
 
@@ -15,7 +15,7 @@ import { ApplicationStatus } from './application-status.enum';
   cond: () => ({
     $or: [
       { owner: Context.current.user },
-      { room: { creator: Context.current.user } },
+      { team: { creator: Context.current.user } },
     ],
   }),
 })
@@ -27,11 +27,11 @@ export class Application extends BaseEntity<Application> {
   })
   owner!: User;
 
-  @Field(() => Room)
+  @Field(() => Team)
   @ManyToOne({
-    entity: () => Room,
+    entity: () => Team,
   })
-  room!: Room;
+  team!: Team;
 
   @Field(() => String, { nullable: true, orderable: true, filterable: true })
   @Property({ nullable: true })

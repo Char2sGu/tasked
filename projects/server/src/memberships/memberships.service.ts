@@ -57,11 +57,11 @@ export class MembershipsService {
     });
     const ownMembership = await this.repo.findOneOrFail({
       owner: Context.current.user,
-      room: targetMembership.room,
+      team: targetMembership.team,
     });
-    const room = await ownMembership.room.init();
+    const team = await ownMembership.team.init();
 
-    if (ownMembership.owner == room.creator) {
+    if (ownMembership.owner == team.creator) {
       if (ownMembership == targetMembership)
         throw new ForbiddenException(
           `Cannot ${action} the membership of the creator`,

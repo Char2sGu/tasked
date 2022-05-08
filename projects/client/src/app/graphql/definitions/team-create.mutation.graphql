@@ -1,5 +1,5 @@
-mutation RoomCreate($data: RoomCreateInput!) {
-  createRoom(data: $data) {
-    ...Room
+mutation TeamCreate($data: TeamCreateInput!) {
+  createTeam(data: $data) {
+    ...Team
   }
 }

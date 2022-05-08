@@ -8,13 +8,13 @@ import { TestingModule } from '@nestjs/testing';
 import { AuthService } from '../src/auth/auth.service';
 import { Membership } from '../src/memberships/entities/membership.entity';
 import { Role } from '../src/memberships/entities/role.enum';
-import { PaginatedRooms } from '../src/rooms/dto/paginated-rooms.obj.dto';
-import { Room } from '../src/rooms/entities/room.entity';
+import { PaginatedTeams } from '../src/teams/dto/paginated-teams.obj.dto';
+import { Team } from '../src/teams/entities/team.entity';
 import { User } from '../src/users/entities/user.entity';
 import { GraphQLClient } from './utils/graphql-client.class';
 import { prepareE2E } from './utils/prepare-e2e';
 
-describe.only('Rooms', () => {
+describe.only('Teams', () => {
   let app: INestApplication;
   let module: TestingModule;
   let client: GraphQLClient;
@@ -46,8 +46,8 @@ describe.only('Rooms', () => {
     client.setToken(token);
   });
 
-  describe('room', () => {
-    let result: EntityData<Room>;
+  describe('team', () => {
+    let result: EntityData<Team>;
 
     beforeEach(async () => {
       await em.persist([create(1)]).flush();
@@ -82,17 +82,17 @@ describe.only('Rooms', () => {
     });
 
     async function request(args: string, fields: string) {
-      const content = await client.request(`query { room${args} ${fields} }`);
-      result = content.room;
+      const content = await client.request(`query { team${args} ${fields} }`);
+      result = content.team;
     }
   });
 
-  describe('rooms', () => {
+  describe('teams', () => {
     beforeEach(async () => {
       await em.persist([create(1), create(1), create(1)]).flush();
     });
 
-    let result: PaginatedRooms;
+    let result: PaginatedTeams;
 
     it('should return the data when no arguments are specified', async () => {
       await request();
@@ -117,14 +117,14 @@ describe.only('Rooms', () => {
 
     async function request(args = '') {
       const content = await client.request(
-        `query { rooms${args} { total, results { id } } }`,
+        `query { teams${args} { total, results { id } } }`,
       );
-      result = content.rooms;
+      result = content.teams;
     }
   });
 
-  describe('createRoom', () => {
-    let result: Room;
+  describe('createTeam', () => {
+    let result: Team;
 
     it('should return the data', async () => {
       await request('(data: { name: "name" })');
@@ -151,15 +151,15 @@ describe.only('Rooms', () => {
 
     async function request(args: string) {
       const content = await client.request(
-        `mutation { createRoom${args} { id, name } }`,
+        `mutation { createTeam${args} { id, name } }`,
       );
-      result = content.createRoom;
+      result = content.createTeam;
       return result;
     }
   });
 
-  describe('updateRoom', () => {
-    let result: Room;
+  describe('updateTeam', () => {
+    let result: Team;
 
     beforeEach(async () => {
       await em.persist(create(1)).flush();
@@ -191,20 +191,20 @@ describe.only('Rooms', () => {
       await em.persist(create(2)).flush();
       const promise = request(`(id: 2, data: {})`, `{ id }`);
       await expect(promise).rejects.toThrow(
-        'Cannot update rooms not created by you',
+        'Cannot update teams not created by you',
       );
     });
 
     async function request(args: string, fields: string) {
       const content = await client.request(
-        `mutation { updateRoom${args} ${fields} }`,
+        `mutation { updateTeam${args} ${fields} }`,
       );
-      result = content.updateRoom;
+      result = content.updateTeam;
     }
   });
 
-  describe('deleteRoom', () => {
-    let result: Room;
+  describe('deleteTeam', () => {
+    let result: Team;
 
     beforeEach(async () => {
       await em.persist(create(1)).flush();
@@ -213,7 +213,7 @@ describe.only('Rooms', () => {
     it('should return the data', async () => {
       await request(`(id: 1)`, `{ id }`);
       expect(result).toEqual({ id: '1' });
-      const count = await em.count(Room);
+      const count = await em.count(Team);
       expect(count).toBe(0);
     });
 
@@ -227,15 +227,15 @@ describe.only('Rooms', () => {
       await em.persist(create(2)).flush();
       const promise = request(`(id: 2)`, `{ id }`);
       await expect(promise).rejects.toThrow(
-        'Cannot delete rooms not created by you',
+        'Cannot delete teams not created by you',
       );
     });
 
     async function request(args: string, fields: string) {
       const content = await client.request(
-        `mutation { deleteRoom${args} ${fields} }`,
+        `mutation { deleteTeam${args} ${fields} }`,
       );
-      result = content.deleteRoom;
+      result = content.deleteTeam;
     }
   });
 
@@ -244,7 +244,7 @@ describe.only('Rooms', () => {
   });
 
   function create(creator: number) {
-    return em.create(Room, {
+    return em.create(Team, {
       name: 'name',
       creator,
       memberships: [

@@ -12,8 +12,8 @@ import { AppModule } from '../../src/app.module';
 import { Application } from '../../src/applications/entities/application.entity';
 import { Assignment } from '../../src/assignments/entities/assignment.entity';
 import { Membership } from '../../src/memberships/entities/membership.entity';
-import { Room } from '../../src/rooms/entities/room.entity';
 import { Task } from '../../src/tasks/entities/task.entity';
+import { Team } from '../../src/teams/entities/team.entity';
 import { User } from '../../src/users/entities/user.entity';
 import { GraphQLClient } from './graphql-client.class';
 
@@ -29,7 +29,7 @@ export async function prepareE2E({
         entities: [
           User,
           Membership,
-          Room,
+          Team,
           Application,
           Affair,
           Task,

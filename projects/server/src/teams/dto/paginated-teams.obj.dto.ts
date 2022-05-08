@@ -1,7 +1,7 @@
 import { ObjectType } from '@nestjs/graphql';
 
 import { Paginated } from '../../common/dto/paginated.obj.dto';
-import { Room } from '../entities/room.entity';
+import { Team } from '../entities/team.entity';
 
 @ObjectType()
-export class PaginatedRooms extends Paginated.for(() => Room) {}
+export class PaginatedTeams extends Paginated.for(() => Team) {}

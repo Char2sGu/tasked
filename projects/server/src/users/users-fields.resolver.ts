@@ -9,18 +9,18 @@ import { QueryAssignmentsArgs } from '../assignments/dto/query-assignments.args.
 import { PaginatedMemberships } from '../memberships/dto/paginated-memberships.obj.dto';
 import { QueryMembershipsArgs } from '../memberships/dto/query-memberships.args.dto';
 import { MembershipsService } from '../memberships/memberships.service';
-import { PaginatedRooms } from '../rooms/dto/paginated-rooms.obj.dto';
-import { QueryRoomsArgs } from '../rooms/dto/query-rooms.args.dto';
-import { RoomsService } from '../rooms/rooms.service';
 import { PaginatedTasks } from '../tasks/dto/paginated-tasks.obj.dto';
 import { QueryTasksArgs } from '../tasks/dto/query-tasks.args.dto';
 import { TasksService } from '../tasks/tasks.service';
+import { PaginatedTeams } from '../teams/dto/paginated-teams.obj.dto';
+import { QueryTeamsArgs } from '../teams/dto/query-teams.args.dto';
+import { TeamsService } from '../teams/teams.service';
 import { User } from './entities/user.entity';
 
 @Resolver(() => User)
 export class UsersFieldsResolver {
   constructor(
-    private roomsService: RoomsService,
+    private teamsService: TeamsService,
     private applicationsService: ApplicationsService,
     private membershipsService: MembershipsService,
     private tasksService: TasksService,
@@ -28,11 +28,11 @@ export class UsersFieldsResolver {
   ) {}
 
   @ResolveField()
-  async rooms(
-    @Args() args: QueryRoomsArgs,
+  async teams(
+    @Args() args: QueryTeamsArgs,
     @Parent() entity: User,
-  ): Promise<PaginatedRooms> {
-    return this.roomsService.queryMany(args, { creator: entity });
+  ): Promise<PaginatedTeams> {
+    return this.teamsService.queryMany(args, { creator: entity });
   }
 
   @ResolveField()

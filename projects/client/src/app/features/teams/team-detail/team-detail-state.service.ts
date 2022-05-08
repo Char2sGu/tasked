@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, concatMap, filter, map, of, switchMap } from 'rxjs';
 
-import { RoomDetailGQL, RoomDetailQuery } from '../../../graphql/codegen';
+import { TeamDetailGQL, TeamDetailQuery } from '../../../graphql/codegen';
 
-export type Team = RoomDetailQuery['room'];
+export type Team = TeamDetailQuery['team'];
 export type Membership = NonNullable<Team['membership']>;
 
 @Injectable()
@@ -13,7 +13,7 @@ export class TeamDetailState {
     map((params) => params.get('id')),
     filter((v): v is string => typeof v == 'string'),
     switchMap((id) => this.teamDetailGql.watch({ id }).valueChanges),
-    map((result) => result.data.room),
+    map((result) => result.data.team),
     catchError(() => {
       this.router.navigate(['/app/teams']);
       return of();
@@ -31,6 +31,6 @@ export class TeamDetailState {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private teamDetailGql: RoomDetailGQL,
+    private teamDetailGql: TeamDetailGQL,
   ) {}
 }

@@ -1,7 +1,7 @@
 import { InputType } from '@nestjs/graphql';
 
 import { FilterMap } from '../../common/dto/filter/filter-map.input.dto';
-import { Room } from '../entities/room.entity';
+import { Team } from '../entities/team.entity';
 
 @InputType()
-export class RoomFilterMap extends FilterMap.from(Room) {}
+export class TeamFilterMap extends FilterMap.from(Team) {}

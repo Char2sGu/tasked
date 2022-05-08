@@ -11,8 +11,8 @@ import { CoreModule } from './core/core.module';
 import { GraphqlModule } from './graphql/graphql.module';
 import { MembershipsModule } from './memberships/memberships.module';
 import { MikroModule } from './mikro/mikro.module';
-import { RoomsModule } from './rooms/rooms.module';
 import { TasksModule } from './tasks/tasks.module';
+import { TeamsModule } from './teams/teams.module';
 import { UsersModule } from './users/users.module';
 import { ValidationModule } from './validation/validation.module';
 
@@ -20,7 +20,6 @@ import { ValidationModule } from './validation/validation.module';
 // TODO: replace applications with invitations
 // TODO: option to hide task after all assignments are done
 // TODO: order of tasks and assignments
-// TODO: rename room to team
 // TODO: initial exclusive team for user
 // TODO: assignment steps
 // TODO: server-sent event
@@ -38,7 +37,7 @@ import { ValidationModule } from './validation/validation.module';
     CoreModule,
     AuthModule,
     UsersModule,
-    RoomsModule,
+    TeamsModule,
     MembershipsModule,
     ApplicationsModule,
     TasksModule,

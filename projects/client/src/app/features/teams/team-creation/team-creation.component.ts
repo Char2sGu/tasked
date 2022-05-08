@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 
 import { Notifier } from '../../../core/notifier.service';
-import { RoomCreateGQL, RoomListGQL } from '../../../graphql/codegen';
+import { TeamCreateGQL, TeamListGQL } from '../../../graphql/codegen';
 
 @Component({
   selector: 'app-team-creation',
@@ -22,8 +22,8 @@ export class TeamCreationComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private notifier: Notifier,
-    private createGql: RoomCreateGQL,
-    private listGql: RoomListGQL,
+    private createGql: TeamCreateGQL,
+    private listGql: TeamListGQL,
   ) {}
 
   ngOnInit(): void {}
@@ -44,10 +44,10 @@ export class TeamCreationComponent implements OnInit {
               .forEach((query) =>
                 query.updateQuery((prev) => ({
                   ...prev,
-                  rooms: {
-                    ...prev.rooms,
-                    total: prev.rooms.total + 1,
-                    results: [...prev.rooms.results, result.data!.createRoom],
+                  teams: {
+                    ...prev.teams,
+                    total: prev.teams.total + 1,
+                    results: [...prev.teams.results, result.data!.createTeam],
                   },
                 })),
               );
@@ -61,7 +61,7 @@ export class TeamCreationComponent implements OnInit {
       )
       .subscribe({
         next: (result) => {
-          this.router.navigate(['/app/rooms', result.data!.createRoom.id], {
+          this.router.navigate(['/app/teams', result.data!.createTeam.id], {
             relativeTo: this.route,
           });
         },

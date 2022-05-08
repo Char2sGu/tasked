@@ -7,12 +7,12 @@ import { concatMap, finalize, first, map } from 'rxjs/operators';
 import { Notifier } from '../../../core/notifier.service';
 import {
   MembershipDeleteGQL,
-  RoomDeleteGQL,
-  RoomDetailGQL,
-  RoomDetailQuery,
+  TeamDeleteGQL,
+  TeamDetailGQL,
+  TeamDetailQuery,
 } from '../../../graphql/codegen';
 
-type Team = RoomDetailQuery['room'];
+type Team = TeamDetailQuery['team'];
 
 @Component({
   selector: 'app-team-detail-tab-settings-actions',
@@ -30,16 +30,16 @@ export class TeamDetailTabSettingsActionsComponent implements OnInit {
     private route: ActivatedRoute,
     private notifier: Notifier,
     private apollo: Apollo,
-    private teamGql: RoomDetailGQL,
+    private teamGql: TeamDetailGQL,
     private membershipDeleteGql: MembershipDeleteGQL,
-    private teamDeleteGql: RoomDeleteGQL,
+    private teamDeleteGql: TeamDeleteGQL,
   ) {}
 
   ngOnInit(): void {
     const id = this.route.parent!.snapshot.paramMap.get('id')!;
     this.team$ = this.teamGql
       .watch({ id })
-      .valueChanges.pipe(map((result) => result.data.room));
+      .valueChanges.pipe(map((result) => result.data.team));
   }
 
   exit(): void {

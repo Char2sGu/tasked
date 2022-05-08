@@ -10,7 +10,7 @@ import {
   ApplicationListQuery,
   ApplicationRejectGQL,
   ApplicationStatus,
-  RoomMembershipListGQL,
+  TeamMembershipListGQL,
 } from '../../../graphql/codegen';
 
 type Application = ApplicationListQuery['applications']['results'][number];
@@ -37,7 +37,7 @@ export class ApplicationListItemComponent implements OnInit {
     private acceptGql: ApplicationAcceptGQL,
     private rejectGql: ApplicationRejectGQL,
     private deleteGql: ApplicationDeleteGQL,
-    private teamMembershipListGql: RoomMembershipListGQL,
+    private teamMembershipListGql: TeamMembershipListGQL,
   ) {}
 
   ngOnInit(): void {}
@@ -52,18 +52,18 @@ export class ApplicationListItemComponent implements OnInit {
         {
           update: (_, result) => {
             const query = this.teamMembershipListGql.watch({
-              id: application.room.id,
+              id: application.team.id,
             });
             if (query.getCurrentResult().loading) return;
             query.updateQuery((prev) => ({
               ...prev,
-              room: {
-                ...prev.room,
+              team: {
+                ...prev.team,
                 memberships: {
-                  ...prev.room.memberships,
-                  total: prev.room.memberships.total + 1,
+                  ...prev.team.memberships,
+                  total: prev.team.memberships.total + 1,
                   results: [
-                    ...prev.room.memberships.results,
+                    ...prev.team.memberships.results,
                     result.data!.acceptApplication.membership,
                   ],
                 },

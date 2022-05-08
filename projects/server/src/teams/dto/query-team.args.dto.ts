@@ -3,4 +3,4 @@ import { ArgsType } from '@nestjs/graphql';
 import { WithId } from '../../common/dto/with-id.args.dto';
 
 @ArgsType()
-export class DeleteRoomArgs extends WithId {}
+export class QueryTeamArgs extends WithId {}

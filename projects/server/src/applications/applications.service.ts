@@ -13,7 +13,7 @@ import { Membership } from '../memberships/entities/membership.entity';
 import { Role } from '../memberships/entities/role.enum';
 import { MikroQuotaService } from '../mikro/mikro-quota/mikro-quota.service';
 import { Repository } from '../mikro/repository.class';
-import { Room } from '../rooms/entities/room.entity';
+import { Team } from '../teams/entities/team.entity';
 import { AcceptApplicationArgs } from './dto/accept-application.args.dto';
 import { AcceptApplicationResult } from './dto/accept-application-result.obj.dto';
 import { CreateApplicationArgs } from './dto/create-application.args.dto';
@@ -34,8 +34,8 @@ export class ApplicationsService {
     @InjectRepository(Membership)
     private membershipRepo: Repository<Membership>,
 
-    @InjectRepository(Room)
-    private roomRepo: Repository<Room>,
+    @InjectRepository(Team)
+    private teamRepo: Repository<Team>,
 
     private quota: MikroQuotaService,
   ) {}
@@ -64,16 +64,16 @@ export class ApplicationsService {
   async createOne({ data }: CreateApplicationArgs): Promise<Application> {
     const user = Context.current.user;
 
-    await this.roomRepo
-      .findOne(data.room, {
+    await this.teamRepo
+      .findOne(data.team, {
         populate: ['memberships'],
         filters: false,
       })
-      .then((room) => this.quota.check(room!, 'memberships'));
+      .then((team) => this.quota.check(team!, 'memberships'));
 
-    await this.roomRepo
+    await this.teamRepo
       .findOne({
-        id: data.room,
+        id: data.team,
         $or: [
           {
             applications: {
@@ -93,7 +93,7 @@ export class ApplicationsService {
       .then((result) => {
         if (result)
           throw new BadRequestException(
-            'room must be an ID of a room in which you have no membership or application',
+            'team must be an ID of a team in which you have no membership or application',
           );
       });
 
@@ -131,7 +131,7 @@ export class ApplicationsService {
 
     const membership = this.membershipRepo.create({
       owner: application.owner,
-      room: application.room,
+      team: application.team,
       role: Role.Member,
     });
 

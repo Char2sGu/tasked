@@ -5,7 +5,7 @@ fragment Application on Application {
     username
     nickname
   }
-  room {
+  team {
     id
     name
   }

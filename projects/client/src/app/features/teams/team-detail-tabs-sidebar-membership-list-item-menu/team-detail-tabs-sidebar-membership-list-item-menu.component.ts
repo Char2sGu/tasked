@@ -9,13 +9,13 @@ import {
   MembershipDeleteGQL,
   MembershipUpdateGQL,
   Role,
-  RoomDetailGQL,
-  RoomMembershipListGQL,
-  RoomMembershipListQuery,
+  TeamDetailGQL,
+  TeamMembershipListGQL,
+  TeamMembershipListQuery,
 } from '../../../graphql/codegen';
 
 type Membership =
-  RoomMembershipListQuery['room']['memberships']['results'][number];
+  TeamMembershipListQuery['team']['memberships']['results'][number];
 
 @Component({
   selector: 'app-team-detail-tabs-sidebar-membership-list-item-menu',
@@ -41,8 +41,8 @@ export class TeamDetailSidebarMembershipListItemMenuComponent
     private route: ActivatedRoute,
     private auth: AuthService,
     private notifier: Notifier,
-    private teamGql: RoomDetailGQL,
-    private listGql: RoomMembershipListGQL,
+    private teamGql: TeamDetailGQL,
+    private listGql: TeamMembershipListGQL,
     private updateGql: MembershipUpdateGQL,
     private deleteGql: MembershipDeleteGQL,
   ) {}
@@ -57,7 +57,7 @@ export class TeamDetailSidebarMembershipListItemMenuComponent
       this.subscription = combineLatest([
         this.teamGql
           .watch({ id: this.teamId })
-          .valueChanges.pipe(map((result) => result.data.room)),
+          .valueChanges.pipe(map((result) => result.data.team)),
         this.auth.user$,
       ]).subscribe(([team, user]) => {
         const isSelf = this.membership?.owner.id == user?.id;
@@ -119,11 +119,11 @@ export class TeamDetailSidebarMembershipListItemMenuComponent
               const query = this.listGql.watch({ id: this.teamId });
               query.updateQuery((prev) => ({
                 ...prev,
-                room: {
-                  ...prev.room,
+                team: {
+                  ...prev.team,
                   memberships: {
-                    ...prev.room.memberships,
-                    total: prev.room.memberships.total - 1,
+                    ...prev.team.memberships,
+                    total: prev.team.memberships.total - 1,
                   },
                 },
               }));

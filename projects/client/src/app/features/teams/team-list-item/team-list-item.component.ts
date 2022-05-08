@@ -7,7 +7,7 @@ import { Notifier } from '../../../core/notifier.service';
 import {
   ApplicationCreateGQL,
   ApplicationListGQL,
-  RoomListQuery,
+  TeamListQuery,
 } from '../../../graphql/codegen';
 
 @Component({
@@ -44,7 +44,7 @@ export class TeamListItemComponent implements OnInit {
     this.applicationCreateGql
       .mutate(
         {
-          data: { room: this.team.id, message: this.message },
+          data: { team: this.team.id, message: this.message },
         },
         {
           update: (_, result) => {
@@ -77,4 +77,4 @@ export class TeamListItemComponent implements OnInit {
   }
 }
 
-type Team = RoomListQuery['rooms']['results'][number];
+type Team = TeamListQuery['teams']['results'][number];

@@ -4,7 +4,7 @@ import { Length, MaxLength } from 'class-validator';
 import { Field } from '../../common/field.decorator';
 
 @InputType()
-export class RoomCreateInput {
+export class TeamCreateInput {
   @Field(() => String)
   @Length(1, 15)
   name!: string;

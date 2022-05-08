@@ -1,5 +1,5 @@
-mutation RoomDelete($id: ID!) {
-  deleteRoom(id: $id) {
+mutation TeamDelete($id: ID!) {
+  deleteTeam(id: $id) {
     id
   }
 }

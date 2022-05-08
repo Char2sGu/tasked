@@ -8,17 +8,17 @@ import { MembershipsModule } from '../memberships/memberships.module';
 import { SharedModule } from '../shared/shared.module';
 import { TasksModule } from '../tasks/tasks.module';
 import { UsersModule } from '../users/users.module';
-import { Room } from './entities/room.entity';
-import { RoomMembershipLoader } from './room-membership.loader';
-import { RoomRefLoader } from './room-ref.loader';
-import { RoomsResolver } from './rooms.resolver';
-import { RoomsService } from './rooms.service';
-import { RoomsFieldsResolver } from './rooms-fields.resolver';
+import { Team } from './entities/team.entity';
+import { TeamMembershipLoader } from './team-membership.loader';
+import { TeamRefLoader } from './team-ref.loader';
+import { TeamsResolver } from './teams.resolver';
+import { TeamsService } from './teams.service';
+import { TeamsFieldsResolver } from './teams-fields.resolver';
 
 @Module({
   imports: [
     SharedModule,
-    MikroOrmModule.forFeature([Room, Membership]),
+    MikroOrmModule.forFeature([Team, Membership]),
     forwardRef(() => UsersModule),
     forwardRef(() => ApplicationsModule),
     forwardRef(() => MembershipsModule),
@@ -26,12 +26,12 @@ import { RoomsFieldsResolver } from './rooms-fields.resolver';
     forwardRef(() => AssignmentsModule),
   ],
   providers: [
-    RoomsResolver,
-    RoomsFieldsResolver,
-    RoomsService,
-    RoomRefLoader,
-    RoomMembershipLoader,
+    TeamsResolver,
+    TeamsFieldsResolver,
+    TeamsService,
+    TeamRefLoader,
+    TeamMembershipLoader,
   ],
-  exports: [RoomsService, RoomRefLoader],
+  exports: [TeamsService, TeamRefLoader],
 })
-export class RoomsModule {}
+export class TeamsModule {}

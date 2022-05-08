@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { RoomDetailGQL, RoomDetailQuery } from '../../../graphql/codegen';
+import { TeamDetailGQL, TeamDetailQuery } from '../../../graphql/codegen';
 
-type Team = RoomDetailQuery['room'];
+type Team = TeamDetailQuery['team'];
 
 @Component({
   selector: 'app-team-detail-tabs-sidebar',
@@ -15,14 +15,14 @@ type Team = RoomDetailQuery['room'];
 export class TeamDetailSidebarComponent implements OnInit {
   team$!: Observable<Team>;
 
-  constructor(private route: ActivatedRoute, private teamGql: RoomDetailGQL) {}
+  constructor(private route: ActivatedRoute, private teamGql: TeamDetailGQL) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id')!;
       this.team$ = this.teamGql
         .watch({ id })
-        .valueChanges.pipe(map((result) => result.data.room));
+        .valueChanges.pipe(map((result) => result.data.team));
     });
   }
 }

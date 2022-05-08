@@ -1,7 +1,7 @@
 import { InputType } from '@nestjs/graphql';
 
 import { OrderMap } from '../../common/dto/order/order-map.input.dto';
-import { Room } from '../entities/room.entity';
+import { Team } from '../entities/team.entity';
 
 @InputType()
-export class RoomOrderMap extends OrderMap.from(Room) {}
+export class TeamOrderMap extends OrderMap.from(Team) {}

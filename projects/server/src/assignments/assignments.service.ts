@@ -69,7 +69,7 @@ export class AssignmentsService {
       .then((membership) => {
         if (membership.role != Role.Member)
           throw new BadRequestException(
-            'recipient must be an ID of a member membership in this room',
+            'recipient must be an ID of a member membership in this team',
           );
       });
 

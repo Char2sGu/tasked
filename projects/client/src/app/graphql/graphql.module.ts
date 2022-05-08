@@ -23,10 +23,10 @@ import { GraphqlAuthInterceptor } from './graphql-auth.interceptor';
           typePolicies: {
             Query: {
               fields: {
-                room: {
+                team: {
                   // use the existing cache if possible
                   read: (_, { args, toReference }) =>
-                    toReference({ __typename: 'Room', id: args!['id'] }),
+                    toReference({ __typename: 'Team', id: args!['id'] }),
                 },
               },
             },

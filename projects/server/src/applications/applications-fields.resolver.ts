@@ -1,7 +1,7 @@
 import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
 
-import { Room } from '../rooms/entities/room.entity';
-import { RoomRefLoader } from '../rooms/room-ref.loader';
+import { Team } from '../teams/entities/team.entity';
+import { TeamRefLoader } from '../teams/team-ref.loader';
 import { User } from '../users/entities/user.entity';
 import { UserRefLoader } from '../users/user-ref.loader';
 import { Application } from './entities/application.entity';
@@ -10,7 +10,7 @@ import { Application } from './entities/application.entity';
 export class ApplicationsFieldsResolver {
   constructor(
     private userRefLoader: UserRefLoader,
-    private roomRefLoader: RoomRefLoader,
+    private teamRefLoader: TeamRefLoader,
   ) {}
 
   @ResolveField()
@@ -19,7 +19,7 @@ export class ApplicationsFieldsResolver {
   }
 
   @ResolveField()
-  async room(@Parent() entity: Application): Promise<Room> {
-    return this.roomRefLoader.load(entity.room);
+  async team(@Parent() entity: Application): Promise<Team> {
+    return this.teamRefLoader.load(entity.team);
   }
 }

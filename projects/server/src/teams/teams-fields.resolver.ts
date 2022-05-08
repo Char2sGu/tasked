@@ -15,14 +15,14 @@ import { QueryTasksArgs } from '../tasks/dto/query-tasks.args.dto';
 import { TasksService } from '../tasks/tasks.service';
 import { User } from '../users/entities/user.entity';
 import { UserRefLoader } from '../users/user-ref.loader';
-import { Room } from './entities/room.entity';
-import { RoomMembershipLoader } from './room-membership.loader';
+import { Team } from './entities/team.entity';
+import { TeamMembershipLoader } from './team-membership.loader';
 
-@Resolver(() => Room)
-export class RoomsFieldsResolver {
+@Resolver(() => Team)
+export class TeamsFieldsResolver {
   constructor(
     private userRefLoader: UserRefLoader,
-    private roomMembershipLoader: RoomMembershipLoader,
+    private teamMembershipLoader: TeamMembershipLoader,
     private applicationsService: ApplicationsService,
     private membershipsService: MembershipsService,
     private tasksService: TasksService,
@@ -30,48 +30,48 @@ export class RoomsFieldsResolver {
   ) {}
 
   @ResolveField()
-  async creator(@Parent() entity: Room): Promise<User> {
+  async creator(@Parent() entity: Team): Promise<User> {
     return this.userRefLoader.load(entity.creator);
   }
 
   @ResolveField(() => PaginatedApplications)
   async applications(
     @Args() args: QueryApplicationsArgs,
-    @Parent() entity: Room,
+    @Parent() entity: Team,
   ): Promise<PaginatedApplications> {
     return this.applicationsService.queryMany(args, {
-      room: entity,
+      team: entity,
     });
   }
 
   @ResolveField()
   async memberships(
     @Args() args: QueryMembershipsArgs,
-    @Parent() entity: Room,
+    @Parent() entity: Team,
   ): Promise<PaginatedMemberships> {
-    return this.membershipsService.queryMany(args, { room: entity });
+    return this.membershipsService.queryMany(args, { team: entity });
   }
 
   @ResolveField(() => Membership, { nullable: true })
-  async membership(@Parent() entity: Room): Promise<Membership | undefined> {
-    return this.roomMembershipLoader.load(entity);
+  async membership(@Parent() entity: Team): Promise<Membership | undefined> {
+    return this.teamMembershipLoader.load(entity);
   }
 
   @ResolveField(() => PaginatedTasks)
   async tasks(
     @Args() args: QueryTasksArgs,
-    @Parent() entity: Room,
+    @Parent() entity: Team,
   ): Promise<PaginatedTasks> {
-    return this.tasksService.queryMany(args, { creator: { room: entity } });
+    return this.tasksService.queryMany(args, { creator: { team: entity } });
   }
 
   @ResolveField(() => PaginatedAssignments)
   async assignments(
     @Args() args: QueryAssignmentsArgs,
-    @Parent() entity: Room,
+    @Parent() entity: Team,
   ): Promise<PaginatedAssignments> {
     return this.assignmentsService.queryMany(args, {
-      task: { creator: { room: entity } },
+      task: { creator: { team: entity } },
     });
   }
 }

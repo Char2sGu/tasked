@@ -6,9 +6,9 @@ import { finalize } from 'rxjs/operators';
 import { Notifier } from '../../../core/notifier.service';
 import {
   MembershipTaskListGQL,
-  RoomDetailGQL,
   TaskDeleteGQL,
   TaskUpdateInput,
+  TeamDetailGQL,
 } from '../../../graphql/codegen';
 import { Task } from '../team-detail-tab-tasks/team-detail-tab-tasks.component';
 
@@ -30,7 +30,7 @@ export class TeamDetailTabTasksItemComponent implements OnInit, OnDestroy {
     private notifier: Notifier,
     private listGql: MembershipTaskListGQL,
     private deleteGql: TaskDeleteGQL,
-    private teamDetailGql: RoomDetailGQL,
+    private teamDetailGql: TeamDetailGQL,
   ) {}
 
   ngOnInit(): void {}
@@ -49,7 +49,7 @@ export class TeamDetailTabTasksItemComponent implements OnInit, OnDestroy {
             const teamId = this.route.parent!.snapshot.paramMap.get('id')!;
             const membershipId = this.teamDetailGql
               .watch({ id: teamId })
-              .getCurrentResult().data.room.membership!.id;
+              .getCurrentResult().data.team.membership!.id;
 
             this.listGql.watch({ id: membershipId }).updateQuery((prev) => ({
               ...prev,

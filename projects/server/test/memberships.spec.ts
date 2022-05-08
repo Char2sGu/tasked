@@ -9,7 +9,7 @@ import { AuthService } from '../src/auth/auth.service';
 import { PaginatedMemberships } from '../src/memberships/dto/paginated-memberships.obj.dto';
 import { Membership } from '../src/memberships/entities/membership.entity';
 import { Role } from '../src/memberships/entities/role.enum';
-import { Room } from '../src/rooms/entities/room.entity';
+import { Team } from '../src/teams/entities/team.entity';
 import { User } from '../src/users/entities/user.entity';
 import { GraphQLClient } from './utils/graphql-client.class';
 import { prepareE2E } from './utils/prepare-e2e';
@@ -140,7 +140,7 @@ describe('Memberships', () => {
     creator: unknown = 1,
     members: [unknown, Role][] = [[1, Role.Manager]],
   ) {
-    return em.create(Room, {
+    return em.create(Team, {
       name: 'name',
       creator,
       memberships: members.map(

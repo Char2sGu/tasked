@@ -17,7 +17,7 @@ import { Field } from '../../common/field.decorator';
 import { Context } from '../../context/context.class';
 import { Membership } from '../../memberships/entities/membership.entity';
 import { Role } from '../../memberships/entities/role.enum';
-import { Room } from '../../rooms/entities/room.entity';
+import { Team } from '../../teams/entities/team.entity';
 
 @ObjectType()
 @Filter<Task>({
@@ -43,11 +43,11 @@ export class Task extends BaseEntity<Task> {
   })
   creator!: Membership;
 
-  @Field(() => Room)
+  @Field(() => Team)
   @ManyToOne({
-    entity: () => Room,
+    entity: () => Team,
   })
-  room!: Room;
+  team!: Team;
 
   @Field(() => String, { orderable: true, filterable: true })
   @Property()

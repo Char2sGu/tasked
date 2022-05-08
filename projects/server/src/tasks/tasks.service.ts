@@ -56,11 +56,11 @@ export class TasksService {
     const user = Context.current.user;
 
     const membership = await this.memRepo.findOneOrFail(
-      { room: data.room, owner: user },
+      { team: data.team, owner: user },
       {
         failHandler: () =>
           new BadRequestException(
-            'room must be an ID of a room having your membership',
+            'team must be an ID of a team having your membership',
           ),
       },
     );

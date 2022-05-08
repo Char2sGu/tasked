@@ -1,4 +1,4 @@
-fragment Room on Room {
+fragment Team on Team {
   id
   name
   description

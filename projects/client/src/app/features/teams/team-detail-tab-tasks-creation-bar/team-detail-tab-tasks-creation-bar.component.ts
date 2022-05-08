@@ -38,7 +38,7 @@ export class TeamDetailTaskCreationBarComponent implements OnInit {
         first(),
         concatMap(([team, membership]) =>
           this.gql.mutate(
-            { data: { room: team.id, title: this.data } },
+            { data: { team: team.id, title: this.data } },
             {
               update: (_, result) => {
                 this.listGql

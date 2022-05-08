@@ -6,13 +6,13 @@ import { map, tap } from 'rxjs/operators';
 import { AuthService } from '../../../core/auth.service';
 import {
   Role,
-  RoomDetailGQL,
-  RoomMembershipListGQL,
-  RoomMembershipListQuery,
+  TeamDetailGQL,
+  TeamMembershipListGQL,
+  TeamMembershipListQuery,
 } from '../../../graphql/codegen';
 
 type Membership =
-  RoomMembershipListQuery['room']['memberships']['results'][number];
+  TeamMembershipListQuery['team']['memberships']['results'][number];
 
 @Component({
   selector: 'app-team-detail-tabs-sidebar-membership-list',
@@ -27,8 +27,8 @@ export class TeamDetailSidebarMembershipListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
-    private listGql: RoomMembershipListGQL,
-    private teamGql: RoomDetailGQL,
+    private listGql: TeamMembershipListGQL,
+    private teamGql: TeamDetailGQL,
   ) {}
 
   ngOnInit(): void {
@@ -40,11 +40,11 @@ export class TeamDetailSidebarMembershipListComponent implements OnInit {
         this.listGql
           .watch({ id })
           .valueChanges.pipe(
-            map((result) => [...result.data.room.memberships.results]),
+            map((result) => [...result.data.team.memberships.results]),
           ),
         this.teamGql
           .watch({ id })
-          .valueChanges.pipe(map((result) => result.data.room)),
+          .valueChanges.pipe(map((result) => result.data.team)),
         this.auth.user$,
       ]).pipe(
         tap(() => (this.loading = false)),

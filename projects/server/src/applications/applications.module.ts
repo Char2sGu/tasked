@@ -2,9 +2,9 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { forwardRef, Module } from '@nestjs/common';
 
 import { Membership } from '../memberships/entities/membership.entity';
-import { Room } from '../rooms/entities/room.entity';
-import { RoomsModule } from '../rooms/rooms.module';
 import { SharedModule } from '../shared/shared.module';
+import { Team } from '../teams/entities/team.entity';
+import { TeamsModule } from '../teams/teams.module';
 import { UsersModule } from '../users/users.module';
 import { ApplicationRefLoader } from './application-ref.loader';
 import { ApplicationsResolver } from './applications.resolver';
@@ -15,9 +15,9 @@ import { Application } from './entities/application.entity';
 @Module({
   imports: [
     SharedModule,
-    MikroOrmModule.forFeature([Application, Membership, Room]),
+    MikroOrmModule.forFeature([Application, Membership, Team]),
     forwardRef(() => UsersModule),
-    forwardRef(() => RoomsModule),
+    forwardRef(() => TeamsModule),
   ],
   providers: [
     ApplicationsResolver,
