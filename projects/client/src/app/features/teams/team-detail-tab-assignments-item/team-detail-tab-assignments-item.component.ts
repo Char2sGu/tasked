@@ -67,6 +67,7 @@ export class TeamDetailTabAssignmentsItemComponent implements OnInit {
 
   onRadioButtonClick(): void {
     if (!this.assignment || this.busy) return;
+    this.expanded = false;
     this.update(this.assignment, {
       isCompleted: !this.assignment.isCompleted,
     }).subscribe({
@@ -76,6 +77,7 @@ export class TeamDetailTabAssignmentsItemComponent implements OnInit {
 
   onStarButtonClick(): void {
     if (!this.assignment || this.busy) return;
+    this.expanded = false;
     this.update(this.assignment, {
       isImportant: !this.assignment.isImportant,
     }).subscribe({
