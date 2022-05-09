@@ -3,6 +3,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
+  Optional,
   TemplateRef,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -17,23 +18,27 @@ import {
   selector: '[appLayout]',
 })
 export class LayoutDirective implements OnInit, OnDestroy {
-  @Input() appLayout!: LayoutContentName;
-  @Input() appLayoutClear = false;
+  @Input() appLayout?: LayoutContentName;
+  @Input() appLayoutContent?: LayoutContent;
 
   private target!: BehaviorSubject<LayoutContent>;
   private previous!: LayoutContent;
 
   constructor(
     private configuration: LayoutConfiguration,
-    private templateRef: TemplateRef<LayoutContentContext>,
+    @Optional() private templateRef?: TemplateRef<LayoutContentContext>,
   ) {}
 
   ngOnInit(): void {
     if (!this.appLayout) return;
     this.target = this.configuration[`${this.appLayout}$`];
+    const content: LayoutContent =
+      this.appLayoutContent !== undefined
+        ? this.appLayoutContent
+        : this.templateRef ?? null;
     setTimeout(() => {
       this.previous = this.target.getValue();
-      this.target.next(this.appLayoutClear ? null : this.templateRef);
+      this.target.next(content);
     });
   }
 

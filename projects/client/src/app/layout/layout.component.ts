@@ -1,3 +1,10 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
@@ -9,6 +16,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { AnimationCurves } from '@angular/material/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import {
   BehaviorSubject,
@@ -31,6 +39,13 @@ import { ThemeService } from '../core/theme.service';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
   providers: [forwardRef(() => LayoutConfiguration)],
+  animations: [
+    trigger('header', [
+      state('hidden', style({ transform: 'translateY(-100%)' })),
+      state('visible', style({ transform: 'none' })),
+      transition('* => *', animate(`225ms ${AnimationCurves.STANDARD_CURVE}`)),
+    ]),
+  ],
 })
 export class LayoutComponent implements OnInit {
   theme$ = this.themeService.theme$;
@@ -49,8 +64,8 @@ export class LayoutComponent implements OnInit {
 
   loading$ = this.routerStatus.navigatingAndLoading$;
 
-  @ViewChild(MatSidenav) navigatorSide?: MatSidenav;
-  @ViewChild(ModalDirective) navigatorBottom?: ModalDirective;
+  @ViewChild(MatSidenav) navigatorSide!: MatSidenav;
+  @ViewChild(ModalDirective) navigatorBottom!: ModalDirective;
 
   private contentContext: LayoutContentContext = {
     navigator: { toggle: () => this.toggleNavigator() },
@@ -92,15 +107,15 @@ export class LayoutComponent implements OnInit {
     this.isBreakpointSmallMatched$
       .pipe(first())
       .subscribe((isLargerThanSmall) => {
-        if (isLargerThanSmall) this.navigatorSide?.toggle();
-        else this.navigatorBottom?.openSheet(); // bottom navigator is definitely closed at this point
+        if (isLargerThanSmall) this.navigatorSide.toggle();
+        else this.navigatorBottom.openSheet(); // bottom navigator is definitely closed at this point
       });
   }
 
   private closeNavigator() {
     this.isBreakpointXLargeMatched$.pipe(first()).subscribe((isDesktop) => {
-      if (!isDesktop) this.navigatorSide?.close();
-      this.navigatorBottom?.close();
+      if (!isDesktop) this.navigatorSide.close();
+      this.navigatorBottom.close();
     });
   }
 }
