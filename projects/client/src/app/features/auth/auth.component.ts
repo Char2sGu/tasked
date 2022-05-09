@@ -1,7 +1,7 @@
 import { transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
+import { map, timer } from 'rxjs';
 
 import { FadeThroughAnimation } from '../../common/animations';
 import { Breakpoint } from '../../common/breakpoint.enum';
@@ -31,6 +31,8 @@ export class AuthComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.auth.logout();
+    // TODO: better implementation
+    // animation
+    timer(1000).subscribe(() => this.auth.logout());
   }
 }
