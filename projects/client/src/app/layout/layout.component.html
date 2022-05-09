@@ -18,15 +18,21 @@
     <mat-sidenav
       class="w-64"
       [class]="{ 'bg-transparent': data.isDesktop }"
-      [opened]="data.contents.navigator && data.isDesktop"
+      [opened]="data.contents.navigator?.[1] && data.isDesktop"
       [mode]="data.isDesktop ? 'side' : 'over'"
     >
-      <ng-container [cdkPortalOutlet]="data.contents.navigator"></ng-container>
+      <ng-container
+        [cdkPortalOutlet]="
+          data.contents.navigator?.[1] ?? data.contents.navigator?.[0]
+        "
+      ></ng-container>
     </mat-sidenav>
     <mat-sidenav-content class="flex flex-col">
-      <header [@header]="data.contents.header ? 'visible' : 'hidden'">
+      <header [@header]="data.contents.header?.[1] ? 'visible' : 'hidden'">
         <mat-toolbar class="bg-inherit">
-          <ng-container [cdkPortalOutlet]="data.contents.header"></ng-container>
+          <ng-container
+            [cdkPortalOutlet]="data.contents.header?.[1]"
+          ></ng-container>
         </mat-toolbar>
         <mat-divider></mat-divider>
       </header>
@@ -38,7 +44,9 @@
 
   <ng-template appModal>
     <div class="h-[60vh]">
-      <ng-container [cdkPortalOutlet]="data.contents.navigator"></ng-container>
+      <ng-container
+        [cdkPortalOutlet]="data.contents.navigator?.[1]"
+      ></ng-container>
     </div>
   </ng-template>
 </div>

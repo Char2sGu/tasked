@@ -26,6 +26,8 @@ import {
   first,
   map,
   Observable,
+  pairwise,
+  startWith,
 } from 'rxjs';
 
 import { Breakpoint } from '../common/breakpoint.enum';
@@ -100,6 +102,8 @@ export class LayoutComponent implements OnInit {
             this.contentContext,
           ),
       ),
+      startWith(null),
+      pairwise(),
     );
   }
 
