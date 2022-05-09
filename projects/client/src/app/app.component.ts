@@ -10,7 +10,10 @@ import { RouterOutletDataReader } from './common/router.helpers';
   styleUrls: ['./app.component.scss'],
   viewProviders: [RouterOutletDataReader],
   animations: [
-    trigger('content', [transition('* => *', FadeThroughAnimation.apply())]),
+    trigger('content', [
+      transition(':enter', []),
+      transition('* => *', FadeThroughAnimation.apply()),
+    ]),
   ],
 })
 export class AppComponent implements OnInit {

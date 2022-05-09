@@ -1,4 +1,9 @@
-<app-layout [@content]="routerOutletDataReader.read()?.['animationState']">
-  <router-outlet></router-outlet>
+<app-layout>
+  <div
+    class="h-full overflow-auto"
+    [@content]="routerOutletDataReader.read()?.['animationState']"
+  >
+    <router-outlet></router-outlet>
+  </div>
 </app-layout>
 <app-illustration-preloader></app-illustration-preloader>
