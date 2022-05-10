@@ -1,8 +1,6 @@
 import { LayoutModule as ResponsiveLayoutModule } from '@angular/cdk/layout';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -21,11 +19,9 @@ import { LayoutDirective } from './layout.directive';
     SharedModule,
     RouterModule,
     ResponsiveLayoutModule,
-    OverlayModule,
     PortalModule,
     MatIconModule,
     MatToolbarModule,
-    MatButtonModule,
     MatSidenavModule,
     MatProgressBarModule,
     MatDividerModule,
