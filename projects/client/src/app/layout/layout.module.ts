@@ -5,7 +5,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
 import { ModalModule } from '../components/modal/modal.module';
@@ -21,7 +20,6 @@ import { LayoutDirective } from './layout.directive';
     ResponsiveLayoutModule,
     PortalModule,
     MatIconModule,
-    MatToolbarModule,
     MatSidenavModule,
     MatProgressBarModule,
     MatDividerModule,

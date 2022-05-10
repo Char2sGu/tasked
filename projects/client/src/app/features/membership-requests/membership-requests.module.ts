@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
+import { AppBarModule } from '../../components/app-bar/app-bar.module';
 import { ContainerModule } from '../../components/container/container.module';
 import { EmptyStateModule } from '../../components/empty-state/empty-state.module';
 import { IllustrationModule } from '../../components/illustration/illustration.module';
@@ -37,6 +38,7 @@ import { MembershipRequestsRoutingModule } from './membership-requests-routing.m
     EmptyStateModule,
     IllustrationModule,
     LayoutModule,
+    AppBarModule,
   ],
 })
 export class MembershipRequestsModule {}

@@ -1,15 +1,10 @@
 <div class="h-full">
-  <ng-container *appLayout="'header'; let navigator = navigator">
-    <div class="w-0 grow">
-      <button mat-icon-button (click)="navigator.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
-    <div class="w-0 grow text-center">
-      <span>Settings</span>
-    </div>
-    <div class="w-0 grow"></div>
-  </ng-container>
+  <app-app-bar *appLayout="'header'; let navigator = navigator">
+    <button mat-icon-button navigation (click)="navigator.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Settings</span>
+  </app-app-bar>
   <div class="p-4 md:mx-auto md:mt-12 md:w-[768px]">
     <app-settings-list></app-settings-list>
   </div>

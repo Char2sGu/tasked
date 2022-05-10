@@ -17,6 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
+import { AppBarModule } from '../../components/app-bar/app-bar.module';
 import { BackButtonModule } from '../../components/back-button/back-button.module';
 import { ConfirmationModule } from '../../components/confirmation/confirmation.module';
 import { ContainerModule } from '../../components/container/container.module';
@@ -111,6 +112,7 @@ import { TeamsRoutingModule } from './teams-routing.module';
     BackButtonModule,
     FlipModule,
     LayoutModule,
+    AppBarModule,
   ],
 })
 export class TeamsModule {}

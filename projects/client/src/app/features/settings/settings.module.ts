@@ -10,6 +10,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { AppBarModule } from '../../components/app-bar/app-bar.module';
 import { BackButtonModule } from '../../components/back-button/back-button.module';
 import { ModalModule } from '../../components/modal/modal.module';
 import { RadioListModule } from '../../components/radio-list/radio-list.module';
@@ -55,6 +56,7 @@ import { SettingsRoutingModule } from './settings-routing.module';
     RadioListModule,
     ModalModule,
     ThemeSwitcherModule,
+    AppBarModule,
   ],
 })
 export class SettingsModule {}

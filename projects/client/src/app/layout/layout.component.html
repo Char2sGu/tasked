@@ -29,11 +29,9 @@
     </mat-sidenav>
     <mat-sidenav-content class="flex flex-col">
       <header [@header]="data.contents.header?.[1] ? 'visible' : 'hidden'">
-        <mat-toolbar class="bg-inherit">
-          <ng-container
-            [cdkPortalOutlet]="data.contents.header?.[1]"
-          ></ng-container>
-        </mat-toolbar>
+        <ng-container
+          [cdkPortalOutlet]="data.contents.header?.[1] ?? data.contents.header?.[0]"
+        ></ng-container>
         <mat-divider></mat-divider>
       </header>
       <main class="h-0 grow overflow-auto">

@@ -7,22 +7,16 @@
   } as data"
 >
   <ng-container *ngIf="data.team && data.sidebarMode">
-    <ng-container *appLayout="'header'">
-      <div class="grow">
-        <app-back-button></app-back-button>
-      </div>
-      <div class="flex grow justify-center">
-        <span>{{ data.team.name }}</span>
-        <span class="text-l-secondary-text dark:text-d-secondary-text">
-          #{{ data.team.id }}
-        </span>
-      </div>
-      <div class="flex grow justify-end">
-        <button mat-icon-button (click)="drawer.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </div>
-    </ng-container>
+    <app-app-bar *appLayout="'header'">
+      <app-back-button navigation></app-back-button>
+      <span>{{ data.team.name }}</span>
+      <span class="text-l-secondary-text dark:text-d-secondary-text"
+        >#{{ data.team.id }}</span
+      >
+      <button mat-icon-button action (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </app-app-bar>
 
     <ng-container *appLayout="'navigation'; content: null"></ng-container>
 

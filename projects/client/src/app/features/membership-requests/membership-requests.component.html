@@ -1,14 +1,9 @@
-<ng-container *appLayout="'header'; let navigator = navigator">
-  <div class="w-0 grow">
-    <button mat-icon-button (click)="navigator.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-  </div>
-  <div class="w-0 grow">
-    <h3 class="text-center">Requests</h3>
-  </div>
-  <div class="w-0 grow"></div>
-</ng-container>
+<app-app-bar *appLayout="'header'; let navigator = navigator">
+  <button mat-icon-button navigation (click)="navigator.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Requests</span>
+</app-app-bar>
 
 <ng-container
   *ngIf="(state.membershipRequestGroups$ | async) ?? 'loading' as groups"
