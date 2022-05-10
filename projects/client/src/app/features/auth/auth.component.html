@@ -6,41 +6,5 @@
   <router-outlet></router-outlet>
 </main>
 
-<ng-container
-  *ngIf="isDesktop$ | async; then layoutDesktop; else layoutMobile"
-></ng-container>
-
-<ng-template #layoutDesktop>
-  <ng-container *appLayout="'header'; content: null"></ng-container>
-  <ng-container *appLayout="'navigation'">
-    <div class="flex h-16 items-center justify-center">
-      <h1 class="text-xl">Tasked</h1>
-    </div>
-    <mat-divider></mat-divider>
-    <mat-nav-list class="mt-2">
-      <a
-        mat-list-item
-        routerLink="/auth/login"
-        routerLinkActive="router-link-active"
-      >
-        <mat-icon matListIcon>login</mat-icon>
-        <span matLine i18n>Login</span>
-      </a>
-      <a
-        mat-list-item
-        routerLink="/auth/signup"
-        routerLinkActive="router-link-active"
-      >
-        <mat-icon matListIcon>person_add</mat-icon>
-        <span matLine i18n>Signup</span>
-      </a>
-    </mat-nav-list>
-  </ng-container>
-</ng-template>
-
-<ng-template #layoutMobile>
-  <ng-container *appLayout="'header'">
-    <div class="grow"></div>
-    <app-theme-button></app-theme-button>
-  </ng-container>
-</ng-template>
+<ng-container *appLayout="'header'; content: null"></ng-container>
+<ng-container *appLayout="'navigation'; content: null"></ng-container>
