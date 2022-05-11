@@ -1,0 +1,4 @@
+{
+  "include": ["src/app/**/*.ts"],
+  "exclude": ["src/app/**/*.spec.ts", "src/app/graphql/codegen.ts"]
+}

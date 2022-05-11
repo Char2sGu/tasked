@@ -4,6 +4,7 @@
 /.eslintcache
 /data
 /docker-compose.*.yaml
+/compodoc
 
 # Compiled output
 /dist
