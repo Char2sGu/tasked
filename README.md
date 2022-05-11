@@ -25,7 +25,6 @@ A task management [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive
 ## Development
 
 ```sh
-git clone https://github.com/TheNightmareX/tasked
 npm i
 cp .env.template .env
 npm run server:cli db:init
@@ -33,12 +32,23 @@ npm run server:cli db:seed
 npm run dev
 ```
 
+## Compodoc Documents
+
+```sh
+npm run doc:client:build
+npm run doc:client:serve
+```
+
+```sh
+npm run doc:server:build
+npm run doc:server:serve
+```
+
 ## Deployment
 
 ### Local Deployment
 
 ```sh
-git clone https://github.com/TheNightmareX/tasked
 cp .env.template .env
 docker compose up
 ```
@@ -47,7 +57,7 @@ docker compose up
 
 See `/.azure`.
 
-### PWA Features and HTTPS
+### PWA and HTTPS
 
 PWA features require a HTTPS context.
 
