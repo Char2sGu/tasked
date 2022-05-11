@@ -37,13 +37,15 @@ body {
 }
 
 @mixin scrollbar($theme) {
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: map.get($theme, 'color', 'foreground', 'divider');
+  @media (min-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: map.get($theme, 'color', 'foreground', 'divider');
+    }
   }
 }
 
