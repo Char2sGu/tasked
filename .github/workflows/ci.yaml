@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: ['master']
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: char2s
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Build and push - client
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          file: projects/client/.docker/dockerfile
+          tags: char2s/tasked_frontend:latest
+      - name: Build and push - server
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          file: projects/server/.docker/dockerfile
+          tags: char2s/tasked_backend:latest
