@@ -10,7 +10,6 @@ import {
 } from '@mikro-orm/core';
 import { ObjectType } from '@nestjs/graphql';
 import { hash } from 'bcryptjs';
-import dayjs from 'dayjs';
 
 import { BaseEntity } from '../../common/base-entity.entity';
 import { Field } from '../../common/field.decorator';
@@ -37,6 +36,10 @@ export class User extends BaseEntity<User> {
 
   @Property()
   password!: string;
+
+  @Field(() => String, { orderable: true, filterable: true })
+  @Property()
+  email!: string;
 
   @Field(() => Gender, { orderable: true, filterable: true })
   @Property()
@@ -66,10 +69,6 @@ export class User extends BaseEntity<User> {
     cascade: [Cascade.ALL],
   })
   memberships = new Collection<Membership>(this);
-
-  isUpdatedRecently(): boolean {
-    return dayjs(this.updatedAt).isAfter(dayjs().subtract(5, 'minute'));
-  }
 
   @BeforeCreate()
   @BeforeUpdate()

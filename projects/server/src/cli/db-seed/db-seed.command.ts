@@ -27,6 +27,7 @@ export class DbSeedCommand implements CommandRunner {
       const firstName = faker.name.firstName();
       const user = em.create(User, {
         username: faker.internet.userName(firstName).replace('.', ''),
+        email: faker.internet.email(firstName),
         nickname: faker.datatype.boolean() ? firstName : undefined,
         password:
           '$2a$10$H.tcAfDT6phzgoU0mUp.reIdVn3gmo6ZuieTSSJM5/BVLyHW1D/4S', // "password"
