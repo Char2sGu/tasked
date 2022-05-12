@@ -29,9 +29,9 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const skipped = this.reflector.get<true | undefined>(
+    const skipped = this.reflector.getAllAndOverride<true | undefined>(
       AUTH_GUARD_SKIPPED,
-      context.getHandler(),
+      [context.getHandler(), context.getClass()],
     );
     if (!skipped) {
       const request = this.executionContextHelper.getRequest(context);
@@ -62,6 +62,7 @@ export class AuthGuard implements CanActivate {
   }
 }
 
-export const AuthGuardSkipped = (): CustomDecorator<
-  typeof AUTH_GUARD_SKIPPED
-> => SetMetadata(AUTH_GUARD_SKIPPED, true);
+export const AuthGuardSkipped = (
+  revoke = false,
+): CustomDecorator<typeof AUTH_GUARD_SKIPPED> =>
+  SetMetadata(AUTH_GUARD_SKIPPED, revoke ? false : true);
