@@ -4,14 +4,13 @@ import {
   ExecutionContext,
   Injectable,
   SetMetadata,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { GqlContextType, GqlExecutionContext } from '@nestjs/graphql';
-import { ExpressContext } from 'apollo-server-express';
-import { Request } from 'express';
+import { IncomingHttpHeaders } from 'node:http';
 
-import { AuthService } from './auth.service';
-import { AuthGuardContext } from './auth-guard-context.class';
+import { ExecutionContextHelper } from '../shared/execution-context/execution-context.helper';
+import { AuthTokenService } from './auth-token/auth-token.service';
 
 export const AUTH_GUARD_SKIPPED = Symbol('auth-guard-skip');
 
@@ -23,35 +22,43 @@ export const AUTH_GUARD_SKIPPED = Symbol('auth-guard-skip');
  */
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private reflector: Reflector, private service: AuthService) {}
+  constructor(
+    private reflector: Reflector,
+    private authTokenService: AuthTokenService,
+    private executionContextHelper: ExecutionContextHelper,
+  ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const skipped = this.reflector.get<true | undefined>(
       AUTH_GUARD_SKIPPED,
       context.getHandler(),
     );
-
     if (!skipped) {
+      const request = this.executionContextHelper.getRequest(context);
       const result =
-        AuthGuardContext.current.result ??
-        (AuthGuardContext.current.result = this.authenticate(context));
+        request.userAuthenticationTask ??
+        (request.userAuthenticationTask = this.authenticate(context));
       await result;
     }
-
     return true;
   }
 
   async authenticate(context: ExecutionContext): Promise<void> {
-    const request = this.getRequest(context);
-    const token = this.service.getJwtFromHeaders(request.headers);
-    const user = await this.service.verifyJwt(token);
+    const request = this.executionContextHelper.getRequest(context);
+    const token = this.getTokenFromHeaders(request.headers);
+    if (!token) throw new UnauthorizedException();
+    const user = await this.authTokenService.parseAndVerify(token).catch(() => {
+      throw new UnauthorizedException();
+    });
     request.user = user;
   }
 
-  private getRequest(context: ExecutionContext) {
-    return context.getType<GqlContextType>() == 'graphql'
-      ? GqlExecutionContext.create(context).getContext<ExpressContext>().req
-      : context.switchToHttp().getRequest<Request>();
+  private getTokenFromHeaders(
+    headers: IncomingHttpHeaders,
+  ): string | undefined {
+    const token = headers.authorization?.slice(7); // `7` is the length of the prefix "Bearer "
+    if (!token) throw new UnauthorizedException();
+    return token;
   }
 }
 
