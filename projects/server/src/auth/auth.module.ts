@@ -24,10 +24,7 @@ import { AuthTokenService } from './auth-token/auth-token.service';
     AuthResolver,
     AuthService,
     AuthTokenService,
-    {
-      provide: APP_GUARD,
-      useClass: AuthGuard,
-    },
+    { provide: APP_GUARD, useClass: AuthGuard },
   ],
   exports: [AuthService, AuthTokenService],
 })

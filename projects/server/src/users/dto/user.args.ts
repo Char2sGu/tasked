@@ -31,5 +31,6 @@ export class UpdateUserArgs extends IntersectionType(
   WithData.for(() => UserUpdateInput),
 ) {}
 
+/**@deprecated */
 @ArgsType()
 export class CreateUserArgs extends WithData.for(() => UserCreateInput) {}

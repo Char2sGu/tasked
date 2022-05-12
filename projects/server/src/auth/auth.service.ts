@@ -1,17 +1,17 @@
-import { EntityRepository } from '@mikro-orm/knex';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import * as bcryptjs from 'bcryptjs';
 
+import { Repository } from '../mikro/repository.class';
 import { User } from '../users/entities/user.entity';
 import { AuthTokenService } from './auth-token/auth-token.service';
-import { LoginArgs } from './dto/auth.args';
-import { LoginResult } from './dto/auth.objects';
+import { LoginArgs, RegisterArgs } from './dto/auth.args';
+import { LoginResult, RegisterResult } from './dto/auth.objects';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(User) private userRepo: EntityRepository<User>,
+    @InjectRepository(User) private userRepo: Repository<User>,
     private authTokenService: AuthTokenService,
   ) {}
 
@@ -21,6 +21,13 @@ export class AuthService {
     const valid = await bcryptjs.compare(password, user.password);
     if (!valid) throw new UnauthorizedException('Invalid username or password');
     const token = await this.authTokenService.sign(user);
-    return { token, user };
+    return { user, token };
+  }
+
+  async register({ data }: RegisterArgs): Promise<RegisterResult> {
+    const user = this.userRepo.create(data);
+    await this.userRepo.flush();
+    const token = await this.authTokenService.sign(user);
+    return { user, token };
   }
 }

@@ -12,6 +12,9 @@ export class LoginResult {
   user!: User;
 }
 
+@ObjectType()
+export class RegisterResult extends LoginResult {}
+
 /**@deprecated */
 @ObjectType()
 export class AuthResult extends LoginResult {}

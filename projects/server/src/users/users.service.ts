@@ -39,6 +39,7 @@ export class UsersService {
     return this.repo.findOneOrFail(id, { filters: [CommonFilter.Crud] });
   }
 
+  /**@deprecated */
   async createOne({ data }: CreateUserArgs): Promise<User> {
     return this.repo.create(data);
   }

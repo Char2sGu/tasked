@@ -31,7 +31,8 @@ export class UsersResolver {
     return Context.current.user;
   }
 
-  @Mutation(() => User)
+  /**@deprecated */
+  @Mutation(() => User, { deprecationReason: 'Use `register` instead' })
   @AuthGuardSkipped()
   async createUser(@Args() args: CreateUserArgs): Promise<User> {
     return this.service.createOne(args);
