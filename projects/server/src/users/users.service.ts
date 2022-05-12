@@ -5,11 +5,13 @@ import { CommonFilter } from '../common/common-filter.enum';
 import { FilterMap } from '../common/dto/filter/filter-map.input.dto';
 import { Context } from '../context/context.class';
 import { Repository } from '../mikro/repository.class';
-import { CreateUserArgs } from './dto/create-user.args.dto';
-import { PaginatedUsers } from './dto/paginated-users.obj.dto';
-import { QueryUserArgs } from './dto/query-user.args.dto';
-import { QueryUsersArgs } from './dto/query-users.args.dto';
-import { UpdateUserArgs } from './dto/update-user.args.dto';
+import {
+  CreateUserArgs,
+  QueryUserArgs,
+  QueryUsersArgs,
+  UpdateUserArgs,
+} from './dto/user.args';
+import { PaginatedUsers } from './dto/user.objects';
 import { User } from './entities/user.entity';
 
 @Injectable()

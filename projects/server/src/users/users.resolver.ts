@@ -1,12 +1,14 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { AuthGuardSkip } from '../auth/auth-guard-skip.decorator';
+import { AuthGuardSkipped } from '../auth/auth.guard';
 import { Context } from '../context/context.class';
-import { CreateUserArgs } from './dto/create-user.args.dto';
-import { PaginatedUsers } from './dto/paginated-users.obj.dto';
-import { QueryUserArgs } from './dto/query-user.args.dto';
-import { QueryUsersArgs } from './dto/query-users.args.dto';
-import { UpdateUserArgs } from './dto/update-user.args.dto';
+import {
+  CreateUserArgs,
+  QueryUserArgs,
+  QueryUsersArgs,
+  UpdateUserArgs,
+} from './dto/user.args';
+import { PaginatedUsers } from './dto/user.objects';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 
@@ -29,8 +31,8 @@ export class UsersResolver {
     return Context.current.user;
   }
 
-  @AuthGuardSkip()
   @Mutation(() => User)
+  @AuthGuardSkipped()
   async createUser(@Args() args: CreateUserArgs): Promise<User> {
     return this.service.createOne(args);
   }

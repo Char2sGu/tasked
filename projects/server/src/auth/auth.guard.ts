@@ -1,4 +1,10 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import {
+  CanActivate,
+  CustomDecorator,
+  ExecutionContext,
+  Injectable,
+  SetMetadata,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { GqlContextType, GqlExecutionContext } from '@nestjs/graphql';
 import { ExpressContext } from 'apollo-server-express';
@@ -6,8 +12,8 @@ import { Request } from 'express';
 
 import { AuthService } from './auth.service';
 import { AuthGuardContext } from './auth-guard-context.class';
-import { AuthGuardSkip } from './auth-guard-skip.decorator';
-import { AUTH_GUARD_SKIP } from './auth-guard-skip.symbol';
+
+export const AUTH_GUARD_SKIPPED = Symbol('auth-guard-skip');
 
 /**
  * Prevent the endpoints from being accessed by unauthenticated users and
@@ -20,12 +26,12 @@ export class AuthGuard implements CanActivate {
   constructor(private reflector: Reflector, private service: AuthService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const skip = this.reflector.get<true | undefined>(
-      AUTH_GUARD_SKIP,
+    const skipped = this.reflector.get<true | undefined>(
+      AUTH_GUARD_SKIPPED,
       context.getHandler(),
     );
 
-    if (!skip) {
+    if (!skipped) {
       const result =
         AuthGuardContext.current.result ??
         (AuthGuardContext.current.result = this.authenticate(context));
@@ -49,4 +55,6 @@ export class AuthGuard implements CanActivate {
   }
 }
 
-AuthGuardSkip;
+export const AuthGuardSkipped = (): CustomDecorator<
+  typeof AUTH_GUARD_SKIPPED
+> => SetMetadata(AUTH_GUARD_SKIPPED, true);

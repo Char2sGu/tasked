@@ -1,8 +1,8 @@
 import { UnauthorizedException } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 
+import { AuthGuardSkipped } from './auth.guard';
 import { AuthService } from './auth.service';
-import { AuthGuardSkip } from './auth-guard-skip.decorator';
 import { AuthResult } from './dto/auth-result.obj.dto';
 import { QueryTokenArgs } from './dto/query-token.args.dto';
 
@@ -10,7 +10,7 @@ import { QueryTokenArgs } from './dto/query-token.args.dto';
 export class AuthResolver {
   constructor(private service: AuthService) {}
 
-  @AuthGuardSkip()
+  @AuthGuardSkipped()
   @Mutation(() => AuthResult)
   async auth(
     @Args() { username, password }: QueryTokenArgs,
