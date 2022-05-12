@@ -5,7 +5,8 @@ import * as bcryptjs from 'bcryptjs';
 
 import { User } from '../users/entities/user.entity';
 import { AuthTokenService } from './auth-token/auth-token.service';
-import { AuthResult } from './dto/auth-result.obj.dto';
+import { LoginArgs } from './dto/auth.args';
+import { LoginResult } from './dto/auth.objects';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +15,7 @@ export class AuthService {
     private authTokenService: AuthTokenService,
   ) {}
 
-  async auth(username: string, password: string): Promise<AuthResult> {
+  async login({ username, password }: LoginArgs): Promise<LoginResult> {
     const user = await this.userRepo.findOne({ username });
     if (!user) throw new UnauthorizedException('Invalid username or password');
     const valid = await bcryptjs.compare(password, user.password);

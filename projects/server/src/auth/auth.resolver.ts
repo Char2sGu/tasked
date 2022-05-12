@@ -2,18 +2,23 @@ import { Args, Mutation, Resolver } from '@nestjs/graphql';
 
 import { AuthGuardSkipped } from './auth.guard';
 import { AuthService } from './auth.service';
-import { AuthResult } from './dto/auth-result.obj.dto';
-import { QueryTokenArgs } from './dto/query-token.args.dto';
+import { LoginArgs, QueryTokenArgs } from './dto/auth.args';
+import { AuthResult, LoginResult } from './dto/auth.objects';
 
 @Resolver()
 export class AuthResolver {
   constructor(private service: AuthService) {}
 
-  @Mutation(() => AuthResult)
+  @Mutation(() => LoginResult)
   @AuthGuardSkipped()
-  async auth(
-    @Args() { username, password }: QueryTokenArgs,
-  ): Promise<AuthResult> {
-    return this.service.auth(username, password);
+  async login(@Args() args: LoginArgs): Promise<LoginResult> {
+    return this.service.login(args);
+  }
+
+  /**@deprecated */
+  @Mutation(() => AuthResult, { deprecationReason: 'Use `login` instead' })
+  @AuthGuardSkipped()
+  async auth(@Args() args: QueryTokenArgs): Promise<AuthResult> {
+    return this.service.login(args);
   }
 }

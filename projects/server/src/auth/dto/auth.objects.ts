@@ -4,10 +4,14 @@ import { Field } from '../../common/field.decorator';
 import { User } from '../../users/entities/user.entity';
 
 @ObjectType()
-export class AuthResult {
+export class LoginResult {
   @Field(() => String)
   token!: string;
 
   @Field(() => User)
   user!: User;
 }
+
+/**@deprecated */
+@ObjectType()
+export class AuthResult extends LoginResult {}
