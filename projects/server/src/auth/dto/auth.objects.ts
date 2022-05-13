@@ -2,6 +2,7 @@ import { ObjectType } from '@nestjs/graphql';
 
 import { Field } from '../../common/field.decorator';
 import { User } from '../../users/entities/user.entity';
+import { Verification } from '../../verifications/entities/verification.entity';
 
 @ObjectType()
 export class LoginResult {
@@ -13,7 +14,10 @@ export class LoginResult {
 }
 
 @ObjectType()
-export class RegisterResult extends LoginResult {}
+export class RegisterResult extends LoginResult {
+  @Field(() => Verification)
+  verification!: Verification;
+}
 
 /**@deprecated */
 @ObjectType()

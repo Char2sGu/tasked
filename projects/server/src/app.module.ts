@@ -19,7 +19,6 @@ import { UsersModule } from './users/users.module';
 import { ValidationModule } from './validation/validation.module';
 import { VerificationsModule } from './verifications/verifications.module';
 
-// TODO: user email
 // TODO: implement invitations
 // TODO: option to hide task after all assignments are done
 // TODO: order of tasks and assignments

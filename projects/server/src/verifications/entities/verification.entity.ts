@@ -8,7 +8,9 @@ import { User } from '../../users/entities/user.entity';
 @ObjectType()
 @Entity()
 export class Verification extends BaseEntity<Verification> {
-  @ManyToOne()
+  @ManyToOne({
+    entity: () => User,
+  })
   user!: User;
 
   @Property()

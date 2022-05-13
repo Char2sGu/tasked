@@ -18,7 +18,7 @@ export class VerificationsResolver {
     @Args() args: RequestVerificationArgs,
     @ReqUser() user: User,
   ): Promise<Verification> {
-    return this.service.requestVerification(args, user);
+    return this.service.request(args, user);
   }
 
   @Mutation(() => Verification)
@@ -26,6 +26,6 @@ export class VerificationsResolver {
     @Args() args: ConfirmVerificationArgs,
     @ReqUser() user: User,
   ): Promise<Verification> {
-    return this.service.confirmVerification(args, user);
+    return this.service.confirm(args, user);
   }
 }

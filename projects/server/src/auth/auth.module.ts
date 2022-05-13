@@ -1,11 +1,12 @@
 import { MikroOrmModule } from '@mikro-orm/nestjs';
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
 
 import { SECRET_KEY } from '../common/env.constants';
 import { SharedModule } from '../shared/shared.module';
 import { User } from '../users/entities/user.entity';
+import { VerificationsModule } from '../verifications/verifications.module';
 import { AuthGuard } from './auth.guard';
 import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
@@ -19,6 +20,7 @@ import { AuthTokenService } from './auth-token/auth-token.service';
       secret: SECRET_KEY,
       signOptions: { expiresIn: '3 days' },
     }),
+    forwardRef(() => VerificationsModule),
   ],
   providers: [
     AuthResolver,

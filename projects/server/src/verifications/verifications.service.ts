@@ -19,7 +19,7 @@ export class VerificationsService {
     private mailer: MailerService,
   ) {}
 
-  async requestVerification(
+  async request(
     {}: RequestVerificationArgs,
     user: User,
   ): Promise<Verification> {
@@ -32,11 +32,11 @@ export class VerificationsService {
       remainingAttemptCount: 3,
       expiresAt: this.getExpirationDate().toDate(),
     });
-    await this.sendVerificationEmail(verification);
+    await this.sendEmail(verification);
     return verification;
   }
 
-  async confirmVerification(
+  async confirm(
     { code }: ConfirmVerificationArgs,
     user: User,
   ): Promise<Verification> {
@@ -56,9 +56,7 @@ export class VerificationsService {
     });
   }
 
-  private async sendVerificationEmail(
-    verification: Verification,
-  ): Promise<void> {
+  private async sendEmail(verification: Verification): Promise<void> {
     const { code, user } = verification;
     const message = {
       to: user.email,

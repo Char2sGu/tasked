@@ -78,6 +78,13 @@ export class User extends BaseEntity<User> {
   })
   verifications = new Collection<Verification>(this);
 
+  async isEmailVerified(): Promise<boolean> {
+    const verifiedVerifications = await this.verifications.matching({
+      where: { user: this, verified: true },
+    });
+    return !!verifiedVerifications.length;
+  }
+
   @BeforeCreate()
   @BeforeUpdate()
   async hashPassword(): Promise<void> {

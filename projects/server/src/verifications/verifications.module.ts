@@ -1,8 +1,8 @@
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
 import { MailerModule } from '@nestjs-modules/mailer';
-import { SharedModule } from 'projects/client/src/app/shared/shared.module';
 
+import { SharedModule } from '../shared/shared.module';
 import { Verification } from './entities/verification.entity';
 import { VerificationsResolver } from './verifications.resolver';
 import { VerificationsService } from './verifications.service';
