@@ -3,7 +3,7 @@ import { Length, MaxLength } from 'class-validator';
 
 import { CommonFilter } from '../../../common/common-filter.enum';
 import { Field } from '../../../common/field.decorator';
-import { IsPrimaryKey } from '../../../validation/is-primary-key.decorator';
+import { IsPrimaryKey } from '../../../validation/is-primary-key.validator';
 import { Team } from '../../teams/entities/team.entity';
 
 @InputType()

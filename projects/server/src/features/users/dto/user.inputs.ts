@@ -6,7 +6,7 @@ import { CommonFilter } from '../../../common/common-filter.enum';
 import { FilterMap } from '../../../common/dto/filter/filter-map.input.dto';
 import { OrderMap } from '../../../common/dto/order/order-map.input.dto';
 import { Field } from '../../../common/field.decorator';
-import { IsUnique } from '../../../validation/is-unique.decorator';
+import { IsUnique } from '../../../validation/is-unique.validator';
 import { Gender } from '../entities/gender.enum';
 import { User } from '../entities/user.entity';
 

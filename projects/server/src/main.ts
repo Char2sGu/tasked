@@ -1,5 +1,4 @@
 import { NestFactory } from '@nestjs/core';
-import * as classValidator from 'class-validator';
 import { CommandFactory } from 'nest-commander';
 
 import { AppModule } from './app.module';
@@ -13,11 +12,6 @@ async function bootstrap() {
   } else {
     const app = await NestFactory.create(AppModule);
     app.enableCors();
-    // Use Nest DI in class-validator custom validators.
-    // https://github.com/nestjs/nest/issues/528#issuecomment-403212561
-    classValidator.useContainer(app.select(AppModule), {
-      fallbackOnErrors: true,
-    });
     await app.listen(PORT);
   }
 }

@@ -1,15 +1,28 @@
+import { FindOneOptions } from '@mikro-orm/core';
 import { AnyEntity, EntityManager, FilterQuery } from '@mikro-orm/core';
+import { Type } from '@nestjs/common';
+import { registerDecorator, ValidationOptions } from 'class-validator';
 import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
 
-import { IsPrimaryKey } from './is-primary-key.decorator';
 import { ValidationArguments } from './validation-arguments.interface';
 
-type IsPrimaryKeyValidationContext = ValidationArguments<
-  Parameters<typeof IsPrimaryKey>
->;
+export const IsPrimaryKey =
+  <Entity>(
+    entityType: () => Type<Entity>,
+    filters?: FindOneOptions<never>['filters'],
+    options?: ValidationOptions,
+  ) =>
+  ({ constructor: target }: object, propertyName: string): void =>
+    registerDecorator({
+      constraints: [entityType, filters],
+      options,
+      target,
+      propertyName,
+      validator: IsPrimaryKeyConstraint,
+    });
 
 @ValidatorConstraint({ async: true })
 export class IsPrimaryKeyConstraint implements ValidatorConstraintInterface {
@@ -30,3 +43,7 @@ export class IsPrimaryKeyConstraint implements ValidatorConstraintInterface {
     return `${context.property} must be a primary key of an existing or accessible ${entityName} entity`;
   }
 }
+
+type IsPrimaryKeyValidationContext = ValidationArguments<
+  Parameters<typeof IsPrimaryKey>
+>;

@@ -2,7 +2,7 @@ import { ID, InputType } from '@nestjs/graphql';
 
 import { CommonFilter } from '../../../common/common-filter.enum';
 import { Field } from '../../../common/field.decorator';
-import { IsPrimaryKey } from '../../../validation/is-primary-key.decorator';
+import { IsPrimaryKey } from '../../../validation/is-primary-key.validator';
 import { Membership } from '../../memberships/entities/membership.entity';
 import { Task } from '../../tasks/entities/task.entity';
 
