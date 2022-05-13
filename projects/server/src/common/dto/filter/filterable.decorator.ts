@@ -1,15 +1,16 @@
 import { ReturnTypeFunc } from '@nestjs/graphql';
 
 export const Filterable =
-  (type: ReturnTypeFunc) =>
+  (type?: ReturnTypeFunc) =>
   ({ constructor: target }: object, field: string): void => {
     const map: FilterableFieldMap =
-      Reflect.getOwnMetadata(FILTERABLE, target) ??
-      new Map(Reflect.getMetadata(FILTERABLE, target));
-    map.set(field, type);
-    Reflect.defineMetadata(FILTERABLE, map, target);
+      Reflect.getOwnMetadata(FILTERABLE_FIELD_MAP, target) ??
+      new Map(Reflect.getMetadata(FILTERABLE_FIELD_MAP, target));
+    const typeFromMetadata = Reflect.getMetadata('design:type', target, field);
+    map.set(field, type ?? (() => typeFromMetadata));
+    Reflect.defineMetadata(FILTERABLE_FIELD_MAP, map, target);
   };
 
-export const FILTERABLE = Symbol('filterable');
+export const FILTERABLE_FIELD_MAP = Symbol('filterable');
 
 export type FilterableFieldMap = Map<string, ReturnTypeFunc>;

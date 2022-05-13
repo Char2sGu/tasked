@@ -5,8 +5,8 @@ import { InputType, ReturnTypeFunc } from '@nestjs/graphql';
 
 import { Field } from '../../field.decorator';
 import {
-  FILTERABLE,
   Filterable,
+  FILTERABLE_FIELD_MAP,
   FilterableFieldMap,
 } from './filterable.decorator';
 
@@ -21,7 +21,10 @@ export class FilterMap {
   static from(entityType: Type<AnyEntity>): Type<FilterMap> {
     class _FilterMap extends this {}
 
-    const map: FilterableFieldMap = Reflect.getMetadata(FILTERABLE, entityType);
+    const map: FilterableFieldMap = Reflect.getMetadata(
+      FILTERABLE_FIELD_MAP,
+      entityType,
+    );
     map.forEach(
       <Field extends string>(fieldType: ReturnTypeFunc, field: Field) => {
         apply(field, fieldType);
