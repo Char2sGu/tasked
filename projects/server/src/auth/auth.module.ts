@@ -5,6 +5,7 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { SECRET_KEY } from '../common/env.constants';
 import { SharedModule } from '../shared/shared.module';
+import { TeamsModule } from '../teams/teams.module';
 import { User } from '../users/entities/user.entity';
 import { VerificationsModule } from '../verifications/verifications.module';
 import { AuthGuard } from './auth.guard';
@@ -21,6 +22,7 @@ import { AuthTokenService } from './auth-token/auth-token.service';
       signOptions: { expiresIn: '3 days' },
     }),
     forwardRef(() => VerificationsModule),
+    forwardRef(() => TeamsModule),
   ],
   providers: [
     AuthResolver,

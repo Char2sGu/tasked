@@ -3,6 +3,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import * as bcryptjs from 'bcryptjs';
 
 import { Repository } from '../mikro/repository.class';
+import { TeamsService } from '../teams/teams.service';
 import { User } from '../users/entities/user.entity';
 import { VerificationsService } from '../verifications/verifications.service';
 import { AuthTokenService } from './auth-token/auth-token.service';
@@ -15,6 +16,7 @@ export class AuthService {
     @InjectRepository(User) private repo: Repository<User>,
     private authTokenService: AuthTokenService,
     private verificationsService: VerificationsService,
+    private teamsService: TeamsService,
   ) {}
 
   async login({ username, password }: LoginArgs): Promise<LoginResult> {
@@ -31,6 +33,7 @@ export class AuthService {
     await this.repo.flush();
     const token = await this.authTokenService.sign(user);
     const verification = await this.verificationsService.request({}, user);
+    await this.teamsService.createOne({ data: { name: 'My Team' } });
     return { user, verification, token };
   }
 }

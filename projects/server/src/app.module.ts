@@ -22,7 +22,6 @@ import { VerificationsModule } from './verifications/verifications.module';
 // TODO: implement invitations
 // TODO: option to hide task after all assignments are done
 // TODO: order of tasks and assignments
-// TODO: initial exclusive team for user
 // TODO: assignment steps
 // TODO: server-sent event
 // TODO: support sync with offline client
