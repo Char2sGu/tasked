@@ -27,5 +27,6 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'error',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+    eqeqeq: ['warn', 'always'],
   },
 };

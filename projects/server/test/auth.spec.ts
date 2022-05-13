@@ -38,7 +38,7 @@ describe('Auth', () => {
 
     it('should return the token with legal arguments', async () => {
       await request(`(username: "username1", password: "password1")`);
-      expect(typeof result.token == 'string').toBe(true);
+      expect(typeof result.token === 'string').toBe(true);
       expect(result.user.id).toBe('1');
     });
 

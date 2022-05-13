@@ -13,7 +13,7 @@ export class ValidationErrorMessagePipe implements PipeTransform {
         if (!model.errors) return null;
         const names = Object.keys(model.errors);
         const message = model.errors[names[0]];
-        return typeof message == 'string' ? message : null;
+        return typeof message === 'string' ? message : null;
       }),
     );
   }

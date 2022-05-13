@@ -11,7 +11,7 @@ export type Membership = NonNullable<Team['membership']>;
 export class TeamDetailState {
   team$ = this.route.paramMap.pipe(
     map((params) => params.get('id')),
-    filter((v): v is string => typeof v == 'string'),
+    filter((v): v is string => typeof v === 'string'),
     switchMap((id) => this.teamDetailGql.watch({ id }).valueChanges),
     map((result) => result.data.team),
     catchError(() => {

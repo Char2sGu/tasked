@@ -7,6 +7,6 @@ import { LocalStorageItem } from '../../common/local-storage';
 })
 export class AuthTokenStorage extends LocalStorageItem<string | null> {
   constructor() {
-    super('token', (v) => v == null || typeof v == 'string', null);
+    super('token', (v) => v == null || typeof v === 'string', null);
   }
 }

@@ -10,11 +10,11 @@ export class TeamsActivatedMapStorage extends LocalStorageItem<Map> {
     super(
       'teamMap',
       (v) =>
-        typeof v == 'object' &&
+        typeof v === 'object' &&
         !!v &&
         Object.entries(v).every(
           ([userId, teamId]) =>
-            typeof userId == 'string' && typeof teamId == 'string',
+            typeof userId === 'string' && typeof teamId === 'string',
         ),
       {},
     );
