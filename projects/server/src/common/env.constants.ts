@@ -16,3 +16,5 @@ export const GRAPHQL_FREQUENCY_DURATION = num('GRAPHQL_FREQUENCY_DURATION');
 export const GRAPHQL_COMPLEXITY = num('GRAPHQL_COMPLEXITY');
 export const GRAPHQL_DEPTH = num('GRAPHQL_DEPTH');
 export const DEBUG = bool('DEBUG');
+export const EMAIL_TRANSPORT = str('EMAIL_TRANSPORT');
+export const EMAIL_FROM = str('EMAIL_FROM');

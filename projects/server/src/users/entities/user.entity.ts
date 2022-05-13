@@ -21,6 +21,7 @@ import { Quota } from '../../mikro/mikro-quota/quota.decorator';
 import { PaginatedTeams } from '../../teams/dto/paginated-teams.obj.dto';
 import { Team } from '../../teams/entities/team.entity';
 import { Gender } from '../../users/entities/gender.enum';
+import { Verification } from '../../verifications/entities/verification.entity';
 
 @ObjectType()
 @Unique<User>({ properties: ['username', 'deletedAt'] })
@@ -45,13 +46,13 @@ export class User extends BaseEntity<User> {
   @Property()
   gender!: Gender;
 
-  @Quota(20)
   @Field(() => PaginatedTeams)
   @OneToMany({
     entity: () => Team,
     mappedBy: (team) => team.creator,
     cascade: [Cascade.ALL],
   })
+  @Quota(20)
   teams = new Collection<Team>(this);
 
   @Field(() => PaginatedMembershipRequests)
@@ -65,10 +66,17 @@ export class User extends BaseEntity<User> {
   @Field(() => PaginatedMemberships)
   @OneToMany({
     entity: () => Membership,
-    mappedBy: (memberships) => memberships.owner,
+    mappedBy: (membership) => membership.owner,
     cascade: [Cascade.ALL],
   })
   memberships = new Collection<Membership>(this);
+
+  @OneToMany({
+    entity: () => Verification,
+    mappedBy: (verification) => verification.user,
+    cascade: [Cascade.ALL],
+  })
+  verifications = new Collection<Verification>(this);
 
   @BeforeCreate()
   @BeforeUpdate()

@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { DataLoaderModule } from '@nestjs-devkit/dataloader';
 import { MikroFlusherModule } from '@nestjs-devkit/mikro-graphql-flusher';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 import { AssignmentsModule } from './assignments/assignments.module';
 import { AuthModule } from './auth/auth.module';
 import { CliModule } from './cli/cli.module';
+import { EMAIL_FROM, EMAIL_TRANSPORT } from './common/env.constants';
 import { ContextModule } from './context/context.module';
 import { CoreModule } from './core/core.module';
 import { GraphqlModule } from './graphql/graphql.module';
@@ -15,6 +17,7 @@ import { TasksModule } from './tasks/tasks.module';
 import { TeamsModule } from './teams/teams.module';
 import { UsersModule } from './users/users.module';
 import { ValidationModule } from './validation/validation.module';
+import { VerificationsModule } from './verifications/verifications.module';
 
 // TODO: user email
 // TODO: implement invitations
@@ -35,6 +38,10 @@ import { ValidationModule } from './validation/validation.module';
     ValidationModule.forRoot(),
     DataLoaderModule.forRoot(),
     CoreModule,
+    MailerModule.forRoot({
+      transport: EMAIL_TRANSPORT,
+      defaults: { from: EMAIL_FROM },
+    }),
     AuthModule,
     UsersModule,
     TeamsModule,
@@ -43,6 +50,7 @@ import { ValidationModule } from './validation/validation.module';
     TasksModule,
     AssignmentsModule,
     CliModule,
+    VerificationsModule,
   ],
 })
 export class AppModule {}
