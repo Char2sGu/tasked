@@ -9,12 +9,12 @@ import supertest from 'supertest';
 
 import { Affair } from '../../src/affairs/entities/affair.entity';
 import { AppModule } from '../../src/app.module';
-import { Assignment } from '../../src/assignments/entities/assignment.entity';
-import { MembershipRequest } from '../../src/membership-requests/entities/membership-request.entity';
-import { Membership } from '../../src/memberships/entities/membership.entity';
-import { Task } from '../../src/tasks/entities/task.entity';
-import { Team } from '../../src/teams/entities/team.entity';
-import { User } from '../../src/users/entities/user.entity';
+import { Assignment } from '../../src/features/assignments/entities/assignment.entity';
+import { MembershipRequest } from '../../src/features/membership-requests/entities/membership-request.entity';
+import { Membership } from '../../src/features/memberships/entities/membership.entity';
+import { Task } from '../../src/features/tasks/entities/task.entity';
+import { Team } from '../../src/features/teams/entities/team.entity';
+import { User } from '../../src/features/users/entities/user.entity';
 import { GraphQLClient } from './graphql-client.class';
 
 export async function prepareE2E({

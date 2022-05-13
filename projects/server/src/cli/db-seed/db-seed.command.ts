@@ -2,15 +2,15 @@ import faker from '@faker-js/faker';
 import { EntityManager } from '@mikro-orm/sqlite';
 import { Command, CommandRunner } from 'nest-commander';
 
-import { Assignment } from '../../assignments/entities/assignment.entity';
-import { MembershipRequest } from '../../membership-requests/entities/membership-request.entity';
-import { MembershipRequestStatus } from '../../membership-requests/entities/membership-request-status.enum';
-import { Membership } from '../../memberships/entities/membership.entity';
-import { Role } from '../../memberships/entities/role.enum';
-import { Task } from '../../tasks/entities/task.entity';
-import { Team } from '../../teams/entities/team.entity';
-import { Gender } from '../../users/entities/gender.enum';
-import { User } from '../../users/entities/user.entity';
+import { Assignment } from '../../features/assignments/entities/assignment.entity';
+import { MembershipRequest } from '../../features/membership-requests/entities/membership-request.entity';
+import { MembershipRequestStatus } from '../../features/membership-requests/entities/membership-request-status.enum';
+import { Membership } from '../../features/memberships/entities/membership.entity';
+import { Role } from '../../features/memberships/entities/role.enum';
+import { Task } from '../../features/tasks/entities/task.entity';
+import { Team } from '../../features/teams/entities/team.entity';
+import { Gender } from '../../features/users/entities/gender.enum';
+import { User } from '../../features/users/entities/user.entity';
 
 @Command({
   name: 'db:seed',

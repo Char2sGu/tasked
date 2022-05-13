@@ -5,12 +5,12 @@ import { EntityManager } from '@mikro-orm/sqlite';
 import { INestApplication } from '@nestjs/common';
 import { TestingModule } from '@nestjs/testing';
 
-import { AuthService } from '../src/auth/auth.service';
-import { Membership } from '../src/memberships/entities/membership.entity';
-import { Role } from '../src/memberships/entities/role.enum';
-import { PaginatedTeams } from '../src/teams/dto/paginated-teams.obj.dto';
-import { Team } from '../src/teams/entities/team.entity';
-import { User } from '../src/users/entities/user.entity';
+import { AuthService } from '../src/features/auth/auth.service';
+import { Membership } from '../src/features/memberships/entities/membership.entity';
+import { Role } from '../src/features/memberships/entities/role.enum';
+import { PaginatedTeams } from '../src/features/teams/dto/paginated-teams.obj.dto';
+import { Team } from '../src/features/teams/entities/team.entity';
+import { User } from '../src/features/users/entities/user.entity';
 import { GraphQLClient } from './utils/graphql-client.class';
 import { prepareE2E } from './utils/prepare-e2e';
 

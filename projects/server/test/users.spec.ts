@@ -6,9 +6,9 @@ import { INestApplication } from '@nestjs/common';
 import { TestingModule } from '@nestjs/testing';
 import { ClientError } from 'graphql-request';
 
-import { AuthService } from '../src/auth/auth.service';
-import { PaginatedUsers } from '../src/users/dto/paginated-users.obj.dto';
-import { User } from '../src/users/entities/user.entity';
+import { AuthService } from '../src/features/auth/auth.service';
+import { PaginatedUsers } from '../src/features/users/dto/paginated-users.obj.dto';
+import { User } from '../src/features/users/entities/user.entity';
 import { GraphQLClient } from './utils/graphql-client.class';
 import { prepareE2E } from './utils/prepare-e2e';
 

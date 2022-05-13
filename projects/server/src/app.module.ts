@@ -3,21 +3,21 @@ import { DataLoaderModule } from '@nestjs-devkit/dataloader';
 import { MikroFlusherModule } from '@nestjs-devkit/mikro-graphql-flusher';
 import { MailerModule } from '@nestjs-modules/mailer';
 
-import { AssignmentsModule } from './assignments/assignments.module';
-import { AuthModule } from './auth/auth.module';
 import { CliModule } from './cli/cli.module';
 import { EMAIL_FROM, EMAIL_TRANSPORT } from './common/env.constants';
 import { ContextModule } from './context/context.module';
 import { CoreModule } from './core/core.module';
+import { AssignmentsModule } from './features/assignments/assignments.module';
+import { AuthModule } from './features/auth/auth.module';
+import { MembershipRequestsModule } from './features/membership-requests/membership-requests.module';
+import { MembershipsModule } from './features/memberships/memberships.module';
+import { TasksModule } from './features/tasks/tasks.module';
+import { TeamsModule } from './features/teams/teams.module';
+import { UsersModule } from './features/users/users.module';
+import { VerificationsModule } from './features/verifications/verifications.module';
 import { GraphqlModule } from './graphql/graphql.module';
-import { MembershipRequestsModule } from './membership-requests/membership-requests.module';
-import { MembershipsModule } from './memberships/memberships.module';
 import { MikroModule } from './mikro/mikro.module';
-import { TasksModule } from './tasks/tasks.module';
-import { TeamsModule } from './teams/teams.module';
-import { UsersModule } from './users/users.module';
 import { ValidationModule } from './validation/validation.module';
-import { VerificationsModule } from './verifications/verifications.module';
 
 // TODO: implement invitations
 // TODO: option to hide task after all assignments are done

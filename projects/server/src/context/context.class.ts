@@ -1,7 +1,7 @@
 import { AsyncLocalStorage } from 'async_hooks';
 import { Request } from 'express';
 
-import { User } from '../users/entities/user.entity';
+import { User } from '../features/users/entities/user.entity';
 
 export class Context {
   static get current(): Context {
