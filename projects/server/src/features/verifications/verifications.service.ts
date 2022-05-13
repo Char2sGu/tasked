@@ -44,6 +44,7 @@ export class VerificationsService {
     if (!verification) throw new BadRequestException('No pending verification');
     const isCorrect = code == verification.code;
     if (isCorrect) verification.verified = true;
+    else verification.remainingAttemptCount--;
     return verification;
   }
 
