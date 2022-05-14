@@ -1,0 +1,663 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AcceptMembershipRequestResult {
+  membership: Membership!
+  membershipRequest: MembershipRequest!
+}
+
+type Assignment {
+  createdAt: DateTime!
+  id: ID!
+  isCompleted: Boolean!
+  isImportant: Boolean!
+  recipient: Membership!
+  task: Task!
+  updatedAt: DateTime!
+}
+
+input AssignmentCreateInput {
+  isImportant: Boolean
+  recipient: ID!
+  task: ID!
+}
+
+input AssignmentFilterMap {
+  createdAt: DateTime
+  createdAt__eq: DateTime
+  createdAt__gt: DateTime
+  createdAt__gte: DateTime
+  createdAt__in: [DateTime!]
+  createdAt__like: String
+  createdAt__lt: DateTime
+  createdAt__lte: DateTime
+  createdAt__ne: DateTime
+  createdAt__nin: [DateTime!]
+  id: ID
+  id__eq: ID
+  id__gt: ID
+  id__gte: ID
+  id__in: [ID!]
+  id__like: String
+  id__lt: ID
+  id__lte: ID
+  id__ne: ID
+  id__nin: [ID!]
+  isCompleted: Boolean
+  isCompleted__eq: Boolean
+  isCompleted__gt: Boolean
+  isCompleted__gte: Boolean
+  isCompleted__in: [Boolean!]
+  isCompleted__like: String
+  isCompleted__lt: Boolean
+  isCompleted__lte: Boolean
+  isCompleted__ne: Boolean
+  isCompleted__nin: [Boolean!]
+  isImportant: Boolean
+  isImportant__eq: Boolean
+  isImportant__gt: Boolean
+  isImportant__gte: Boolean
+  isImportant__in: [Boolean!]
+  isImportant__like: String
+  isImportant__lt: Boolean
+  isImportant__lte: Boolean
+  isImportant__ne: Boolean
+  isImportant__nin: [Boolean!]
+  updatedAt: DateTime
+  updatedAt__eq: DateTime
+  updatedAt__gt: DateTime
+  updatedAt__gte: DateTime
+  updatedAt__in: [DateTime!]
+  updatedAt__like: String
+  updatedAt__lt: DateTime
+  updatedAt__lte: DateTime
+  updatedAt__ne: DateTime
+  updatedAt__nin: [DateTime!]
+}
+
+input AssignmentOrderMap {
+  createdAt: QueryOrder
+  id: QueryOrder
+  isCompleted: QueryOrder
+  isImportant: QueryOrder
+  updatedAt: QueryOrder
+}
+
+input AssignmentUpdateInput {
+  isCompleted: Boolean
+  isImportant: Boolean
+}
+
+type AuthResult {
+  token: String!
+  user: User!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+enum Gender {
+  Female
+  Male
+  Unknown
+}
+
+type LoginResult {
+  token: String!
+  user: User!
+}
+
+type Membership {
+  assignments(filter: AssignmentFilterMap, limit: Int = 50, offset: Int, order: AssignmentOrderMap, ownOnly: Boolean): PaginatedAssignments!
+  createdAt: DateTime!
+  id: ID!
+  owner: User!
+  role: Role!
+  tasks(filter: TaskFilterMap, limit: Int = 50, offset: Int, order: TaskOrderMap, ownOnly: Boolean): PaginatedTasks!
+  team: Team!
+  updatedAt: DateTime!
+}
+
+input MembershipFilterMap {
+  createdAt: DateTime
+  createdAt__eq: DateTime
+  createdAt__gt: DateTime
+  createdAt__gte: DateTime
+  createdAt__in: [DateTime!]
+  createdAt__like: String
+  createdAt__lt: DateTime
+  createdAt__lte: DateTime
+  createdAt__ne: DateTime
+  createdAt__nin: [DateTime!]
+  id: ID
+  id__eq: ID
+  id__gt: ID
+  id__gte: ID
+  id__in: [ID!]
+  id__like: String
+  id__lt: ID
+  id__lte: ID
+  id__ne: ID
+  id__nin: [ID!]
+  role: Role
+  role__eq: Role
+  role__gt: Role
+  role__gte: Role
+  role__in: [Role!]
+  role__like: String
+  role__lt: Role
+  role__lte: Role
+  role__ne: Role
+  role__nin: [Role!]
+  updatedAt: DateTime
+  updatedAt__eq: DateTime
+  updatedAt__gt: DateTime
+  updatedAt__gte: DateTime
+  updatedAt__in: [DateTime!]
+  updatedAt__like: String
+  updatedAt__lt: DateTime
+  updatedAt__lte: DateTime
+  updatedAt__ne: DateTime
+  updatedAt__nin: [DateTime!]
+}
+
+input MembershipOrderMap {
+  createdAt: QueryOrder
+  id: QueryOrder
+  role: QueryOrder
+  updatedAt: QueryOrder
+}
+
+type MembershipRequest {
+  createdAt: DateTime!
+  id: ID!
+  message: String
+  owner: User!
+  status: MembershipRequestStatus!
+  team: Team!
+  updatedAt: DateTime!
+}
+
+input MembershipRequestCreateInput {
+  message: String
+  team: ID!
+}
+
+input MembershipRequestFilterMap {
+  createdAt: DateTime
+  createdAt__eq: DateTime
+  createdAt__gt: DateTime
+  createdAt__gte: DateTime
+  createdAt__in: [DateTime!]
+  createdAt__like: String
+  createdAt__lt: DateTime
+  createdAt__lte: DateTime
+  createdAt__ne: DateTime
+  createdAt__nin: [DateTime!]
+  id: ID
+  id__eq: ID
+  id__gt: ID
+  id__gte: ID
+  id__in: [ID!]
+  id__like: String
+  id__lt: ID
+  id__lte: ID
+  id__ne: ID
+  id__nin: [ID!]
+  message: String
+  message__eq: String
+  message__gt: String
+  message__gte: String
+  message__in: [String!]
+  message__like: String
+  message__lt: String
+  message__lte: String
+  message__ne: String
+  message__nin: [String!]
+  status: MembershipRequestStatus
+  status__eq: MembershipRequestStatus
+  status__gt: MembershipRequestStatus
+  status__gte: MembershipRequestStatus
+  status__in: [MembershipRequestStatus!]
+  status__like: String
+  status__lt: MembershipRequestStatus
+  status__lte: MembershipRequestStatus
+  status__ne: MembershipRequestStatus
+  status__nin: [MembershipRequestStatus!]
+  updatedAt: DateTime
+  updatedAt__eq: DateTime
+  updatedAt__gt: DateTime
+  updatedAt__gte: DateTime
+  updatedAt__in: [DateTime!]
+  updatedAt__like: String
+  updatedAt__lt: DateTime
+  updatedAt__lte: DateTime
+  updatedAt__ne: DateTime
+  updatedAt__nin: [DateTime!]
+}
+
+input MembershipRequestOrderMap {
+  createdAt: QueryOrder
+  id: QueryOrder
+  message: QueryOrder
+  status: QueryOrder
+  updatedAt: QueryOrder
+}
+
+enum MembershipRequestStatus {
+  Accepted
+  Pending
+  Rejected
+}
+
+input MembershipUpdateInput {
+  role: Role
+}
+
+type Mutation {
+  acceptMembershipRequest(id: ID!): AcceptMembershipRequestResult!
+  auth(password: String!, username: String!): AuthResult! @deprecated(reason: "Use `login` instead")
+  confirmVerification(code: String!): Verification!
+  createAssignment(data: AssignmentCreateInput!): Assignment!
+  createMembershipRequest(data: MembershipRequestCreateInput!): MembershipRequest!
+  createTask(data: TaskCreateInput!): Task!
+  createTeam(data: TeamCreateInput!): Team!
+  createUser(data: UserCreateInput!): User! @deprecated(reason: "Use `register` instead")
+  deleteAssignment(id: ID!): Assignment!
+  deleteMembership(id: ID!): Membership!
+  deleteMembershipRequest(id: ID!): MembershipRequest!
+  deleteTask(id: ID!): Task!
+  deleteTeam(id: ID!): Team!
+  login(password: String!, username: String!): LoginResult!
+  register(data: UserCreateInput!): RegisterResult!
+  rejectMembershipRequest(id: ID!): MembershipRequest!
+  requestVerification: Verification!
+  updateAssignment(data: AssignmentUpdateInput!, id: ID!): Assignment!
+  updateMembership(data: MembershipUpdateInput!, id: ID!): Membership!
+  updateTask(data: TaskUpdateInput!, id: ID!): Task!
+  updateTeam(data: TeamUpdateInput!, id: ID!): Team!
+  updateUser(data: UserUpdateInput!, id: ID!): User!
+}
+
+type PaginatedAssignments {
+  results: [Assignment!]!
+  total: Int!
+}
+
+type PaginatedMembershipRequests {
+  results: [MembershipRequest!]!
+  total: Int!
+}
+
+type PaginatedMemberships {
+  results: [Membership!]!
+  total: Int!
+}
+
+type PaginatedTasks {
+  results: [Task!]!
+  total: Int!
+}
+
+type PaginatedTeams {
+  results: [Team!]!
+  total: Int!
+}
+
+type PaginatedUsers {
+  results: [User!]!
+  total: Int!
+}
+
+type Query {
+  assignment(id: ID!): Assignment!
+  assignments(filter: AssignmentFilterMap, limit: Int = 50, offset: Int, order: AssignmentOrderMap, ownOnly: Boolean): PaginatedAssignments!
+  me: User!
+  membership(id: ID!): Membership!
+  membershipRequest(id: ID!): MembershipRequest!
+  membershipRequests(filter: MembershipRequestFilterMap, limit: Int = 50, offset: Int, order: MembershipRequestOrderMap): PaginatedMembershipRequests!
+  memberships(filter: MembershipFilterMap, limit: Int = 50, offset: Int, order: MembershipOrderMap): PaginatedMemberships!
+  task(id: ID!): Task!
+  tasks(filter: TaskFilterMap, limit: Int = 50, offset: Int, order: TaskOrderMap, ownOnly: Boolean): PaginatedTasks!
+  team(id: ID!): Team!
+  teams(filter: TeamFilterMap, joinedOnly: Boolean, limit: Int = 50, offset: Int, order: TeamOrderMap): PaginatedTeams!
+  user(id: ID!): User!
+  users(filter: UserFilterMap, limit: Int = 50, offset: Int, order: UserOrderMap): PaginatedUsers!
+}
+
+enum QueryOrder {
+  ASC
+  DESC
+}
+
+type RegisterResult {
+  token: String!
+  user: User!
+  verification: Verification!
+}
+
+enum Role {
+  Manager
+  Member
+}
+
+type Task {
+  assignments(filter: AssignmentFilterMap, limit: Int = 50, offset: Int, order: AssignmentOrderMap, ownOnly: Boolean): PaginatedAssignments!
+  createdAt: DateTime!
+  creator: Membership!
+  description: String
+  id: ID!
+  isActive: Boolean!
+  team: Team!
+  title: String!
+  updatedAt: DateTime!
+}
+
+input TaskCreateInput {
+  description: String
+  team: ID!
+  title: String!
+}
+
+input TaskFilterMap {
+  createdAt: DateTime
+  createdAt__eq: DateTime
+  createdAt__gt: DateTime
+  createdAt__gte: DateTime
+  createdAt__in: [DateTime!]
+  createdAt__like: String
+  createdAt__lt: DateTime
+  createdAt__lte: DateTime
+  createdAt__ne: DateTime
+  createdAt__nin: [DateTime!]
+  description: String
+  description__eq: String
+  description__gt: String
+  description__gte: String
+  description__in: [String!]
+  description__like: String
+  description__lt: String
+  description__lte: String
+  description__ne: String
+  description__nin: [String!]
+  id: ID
+  id__eq: ID
+  id__gt: ID
+  id__gte: ID
+  id__in: [ID!]
+  id__like: String
+  id__lt: ID
+  id__lte: ID
+  id__ne: ID
+  id__nin: [ID!]
+  isActive: Boolean
+  isActive__eq: Boolean
+  isActive__gt: Boolean
+  isActive__gte: Boolean
+  isActive__in: [Boolean!]
+  isActive__like: String
+  isActive__lt: Boolean
+  isActive__lte: Boolean
+  isActive__ne: Boolean
+  isActive__nin: [Boolean!]
+  title: String
+  title__eq: String
+  title__gt: String
+  title__gte: String
+  title__in: [String!]
+  title__like: String
+  title__lt: String
+  title__lte: String
+  title__ne: String
+  title__nin: [String!]
+  updatedAt: DateTime
+  updatedAt__eq: DateTime
+  updatedAt__gt: DateTime
+  updatedAt__gte: DateTime
+  updatedAt__in: [DateTime!]
+  updatedAt__like: String
+  updatedAt__lt: DateTime
+  updatedAt__lte: DateTime
+  updatedAt__ne: DateTime
+  updatedAt__nin: [DateTime!]
+}
+
+input TaskOrderMap {
+  createdAt: QueryOrder
+  description: QueryOrder
+  id: QueryOrder
+  isActive: QueryOrder
+  title: QueryOrder
+  updatedAt: QueryOrder
+}
+
+input TaskUpdateInput {
+  description: String
+  isActive: Boolean
+  team: ID
+  title: String
+}
+
+type Team {
+  assignments(filter: AssignmentFilterMap, limit: Int = 50, offset: Int, order: AssignmentOrderMap, ownOnly: Boolean): PaginatedAssignments!
+  createdAt: DateTime!
+  creator: User!
+  description: String
+  id: ID!
+  isOpen: Boolean!
+  membership: Membership
+  membershipRequests(filter: MembershipRequestFilterMap, limit: Int = 50, offset: Int, order: MembershipRequestOrderMap): PaginatedMembershipRequests!
+  memberships(filter: MembershipFilterMap, limit: Int = 50, offset: Int, order: MembershipOrderMap): PaginatedMemberships!
+  name: String!
+  tasks(filter: TaskFilterMap, limit: Int = 50, offset: Int, order: TaskOrderMap, ownOnly: Boolean): PaginatedTasks!
+  updatedAt: DateTime!
+}
+
+input TeamCreateInput {
+  description: String
+  name: String!
+}
+
+input TeamFilterMap {
+  createdAt: DateTime
+  createdAt__eq: DateTime
+  createdAt__gt: DateTime
+  createdAt__gte: DateTime
+  createdAt__in: [DateTime!]
+  createdAt__like: String
+  createdAt__lt: DateTime
+  createdAt__lte: DateTime
+  createdAt__ne: DateTime
+  createdAt__nin: [DateTime!]
+  description: String
+  description__eq: String
+  description__gt: String
+  description__gte: String
+  description__in: [String!]
+  description__like: String
+  description__lt: String
+  description__lte: String
+  description__ne: String
+  description__nin: [String!]
+  id: ID
+  id__eq: ID
+  id__gt: ID
+  id__gte: ID
+  id__in: [ID!]
+  id__like: String
+  id__lt: ID
+  id__lte: ID
+  id__ne: ID
+  id__nin: [ID!]
+  isOpen: Boolean
+  isOpen__eq: Boolean
+  isOpen__gt: Boolean
+  isOpen__gte: Boolean
+  isOpen__in: [Boolean!]
+  isOpen__like: String
+  isOpen__lt: Boolean
+  isOpen__lte: Boolean
+  isOpen__ne: Boolean
+  isOpen__nin: [Boolean!]
+  name: String
+  name__eq: String
+  name__gt: String
+  name__gte: String
+  name__in: [String!]
+  name__like: String
+  name__lt: String
+  name__lte: String
+  name__ne: String
+  name__nin: [String!]
+  updatedAt: DateTime
+  updatedAt__eq: DateTime
+  updatedAt__gt: DateTime
+  updatedAt__gte: DateTime
+  updatedAt__in: [DateTime!]
+  updatedAt__like: String
+  updatedAt__lt: DateTime
+  updatedAt__lte: DateTime
+  updatedAt__ne: DateTime
+  updatedAt__nin: [DateTime!]
+}
+
+input TeamOrderMap {
+  createdAt: QueryOrder
+  description: QueryOrder
+  id: QueryOrder
+  isOpen: QueryOrder
+  name: QueryOrder
+  updatedAt: QueryOrder
+}
+
+input TeamUpdateInput {
+  creator: ID
+  description: String
+  isOpen: Boolean
+  name: String
+}
+
+type User {
+  assignments(filter: AssignmentFilterMap, limit: Int = 50, offset: Int, order: AssignmentOrderMap, ownOnly: Boolean): PaginatedAssignments!
+  createdAt: DateTime!
+  email: String!
+  gender: Gender!
+  id: ID!
+  membershipRequests(filter: MembershipRequestFilterMap, limit: Int = 50, offset: Int, order: MembershipRequestOrderMap): PaginatedMembershipRequests!
+  memberships(filter: MembershipFilterMap, limit: Int = 50, offset: Int, order: MembershipOrderMap): PaginatedMemberships!
+  nickname: String
+  tasks(filter: TaskFilterMap, limit: Int = 50, offset: Int, order: TaskOrderMap, ownOnly: Boolean): PaginatedTasks!
+  teams(filter: TeamFilterMap, joinedOnly: Boolean, limit: Int = 50, offset: Int, order: TeamOrderMap): PaginatedTeams!
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserCreateInput {
+  email: String!
+  gender: Gender = Unknown
+  nickname: String
+  password: String!
+  username: String!
+}
+
+input UserFilterMap {
+  createdAt: DateTime
+  createdAt__eq: DateTime
+  createdAt__gt: DateTime
+  createdAt__gte: DateTime
+  createdAt__in: [DateTime!]
+  createdAt__like: String
+  createdAt__lt: DateTime
+  createdAt__lte: DateTime
+  createdAt__ne: DateTime
+  createdAt__nin: [DateTime!]
+  email: String
+  email__eq: String
+  email__gt: String
+  email__gte: String
+  email__in: [String!]
+  email__like: String
+  email__lt: String
+  email__lte: String
+  email__ne: String
+  email__nin: [String!]
+  gender: Gender
+  gender__eq: Gender
+  gender__gt: Gender
+  gender__gte: Gender
+  gender__in: [Gender!]
+  gender__like: String
+  gender__lt: Gender
+  gender__lte: Gender
+  gender__ne: Gender
+  gender__nin: [Gender!]
+  id: ID
+  id__eq: ID
+  id__gt: ID
+  id__gte: ID
+  id__in: [ID!]
+  id__like: String
+  id__lt: ID
+  id__lte: ID
+  id__ne: ID
+  id__nin: [ID!]
+  nickname: String
+  nickname__eq: String
+  nickname__gt: String
+  nickname__gte: String
+  nickname__in: [String!]
+  nickname__like: String
+  nickname__lt: String
+  nickname__lte: String
+  nickname__ne: String
+  nickname__nin: [String!]
+  updatedAt: DateTime
+  updatedAt__eq: DateTime
+  updatedAt__gt: DateTime
+  updatedAt__gte: DateTime
+  updatedAt__in: [DateTime!]
+  updatedAt__like: String
+  updatedAt__lt: DateTime
+  updatedAt__lte: DateTime
+  updatedAt__ne: DateTime
+  updatedAt__nin: [DateTime!]
+  username: String
+  username__eq: String
+  username__gt: String
+  username__gte: String
+  username__in: [String!]
+  username__like: String
+  username__lt: String
+  username__lte: String
+  username__ne: String
+  username__nin: [String!]
+}
+
+input UserOrderMap {
+  createdAt: QueryOrder
+  email: QueryOrder
+  gender: QueryOrder
+  id: QueryOrder
+  nickname: QueryOrder
+  updatedAt: QueryOrder
+  username: QueryOrder
+}
+
+input UserUpdateInput {
+  email: String
+  gender: Gender = Unknown
+  nickname: String
+  password: String
+}
+
+type Verification {
+  createdAt: DateTime!
+  expiresAt: DateTime!
+  id: ID!
+  remainingAttemptCount: Float!
+  updatedAt: DateTime!
+  verified: Boolean!
+}

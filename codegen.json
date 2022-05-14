@@ -1,5 +1,5 @@
 {
-  "schema": "http://localhost:3000/graphql",
+  "schema": "schema.graphql",
   "documents": "projects/client/src/**/*.graphql",
   "generates": {
     "projects/client/src/app/graphql/codegen.ts": {

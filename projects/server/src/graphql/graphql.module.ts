@@ -20,7 +20,8 @@ import { GraphqlThrottlerGuard } from './graphql-throttler.guard';
   imports: [
     GraphQLModule.forRoot({
       driver: ApolloDriver,
-      autoSchemaFile: true,
+      autoSchemaFile: 'schema.graphql',
+      sortSchema: true,
       playground: DEBUG,
       validationRules: [depthLimit(GRAPHQL_DEPTH)],
     }),
