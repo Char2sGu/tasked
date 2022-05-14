@@ -5,12 +5,12 @@ import {
   Injectable,
 } from '@nestjs/common';
 
-import { PaginationArgs } from '../../common/dto';
+import { PaginationArgs } from '../../common/dto/pagination.dtos';
 import { MembershipRepository } from '../memberships/entities/membership.entity';
 import { Role } from '../memberships/entities/role.enum';
 import { User, UserRepository } from '../users/entities/user.entity';
 import { MembershipInvitationCreationInput } from './dto/membership-invitation.inputs';
-import { PaginatedMembershipInvitations } from './dto/membership-invitation.objects';
+import { MembershipInvitationPage } from './dto/membership-invitation.objects';
 import {
   MembershipInvitation,
   MembershipInvitationRepository,
@@ -29,8 +29,8 @@ export class MembershipInvitationsService {
     user: User,
     { limit, offset }: PaginationArgs,
     where: FilterQuery<MembershipInvitation> = {},
-  ): Promise<PaginatedMembershipInvitations> {
-    return this.invitationRepo.findAndPaginate(where, {
+  ): Promise<MembershipInvitationPage> {
+    return this.invitationRepo.findPage(where, {
       filters: { accessibleBy: { user } },
       limit,
       offset,

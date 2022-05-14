@@ -3,9 +3,14 @@ import { Int, ObjectType } from '@nestjs/graphql';
 
 import { RepositoryPaginationResult } from '../../mikro/repository.class';
 import { Field } from '../field.decorator';
+import { JsDocRequires } from '../jsdoc';
+import { Page } from './pagination.dtos';
 
-// TODO: reconsider this
+JsDocRequires(Page);
 
+/**
+ * @deprecated Use {@link Page} instead
+ */
 @ObjectType()
 export class Paginated<Entity> implements RepositoryPaginationResult<Entity> {
   static for<Entity>(type: () => Type<Entity>): Type<Paginated<Entity>> {

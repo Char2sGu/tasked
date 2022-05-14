@@ -114,7 +114,7 @@ type Membership {
   assignments(filter: AssignmentFilterMap, limit: Int = 50, offset: Int, order: AssignmentOrderMap, ownOnly: Boolean): PaginatedAssignments!
   createdAt: DateTime!
   id: ID!
-  invitationsSent: PaginatedMembershipInvitations!
+  invitationsSent: MembershipInvitationPage!
   owner: User!
   role: Role!
   tasks(filter: TaskFilterMap, limit: Int = 50, offset: Int, order: TaskOrderMap, ownOnly: Boolean): PaginatedTasks!
@@ -179,6 +179,11 @@ input MembershipInvitationCreationInput {
   message: String!
   targetId: ID!
   teamId: ID!
+}
+
+type MembershipInvitationPage {
+  items: [MembershipInvitation!]!
+  total: Int!
 }
 
 input MembershipOrderMap {
@@ -308,11 +313,6 @@ type PaginatedAssignments {
   total: Int!
 }
 
-type PaginatedMembershipInvitations {
-  results: [MembershipInvitation!]!
-  total: Int!
-}
-
 type PaginatedMembershipRequests {
   results: [MembershipRequest!]!
   total: Int!
@@ -344,7 +344,7 @@ type Query {
   me: User!
   membership(id: ID!): Membership!
   membershipInvitation(id: ID!): MembershipInvitation!
-  membershipInvitations(limit: Int = 50, offset: Int): PaginatedMembershipInvitations!
+  membershipInvitations(limit: Int = 50, offset: Int): MembershipInvitationPage!
   membershipRequest(id: ID!): MembershipRequest!
   membershipRequests(filter: MembershipRequestFilterMap, limit: Int = 50, offset: Int, order: MembershipRequestOrderMap): PaginatedMembershipRequests!
   memberships(filter: MembershipFilterMap, limit: Int = 50, offset: Int, order: MembershipOrderMap): PaginatedMemberships!
@@ -574,7 +574,7 @@ type User {
   email: String!
   gender: Gender!
   id: ID!
-  invitationsReceived: PaginatedMembershipInvitations!
+  invitationsReceived: MembershipInvitationPage!
   membershipRequests(filter: MembershipRequestFilterMap, limit: Int = 50, offset: Int, order: MembershipRequestOrderMap): PaginatedMembershipRequests!
   memberships(filter: MembershipFilterMap, limit: Int = 50, offset: Int, order: MembershipOrderMap): PaginatedMemberships!
   nickname: String

@@ -16,7 +16,7 @@ import { Repository } from 'projects/server/src/mikro/repository.class';
 
 import { BaseEntity } from '../../../common/base-entity.entity';
 import { Quota } from '../../../mikro/mikro-quota/quota.decorator';
-import { PaginatedMembershipInvitations } from '../../membership-invitations/dto/membership-invitation.objects';
+import { MembershipInvitationPage } from '../../membership-invitations/dto/membership-invitation.objects';
 import { MembershipInvitation } from '../../membership-invitations/entities/membership-invitation.entity';
 import { PaginatedMembershipRequests } from '../../membership-requests/dto/paginated-membership-requests.obj.dto';
 import { MembershipRequest } from '../../membership-requests/entities/membership-request.entity';
@@ -71,7 +71,7 @@ export class User extends BaseEntity<User> {
   @OneToMany(() => Membership, 'owner', { cascade: [Cascade.ALL] })
   memberships = new Collection<Membership>(this);
 
-  @Field(() => PaginatedMembershipInvitations)
+  @Field(() => MembershipInvitationPage)
   @OneToMany(() => MembershipInvitation, 'target', { cascade: [Cascade.ALL] })
   invitationsReceived = new Collection<MembershipInvitation>(this);
 

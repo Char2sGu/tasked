@@ -1,10 +1,10 @@
 import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { PaginationArgs } from '../../common/dto';
+import { PaginationArgs } from '../../common/dto/pagination.dtos';
 import { ReqUser } from '../../common/req-user.decorator';
 import { User } from '../users/entities/user.entity';
 import { MembershipInvitationCreationInput } from './dto/membership-invitation.inputs';
-import { PaginatedMembershipInvitations } from './dto/membership-invitation.objects';
+import { MembershipInvitationPage } from './dto/membership-invitation.objects';
 import { MembershipInvitation } from './entities/membership-invitation.entity';
 import { MembershipInvitationsService } from './membership-invitations.service';
 
@@ -20,11 +20,11 @@ export class MembershipInvitationsResolver {
     return this.service.queryOne(user, id);
   }
 
-  @Query(() => PaginatedMembershipInvitations)
+  @Query(() => MembershipInvitationPage)
   async membershipInvitations(
     @ReqUser() user: User,
     @Args() pagination: PaginationArgs,
-  ): Promise<PaginatedMembershipInvitations> {
+  ): Promise<MembershipInvitationPage> {
     return this.service.queryMany(user, pagination);
   }
 

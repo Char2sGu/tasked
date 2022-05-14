@@ -18,7 +18,7 @@ import { CommonFilter } from '../../../common/common-filter.enum';
 import { Context } from '../../../context/context.class';
 import { PaginatedAssignments } from '../../assignments/dto/paginated-assignments.obj.dto';
 import { Assignment } from '../../assignments/entities/assignment.entity';
-import { PaginatedMembershipInvitations } from '../../membership-invitations/dto/membership-invitation.objects';
+import { MembershipInvitationPage } from '../../membership-invitations/dto/membership-invitation.objects';
 import { MembershipInvitation } from '../../membership-invitations/entities/membership-invitation.entity';
 import { PaginatedTasks } from '../../tasks/dto/paginated-tasks.obj.dto';
 import { Task } from '../../tasks/entities/task.entity';
@@ -50,7 +50,7 @@ export class Membership extends BaseEntity<Membership> {
   @OneToMany(() => Assignment, 'recipient', { cascade: [Cascade.ALL] })
   assignments = new Collection<Assignment>(this);
 
-  @Field(() => PaginatedMembershipInvitations)
+  @Field(() => MembershipInvitationPage)
   @OneToMany(() => MembershipInvitation, 'inviter', { cascade: [Cascade.ALL] })
   invitationsSent = new Collection<MembershipInvitation>(this);
 

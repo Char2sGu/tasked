@@ -2,9 +2,13 @@ import { ArgsType, Int } from '@nestjs/graphql';
 import { Max, Min } from 'class-validator';
 
 import { Field } from '../field.decorator';
+import { JsDocRequires } from '../jsdoc';
+import { PaginationArgs } from './pagination.dtos';
+
+JsDocRequires(PaginationArgs);
 
 /**
- * @deprecated Use `PaginationArgs` instead
+ * @deprecated Use {@link PaginationArgs} instead
  */
 @ArgsType()
 export class WithPagination {

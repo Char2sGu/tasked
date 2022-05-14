@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
-import { ArgsType, Field } from '@nestjs/graphql';
+import { ArgsType, Field, ObjectType } from '@nestjs/graphql';
 import { Max, Min } from 'class-validator';
 
 @ArgsType()
@@ -13,4 +13,12 @@ export class PaginationArgs {
   @Min(1)
   @Max(2000)
   offset?: number;
+}
+
+@ObjectType()
+export abstract class Page<Item> {
+  @Field()
+  total!: number;
+
+  abstract items: Item[];
 }

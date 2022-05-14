@@ -6,10 +6,13 @@ import {
   RequiredEntityData,
 } from '@mikro-orm/core';
 
+import { Page } from '../common/dto/pagination.dtos';
+
 export class Repository<Entity> extends EntityRepository<Entity> {
   /**
    * Replace the return value of {@link EntityRepository.findAndCount} with an
    * object.
+   * @deprecated Use {@link findPage} instead
    * @param where
    * @param options
    * @returns
@@ -20,6 +23,14 @@ export class Repository<Entity> extends EntityRepository<Entity> {
   ): Promise<RepositoryPaginationResult<Entity>> {
     const [results, total] = await super.findAndCount(where, options);
     return { total, results };
+  }
+
+  async findPage(
+    where: FilterQuery<Entity>,
+    options?: FindOptions<Entity, never>,
+  ): Promise<Page<Entity>> {
+    const [items, total] = await super.findAndCount(where, options);
+    return { total, items };
   }
 
   /**
