@@ -17,7 +17,6 @@ export class ValidationPipe
         exposeDefaultValues: true, // `@Field(..., { defaultValue: ... })` cannot work in `@ResolveField()` (Bug)
         exposeUnsetFields: false, // if `true`, update actions will unexpectedly assign an `undefined` value to the entity fields and cause error
       },
-      whitelist: true,
     });
   }
 
