@@ -114,6 +114,7 @@ type Membership {
   assignments(filter: AssignmentFilterMap, limit: Int = 50, offset: Int, order: AssignmentOrderMap, ownOnly: Boolean): PaginatedAssignments!
   createdAt: DateTime!
   id: ID!
+  invitationsSent: PaginatedMembershipInvitations!
   owner: User!
   role: Role!
   tasks(filter: TaskFilterMap, limit: Int = 50, offset: Int, order: TaskOrderMap, ownOnly: Boolean): PaginatedTasks!
@@ -162,6 +163,22 @@ input MembershipFilterMap {
   updatedAt__lte: DateTime
   updatedAt__ne: DateTime
   updatedAt__nin: [DateTime!]
+}
+
+type MembershipInvitation {
+  createdAt: DateTime!
+  id: ID!
+  inviter: Membership!
+  message: String!
+  status: String!
+  target: User!
+  updatedAt: DateTime!
+}
+
+input MembershipInvitationCreationInput {
+  message: String!
+  targetId: ID!
+  teamId: ID!
 }
 
 input MembershipOrderMap {
@@ -258,10 +275,12 @@ input MembershipUpdateInput {
 }
 
 type Mutation {
+  acceptMembershipInvitation(id: ID!): MembershipInvitation!
   acceptMembershipRequest(id: ID!): AcceptMembershipRequestResult!
   auth(password: String!, username: String!): AuthResult! @deprecated(reason: "Use `login` instead")
   confirmVerification(code: String!): Verification!
   createAssignment(data: AssignmentCreateInput!): Assignment!
+  createMembershipInvitation(data: MembershipInvitationCreationInput!): MembershipInvitation!
   createMembershipRequest(data: MembershipRequestCreateInput!): MembershipRequest!
   createTask(data: TaskCreateInput!): Task!
   createTeam(data: TeamCreateInput!): Team!
@@ -273,8 +292,10 @@ type Mutation {
   deleteTeam(id: ID!): Team!
   login(password: String!, username: String!): LoginResult!
   register(data: UserCreateInput!): RegisterResult!
+  rejectMembershipInvitation(id: ID!): MembershipInvitation!
   rejectMembershipRequest(id: ID!): MembershipRequest!
   requestVerification: Verification!
+  revokeMembershipInvitation(id: ID!): MembershipInvitation!
   updateAssignment(data: AssignmentUpdateInput!, id: ID!): Assignment!
   updateMembership(data: MembershipUpdateInput!, id: ID!): Membership!
   updateTask(data: TaskUpdateInput!, id: ID!): Task!
@@ -284,6 +305,11 @@ type Mutation {
 
 type PaginatedAssignments {
   results: [Assignment!]!
+  total: Int!
+}
+
+type PaginatedMembershipInvitations {
+  results: [MembershipInvitation!]!
   total: Int!
 }
 
@@ -317,6 +343,8 @@ type Query {
   assignments(filter: AssignmentFilterMap, limit: Int = 50, offset: Int, order: AssignmentOrderMap, ownOnly: Boolean): PaginatedAssignments!
   me: User!
   membership(id: ID!): Membership!
+  membershipInvitation(id: ID!): MembershipInvitation!
+  membershipInvitations(limit: Int = 50, offset: Int): PaginatedMembershipInvitations!
   membershipRequest(id: ID!): MembershipRequest!
   membershipRequests(filter: MembershipRequestFilterMap, limit: Int = 50, offset: Int, order: MembershipRequestOrderMap): PaginatedMembershipRequests!
   memberships(filter: MembershipFilterMap, limit: Int = 50, offset: Int, order: MembershipOrderMap): PaginatedMemberships!
@@ -546,6 +574,7 @@ type User {
   email: String!
   gender: Gender!
   id: ID!
+  invitationsReceived: PaginatedMembershipInvitations!
   membershipRequests(filter: MembershipRequestFilterMap, limit: Int = 50, offset: Int, order: MembershipRequestOrderMap): PaginatedMembershipRequests!
   memberships(filter: MembershipFilterMap, limit: Int = 50, offset: Int, order: MembershipOrderMap): PaginatedMemberships!
   nickname: String
@@ -657,7 +686,7 @@ type Verification {
   createdAt: DateTime!
   expiresAt: DateTime!
   id: ID!
-  remainingAttemptCount: Float!
+  remainingAttemptCount: Int!
   updatedAt: DateTime!
   verified: Boolean!
 }

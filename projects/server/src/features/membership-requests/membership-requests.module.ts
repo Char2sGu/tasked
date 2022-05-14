@@ -12,6 +12,8 @@ import { MembershipRequestsResolver } from './membership-requests.resolver';
 import { MembershipRequestsService } from './membership-requests.service';
 import { MembershipRequestsFieldsResolver } from './membership-requests-fields.resolver';
 
+// TODO: replace delete with revoke
+
 @Module({
   imports: [
     SharedModule,

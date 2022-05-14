@@ -9,6 +9,7 @@ import { ContextModule } from './context/context.module';
 import { CoreModule } from './core/core.module';
 import { AssignmentsModule } from './features/assignments/assignments.module';
 import { AuthModule } from './features/auth/auth.module';
+import { MembershipInvitationsModule } from './features/membership-invitations/membership-invitations.module';
 import { MembershipRequestsModule } from './features/membership-requests/membership-requests.module';
 import { MembershipsModule } from './features/memberships/memberships.module';
 import { TasksModule } from './features/tasks/tasks.module';
@@ -40,14 +41,15 @@ import { ValidationModule } from './validation/validation.module';
       transport: EMAIL_TRANSPORT,
       defaults: { from: EMAIL_FROM },
     }),
+    CliModule,
     AuthModule,
     UsersModule,
     TeamsModule,
     MembershipsModule,
     MembershipRequestsModule,
+    MembershipInvitationsModule,
     TasksModule,
     AssignmentsModule,
-    CliModule,
     VerificationsModule,
   ],
 })

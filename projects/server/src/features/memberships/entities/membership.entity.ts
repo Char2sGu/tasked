@@ -8,14 +8,18 @@ import {
   Property,
   Unique,
 } from '@mikro-orm/core';
-import { ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { Filterable } from 'projects/server/src/common/dto/filter/filterable.decorator';
+import { Orderable } from 'projects/server/src/common/dto/order/orderable.decorator';
+import { Repository } from 'projects/server/src/mikro/repository.class';
 
 import { BaseEntity } from '../../../common/base-entity.entity';
 import { CommonFilter } from '../../../common/common-filter.enum';
-import { Field } from '../../../common/field.decorator';
 import { Context } from '../../../context/context.class';
 import { PaginatedAssignments } from '../../assignments/dto/paginated-assignments.obj.dto';
 import { Assignment } from '../../assignments/entities/assignment.entity';
+import { PaginatedMembershipInvitations } from '../../membership-invitations/dto/membership-invitation.objects';
+import { MembershipInvitation } from '../../membership-invitations/entities/membership-invitation.entity';
 import { PaginatedTasks } from '../../tasks/dto/paginated-tasks.obj.dto';
 import { Task } from '../../tasks/entities/task.entity';
 import { Team } from '../../teams/entities/team.entity';
@@ -32,37 +36,33 @@ import { Role } from './role.enum';
   }),
 })
 @Unique<Membership>({ properties: ['owner', 'team', 'deletedAt'] })
-@Entity()
+@Entity({ customRepository: () => MembershipRepository })
 export class Membership extends BaseEntity<Membership> {
-  @Field(() => User)
-  @ManyToOne({
-    entity: () => User,
-  })
+  @Field()
+  @ManyToOne()
   owner!: User;
 
-  @Field(() => Team)
-  @ManyToOne({
-    entity: () => Team,
-  })
+  @Field()
+  @ManyToOne()
   team!: Team;
 
   @Field(() => PaginatedAssignments)
-  @OneToMany({
-    entity: () => Assignment,
-    mappedBy: (assignment) => assignment.recipient,
-    cascade: [Cascade.ALL],
-  })
+  @OneToMany(() => Assignment, 'recipient', { cascade: [Cascade.ALL] })
   assignments = new Collection<Assignment>(this);
 
+  @Field(() => PaginatedMembershipInvitations)
+  @OneToMany(() => MembershipInvitation, 'inviter', { cascade: [Cascade.ALL] })
+  invitationsSent = new Collection<MembershipInvitation>(this);
+
   @Field(() => PaginatedTasks)
-  @OneToMany({
-    entity: () => Task,
-    mappedBy: (task) => task.creator,
-    cascade: [Cascade.ALL],
-  })
+  @OneToMany(() => Task, 'creator', { cascade: [Cascade.ALL] })
   tasks = new Collection<Task>(this);
 
-  @Field(() => Role, { orderable: true, filterable: true })
+  @Field(() => Role)
+  @Orderable()
+  @Filterable(() => Role)
   @Property()
   role!: Role;
 }
+
+export class MembershipRepository extends Repository<Membership> {}

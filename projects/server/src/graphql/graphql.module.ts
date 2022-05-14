@@ -24,6 +24,7 @@ import { GraphqlThrottlerGuard } from './graphql-throttler.guard';
       sortSchema: true,
       playground: DEBUG,
       validationRules: [depthLimit(GRAPHQL_DEPTH)],
+      buildSchemaOptions: { numberScalarMode: 'integer' },
     }),
     ThrottlerModule.forRoot({
       limit: GRAPHQL_FREQUENCY_LIMIT,

@@ -12,6 +12,7 @@ import { Orderable } from './dto/order/orderable.decorator';
 
 /**
  * Combine decorators.
+ * @deprecated Use separate decorators instead.
  * @param returnType
  * @param options
  * @returns

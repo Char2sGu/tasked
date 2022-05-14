@@ -3,6 +3,9 @@ import { Max, Min } from 'class-validator';
 
 import { Field } from '../field.decorator';
 
+/**
+ * @deprecated Use `PaginationArgs` instead
+ */
 @ArgsType()
 export class WithPagination {
   @Field(() => Int)
