@@ -72,6 +72,6 @@ export class VerificationsService {
   }
 
   private getExpirationDate(from = dayjs()): Dayjs {
-    return from.add(3, 'hours');
+    return from.add(5, 'minutes');
   }
 }
