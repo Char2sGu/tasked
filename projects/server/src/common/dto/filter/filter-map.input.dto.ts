@@ -63,7 +63,11 @@ export class FilterMap {
     );
   }
 
-  static resolveField(
+  static resolveOrEmpty<Entity>(filterMap?: FilterMap): OperatorMap<Entity> {
+    return filterMap ? this.resolve(filterMap) : {};
+  }
+
+  private static resolveField(
     filter: FieldFilter<string>,
     value: unknown,
   ): OperatorMap<unknown> {

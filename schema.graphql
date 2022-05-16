@@ -192,6 +192,67 @@ input MembershipInvitationCreationInput {
   teamId: ID!
 }
 
+input MembershipInvitationFilterMap {
+  createdAt: DateTime
+  createdAt__eq: DateTime
+  createdAt__gt: DateTime
+  createdAt__gte: DateTime
+  createdAt__in: [DateTime!]
+  createdAt__like: String
+  createdAt__lt: DateTime
+  createdAt__lte: DateTime
+  createdAt__ne: DateTime
+  createdAt__nin: [DateTime!]
+  id: ID
+  id__eq: ID
+  id__gt: ID
+  id__gte: ID
+  id__in: [ID!]
+  id__like: String
+  id__lt: ID
+  id__lte: ID
+  id__ne: ID
+  id__nin: [ID!]
+  message: String
+  message__eq: String
+  message__gt: String
+  message__gte: String
+  message__in: [String!]
+  message__like: String
+  message__lt: String
+  message__lte: String
+  message__ne: String
+  message__nin: [String!]
+  status: String
+  status__eq: String
+  status__gt: String
+  status__gte: String
+  status__in: [String!]
+  status__like: String
+  status__lt: String
+  status__lte: String
+  status__ne: String
+  status__nin: [String!]
+  updatedAt: DateTime
+  updatedAt__eq: DateTime
+  updatedAt__gt: DateTime
+  updatedAt__gte: DateTime
+  updatedAt__in: [DateTime!]
+  updatedAt__like: String
+  updatedAt__lt: DateTime
+  updatedAt__lte: DateTime
+  updatedAt__ne: DateTime
+  updatedAt__nin: [DateTime!]
+}
+
+input MembershipInvitationOrderMap {
+  createdAt: QueryOrder
+  id: QueryOrder
+  message: QueryOrder
+  status: QueryOrder
+  updatedAt: QueryOrder
+}
+
 type MembershipInvitationPage {
   items: [MembershipInvitation!]!
   total: Int!
@@ -357,7 +418,7 @@ type Query {
   me: User!
   membership(id: ID!): Membership!
   membershipInvitation(id: ID!): MembershipInvitation!
-  membershipInvitations(limit: Int = 50, offset: Int): MembershipInvitationPage!
+  membershipInvitations(filter: MembershipInvitationFilterMap, limit: Int = 50, offset: Int, order: MembershipInvitationOrderMap): MembershipInvitationPage!
   membershipRequest(id: ID!): MembershipRequest!
   membershipRequests(filter: MembershipRequestFilterMap, limit: Int = 50, offset: Int, order: MembershipRequestOrderMap): PaginatedMembershipRequests!
   memberships(filter: MembershipFilterMap, limit: Int = 50, offset: Int, order: MembershipOrderMap): PaginatedMemberships!

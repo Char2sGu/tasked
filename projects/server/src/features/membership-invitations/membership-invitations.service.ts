@@ -5,10 +5,11 @@ import {
   Injectable,
 } from '@nestjs/common';
 
-import { PaginationArgs } from '../../common/dto/pagination.dtos';
+import { FilterMap } from '../../common/dto/filter/filter-map.input.dto';
 import { MembershipRepository } from '../memberships/entities/membership.entity';
 import { Role } from '../memberships/entities/role.enum';
 import { User, UserRepository } from '../users/entities/user.entity';
+import { QueryMembershipInvitationsArgs } from './dto/membership-invitation.args';
 import { MembershipInvitationCreationInput } from './dto/membership-invitation.inputs';
 import { MembershipInvitationPage } from './dto/membership-invitation.objects';
 import {
@@ -27,14 +28,13 @@ export class MembershipInvitationsService {
 
   async queryMany(
     user: User,
-    { limit, offset }: PaginationArgs,
+    { limit, offset, filter, order }: QueryMembershipInvitationsArgs,
     where: FilterQuery<MembershipInvitation> = {},
   ): Promise<MembershipInvitationPage> {
-    return this.invitationRepo.findPage(where, {
-      filters: { readableBy: { user } },
-      limit,
-      offset,
-    });
+    return this.invitationRepo.findPage(
+      { $and: [where, FilterMap.resolveOrEmpty<MembershipInvitation>(filter)] },
+      { filters: { readableBy: { user } }, limit, offset, orderBy: order },
+    );
   }
 
   async queryOne(user: User, id: number): Promise<MembershipInvitation> {

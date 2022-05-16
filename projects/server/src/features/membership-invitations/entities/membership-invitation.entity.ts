@@ -7,6 +7,8 @@ import {
 } from '@mikro-orm/core';
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { BaseEntity } from 'projects/server/src/common/base-entity.entity';
+import { Filterable } from 'projects/server/src/common/dto/filter/filterable.decorator';
+import { Orderable } from 'projects/server/src/common/dto/order/orderable.decorator';
 import { Repository } from 'projects/server/src/mikro/repository.class';
 
 import { Membership } from '../../memberships/entities/membership.entity';
@@ -30,10 +32,14 @@ export class MembershipInvitation extends BaseEntity<MembershipInvitation> {
   inviter!: Membership;
 
   @Field()
+  @Orderable()
+  @Filterable()
   @Property()
   message?: string;
 
   @Field()
+  @Orderable()
+  @Filterable()
   @Property()
   status!: MembershipInvitationStatus;
 }
