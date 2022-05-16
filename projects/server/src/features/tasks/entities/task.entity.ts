@@ -66,6 +66,12 @@ export class Task extends BaseEntity<Task> {
   @Property()
   isActive!: boolean;
 
+  @Field({ nullable: true })
+  @Orderable()
+  @Filterable()
+  @Property({ nullable: true })
+  endsAfter?: Date;
+
   @Field(() => PaginatedAssignments)
   @OneToMany(() => Assignment, 'task', { cascade: [Cascade.ALL] })
   assignments = new Collection<Assignment>(this);

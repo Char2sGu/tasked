@@ -40,7 +40,7 @@ export class DbSeedCommand implements CommandRunner {
     const teams: Team[] = [];
     while (teams.length < 30) {
       const user = oneOf(users);
-      if (user.teams.length == 20) continue;
+      if (user.teams.length === 20) continue;
       teams.push(
         em.create(Team, {
           creator: oneOf(users),
@@ -105,7 +105,7 @@ export class DbSeedCommand implements CommandRunner {
       );
     });
     membershipRequests.forEach((membershipRequest) => {
-      if (membershipRequest.status != MembershipRequestStatus.Accepted) return;
+      if (membershipRequest.status !== MembershipRequestStatus.Accepted) return;
       memberships.push(
         em.create(Membership, {
           owner: membershipRequest.owner,
@@ -124,11 +124,11 @@ export class DbSeedCommand implements CommandRunner {
     teams.forEach((team) => {
       const managers = team.memberships
         .getItems()
-        .filter((m) => m.role == Role.Manager);
+        .filter((m) => m.role === Role.Manager);
       managers.forEach((manager) => {
         const prevLength = tasks.length;
         const count = faker.datatype.number({ min: 0, max: 10 });
-        while (tasks.length - prevLength != count) {
+        while (tasks.length - prevLength !== count) {
           tasks.push(
             em.create(Task, {
               team,
@@ -136,6 +136,10 @@ export class DbSeedCommand implements CommandRunner {
               title: faker.random.words(
                 faker.datatype.number({ min: 1, max: 8 }),
               ),
+              endsAfter: faker.datatype.datetime({
+                min: 0,
+                max: 1000 * 60 * 60 * 24 * 30,
+              }),
               description: faker.datatype.boolean()
                 ? faker.random.words(
                     faker.datatype.number({ min: 10, max: 100 }),

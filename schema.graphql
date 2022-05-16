@@ -377,6 +377,7 @@ type Task {
   createdAt: DateTime!
   creator: Membership!
   description: String
+  endsAfter: DateTime
   id: ID!
   isActive: Boolean!
   isCompleted: Boolean!
@@ -387,6 +388,7 @@ type Task {
 
 input TaskCreateInput {
   description: String
+  endsAfter: DateTime!
   team: ID!
   title: String!
 }
@@ -412,6 +414,16 @@ input TaskFilterMap {
   description__lte: String
   description__ne: String
   description__nin: [String!]
+  endsAfter: DateTime
+  endsAfter__eq: DateTime
+  endsAfter__gt: DateTime
+  endsAfter__gte: DateTime
+  endsAfter__in: [DateTime!]
+  endsAfter__like: String
+  endsAfter__lt: DateTime
+  endsAfter__lte: DateTime
+  endsAfter__ne: DateTime
+  endsAfter__nin: [DateTime!]
   id: ID
   id__eq: ID
   id__gt: ID
@@ -457,6 +469,7 @@ input TaskFilterMap {
 input TaskOrderMap {
   createdAt: QueryOrder
   description: QueryOrder
+  endsAfter: QueryOrder
   id: QueryOrder
   isActive: QueryOrder
   title: QueryOrder
@@ -465,7 +478,8 @@ input TaskOrderMap {
 
 input TaskUpdateInput {
   description: String
-  isActive: Boolean
+  endsAfter: DateTime
+  isActive: Boolean!
   team: ID
   title: String
 }
