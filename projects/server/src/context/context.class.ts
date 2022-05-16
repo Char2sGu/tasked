@@ -3,6 +3,9 @@ import { Request } from 'express';
 
 import { User } from '../features/users/entities/user.entity';
 
+/**
+ * @deprecated Use normal methods instead
+ */
 export class Context {
   static get current(): Context {
     return this.storage.getStore()!;

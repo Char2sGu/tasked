@@ -15,15 +15,22 @@ export class TasksFieldsResolver {
   ) {}
 
   @ResolveField()
-  async creator(@Parent() entity: Task): Promise<Membership> {
-    return this.membershipRefLoader.load(entity.creator);
+  async creator(@Parent() parent: Task): Promise<Membership> {
+    return this.membershipRefLoader.load(parent.creator);
   }
 
   @ResolveField()
   async assignments(
+    @Parent() parent: Task,
     @Args() args: QueryAssignmentsArgs,
-    @Parent() entity: Task,
   ): Promise<PaginatedAssignments> {
-    return this.assignmentsService.queryMany(args, { task: entity });
+    return this.assignmentsService.queryMany(args, { task: parent });
+  }
+
+  @ResolveField(() => Boolean)
+  async isCompleted(@Parent() parent: Task): Promise<boolean> {
+    return parent.assignments
+      .matching({ where: { isCompleted: false } })
+      .then((uncompleted) => !uncompleted.length);
   }
 }

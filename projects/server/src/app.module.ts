@@ -20,8 +20,6 @@ import { GraphqlModule } from './graphql/graphql.module';
 import { MikroModule } from './mikro/mikro.module';
 import { ValidationModule } from './validation/validation.module';
 
-// TODO: implement invitations
-// TODO: option to hide task after all assignments are done
 // TODO: order of tasks and assignments
 // TODO: assignment steps
 // TODO: server-sent event
@@ -36,11 +34,11 @@ import { ValidationModule } from './validation/validation.module';
     GraphqlModule,
     ValidationModule.forRoot(),
     DataLoaderModule.forRoot(),
-    CoreModule,
     MailerModule.forRoot({
       transport: EMAIL_TRANSPORT,
       defaults: { from: EMAIL_FROM },
     }),
+    CoreModule,
     CliModule,
     AuthModule,
     UsersModule,

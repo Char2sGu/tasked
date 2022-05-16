@@ -31,7 +31,7 @@ export class MembershipInvitationsService {
     where: FilterQuery<MembershipInvitation> = {},
   ): Promise<MembershipInvitationPage> {
     return this.invitationRepo.findPage(where, {
-      filters: { accessibleBy: { user } },
+      filters: { readableBy: { user } },
       limit,
       offset,
     });
@@ -40,7 +40,7 @@ export class MembershipInvitationsService {
   async queryOne(user: User, id: number): Promise<MembershipInvitation> {
     return this.invitationRepo.findOneOrFail(
       { id },
-      { filters: { accessibleBy: { user } } },
+      { filters: { readableBy: { user } } },
     );
   }
 

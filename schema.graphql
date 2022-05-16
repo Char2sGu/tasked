@@ -379,6 +379,7 @@ type Task {
   description: String
   id: ID!
   isActive: Boolean!
+  isCompleted: Boolean!
   team: Team!
   title: String!
   updatedAt: DateTime!

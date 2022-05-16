@@ -15,7 +15,7 @@ import { User } from '../../users/entities/user.entity';
 @ObjectType()
 @Entity({ customRepository: () => MembershipInvitationRepository })
 @Filter({
-  name: 'accessibleBy',
+  name: 'readableBy',
   cond: ({ user }): FilterQuery<MembershipInvitation> => ({
     $or: [{ inviter: { owner: user } }, { target: user }],
   }),
