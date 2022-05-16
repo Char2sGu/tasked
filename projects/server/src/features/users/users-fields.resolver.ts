@@ -1,8 +1,12 @@
 import { Args, Parent, ResolveField, Resolver } from '@nestjs/graphql';
 
+import { ReqUser } from '../../common/req-user.decorator';
 import { AssignmentsService } from '../assignments/assignments.service';
 import { PaginatedAssignments } from '../assignments/dto/paginated-assignments.obj.dto';
 import { QueryAssignmentsArgs } from '../assignments/dto/query-assignments.args.dto';
+import { QueryMembershipInvitationsArgs } from '../membership-invitations/dto/membership-invitation.args';
+import { MembershipInvitationPage } from '../membership-invitations/dto/membership-invitation.objects';
+import { MembershipInvitationsService } from '../membership-invitations/membership-invitations.service';
 import { PaginatedMembershipRequests } from '../membership-requests/dto/paginated-membership-requests.obj.dto';
 import { QueryMembershipRequestsArgs } from '../membership-requests/dto/query-membership-requests.args.dto';
 import { MembershipRequestsService } from '../membership-requests/membership-requests.service';
@@ -21,51 +25,63 @@ import { User } from './entities/user.entity';
 export class UsersFieldsResolver {
   constructor(
     private teamsService: TeamsService,
-    private membershipRequestsService: MembershipRequestsService,
     private membershipsService: MembershipsService,
+    private membershipRequestsService: MembershipRequestsService,
+    private membershipInvitationsService: MembershipInvitationsService,
     private tasksService: TasksService,
     private assignmentsService: AssignmentsService,
   ) {}
 
   @ResolveField()
   async teams(
+    @Parent() parent: User,
     @Args() args: QueryTeamsArgs,
-    @Parent() entity: User,
   ): Promise<PaginatedTeams> {
-    return this.teamsService.queryMany(args, { creator: entity });
+    return this.teamsService.queryMany(args, { creator: parent });
   }
 
   @ResolveField()
   async membershipRequests(
+    @Parent() parent: User,
     @Args() args: QueryMembershipRequestsArgs,
-    @Parent() entity: User,
   ): Promise<PaginatedMembershipRequests> {
-    return this.membershipRequestsService.queryMany(args, { owner: entity });
+    return this.membershipRequestsService.queryMany(args, { owner: parent });
   }
 
   @ResolveField()
   async memberships(
+    @Parent() parent: User,
     @Args() args: QueryMembershipsArgs,
-    @Parent() entity: User,
   ): Promise<PaginatedMemberships> {
-    return this.membershipsService.queryMany(args, { owner: entity });
+    return this.membershipsService.queryMany(args, { owner: parent });
+  }
+
+  @ResolveField()
+  async invitationsReceived(
+    @ReqUser() user: User,
+    @Parent() parent: User,
+    @Args() args: QueryMembershipInvitationsArgs,
+  ): Promise<MembershipInvitationPage> {
+    return this.membershipInvitationsService.queryMany(user, args, {
+      target: parent,
+    });
   }
 
   @ResolveField(() => PaginatedTasks)
   async tasks(
+    @Parent() parent: User,
     @Args() args: QueryTasksArgs,
-    @Parent() entity: User,
   ): Promise<PaginatedTasks> {
-    return this.tasksService.queryMany(args, { creator: { owner: entity } });
+    return this.tasksService.queryMany(args, { creator: { owner: parent } });
   }
 
   @ResolveField(() => PaginatedAssignments)
   async assignments(
+    @Parent() parent: User,
     @Args() args: QueryAssignmentsArgs,
-    @Parent() entity: User,
   ): Promise<PaginatedAssignments> {
     return this.assignmentsService.queryMany(args, {
-      recipient: { owner: entity },
+      recipient: { owner: parent },
     });
   }
 }

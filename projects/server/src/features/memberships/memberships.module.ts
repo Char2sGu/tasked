@@ -4,6 +4,7 @@ import { forwardRef, Module } from '@nestjs/common';
 import { SharedModule } from '../../shared/shared.module';
 import { AssignmentsModule } from '../assignments/assignments.module';
 import { Assignment } from '../assignments/entities/assignment.entity';
+import { MembershipInvitationsModule } from '../membership-invitations/membership-invitations.module';
 import { TasksModule } from '../tasks/tasks.module';
 import { TeamsModule } from '../teams/teams.module';
 import { UsersModule } from '../users/users.module';
@@ -21,6 +22,7 @@ import { MembershipsFieldsResolver } from './memberships-fields.resolver';
     forwardRef(() => TeamsModule),
     forwardRef(() => AssignmentsModule),
     forwardRef(() => TasksModule),
+    forwardRef(() => MembershipInvitationsModule),
   ],
   providers: [
     MembershipsResolver,

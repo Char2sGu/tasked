@@ -114,7 +114,7 @@ type Membership {
   assignments(filter: AssignmentFilterMap, limit: Int = 50, offset: Int, order: AssignmentOrderMap, ownOnly: Boolean): PaginatedAssignments!
   createdAt: DateTime!
   id: ID!
-  invitationsSent: MembershipInvitationPage!
+  invitationsSent(filter: MembershipInvitationFilterMap, limit: Int = 50, offset: Int, order: MembershipInvitationOrderMap): MembershipInvitationPage!
   name: String
   owner: User!
   role: Role!
@@ -663,7 +663,7 @@ type User {
   email: String!
   gender: Gender!
   id: ID!
-  invitationsReceived: MembershipInvitationPage!
+  invitationsReceived(filter: MembershipInvitationFilterMap, limit: Int = 50, offset: Int, order: MembershipInvitationOrderMap): MembershipInvitationPage!
   membershipRequests(filter: MembershipRequestFilterMap, limit: Int = 50, offset: Int, order: MembershipRequestOrderMap): PaginatedMembershipRequests!
   memberships(filter: MembershipFilterMap, limit: Int = 50, offset: Int, order: MembershipOrderMap): PaginatedMemberships!
   nickname: String
