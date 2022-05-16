@@ -14,8 +14,8 @@ export class AuthTokenService {
   ) {}
 
   async sign(user: User): Promise<string> {
-    const { id, username } = user;
-    const payload: AuthTokenPayload = { id, username };
+    const { id, username, email } = user;
+    const payload: AuthTokenPayload = { id, username, email };
     return this.jwtService.signAsync(payload);
   }
 
@@ -30,4 +30,5 @@ export class AuthTokenService {
 export interface AuthTokenPayload {
   id: number;
   username: string;
+  email?: string;
 }
