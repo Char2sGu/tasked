@@ -46,6 +46,12 @@ export class Membership extends BaseEntity<Membership> {
   @ManyToOne()
   team!: Team;
 
+  @Field({ nullable: true })
+  @Orderable()
+  @Filterable()
+  @Property({ nullable: true })
+  name?: string;
+
   @Field(() => PaginatedAssignments)
   @OneToMany(() => Assignment, 'recipient', { cascade: [Cascade.ALL] })
   assignments = new Collection<Assignment>(this);

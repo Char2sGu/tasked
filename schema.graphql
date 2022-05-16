@@ -115,6 +115,7 @@ type Membership {
   createdAt: DateTime!
   id: ID!
   invitationsSent: MembershipInvitationPage!
+  name: String
   owner: User!
   role: Role!
   tasks(filter: TaskFilterMap, limit: Int = 50, offset: Int, order: TaskOrderMap, ownOnly: Boolean): PaginatedTasks!
@@ -143,6 +144,16 @@ input MembershipFilterMap {
   id__lte: ID
   id__ne: ID
   id__nin: [ID!]
+  name: String
+  name__eq: String
+  name__gt: String
+  name__gte: String
+  name__in: [String!]
+  name__like: String
+  name__lt: String
+  name__lte: String
+  name__ne: String
+  name__nin: [String!]
   role: Role
   role__eq: Role
   role__gt: Role
@@ -189,6 +200,7 @@ type MembershipInvitationPage {
 input MembershipOrderMap {
   createdAt: QueryOrder
   id: QueryOrder
+  name: QueryOrder
   role: QueryOrder
   updatedAt: QueryOrder
 }
@@ -276,6 +288,7 @@ enum MembershipRequestStatus {
 }
 
 input MembershipUpdateInput {
+  name: String
   role: Role
 }
 

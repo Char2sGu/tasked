@@ -6,7 +6,7 @@ import { INestApplication } from '@nestjs/common';
 import { TestingModule } from '@nestjs/testing';
 
 import { AuthService } from '../src/features/auth/auth.service';
-import { PaginatedMemberships } from '../src/features/memberships/dto/paginated-memberships.obj.dto';
+import { PaginatedMemberships } from '../src/features/memberships/dto/memberships.objects';
 import { Membership } from '../src/features/memberships/entities/membership.entity';
 import { Role } from '../src/features/memberships/entities/role.enum';
 import { Team } from '../src/features/teams/entities/team.entity';

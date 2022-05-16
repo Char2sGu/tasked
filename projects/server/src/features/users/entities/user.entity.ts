@@ -20,7 +20,7 @@ import { MembershipInvitationPage } from '../../membership-invitations/dto/membe
 import { MembershipInvitation } from '../../membership-invitations/entities/membership-invitation.entity';
 import { PaginatedMembershipRequests } from '../../membership-requests/dto/paginated-membership-requests.obj.dto';
 import { MembershipRequest } from '../../membership-requests/entities/membership-request.entity';
-import { PaginatedMemberships } from '../../memberships/dto/paginated-memberships.obj.dto';
+import { PaginatedMemberships } from '../../memberships/dto/memberships.objects';
 import { Membership } from '../../memberships/entities/membership.entity';
 import { PaginatedTeams } from '../../teams/dto/paginated-teams.obj.dto';
 import { Team } from '../../teams/entities/team.entity';

@@ -6,8 +6,8 @@ import { QueryAssignmentsArgs } from '../assignments/dto/query-assignments.args.
 import { PaginatedMembershipRequests } from '../membership-requests/dto/paginated-membership-requests.obj.dto';
 import { QueryMembershipRequestsArgs } from '../membership-requests/dto/query-membership-requests.args.dto';
 import { MembershipRequestsService } from '../membership-requests/membership-requests.service';
-import { PaginatedMemberships } from '../memberships/dto/paginated-memberships.obj.dto';
-import { QueryMembershipsArgs } from '../memberships/dto/query-memberships.args.dto';
+import { QueryMembershipsArgs } from '../memberships/dto/membership.args';
+import { PaginatedMemberships } from '../memberships/dto/memberships.objects';
 import { Membership } from '../memberships/entities/membership.entity';
 import { MembershipsService } from '../memberships/memberships.service';
 import { PaginatedTasks } from '../tasks/dto/paginated-tasks.obj.dto';

@@ -100,6 +100,7 @@ export class DbSeedCommand implements CommandRunner {
         em.create(Membership, {
           owner: team.creator,
           team,
+          name: possibility(0.3) ? faker.name.lastName() : undefined,
           role: Role.Manager,
         }),
       );
@@ -110,6 +111,7 @@ export class DbSeedCommand implements CommandRunner {
         em.create(Membership, {
           owner: membershipRequest.owner,
           team: membershipRequest.team,
+          name: possibility(0.3) ? faker.name.lastName() : undefined,
           role: possibility(
             faker.datatype.number({ min: 0.1, max: 0.3, precision: 0.1 }),
           )

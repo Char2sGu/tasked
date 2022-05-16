@@ -1,10 +1,8 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-import { DeleteMembershipArgs } from './dto/delete-membership.args.dto';
-import { PaginatedMemberships } from './dto/paginated-memberships.obj.dto';
-import { QueryMembershipArgs } from './dto/query-membership.args.dto';
-import { QueryMembershipsArgs } from './dto/query-memberships.args.dto';
-import { UpdateMembershipArgs } from './dto/update-membership.args.dto';
+import { QueryMembershipsArgs } from './dto/membership.args';
+import { MembershipUpdateInput } from './dto/membership.inputs';
+import { PaginatedMemberships } from './dto/memberships.objects';
 import { Membership } from './entities/membership.entity';
 import { MembershipsService } from './memberships.service';
 
@@ -20,21 +18,24 @@ export class MembershipsResolver {
   }
 
   @Query(() => Membership)
-  async membership(@Args() args: QueryMembershipArgs): Promise<Membership> {
-    return this.service.queryOne(args);
+  async membership(
+    @Args('id', { type: () => ID }) id: number,
+  ): Promise<Membership> {
+    return this.service.queryOne(id);
   }
 
   @Mutation(() => Membership)
   async updateMembership(
-    @Args() args: UpdateMembershipArgs,
+    @Args('id', { type: () => ID }) id: number,
+    @Args('data') data: MembershipUpdateInput,
   ): Promise<Membership> {
-    return this.service.updateOne(args);
+    return this.service.updateOne(id, data);
   }
 
   @Mutation(() => Membership)
   async deleteMembership(
-    @Args() args: DeleteMembershipArgs,
+    @Args('id', { type: () => ID }) id: number,
   ): Promise<Membership> {
-    return this.service.deleteOne(args);
+    return this.service.deleteOne(id);
   }
 }

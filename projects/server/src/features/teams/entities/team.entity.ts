@@ -15,7 +15,7 @@ import { Field } from '../../../common/field.decorator';
 import { Context } from '../../../context/context.class';
 import { Quota } from '../../../mikro/mikro-quota/quota.decorator';
 import { MembershipRequest } from '../../membership-requests/entities/membership-request.entity';
-import { PaginatedMemberships } from '../../memberships/dto/paginated-memberships.obj.dto';
+import { PaginatedMemberships } from '../../memberships/dto/memberships.objects';
 import { Membership } from '../../memberships/entities/membership.entity';
 import { User } from '../../users/entities/user.entity';
 
