@@ -4,10 +4,10 @@ import * as bcryptjs from 'bcryptjs';
 
 import { Repository } from '../../mikro/repository.class';
 import { TeamsService } from '../teams/teams.service';
+import { UserCreateInput } from '../users/dto/user.inputs';
 import { User } from '../users/entities/user.entity';
 import { VerificationsService } from '../verifications/verifications.service';
 import { AuthTokenService } from './auth-token/auth-token.service';
-import { LoginArgs, RegisterArgs } from './dto/auth.args';
 import { LoginResult, RegisterResult } from './dto/auth.objects';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class AuthService {
     private teamsService: TeamsService,
   ) {}
 
-  async login({ username, password }: LoginArgs): Promise<LoginResult> {
+  async login(username: string, password: string): Promise<LoginResult> {
     const user = await this.repo.findOne({ username });
     if (!user) throw new UnauthorizedException('Invalid username or password');
     const valid = await bcryptjs.compare(password, user.password);
@@ -28,7 +28,7 @@ export class AuthService {
     return { user, token };
   }
 
-  async register({ data }: RegisterArgs): Promise<RegisterResult> {
+  async register(data: UserCreateInput): Promise<RegisterResult> {
     const user = this.repo.create(data);
     await this.repo.flush();
     const token = await this.authTokenService.sign(user);
