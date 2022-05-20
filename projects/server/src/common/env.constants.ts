@@ -6,7 +6,7 @@ config();
 const num = (k: string) => Number(env[k]);
 const str = (k: string) => env[k];
 const bool = (k: string) =>
-  env[k] == 'true' ? true : env[k] == 'false' ? false : undefined;
+  env[k] === 'true' ? true : env[k] === 'false' ? false : undefined;
 
 export const PORT = num('PORT');
 export const DB_PATH = str('DB_PATH');

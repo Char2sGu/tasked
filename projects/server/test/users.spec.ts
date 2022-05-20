@@ -208,6 +208,7 @@ describe('Users', () => {
       repo.persist(
         repo.create({ username: `username${i}`, password: 'password' }),
       );
+
     await repo.flush();
   }
 });

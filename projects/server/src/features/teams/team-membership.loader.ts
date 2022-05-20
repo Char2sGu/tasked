@@ -28,7 +28,7 @@ export class TeamMembershipLoader extends DataLoader<
       team: { $in: teams },
     });
     return teams.map(
-      (team) => memberships.find((membership) => membership.team == team)!,
+      (team) => memberships.find((membership) => membership.team === team)!,
     );
   }
 }

@@ -14,7 +14,7 @@ export class InfinityScrollTriggerComponent implements OnInit {
   ngOnInit(): void {}
 
   handleObservation(entires: IntersectionObserverEntry[]): void {
-    if (entires.length == 1) {
+    if (entires.length === 1) {
       const entry = entires[0];
       if (entry.isIntersecting) this.trigger.emit();
     }

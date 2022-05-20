@@ -18,7 +18,7 @@ export class FullNameValidation extends Validation {
       message: 'Cannot be more than 15 characters',
     },
     {
-      validator: Validators.pattern(/^[^\s]*$/),
+      validator: Validators.pattern(/^[^\s]*$/u),
       message: 'Cannot contain consecutive white spaces',
     },
   ];

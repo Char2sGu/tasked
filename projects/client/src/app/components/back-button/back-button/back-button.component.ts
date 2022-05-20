@@ -16,6 +16,6 @@ export class BackButtonComponent implements OnInit {
 
   ngOnInit(): void {
     this.destination =
-      this.mode == 'relative' ? '..' : this.routerHistory.previous ?? '..';
+      this.mode === 'relative' ? '..' : this.routerHistory.previous ?? '..';
   }
 }

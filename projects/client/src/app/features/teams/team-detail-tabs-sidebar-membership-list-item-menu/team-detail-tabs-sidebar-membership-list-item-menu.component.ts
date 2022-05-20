@@ -60,20 +60,20 @@ export class TeamDetailSidebarMembershipListItemMenuComponent
           .valueChanges.pipe(map((result) => result.data.team)),
         this.auth.user$,
       ]).subscribe(([team, user]) => {
-        const isSelf = this.membership?.owner.id == user?.id;
-        if (team.creator.id == user?.id) {
-          this.canPromote = this.membership?.role == Role.Member;
-          this.canDemote = this.membership?.role == Role.Manager && !isSelf;
+        const isSelf = this.membership?.owner.id === user?.id;
+        if (team.creator.id === user?.id) {
+          this.canPromote = this.membership?.role === Role.Member;
+          this.canDemote = this.membership?.role === Role.Manager && !isSelf;
           this.canRemove = !isSelf;
         } else {
-          if (team.membership!.role == Role.Member) {
+          if (team.membership!.role === Role.Member) {
             this.canPromote = false;
             this.canDemote = false;
             this.canRemove = false;
           } else {
-            this.canPromote = this.membership?.role == Role.Member;
+            this.canPromote = this.membership?.role === Role.Member;
             this.canDemote = false;
-            this.canRemove = this.membership?.role == Role.Member && !isSelf;
+            this.canRemove = this.membership?.role === Role.Member && !isSelf;
           }
         }
       });

@@ -4,11 +4,14 @@ import { Type } from '@nestjs/common';
 import { InputType, ReturnTypeFunc } from '@nestjs/graphql';
 
 import { Field } from '../../field.decorator';
+import { JsDocRequires } from '../../jsdoc';
 import {
   Filterable,
   FILTERABLE_FIELD_MAP,
   FilterableFieldMap,
 } from './filterable.decorator';
+
+JsDocRequires(Filterable);
 
 @InputType()
 export class FilterMap {
@@ -19,7 +22,7 @@ export class FilterMap {
    * @returns
    */
   static from(entityType: Type<AnyEntity>): Type<FilterMap> {
-    class _FilterMap extends this {}
+    class AnonFilterMap extends this {}
 
     const map: FilterableFieldMap = Reflect.getMetadata(
       FILTERABLE_FIELD_MAP,
@@ -39,14 +42,14 @@ export class FilterMap {
         apply(`${field}__like`, () => String);
 
         function apply(property: FieldFilter<Field>, type: ReturnTypeFunc) {
-          Field(type, { nullable: true })(_FilterMap.prototype, property);
+          Field(type, { nullable: true })(AnonFilterMap.prototype, property);
         }
       },
     );
 
-    InputType()(_FilterMap);
+    InputType()(AnonFilterMap);
 
-    return _FilterMap;
+    return AnonFilterMap;
   }
 
   /**
@@ -57,7 +60,7 @@ export class FilterMap {
   static resolve<Entity>(filterMap: FilterMap): OperatorMap<Entity> {
     return Object.fromEntries(
       Object.entries(filterMap).map(([filter, value]) => [
-        filter.replace(/__\w+$/, ''),
+        filter.replace(/__\w+$/u, ''),
         this.resolveField(filter, value),
       ]),
     );
@@ -80,7 +83,7 @@ export class FilterMap {
     else if (filter.endsWith('__lt')) return { $lt: value };
     else if (filter.endsWith('__lte')) return { $lte: value };
     else if (filter.endsWith('__like')) return { $like: value as string };
-    else return { $eq: value };
+    return { $eq: value };
   }
 
   [field: string]: unknown;
@@ -97,5 +100,3 @@ type FieldFilter<Field extends string> =
   | `${Field}__lt`
   | `${Field}__lte`
   | `${Field}__like`;
-
-Filterable;

@@ -5,11 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TruncationPipe implements PipeTransform {
   transform(text: string | null | undefined, max: number): string | undefined {
-    if (!text) return;
+    if (!text) return undefined;
     let result = '';
     let length = 0;
     for (const letter of text) {
-      length += letter == '\n' ? 10 : 1;
+      length += letter === '\n' ? 10 : 1;
       result += letter;
       if (length >= max) break;
     }

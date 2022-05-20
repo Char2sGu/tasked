@@ -52,7 +52,7 @@ import { ThemeService } from '../core/theme.service';
 export class LayoutComponent implements OnInit {
   theme$ = this.themeService.theme$;
 
-  isBreakpointXLargeMatched$ = this.breakpointObserver
+  isBreakpointLargeX1Matched$ = this.breakpointObserver
     .observe(Breakpoint.XLarge)
     .pipe(map((state) => state.matches));
   isBreakpointSmallMatched$ = this.breakpointObserver
@@ -112,12 +112,12 @@ export class LayoutComponent implements OnInit {
       .pipe(first())
       .subscribe((isLargerThanSmall) => {
         if (isLargerThanSmall) this.navigatorSide.toggle();
-        else this.navigatorBottom.openSheet(); // bottom navigator is definitely closed at this point
+        else this.navigatorBottom.openSheet(); // Bottom navigator is definitely closed at this point
       });
   }
 
   private closeNavigator() {
-    this.isBreakpointXLargeMatched$.pipe(first()).subscribe((isDesktop) => {
+    this.isBreakpointLargeX1Matched$.pipe(first()).subscribe((isDesktop) => {
       if (!isDesktop) this.navigatorSide.close();
       this.navigatorBottom.close();
     });
@@ -131,6 +131,6 @@ export class LayoutConfiguration {
 }
 
 export type LayoutContent = TemplateRef<LayoutContentContext> | null;
-export type LayoutContentContext = {
+export interface LayoutContentContext {
   navigator: { toggle(): void };
-};
+}

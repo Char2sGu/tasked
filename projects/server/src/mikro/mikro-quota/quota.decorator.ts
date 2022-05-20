@@ -1,7 +1,10 @@
 import { AnyEntity, Collection } from '@mikro-orm/core';
 
+import { JsDocRequires } from '../../common/jsdoc';
 import { MikroQuotaService } from './mikro-quota.service';
 import { QUOTA } from './quota.symbol';
+
+JsDocRequires(MikroQuotaService);
 
 /**
  * Define the quota of a collection field for the service to check.
@@ -22,5 +25,3 @@ export type CollectionField<Entity> = {
     ? Field
     : never;
 }[Extract<keyof Entity, string>];
-
-MikroQuotaService;

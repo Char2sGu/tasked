@@ -20,7 +20,7 @@ export class PwaService implements Initializable {
 
   async init(): Promise<void> {
     this.swUpdate.versionUpdates.subscribe((event) => {
-      if (event.type == 'VERSION_READY')
+      if (event.type === 'VERSION_READY')
         this.notifier.info('New version is available, refresh to upgrade');
     });
     this.themeService.theme$.subscribe(() => this.updateThemeColor());

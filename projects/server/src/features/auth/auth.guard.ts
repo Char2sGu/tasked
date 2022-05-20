@@ -65,4 +65,5 @@ export class AuthGuard implements CanActivate {
 export const AuthGuardSkipped = (
   revoke = false,
 ): CustomDecorator<typeof AUTH_GUARD_SKIPPED> =>
+  // eslint-disable-next-line no-unneeded-ternary
   SetMetadata(AUTH_GUARD_SKIPPED, revoke ? false : true);

@@ -21,12 +21,12 @@ import { GraphqlAuthInterceptor } from './graphql-auth.interceptor';
         link: httpBatchLinkFactory.create({ uri: '/graphql/' }),
         cache: new InMemoryCache({
           typePolicies: {
-            Query: {
+            ['Query']: {
               fields: {
                 team: {
                   // use the existing cache if possible
                   read: (_, { args, toReference }) =>
-                    toReference({ __typename: 'Team', id: args!['id'] }),
+                    toReference({ ['__typename']: 'Team', id: args!['id'] }),
                 },
               },
             },

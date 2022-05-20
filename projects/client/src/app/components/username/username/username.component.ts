@@ -28,9 +28,9 @@ export class UsernameComponent implements OnInit, OnChanges {
   private updateClassList() {
     if (!this.user?.gender || !this.color) return;
     this.classList =
-      this.user.gender == Gender.Male
+      this.user.gender === Gender.Male
         ? ['text--blue']
-        : this.user.gender == Gender.Female
+        : this.user.gender === Gender.Female
         ? ['text--pink']
         : [];
   }

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { debounceTime, finalize, first, map } from 'rxjs/operators';
 
-import { filterKeys, pick } from '../../../common/form.utils';
-import { isEmpty } from '../../../common/form.utils';
+import { filterKeys, isEmpty, pick } from '../../../common/form.utils';
 import { AuthService } from '../../../core/auth.service';
 import { Notifier } from '../../../core/notifier.service';
 import {
@@ -42,12 +41,12 @@ export class TeamDetailTabSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.isCreator$ = combineLatest([this.team$, this.authService.user$]).pipe(
-      map(([team, user]) => team.creator.id == user!.id),
+      map(([team, user]) => team.creator.id === user!.id),
     );
 
     this.modified$ = combineLatest([this.team$, this.change$$]).pipe(
       debounceTime(100),
-      map(([team]) => isEmpty(filterKeys(this.data, (v, k) => v != team[k]))),
+      map(([team]) => isEmpty(filterKeys(this.data, (v, k) => v !== team[k]))),
     );
 
     this.reset();
@@ -63,7 +62,7 @@ export class TeamDetailTabSettingsComponent implements OnInit {
 
   save(): void {
     this.team$.pipe(first()).subscribe((team) => {
-      const data = filterKeys(this.data, (v, k) => v != team[k]);
+      const data = filterKeys(this.data, (v, k) => v !== team[k]);
       this.loading = true;
       this.updateGql
         .mutate({ id: team.id, data })

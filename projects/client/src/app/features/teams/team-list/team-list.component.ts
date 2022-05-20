@@ -29,8 +29,8 @@ export class TeamListComponent implements OnInit {
     this.teams$ = (this.searchInput ? this.search() : this.list()).pipe(
       finalize(() => (this.loading = false)),
     );
-    if (!this.searchInput) this.list();
-    else this.search();
+    if (this.searchInput) this.search();
+    else this.list();
   }
 
   private list() {
@@ -42,14 +42,13 @@ export class TeamListComponent implements OnInit {
 
   private search() {
     this.searchMode = true;
-    const searchId = /^#(\d+)$/.exec(this.searchInput)?.[1];
+    const searchId = /^#(\d+)$/u.exec(this.searchInput)?.[1];
     return this.listGql
       .fetch(
         {
-          filter:
-            searchId != undefined
-              ? { id: searchId }
-              : { name__like: `%${this.searchInput}%` },
+          filter: searchId
+            ? { id: searchId }
+            : { ['name__like']: `%${this.searchInput}%` },
         },
         { fetchPolicy: 'network-only' },
       )

@@ -73,19 +73,17 @@ export class TeamDetailTabTasksComponent implements OnInit {
         finalize(() => (this.loadingMore = false)),
       )
       .subscribe(({ results, total }) => {
-        this.query.updateQuery((prev) => {
-          return {
-            ...prev,
-            membership: {
-              ...prev.membership,
-              tasks: {
-                ...prev.membership.tasks,
-                total,
-                results: [...prev.membership.tasks.results, ...results],
-              },
+        this.query.updateQuery((prev) => ({
+          ...prev,
+          membership: {
+            ...prev.membership,
+            tasks: {
+              ...prev.membership.tasks,
+              total,
+              results: [...prev.membership.tasks.results, ...results],
             },
-          };
-        });
+          },
+        }));
       });
   }
 }

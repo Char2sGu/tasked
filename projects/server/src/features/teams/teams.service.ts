@@ -75,7 +75,7 @@ export class TeamsService {
     });
 
     const user = Context.current.user;
-    if (user != team.creator)
+    if (user !== team.creator)
       throw new ForbiddenException('Cannot update teams not created by you');
 
     return team.assign(data);
@@ -87,7 +87,7 @@ export class TeamsService {
     });
 
     const user = Context.current.user;
-    if (user != team.creator)
+    if (user !== team.creator)
       throw new ForbiddenException('Cannot delete teams not created by you');
 
     await this.repo.populate(team, [

@@ -93,9 +93,9 @@ export class TeamDetailTabAssignmentsItemComponent implements OnInit {
         { id, data },
         {
           optimisticResponse: {
-            __typename: 'Mutation',
+            ['__typename']: 'Mutation',
             updateAssignment: {
-              __typename: 'Assignment',
+              ['__typename']: 'Assignment',
               id,
               isCompleted,
               isImportant,

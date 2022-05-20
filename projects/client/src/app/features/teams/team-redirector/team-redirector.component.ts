@@ -28,7 +28,7 @@ export class TeamRedirectorComponent {
     ]).subscribe(([teams, user]) => {
       const map = this.activatedTeamsMap;
       if (user.id in map.value) {
-        const exists = teams.some((item) => item.id == map.value[user.id]);
+        const exists = teams.some((item) => item.id === map.value[user.id]);
         if (exists) {
           this.redirect(map.value[user.id]);
         } else {

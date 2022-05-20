@@ -44,10 +44,10 @@ export class TeamDetailSidebarMembershipListItemComponent
           if (!this.membership) return;
 
           this.icon =
-            this.membership.role == Role.Member ? 'person' : 'manage_accounts';
+            this.membership.role === Role.Member ? 'person' : 'manage_accounts';
 
           this.iconColor =
-            this.membership.owner.id == team.creator?.id ? 'accent' : null;
+            this.membership.owner.id === team.creator?.id ? 'accent' : null;
         });
     });
   }

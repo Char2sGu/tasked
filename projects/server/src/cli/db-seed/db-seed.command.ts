@@ -64,7 +64,7 @@ export class DbSeedCommand implements CommandRunner {
           membershipRequests.push(
             em.create(MembershipRequest, {
               owner: user,
-              team: team,
+              team,
               status: oneOf(statusOptions),
               message: faker.datatype.boolean()
                 ? faker.random.words(faker.datatype.number({ min: 1, max: 10 }))
@@ -130,7 +130,7 @@ export class DbSeedCommand implements CommandRunner {
       managers.forEach((manager) => {
         const prevLength = tasks.length;
         const count = faker.datatype.number({ min: 0, max: 10 });
-        while (tasks.length - prevLength !== count) {
+        while (tasks.length - prevLength !== count)
           tasks.push(
             em.create(Task, {
               team,
@@ -150,7 +150,6 @@ export class DbSeedCommand implements CommandRunner {
               isActive: true,
             }),
           );
-        }
       });
     });
     em.persist(tasks);
@@ -161,7 +160,7 @@ export class DbSeedCommand implements CommandRunner {
     tasks.forEach((task) => {
       const members = task.team.memberships
         .getItems()
-        .filter((membership) => membership.role == Role.Member);
+        .filter((membership) => membership.role === Role.Member);
       someOf(members, Math.random()).forEach((membership) => {
         assignments.push(
           em.create(Assignment, {
@@ -176,7 +175,6 @@ export class DbSeedCommand implements CommandRunner {
     em.persist(assignments);
 
     await em.flush();
-    console.log(users.map((user) => user.username));
   }
 }
 

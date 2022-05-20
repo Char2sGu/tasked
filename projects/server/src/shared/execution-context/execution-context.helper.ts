@@ -6,7 +6,7 @@ import { Request } from 'express';
 @Injectable()
 export class ExecutionContextHelper {
   getRequest(context: ExecutionContext): Request {
-    return context.getType<GqlContextType>() == 'graphql'
+    return context.getType<GqlContextType>() === 'graphql'
       ? GqlExecutionContext.create(context).getContext<ExpressContext>().req
       : context.switchToHttp().getRequest<Request>();
   }

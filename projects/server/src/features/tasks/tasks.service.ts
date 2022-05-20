@@ -77,7 +77,7 @@ export class TasksService {
     });
 
     const user = Context.current.user;
-    if (task.creator.owner != user)
+    if (task.creator.owner !== user)
       throw new ForbiddenException('Cannot update tasks not created by you');
 
     return task.assign(data);

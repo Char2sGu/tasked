@@ -54,7 +54,7 @@ export class AuthFormSignupComponent implements OnInit {
         nickname,
         gender,
       },
-      (v) => v != '',
+      (v) => v !== '',
     );
     this.userCreateGql
       .mutate({ data })

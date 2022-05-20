@@ -7,12 +7,12 @@ import { Field } from '../../field.decorator';
 export class WithFilter<Filter> {
   static for<Filter>(type: () => Type<Filter>): Type<WithFilter<Filter>> {
     @ArgsType()
-    class _WithFilter extends this<Filter> {
+    class AnonWithFilter extends this<Filter> {
       @Field(type, { nullable: true })
       override filter!: never;
     }
 
-    return _WithFilter;
+    return AnonWithFilter;
   }
 
   filter?: Filter;

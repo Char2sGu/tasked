@@ -42,13 +42,13 @@ export class ThemeService implements Initializable {
   }
 
   apply(theme: Theme): void {
-    if (theme == 'light') this.$root.classList.remove('dark');
+    if (theme === 'light') this.$root.classList.remove('dark');
     else this.$root.classList.add('dark');
     this.storage.next(theme).save();
   }
 
   toggle(): void {
-    this.apply(this.storage.value == 'light' ? 'dark' : 'light');
+    this.apply(this.storage.value === 'light' ? 'dark' : 'light');
   }
 
   private watchPreference(): Observable<Theme> {

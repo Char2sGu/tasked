@@ -13,7 +13,7 @@ export class EqualsValidator implements Validator {
   constructor() {}
 
   validate(control: AbstractControl): ValidationErrors | null {
-    if (control.value == this.equals) return null;
-    else return { equals: false };
+    if (control.value === this.equals) return null;
+    return { equals: false };
   }
 }

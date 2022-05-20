@@ -90,7 +90,7 @@ export class TeamDetailTabTasksItemAssignPopupComponent implements OnInit {
         ),
         scan(
           ({ deletion, creation }, operation) =>
-            operation == DELETION
+            operation === DELETION
               ? { deletion: ++deletion, creation }
               : { creation: ++creation, deletion },
           { creation: 0, deletion: 0 },
@@ -121,7 +121,7 @@ export class TeamDetailTabTasksItemAssignPopupComponent implements OnInit {
     const items: Record<string, Item> = {};
 
     memberships
-      .filter((item) => item.role == Role.Member)
+      .filter((item) => item.role === Role.Member)
       .forEach((membership) => {
         items[membership.id] = {
           membership,
@@ -138,7 +138,7 @@ export class TeamDetailTabTasksItemAssignPopupComponent implements OnInit {
   }
 
   private isItemChanged(item: Item): boolean {
-    return item.selected != !!item.assignment;
+    return item.selected !== !!item.assignment;
   }
 
   private createAssignment(recipient: Membership) {

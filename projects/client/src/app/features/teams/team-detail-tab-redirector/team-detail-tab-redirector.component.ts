@@ -23,7 +23,7 @@ export class TeamDetailTabRedirectorComponent implements OnInit {
             'app',
             'teams',
             team.id,
-            membership.role == Role.Member ? 'assignments' : 'tasks',
+            membership.role === Role.Member ? 'assignments' : 'tasks',
           ],
           { replaceUrl: true },
         );

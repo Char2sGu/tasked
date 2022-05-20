@@ -15,12 +15,12 @@ JsDocRequires(Page);
 export class Paginated<Entity> implements RepositoryPaginationResult<Entity> {
   static for<Entity>(type: () => Type<Entity>): Type<Paginated<Entity>> {
     @ObjectType()
-    class _Paginated extends this<Entity> {
+    class AnonPaginated extends this<Entity> {
       @Field(() => [type()])
       override results!: never;
     }
 
-    return _Paginated;
+    return AnonPaginated;
   }
 
   @Field(() => Int)

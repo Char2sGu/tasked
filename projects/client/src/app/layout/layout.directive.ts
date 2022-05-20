@@ -33,9 +33,9 @@ export class LayoutDirective implements OnInit, OnDestroy {
     if (!this.appLayout) return;
     this.target = this.configuration[`${this.appLayout}$`];
     const content: LayoutContent =
-      this.appLayoutContent !== undefined
-        ? this.appLayoutContent
-        : this.templateRef ?? null;
+      this.appLayoutContent === undefined
+        ? this.templateRef ?? null
+        : this.appLayoutContent;
     setTimeout(() => {
       this.previous = this.target.getValue();
       this.target.next(content);

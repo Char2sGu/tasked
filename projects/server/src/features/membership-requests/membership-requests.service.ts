@@ -160,7 +160,7 @@ export class MembershipRequestsService {
   }
 
   private forbidResulted(membershipRequest: MembershipRequest, action: string) {
-    if (membershipRequest.status != MembershipRequestStatus.Pending)
+    if (membershipRequest.status !== MembershipRequestStatus.Pending)
       throw new ForbiddenException(
         `Cannot ${action} resulted membershipRequests`,
       );

@@ -21,7 +21,7 @@ export class MikroQuotaService {
     field: CollectionField<Entity>,
   ): Promise<void> {
     const quota: number | undefined = Reflect.getMetadata(QUOTA, entity, field);
-    if (quota == undefined) throw new Error('Quota not defined');
+    if (quota === undefined) throw new Error('Quota not defined');
 
     const collection = entity[field] as unknown as Collection<AnyEntity>;
     if (!collection.isInitialized())

@@ -46,7 +46,7 @@ export class TeamDetailTabsComponent implements OnInit {
     this.links$ = this.state.membership$.pipe(
       skipNullable(),
       map((membership) => [
-        membership.role == Role.Member
+        membership.role === Role.Member
           ? { title: $localize`Assignments`, commands: ['assignments'] }
           : { title: $localize`Tasks`, commands: ['tasks'] },
         { title: $localize`Settings`, commands: ['settings'] },
@@ -55,4 +55,7 @@ export class TeamDetailTabsComponent implements OnInit {
   }
 }
 
-type TabLink = { title: string; commands: string[] };
+interface TabLink {
+  title: string;
+  commands: string[];
+}

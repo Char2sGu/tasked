@@ -107,7 +107,7 @@ export class TeamDetailTabAssignmentsComponent implements OnInit {
           -(new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()),
       )
       .sort((a, b) =>
-        a.isImportant == b.isImportant ? 0 : a.isImportant ? -1 : 1,
+        a.isImportant === b.isImportant ? 0 : a.isImportant ? -1 : 1,
       );
   }
 }

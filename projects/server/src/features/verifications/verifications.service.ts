@@ -19,10 +19,7 @@ export class VerificationsService {
     private mailer: MailerService,
   ) {}
 
-  async request(
-    {}: RequestVerificationArgs,
-    user: User,
-  ): Promise<Verification> {
+  async request(_: RequestVerificationArgs, user: User): Promise<Verification> {
     const existing = await this.findExisting(user);
     if (existing) throw new BadRequestException('Pending verification exists');
     const verification = this.repo.create({
@@ -42,7 +39,7 @@ export class VerificationsService {
   ): Promise<Verification> {
     const verification = await this.findExisting(user);
     if (!verification) throw new BadRequestException('No pending verification');
-    const isCorrect = code == verification.code;
+    const isCorrect = code === verification.code;
     if (isCorrect) verification.verified = true;
     else verification.remainingAttemptCount--;
     return verification;

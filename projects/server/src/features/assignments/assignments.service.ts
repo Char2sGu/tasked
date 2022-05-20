@@ -67,7 +67,7 @@ export class AssignmentsService {
     await this.membershipRepo
       .findOneOrFail(data.recipient, { filters: false })
       .then((membership) => {
-        if (membership.role != Role.Member)
+        if (membership.role !== Role.Member)
           throw new BadRequestException(
             'recipient must be an ID of a member membership in this team',
           );
@@ -76,7 +76,7 @@ export class AssignmentsService {
     await this.taskRepo
       .findOneOrFail(data.task, { filters: false, populate: ['creator'] })
       .then((task) => {
-        if (task.creator.owner != user)
+        if (task.creator.owner !== user)
           throw new BadRequestException(
             'task must be an ID of a task created by you',
           );
@@ -96,11 +96,12 @@ export class AssignmentsService {
     });
 
     const user = Context.current.user;
-    if (user != assignment.recipient.owner) {
+    if (user !== assignment.recipient.owner) {
       if (isDefined(data.isCompleted))
         throw new ForbiddenException(
           'Cannot update completeness of assignments not assigned to you',
         );
+
       if (isDefined(data.isImportant))
         throw new ForbiddenException(
           'Cannot update importance of assignments not assigned to you',
@@ -117,7 +118,7 @@ export class AssignmentsService {
     });
 
     const user = Context.current.user;
-    if (user != assignment.task.creator.owner)
+    if (user !== assignment.task.creator.owner)
       throw new ForbiddenException(
         'Cannot delete assignments not created by you',
       );

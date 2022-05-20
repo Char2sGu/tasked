@@ -10,12 +10,12 @@ import { Field } from '../field.decorator';
 export class WithData<Data> {
   static for<Data>(type: () => Type<Data>): Type<WithData<Data>> {
     @ArgsType()
-    class _WithData extends this<Data> {
+    class AnonWithData extends this<Data> {
       @Field(() => type(), { nested: true })
       override data!: never;
     }
 
-    return _WithData;
+    return AnonWithData;
   }
 
   data!: Data;

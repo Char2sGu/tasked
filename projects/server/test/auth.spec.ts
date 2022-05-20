@@ -55,10 +55,10 @@ describe('Auth', () => {
     );
 
     async function request(args: string) {
-      const result_ = await client.request(
+      const resultLocal = await client.request(
         `mutation { auth${args} { token, user { id } } }`,
       );
-      result = result_.auth;
+      result = resultLocal.auth;
     }
   });
 });

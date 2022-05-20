@@ -1,6 +1,5 @@
 import '@types/jest';
 
-import { EntityData } from '@mikro-orm/core';
 import { EntityManager } from '@mikro-orm/sqlite';
 import { INestApplication } from '@nestjs/common';
 import { TestingModule } from '@nestjs/testing';
@@ -143,9 +142,7 @@ describe('Memberships', () => {
     return em.create(Team, {
       name: 'name',
       creator,
-      memberships: members.map(
-        ([owner, role]) => ({ owner, role } as EntityData<Membership>),
-      ),
+      memberships: members.map(([owner, role]) => ({ owner, role })),
     });
   }
 });

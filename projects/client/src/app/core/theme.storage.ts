@@ -10,7 +10,7 @@ export class ThemeStorage extends LocalStorageItem<Theme | null> {
   constructor() {
     super(
       'theme',
-      (v) => (v as Theme) == 'light' || (v as Theme) == 'dark',
+      (v) => (v as Theme) === 'light' || (v as Theme) === 'dark',
       null,
     );
   }

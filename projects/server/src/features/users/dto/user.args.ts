@@ -1,5 +1,4 @@
-import { ArgsType } from '@nestjs/graphql';
-import { IntersectionType } from '@nestjs/graphql';
+import { ArgsType, IntersectionType } from '@nestjs/graphql';
 
 import { WithFilter } from '../../../common/dto/filter/with-filter.args.dto';
 import { WithOrder } from '../../../common/dto/order/with-order.args';

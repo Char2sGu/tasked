@@ -51,16 +51,16 @@ export class TeamDetailSidebarMembershipListComponent implements OnInit {
         map(([memberships, team, user]) =>
           memberships
             .sort((a, b) =>
-              a.owner.id == user!.id ? -1 : b.owner.id == user!.id ? 1 : 0,
+              a.owner.id === user!.id ? -1 : b.owner.id === user!.id ? 1 : 0,
             )
             .sort((a, b) =>
-              a.owner.id == team.creator.id
+              a.owner.id === team.creator.id
                 ? -1
-                : b.owner.id == team.creator.id
+                : b.owner.id === team.creator.id
                 ? 1
-                : a.role == b.role
+                : a.role === b.role
                 ? 0
-                : a.role == Role.Manager
+                : a.role === Role.Manager
                 ? -1
                 : 1,
             ),

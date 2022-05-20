@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
 })
 export class ValidationErrorMessagePipe implements PipeTransform {
   transform(model: NgModel): Observable<string | null> {
-    if (!model.valueChanges) throw '';
+    if (!model.valueChanges) throw new Error();
     return model.valueChanges.pipe(
       map(() => {
         if (!model.errors) return null;

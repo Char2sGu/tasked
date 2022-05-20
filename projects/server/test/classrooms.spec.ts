@@ -6,7 +6,6 @@ import { INestApplication } from '@nestjs/common';
 import { TestingModule } from '@nestjs/testing';
 
 import { AuthService } from '../src/features/auth/auth.service';
-import { Membership } from '../src/features/memberships/entities/membership.entity';
 import { Role } from '../src/features/memberships/entities/role.enum';
 import { PaginatedTeams } from '../src/features/teams/dto/paginated-teams.obj.dto';
 import { Team } from '../src/features/teams/entities/team.entity';
@@ -247,12 +246,7 @@ describe.only('Teams', () => {
     return em.create(Team, {
       name: 'name',
       creator,
-      memberships: [
-        {
-          owner: 1,
-          role: Role.Manager,
-        } as EntityData<Membership>,
-      ],
+      memberships: [{ owner: 1, role: Role.Manager }],
     });
   }
 });

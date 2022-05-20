@@ -33,22 +33,25 @@ export class LocalStorageItem<Value> {
     const VALUE_NOT_VALID = Symbol();
     try {
       const raw = localStorage.getItem(this.key);
-      if (raw == null) throw VALUE_NOT_EXIST;
+      if (raw === null) throw VALUE_NOT_EXIST;
       const dirty = JSON.parse(raw);
       if (!this.validator(dirty)) throw VALUE_NOT_VALID;
       const validated = dirty;
       this.next(validated);
     } catch (error) {
       if (
-        error == VALUE_NOT_EXIST ||
-        error == VALUE_NOT_VALID ||
+        error === VALUE_NOT_EXIST ||
+        error === VALUE_NOT_VALID ||
         error instanceof SyntaxError
       ) {
         const initial =
           this.initial instanceof Function ? this.initial() : this.initial;
         this.next(initial);
-      } else throw error;
+      } else {
+        throw error;
+      }
     } finally {
+      // eslint-disable-next-line no-unsafe-finally
       return this;
     }
   }

@@ -29,7 +29,7 @@ export class AssignmentsResolver {
   async createAssignment(
     @Args() args: CreateAssignmentArgs,
   ): Promise<Assignment> {
-    return await this.service.createOne(args);
+    return this.service.createOne(args);
   }
 
   @Mutation(() => Assignment)

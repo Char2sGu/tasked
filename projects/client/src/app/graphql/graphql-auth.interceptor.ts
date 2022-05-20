@@ -22,7 +22,9 @@ export class GraphqlAuthInterceptor implements HttpInterceptor {
       map((authorization) =>
         authorization
           ? request.clone({
-              setHeaders: { Authorization: `Bearer ${authorization.token}` },
+              setHeaders: {
+                ['Authorization']: `Bearer ${authorization.token}`,
+              },
             })
           : request,
       ),

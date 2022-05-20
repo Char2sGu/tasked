@@ -12,8 +12,8 @@ export class LoadingDirective {
   @Input()
   set appLoading(loading: boolean) {
     this.viewContainerRef.clear();
-    if (!loading) this.createContent();
-    else this.createSpinner();
+    if (loading) this.createSpinner();
+    else this.createContent();
   }
 
   constructor(

@@ -48,7 +48,7 @@ export class UsersService {
     const entity = await this.repo.findOneOrFail(id);
 
     const user = Context.current.user;
-    if (entity != user)
+    if (entity !== user)
       throw new ForbiddenException('Cannot update other users');
 
     return entity.assign(data);

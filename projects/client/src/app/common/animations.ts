@@ -13,7 +13,7 @@ import { AnimationCurves } from '@angular/material/core';
 export abstract class Animation {
   static readonly content: AnimationReferenceMetadata;
 
-  static apply(..._args: unknown[]): AnimationAnimateRefMetadata {
+  static apply(...args: unknown[]): AnimationAnimateRefMetadata {
     return useAnimation(this.content);
   }
 }
@@ -134,7 +134,7 @@ export class SharedAxisAnimation extends Animation {
       transformOutgoingTo,
       ...params
     }: Record<string, string>) =>
-      mode == 'forward'
+      mode === 'forward'
         ? {
             transformIncomingFrom,
             transformIncomingTo,
@@ -150,7 +150,7 @@ export class SharedAxisAnimation extends Animation {
             ...params,
           };
     const params =
-      axis == 'x'
+      axis === 'x'
         ? getParams({
             overflowX: 'hidden',
             overflowY: '*',
@@ -159,7 +159,7 @@ export class SharedAxisAnimation extends Animation {
             transformOutgoingFrom: `translateX(0)`,
             transformOutgoingTo: `translateX(-30px)`,
           })
-        : axis == 'y'
+        : axis === 'y'
         ? getParams({
             overflowX: '*',
             overflowY: 'hidden',

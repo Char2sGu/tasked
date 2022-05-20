@@ -3,7 +3,10 @@ import { Type } from '@nestjs/common';
 import { InputType, registerEnumType } from '@nestjs/graphql';
 
 import { Field } from '../../field.decorator';
+import { JsDocRequires } from '../../jsdoc';
 import { ORDERABLE, Orderable } from './orderable.decorator';
+
+JsDocRequires(Orderable);
 
 registerEnumType(QueryOrderNumeric, { name: 'QueryOrder' });
 
@@ -19,17 +22,19 @@ export class OrderMap {
     type: () => Type<Entity>,
     fields: readonly Field[],
   ): Type<OrderMap> {
-    class _OrderMap extends this {}
+    class AnonOrderMap extends this {}
 
     fields.forEach((field) => {
       Field(() => QueryOrderNumeric, { nullable: true })(
-        _OrderMap.prototype,
+        AnonOrderMap.prototype,
         field,
       );
     });
-    InputType()(_OrderMap);
+    InputType()(AnonOrderMap);
 
-    return _OrderMap as Type<unknown> as Type<Record<Field, QueryOrderNumeric>>;
+    return AnonOrderMap as Type<unknown> as Type<
+      Record<Field, QueryOrderNumeric>
+    >;
   }
 
   /**
@@ -45,5 +50,3 @@ export class OrderMap {
 
   [field: string]: QueryOrderNumeric;
 }
-
-Orderable;

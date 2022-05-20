@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

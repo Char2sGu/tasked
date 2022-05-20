@@ -2,10 +2,11 @@ import { FindOptions } from '@mikro-orm/core';
 import { EntityManager } from '@mikro-orm/knex';
 import { Type } from '@nestjs/common';
 import {
+  registerDecorator,
+  ValidationOptions,
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { registerDecorator, ValidationOptions } from 'class-validator';
 
 import { ValidationArguments } from './validation-arguments.interface';
 
