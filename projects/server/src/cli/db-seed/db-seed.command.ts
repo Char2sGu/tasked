@@ -19,6 +19,7 @@ import { User } from '../../features/users/entities/user.entity';
 export class DbSeedCommand implements CommandRunner {
   constructor(private em: EntityManager) {}
 
+  // eslint-disable-next-line max-lines-per-function
   async run(): Promise<void> {
     const em = this.em.fork();
 
@@ -175,6 +176,8 @@ export class DbSeedCommand implements CommandRunner {
     em.persist(assignments);
 
     await em.flush();
+    // eslint-disable-next-line no-console
+    console.log(users.map((user) => user.username));
   }
 }
 
