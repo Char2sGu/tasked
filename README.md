@@ -2,6 +2,8 @@
 
 A task management [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) implemented with Angular and Nest.
 
+> This repository is a continuation of [tasked_backend](https://github.com/Char2sGu/tasked_backend) and [tasked_frontend](https://github.com/Char2sGu/tasked_frontend).
+
 ## Features
 
 - Responsive - All Devices: Desktop, Tablet and Phone
@@ -12,6 +14,12 @@ A task management [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive
 - Bulk GraphQL Operations - Less HTTP Requests
 - Well-organized State - Synced Locally based on Mutations
 - Server CLI Commands - Easy Management
+
+## Live Demo
+
+For a live demo, please visit https://tasked.char2s.dev/.
+
+A list of mock usernames is available at https://tasked.char2s.dev/users.json. The password for all the mock users is `password`.
 
 ## Main Tech Stack
 
